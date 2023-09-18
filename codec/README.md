@@ -64,5 +64,38 @@ on l'execute comme un capteur mais en rajoutant l'argument <code>device</code> a
 
     node ./codec/debug.js <device> <port> <payload> <date>
 
-<p>il execute le .js du device choisit se trouvant dans le dossier <code>actility</code><br>
-Si des modifications dans l'arborescance sont effectués, assurez vous que le chemin d'appel fasse encore sens.</p>
+<p>il execute le .js du device choisit se trouvant dans le dossier <code>devices</code><br>
+Si des modifications dans l'arborescance sont effectués, assurez-vous que le chemin d'appel ait encore du sens.</p>
+
+la liste des device est la suivant :
+
+|         name         |
+|:--------------------:|
+|        atm'o         |
+|        clos'o        |
+|       flash'o        |
+|         in'o         |
+|       inclin'o       |
+|  indoor_temperature  |
+|       intens'o       |
+|        lev'o         |
+|        modbus        |
+|       monit'o        |
+|        move'o        |
+| outdoor_temperature  |
+|      pilot_wire      |
+|       press'o        |
+|     pulse_sens'o     |
+|  pulse_sens'o_atex   |
+|  remote_temperature  |
+| remote_temperature_2 |
+|      smartplug       |
+|          th          |
+|        tics'o        |
+|     toran'o_atex     |
+|      triphas'o       |
+|        vaqa'o        |
+|      vaqa'o_lt       |
+|     vaqa'o_plus      |
+|       ventil'o       |
+
