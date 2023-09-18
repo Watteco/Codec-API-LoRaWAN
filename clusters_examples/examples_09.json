@@ -1,0 +1,41 @@
+[
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing cmdID 0x09 read reporting configuration response for configuration cluster | payload:110900500080000641003C003C0448040000",
+    "input": {
+      "bytes": [
+        17,  9, 0, 80, 0, 128, 0,
+        6, 65, 0, 60, 0,  60, 4,
+        72,  4, 0,  0
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": {
+        "report": "standard",
+        "endpoint": 0,
+        "cmdID": "0x09",
+        "clustID": "0x0050",
+        "attID": "0x0006",
+        "status": 0,
+        "report_parameters": {
+          "new_mode_configuration": "1",
+          "cause_request": "none",
+          "secured_if_alarm": "0",
+          "secured": "0",
+          "no_hearde_port": "0",
+          "batch": "0"
+        },
+        "attribut_type": 65,
+        "min": { "value": 60, "unit": "seconds" },
+        "max": { "value": 60, "unit": "seconds" },
+        "modepower": 72,
+        "powersource": 4,
+        "delta": 0,
+        "changedpowersource": "undefined"
+      },
+      "warnings": [ "" ]
+    }
+  }
+]

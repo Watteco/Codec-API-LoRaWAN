@@ -1,0 +1,25 @@
+[
+  {
+    "type": "uplink",
+    "description": "uplink standard response containing speed value | payload:1101800600008822002580",
+    "input": {
+      "bytes": [
+        17,   1, 128, 6,  0,
+        0, 136,  34, 0, 37,
+        128
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": [
+        {
+          "variable": "speed",
+          "value": 9600,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
+      "warnings": [ "" ]
+    }
+  }
+]

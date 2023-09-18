@@ -1,0 +1,25 @@
+[
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing temperature value | payload:110A040600001801",
+    "input": {
+      "bytes": [
+        17, 10,  4, 6,
+        0,  0, 24, 1
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": [
+        {
+          "variable": "occupancy",
+          "value": true,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
+      "warnings": [ "" ]
+    }
+
+  }
+]

@@ -1,0 +1,31 @@
+[
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing humidity value | payload:110A04050000210E89",
+    "input": {
+      "bytes": [
+        17,
+        10,
+        4,
+        5,
+        0,
+        0,
+        33,
+        14,
+        137
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": [{
+        "variable": "humidity",
+        "value": 37.21,
+        "date": "2023-07-19T07:51:25.508306410Z"
+      }],
+      "warnings": [
+        ""
+      ]
+    }
+  }
+]

@@ -1,0 +1,46 @@
+[
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing state value | payload:110A000600001001",
+    "input": {
+      "bytes": [
+        17, 10,  0, 6,
+        0,  0, 16, 1
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": [
+        {
+          "variable": "output",
+          "value": "ON",
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
+      "warnings": [ "" ]
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing state value | payload:110A000600001000",
+    "input": {
+      "bytes": [
+        17, 10,  0, 6,
+        0,  0, 16, 0
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": [
+        {
+          "variable": "output",
+          "value": "OFF",
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
+      "warnings": [ "" ]
+    }
+  }
+]

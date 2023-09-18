@@ -1,0 +1,125 @@
+[
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing report of the 3 phases | payload:110a8010000041200000010000000200000003000000040000000500000006000000070000000800",
+    "input": {
+      "bytes": [
+        17, 10, 128, 16, 0, 0, 65, 32, 0, 0,
+        1,  0,   0,  0, 2, 0,  0,  0, 3, 0,
+        0,  0,   4,  0, 0, 0,  5,  0, 0, 0,
+        6,  0,   0,  0, 7, 0,  0,  0, 8, 0
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": [
+        {
+          "variable": "active_energy_a",
+          "value": 256,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "reactive_energy_a",
+          "value": 512,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "active_energy_b",
+          "value": 768,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "reactive_energy_b",
+          "value": 1024,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "active_energy_c",
+          "value": 1280,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "reactive_energy_c",
+          "value": 1536,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "active_energy_abc",
+          "value": 1792,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "reactive_energy_abc",
+          "value": 2048,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
+      "warnings": [ "" ]
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing report of the 3 phases | payload:110A80100001412000001843FFFFFC20000024CAFFFFF50F00001F35FFFFF42A00005C42FFFFE559A050000000003200000001015100000000140000000001",
+    "input": {
+      "bytes": [
+        17,  10, 128, 16,   0,   1,  65,  32,   0,   0,  24, 67,
+        255, 255, 252, 32,   0,   0,  36, 202, 255, 255, 245, 15,
+        0,   0,  31, 53, 255, 255, 244,  42,   0,   0,  92, 66,
+        255, 255, 229, 89, 160,  80,   0,   0,   0,   0,  50,  0,
+        0,   0,   1,  1,  81,   0,   0,   0,   0,  20,   0,  0,
+        0,   0,   1
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": [
+        {
+          "variable": "active_power_a",
+          "value": 6211,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "reactive_power_a",
+          "value": 4294966304,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "active_power_b",
+          "value": 9418,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "reactive_power_b",
+          "value": 4294964495,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "active_power_c",
+          "value": 7989,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "reactive_power_c",
+          "value": 4294964266,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "active_power_abc",
+          "value": 23618,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "reactive_power_abc",
+          "value": 4294960473,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
+      "warnings": [
+        "alarm, criterion_index: 0, mode: threshold, crossing: exceed, value: 50, gap: 1, occurences: 1, field: active_power_a",
+        "alarm, criterion_index: 1, mode: threshold, crossing: exceed, value: 20, gap: 0, occurences: 1, field: active_power_a"
+      ]
+    }
+  }
+]

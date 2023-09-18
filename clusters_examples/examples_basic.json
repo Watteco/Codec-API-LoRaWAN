@@ -1,0 +1,157 @@
+[
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing firmware version | payload:110100000002000D0305020015E2",
+    "input": {
+      "bytes": [
+        17,
+        1,
+        0,
+        0,
+        0,
+        2,
+        0,
+        13,
+        3,
+        5,
+        2,
+        0,
+        21,
+        226
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": [
+        {
+          "variable": "firmware",
+          "value": "3.5.2.5602",
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
+      "warnings": [
+        ""
+      ]
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing kernel version | payload:11010000000300420B436F6E74696B6920332E78",
+    "input": {
+      "bytes": [
+        17,
+        1,
+        0,
+        0,
+        0,
+        3,
+        0,
+        66,
+        11,
+        67,
+        111,
+        110,
+        116,
+        105,
+        107,
+        105,
+        32,
+        51,
+        46,
+        120
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": [
+        {
+          "variable": "kernel",
+          "value": "Contiki 3.x",
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
+      "warnings": [
+        ""
+      ]
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing model  | payload:11010000000500420D37312D37302D3130332D303030",
+    "input": {
+      "bytes": [
+        17,  1,  0,  0,  0,  5,  0,
+        66, 13, 55, 49, 45, 55, 48,
+        45, 49, 48, 51, 45, 48, 48,
+        48
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    }
+  ,
+    "output": {
+      "data": [
+        {
+          "variable": "model",
+          "value": "71-70-103-000",
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
+      "warnings": [ "" ]
+    }
+
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing date of construction | payload:1101000000060042083235313132303231",
+    "input": {
+      "bytes": [
+        17,  1,  0,  0,  0,  6,  0,
+        66,  8, 50, 53, 49, 49, 50,
+        48, 50, 49
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    }
+
+  ,
+    "output": {
+      "data": [
+        {
+          "variable": "date",
+          "value": "25112021",
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
+      "warnings": [ "" ]
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing application name | payload:110100008001004220332E352E322E353630325F6970732D6963742D74682E73687463332E6C656473",
+    "input": {
+      "bytes": [
+        17,   1,   0,   0, 128,  1,   0,  66,  32,  51,
+        46,  53,  46,  50,  46, 53,  54,  48,  50,  95,
+        105, 112, 115,  45, 105, 99, 116,  45, 116, 104,
+        46, 115, 104, 116,  99, 51,  46, 108, 101, 100,
+        115
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": [
+        {
+          "variable": "application_name",
+          "value": "3.5.2.5602_ips-ict-th.shtc3.leds",
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
+      "warnings": [ "" ]
+    }
+
+  }
+]

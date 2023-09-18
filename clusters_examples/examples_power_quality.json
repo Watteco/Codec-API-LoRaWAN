@@ -1,0 +1,77 @@
+[
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing power quality | payload:310a80520000411822221111FFFF000100000003001100002222000100020003",
+    "input": {
+      "bytes": [
+        49, 10, 128,  82,   0, 0, 65, 24, 34,
+        34, 17,  17, 255, 255, 0,  1,  0,  0,
+        0,  3,   0,  17,   0, 0, 34, 34,  0,
+        1,  0,   2,   0,   3
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": [
+        {
+          "variable": "frequency",
+          "value": 30.97,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "frequency_min",
+          "value": 26.601,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "frequency_max",
+          "value": 22.231,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "Vrms",
+          "value": 0.1,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "Vrms_min",
+          "value": 0,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "Vrms_max",
+          "value": 0.3,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "Vpeak",
+          "value": 1.7,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "Vpeak_min",
+          "value": 0,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "Vpeak_max",
+          "value": 873.8,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "over_voltage",
+          "value": 1,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "sag_voltage",
+          "value": 2,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
+      "warnings": [ "" ]
+    }
+
+  }
+]

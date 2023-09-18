@@ -1,0 +1,24 @@
+[
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing defferential pressure value | payload:110A80080000290018",
+    "input": {
+      "bytes": [
+        17, 10, 128,  8, 0,
+        0, 41,   0, 24
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": [
+        {
+          "variable": "differential_pressure",
+          "value": 24,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
+      "warnings": [ "" ]
+    }
+  }
+]

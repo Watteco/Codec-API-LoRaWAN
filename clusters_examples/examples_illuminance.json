@@ -1,0 +1,96 @@
+[
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing illuminance value | payload:110A04000000210745",
+    "input": {
+      "bytes": [
+        17, 10, 4,  0, 0,
+        0, 33, 7, 69
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": [
+        {
+          "variable": "illuminance",
+          "value": 1861,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
+      "warnings": [ "" ]
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing illuminance short threshold alarm | payload:118A0400000021008090D0",
+    "input": {
+      "bytes": [
+        17, 138, 4,   0,   0,
+        0,  33, 0, 128, 144,
+        208
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    }
+  ,
+    "output": {
+      "data": [
+        {
+          "variable": "illuminance",
+          "value": 128,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
+      "warnings": [ "alarm, criterion_index: 0, mode: threshold, crossing: exceed" ]
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing illuminance long threshold alarm | payload:118A04000000210076A0D00032000001",
+    "input": {
+      "bytes": [
+        17, 138,   4,   0,   0, 0,
+        33,   0, 118, 160, 208, 0,
+        50,   0,   0,   1
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": [
+        {
+          "variable": "illuminance",
+          "value": 118,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
+      "warnings": [
+        "alarm, criterion_index: 0, mode: threshold, crossing: exceed, value: 50, gap: 0, occurences: 1"
+      ]
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing illuminance long delta alarm | payload:118A04000000210002A0C80032",
+    "input": {
+      "bytes": [
+        17, 138, 4,   0,   0, 0,
+        33,   0, 2, 160, 200, 0,
+        50
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": [
+        {
+          "variable": "illuminance",
+          "value": 2,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
+      "warnings": [ "alarm, criterion_index: 0, mode: delta, value: 50" ]
+    }
+  }
+]

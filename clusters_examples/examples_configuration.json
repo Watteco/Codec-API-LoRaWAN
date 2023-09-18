@@ -1,0 +1,86 @@
+[
+  {
+    "type": "uplink",
+    "description": "uplink standard report  containing battery charge | payload:110A00500006410503040E6804",
+    "input": {
+      "bytes": [
+        17,
+        10,
+        0,
+        80,
+        0,
+        6,
+        65,
+        5,
+        3,
+        4,
+        14,
+        104,
+        4
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": [{
+        "variable": "disposable_battery_voltage",
+        "value": 3.688,
+        "date": "2023-07-19T07:51:25.508306410Z"
+      }],
+      "warnings": [
+        ""
+      ]
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing long threshold alarm on disposable battery | payload:118A00500006410501040D2204A0D0040D20000001",
+    "input": {
+      "bytes": [
+        17, 138,  0, 80,  0, 6,  65,
+        5,   1,  4, 13, 34, 4, 160,
+        208,   4, 13, 32,  0, 0,   1
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    }
+  ,
+    "output": {
+      "data": [
+        {
+          "variable": "disposable_battery_voltage",
+          "value": 3.362,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
+      "warnings": [
+        "alarm, criterion_index: 0, mode: threshold, crossing: exceed, value: 3.36, gap: 0, occurences: 1, field: disposable_battery"
+      ]
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report long delta alarm on disposable battery | payload:118A00500006410501040D2704A0C8040001",
+    "input": {
+      "bytes": [
+        17, 138, 0, 80,  0, 6,  65,
+        5,   1, 4, 13, 39, 4, 160,
+        200,   4, 0,  1
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": [
+        {
+          "variable": "disposable_battery_voltage",
+          "value": 3.367,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
+      "warnings": [
+        "alarm, criterion_index: 0, mode: delta, value: 0.001, field: disposable_battery"
+      ]
+    }
+  }
+]

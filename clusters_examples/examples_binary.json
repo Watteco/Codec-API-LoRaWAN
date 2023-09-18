@@ -1,0 +1,61 @@
+[
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing state of pin 1//replace | payload:110A000F00551001",
+    "input": {
+      "bytes": [
+        17,
+        10,
+        0,
+        15,
+        0,
+        85,
+        16,
+        1
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": [{
+        "variable": "pin_state//replace",
+        "value": true,
+        "date": "2023-07-19T07:51:25.508306410Z"
+      }],
+      "warnings": [
+        ""
+      ]
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing number of pulse detection on input 1//replace | payload:110A000F04022300000000",
+    "input": {
+      "bytes": [
+        17,
+        10,
+        0,
+        15,
+        4,
+        2,
+        35,
+        0,
+        0,
+        0,
+        0
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": [
+          {
+          "variable": "index//replace",
+          "value": 0,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
+      "warnings": [""]
+    }
+  }
+]

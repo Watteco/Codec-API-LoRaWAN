@@ -1,0 +1,69 @@
+[
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing dataup info | payload:110180040000000800",
+    "input": {
+      "bytes": [
+        17, 1, 128, 4, 0,
+        0, 0,   8, 0
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": [
+        {
+          "variable": "message_type",
+          "value": "unconfirmed",
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
+      "warnings": [ "" ]
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing number of retry | payload:110180040001002007",
+    "input": {
+      "bytes": [
+        17, 1, 128, 4, 0,
+        1, 0,  32, 7
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": [
+        {
+          "variable": "nb_retry",
+          "value": 7,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
+      "warnings": [ "" ]
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing abp dev address | payload:110180040004004104FFFFFFFF",
+    "input": {
+      "bytes": [
+        17,  1, 128,   4,   0,   4,
+        0, 65,   4, 255, 255, 255,
+        255
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": [
+        {
+          "variable": "ABP_dev_address",
+          "value": "255.255.255.255",
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
+      "warnings": [ "" ]
+    }
+  }
+]
