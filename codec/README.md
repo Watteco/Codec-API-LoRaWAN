@@ -1,30 +1,68 @@
-# prérequis
+## fonctionnement
 
-<p> il faut avoir installer node.js </p>
-<p> il est possible qu'au clonage du projet, la fonctionnalité model de node ne fonctionne pas (<code>model</code> sera souligné en jaune).<br>
-c'est ce qui permet de faire le lien entre les différents fichier de codec, il faut alors aller en bas de standard_minimized.js pour demander à l'IDE d'activer les fonctionnalités node en passant sur <code>model</code>. </p>
+<p>on va mettre dans un objet <code>input</code> les paramètres d'entrés, qui seront envoyés à la fonction <code>watteco_decodeUplink()</code></p>
 
-# utilisation
+<p>cette fonction va, dans un premier temps traiter le payload comme si c'était un standard, à l'aide la fonction <code>normalisation()</code> de <strong>standard.js</strong>.<br>
+Dans le cas d'un payload standard, on modifie le résultat de <code>Decoder()</code> pour retourner les donnés dans un format souhaité.<br>
+Si le payload est en fait un batch, on retourne le payload, qui est envoyé dans la fonction <code>normalisation()</code> de <strong>batch.js</strong>.
+De même, on modifie le résultat de <code>brUncompress()</code> pour retourner les donnés dans un format souhaité.</p> 
 
-<p> pour utiliser le codec, il faut lancer le fichier <code>decode_minimized.js</code> avec node.js. </p>
-<p> pour cela, il faut se placer dans le dossier codec et lancer la commande suivante : </p>
+les fichiers examples.json contiennent des couples entrée-sortie effectuer avec le codec.<br>
+on peut observer leur exactitude en lançant un test JEST comme expliqué [ici](#jest)
 
-        node .\captor_minimized.js
+## webpack
 
-<p>s'il ne se passe rien, alors les lien entre les fichier fonctionne, on peut alors observer le fonctionnement en lançant le fichier <code>debug.js</code> avec node.js. </p>
-<p> pour cela, il faut se placer dans le dossier codec et lancer la commande suivante : </p>
+<p>afin de respecter la contrainte d'un seul fichier final pour le codec, on utilise webpack pour compiler les fichiers en un seul.</p>
 
-        node .\debug.js 125 118A0402000029075590B0B1 2023-07-19T07:51:25.508306410Z 
+<p>il faut installer webpack cli comme cela:</p>
 
-<p> le premier argument est le port, le deuxième est la trame en hexadécimal et le troisième est la date de réception de la trame. </p>
-<p> le retour affiche plusieurs informations, tout en haut l'entrée <code>input</code>, on à ensuite le retoure de <code>Decoder()</code> qui est utilisé pour le retour final attendu par la spécification TS013-1.0.0</p>
-<p>il est possible que d'autres information soient affichées selon les test effectuer pour le dernier push </p>
+    npm install webpack webpack-cli --save-dev
 
-# fonctionnement
+<p>on peut alors écrire notre fichier <strong>webpack.config.js</strong>, et l'exécuter comme ceci:</p>
 
-<p> le fichier <code>debug.js</code> est un exemple d'utilisation du codec, il permet de voir le fonctionnement du codec. </p>
-<p> le fichier <code>decode_minimized.js</code> est le fichier qui sera utilisé pour le décodage des trames. </p>
-<p> le fichier <code>standard_minimized.js</code> est le fichier qui contient les fonctions de décodage des trames standard. </p>
-<p> le fichier <code>batch_minimized.js</code> est le fichier qui contient les fonctions de décodage des trames batch. </p>
+    npx webpack --config webpack.config.js
 
-<p> la trame est systématiquement traité comme un trame standard au départ ; s'il s'avère que c'est une trame batch, le retour est un objet précisant sa nature et redonnant la trame d'entrée qui sera traiter par <code>brUncompress()</code></p>
+<p>il faudra s'assurer que les dossier spécifiés existes.</p>
+
+<p>notre <strong>webpack.config.js</strong> est spécifique au capteur associé :</p>
+
+    const path = require("path");
+
+    module.exports = {
+    target: "node",
+    mode: "production",
+    entry: "./[captor].js",
+    output: {
+    filename: "main.js",
+    path: path.resolve(__dirname, "."),
+    library: "driver",
+        },
+    };
+
+## JEST
+<p>dans package.json:</p>
+
+    "scripts": {
+        "test": "jest --collectCoverage"
+    }
+
+<p> lancer les tests</p>
+
+    npm run test
+
+<p>les test sont fait indirectement avec les fichiers séparé comme le montre le point d'entrée du driver qui est le fichier spécifique au capteur :</p>
+
+    let driver = require("./[captor].js");
+
+<p>cependant notre packaging webpack crée un fichier main.js qui fonctionne de la même manière.<br>
+cette séparation est dûe à la compression du code dans main.js qui casse les liens logiques entres les fichiers, ainsi que le nom des fonctions ; JEST ne le supporte pas.</p>
+
+## debug
+
+<p> le fichier <code>debug.js</code> permet d'observer l'entrée et la sortie du codec dans la console.<br>
+on l'execute comme un capteur mais en rajoutant l'argument <code>device</code> avant:</p>
+
+    node ./codec/debug.js <device> <port> <payload> <date>
+
+<p>il execute le .js du device choisit se trouvant dans le dossier <code>actility</code><br>
+Si des modifications dans l'arborescance sont effectués, assurez vous que le chemin d'appel fasse encore sens.</p>
