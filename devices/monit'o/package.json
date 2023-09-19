@@ -1,10 +1,11 @@
 {
-  "name": "monit_o_v4",
+  "name": "monit_o",
   "version": "1.0.0",
   "description": "",
   "main": "main.js",
   "scripts": {
-    "test": "jest --collectCoverage"
+    "test": "jest --collectCoverage",
+    "rebuild": "node ../../scripts/rebuild.js"
   },
   "author": "",
   "license": "ISC",

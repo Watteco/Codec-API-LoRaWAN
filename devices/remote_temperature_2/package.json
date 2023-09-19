@@ -1,10 +1,11 @@
 {
-  "name": "remote_temperature_2_v4",
+  "name": "remote_temperature_2",
   "version": "1.0.0",
   "description": "",
   "main": "main.js",
   "scripts": {
-    "test": "jest --collectCoverage"
+    "test": "jest --collectCoverage",
+    "rebuild": "node ../../scripts/rebuild.js"
   },
   "author": "",
   "license": "ISC",

@@ -1,10 +1,11 @@
 {
-  "name": "flash_o_v4",
+  "name": "flash_o",
   "version": "1.0.0",
   "description": "",
   "main": "main.js",
   "scripts": {
-    "test": "jest --collectCoverage"
+    "test": "jest --collectCoverage",
+    "rebuild": "node ../../scripts/rebuild.js"
   },
   "author": "",
   "license": "ISC",

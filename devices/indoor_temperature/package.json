@@ -1,10 +1,11 @@
 {
-  "name": "indoor_temperature_v4",
+  "name": "indoor_temperature",
   "version": "1.0.0",
   "description": "",
   "main": "main.js",
   "scripts": {
-    "test": "jest --collectCoverage"
+    "test": "jest --collectCoverage",
+    "rebuild": "node ../../scripts/rebuild.js"
   },
   "author": "",
   "license": "ISC",

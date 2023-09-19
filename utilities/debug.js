@@ -21,7 +21,7 @@ let input = {
 };
 
 let file = argv[0];
-let driver = require("../actility/"+file.toString()+"_v4/"+file.toString()+".js");
+let driver = require("../devices/"+file.toString()+"/"+file.toString()+".js");
 
 let output = driver.decodeUplink(input);
 console.log(output)
