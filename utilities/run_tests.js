@@ -5,5 +5,5 @@ for (let i in devices){
     let command ="npm --prefix ../devices/"+devices[i]+" run test "
     console.log(command)
     execSync(command)
-    console.log("test")
+
 }

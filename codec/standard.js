@@ -2094,7 +2094,7 @@ function Decoder(bytes, port) {
     decoded.lora = {};
     decoded.lora.port  = port;
     let bytes_len_	= bytes.length;
-    let temp_hex_str = ""
+    let temp_hex_str = "";
     decoded.lora.payload  = "";
     for( let j = 0; j < bytes_len_; j++ )
     {
@@ -2339,7 +2339,7 @@ function Decoder(bytes, port) {
                     }
                 }
                 if ((clustID === 0x0006 ) && (attID === 0x0000)) {
-                    let state = bytes[i1]; if(state === 1) decoded.data.output = "ON"; else decoded.data.output = "OFF" ;
+                    let state = bytes[i1]; if(state === 1) decoded.data.output = "ON"; else decoded.data.output = "OFF";
                 }
                 if ((clustID === 0x8008 ) && (attID === 0x0000)){
                     let attribute_type = bytes[i1-1]
