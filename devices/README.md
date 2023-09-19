@@ -1,8 +1,8 @@
 ## utilisation
 
-<p>le fichier <code>[device].js</code>est le point d'entrée des .js. Il prend un objet <code>input</code> contenant le payload sous forme de liste d'octets converti en décimal, le port et la date de reception.<br>
-la sortie est décrite dans le fichier<code>uplink.schema.json</code>.<br>
-le fichier <code>main.js</code> est la concatenation des different .js qui constituent le codec du capteur, il aura le même comportement que les fichiers séparés mais ne fonctionnera pas avec JEST </p> 
+<p>Le fichier <code>[device].js</code>est le point d'entrée des .js. Il prend un objet <code>input</code> contenant le payload sous forme de liste d'octets converti en décimal, le port et la date de reception.<br>
+La sortie est décrite dans le fichier<code>uplink.schema.json</code>.<br>
+Le fichier <code>main.js</code> est la concatenation des different .js qui constituent le codec du capteur, il aura le même comportement que les fichiers séparés mais ne fonctionnera pas avec JEST </p> 
 
 
 

@@ -1,18 +1,18 @@
 ## webpack
 
-<p>afin de respecter la contrainte d'un seul fichier final pour le codec, on utilise webpack pour compiler les fichiers en un seul.</p>
+<p>Afin de respecter la contrainte d'un seul fichier final pour le codec, on utilise webpack pour compiler les fichiers en un seul.</p>
 
-<p>il faut installer webpack cli comme cela:</p>
+<p>Il faut installer webpack cli comme cela:</p>
 
     npm install webpack webpack-cli --save-dev
 
-<p>on peut alors écrire notre fichier <strong>webpack.config.js</strong>, et l'exécuter comme ceci:</p>
+<p>On peut alors écrire notre fichier <strong>webpack.config.js</strong>, et l'exécuter comme ceci:</p>
 
     npx webpack --config webpack.config.js
 
-<p>il faudra s'assurer que les dossier spécifiés existes.</p>
+<p>Il faudra s'assurer que les dossier spécifiés existes.</p>
 
-<p>notre <strong>webpack.config.js</strong> est spécifique au capteur associé :</p>
+<p>Notre <strong>webpack.config.js</strong> est spécifique au capteur associé :</p>
 
     const path = require("path");
 
@@ -28,34 +28,34 @@
     };
 
 ## JEST
-<p>dans package.json:</p>
+<p>Dans package.json:</p>
 
     "scripts": {
         "test": "jest --collectCoverage"
     }
 
-<p> lancer les tests</p>
+<p>Lancer les tests</p>
 
     npm run test
 
-<p>les test sont fait indirectement avec les fichiers séparé comme le montre le point d'entrée du driver qui est le fichier spécifique au capteur :</p>
+<p>Les test sont fait indirectement avec les fichiers séparé comme le montre le point d'entrée du driver qui est le fichier spécifique au capteur :</p>
 
     let driver = require("./[captor].js");
 
-<p>cependant notre packaging webpack crée un fichier main.js qui fonctionne de la même manière.<br>
-cette séparation est dûe à la compression du code dans main.js qui casse les liens logiques entres les fichiers, ainsi que le nom des fonctions ; JEST ne le supporte pas.</p>
+<p>Cependant notre packaging webpack crée un fichier main.js qui fonctionne de la même manière.<br>
+Cette séparation est dûe à la compression du code dans main.js qui casse les liens logiques entres les fichiers, ainsi que le nom des fonctions ; JEST ne le supporte pas.</p>
 
 ## debug
 
-<p> le fichier <code>debug.js</code> permet d'observer l'entrée et la sortie du codec dans la console.<br>
-on l'execute comme un capteur mais en rajoutant l'argument <code>device</code> avant:</p>
+<p>Le fichier <code>debug.js</code> permet d'observer l'entrée et la sortie du codec dans la console.<br>
+On l'execute comme un capteur mais en rajoutant l'argument <code>device</code> avant:</p>
 
     node ./codec/debug.js <device> <port> <payload> <date>
 
-<p>il execute le .js du device choisit se trouvant dans le dossier <code>devices</code><br>
+<p>Il execute le .js du device choisit se trouvant dans le dossier <code>devices</code><br>
 Si des modifications dans l'arborescance sont effectués, assurez-vous que le chemin d'appel ait encore du sens.</p>
 
-la liste des device est la suivant :
+La liste des device est la suivant :
 
 |         name         |
 |:--------------------:|
