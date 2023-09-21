@@ -1,10 +1,45 @@
 ## utilisation
 
-<p>Le fichier <code>[device].js</code>est le point d'entrée des .js. Il prend un objet <code>input</code> contenant le payload sous forme de liste d'octets converti en décimal, le port et la date de reception.<br>
-La sortie est décrite dans le fichier<code>uplink.schema.json</code>.<br>
-//TODO montrer entrée/sortie
-Le fichier <code>main.js</code> est la concatenation des different .js qui constituent le codec du capteur, il aura le même comportement que les fichiers séparés mais ne fonctionnera pas avec JEST </p> 
+<p>Le fichier <code>main.js</code> est la concatenation des different .js qui constituent le codec du capteur, il aura le même comportement que les fichiers séparés mais ne fonctionnera pas avec JEST </p> 
 
+<p>L'entrée doit être un objet <code>input</code> de la forme :</p>
+
+    input:{
+        "bytes": [17, 10, 4, 2, 0, 0, 41, 11, 137]
+        "fport": 125
+        "recvTime": "2023-07-19T07:51:31.598957793Z"
+    }
+
+<p> <code>bytes</code> est une liste de valeurs hexadécimales convertit en valeurs décimales.<br>
+<code>fport</code> contient le port d'envoie en décimal.<br>
+<code>recvTime</code> est la date de rececption en string mais au format Date</p>
+
+<p>la sortie est un objet <code>output</code> qui, si le traitement ne retourne pas d'erreur, a la forme: </p>
+
+    output:{
+        data:[{
+            "variable": "temperature",
+            "value": 29.53,
+            "date": "2023-07-19T07:51:31.598957793Z"
+        }]
+        warning:[""]
+    }
+
+<p><code>data</code> est une liste d'objets formatés contenants <code>variable</code>,<code>value</code>,<code>date</code>. En standard, la majorité des cluster ne retournent qu'un objet ; mais certains retourne plusieurs objets en un payload. En batch il y a plusieurs objets<br>
+<code>variable</code> contient le nom de la donnée en string.<br>
+<code>value</code> contient la valeur de la donnée dans le format de la donnée (int, uint, float, ...).<br>
+<code>date</code> contient la date en string. C'est la date d'entrée pour un standard, pour un batch c'est la date de mesure qui peut être soit la date d'envoie de la trame (donc la date d'entrée), soit une date antérieur à la date d'envoie</p>
+
+<p><code>warning</code> est une liste qui est vide pour la majorité des payload traitables, elle ne se remplie qu'avec les alarm configurables sur le cluster associé, sous forme de message string formatés.</p>
+
+<p>Si le traitement retourne une erreur, output à la forme:</p>
+
+    output:{
+        error:""
+        warning:[""]
+    }
+
+<p>L'erreur retournée est la première rencontré, ce qui coupe le traitement. Elle est sous forme de string</p>
 
 
 ## cluster table

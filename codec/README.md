@@ -1,8 +1,3 @@
-## codec
-
-<p>La construction de ce codec vise à respecter la spécification ts013-1.0.0 de la lora alliance que vous trouverez ici:<br>
- https://resources.lora-alliance.org/document/ts013-1-0-0-payload-codec-api </p>
-
 ## fonctionnement
 
 <p>On va mettre dans un objet <code>input</code> les paramètres d'entrés, qui seront envoyés à la fonction <code>watteco_decodeUplink()</code></p>

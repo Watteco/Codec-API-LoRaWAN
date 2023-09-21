@@ -1,3 +1,9 @@
-## scripts
+## rebuild.js
 
-<p>Contient les scripts permettant d'automatiser certaines tâches dût à la modification du codec.</p>
+<p>Permet de créer le script build pour un capteur, indiqué dans son package.json</p>
+
+<p>Dans le dossier d'un capteur : </p>
+    
+    npm run rebuild
+
+<p>Reconstruit le <code>main.js</code> du capteur</p>
