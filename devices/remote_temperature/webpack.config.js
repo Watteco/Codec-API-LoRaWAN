@@ -6,7 +6,7 @@ module.exports = {
     entry: "./remote_temperature.js",
     output: {
         filename: "main.js",
-        path: path.resolve(__dirname, "."),
+        path: path.resolve(__dirname, "../../ready_to_use/remote_temperature"),
         library: "driver",
     },
 };

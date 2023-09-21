@@ -6,7 +6,7 @@ module.exports = {
     entry: "./intens'o.js",
     output: {
         filename: "main.js",
-        path: path.resolve(__dirname, "."),
+        path: path.resolve(__dirname, "../../ready_to_use/intens'o"),
         library: "driver",
     },
 };
