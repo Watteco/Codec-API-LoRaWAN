@@ -1,5 +1,5 @@
 # Codec-API-LoRaWAN
-Codec javascript compatible with the API LoRaWAN specification
+Codec javascript compatible with the API LoRaWAN specification [https://resources.lora-alliance.org/home/ts013-1-0-0-payload-codec-api]
 
 ## dépendances
 
@@ -9,7 +9,7 @@ Codec javascript compatible with the API LoRaWAN specification
 
 ## codec
 
-<p>La construction de ce codec vise à respecter la spécification ts013-1.0.0 de la lora alliance que vous trouverez ici:<br>
+<p>La construction de ce codec vise à respecter la spécification ts013-1.0.0 [https://resources.lora-alliance.org/home/ts013-1-0-0-payload-codec-api] de la lora alliance que vous trouverez ici:<br>
  https://resources.lora-alliance.org/document/ts013-1-0-0-payload-codec-api </p>
 
 ## devices
