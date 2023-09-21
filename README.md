@@ -12,7 +12,11 @@ Codec javascript compatible with the API LoRaWAN specification
 <p>La construction de ce codec vise à respecter la spécification ts013-1.0.0 de la lora alliance que vous trouverez ici:<br>
  https://resources.lora-alliance.org/document/ts013-1-0-0-payload-codec-api </p>
 
-## clusters examples
+## devices
+
+<p>Contient le fichier javascript spécifique à un capteur, ainsi que le nécessaire pour tester des payload que l'on sait fonctionnels si on modifie le codec.</p>
+
+## clusters_examples
 
 <p>Le dossier contient des payloads d'exemple rangés par cluster<br>
 <code>examples_0_common</code> est la concaténation d'un exemple des cluster 0x0000, 0x0050 et 0X8004<br>
