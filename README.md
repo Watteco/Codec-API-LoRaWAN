@@ -1,6 +1,9 @@
 # Codec-API-LoRaWAN
 Codec javascript compatible with the API LoRaWAN specification
 
+application repository actility: https://github.com/actility/device-catalog/tree/main/vendors/watteco
+application repository ttn: https://github.com/TheThingsNetwork/lorawan-devices/tree/master/vendor/watteco
+
 ## dépendances
 
 - nodejs

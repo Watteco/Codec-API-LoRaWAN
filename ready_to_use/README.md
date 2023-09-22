@@ -1,6 +1,9 @@
 ## utilisation
+<p>La fonction à appeler est <code>DecodeUplink()</code>:</p>
 
-<p>Le fichier <code>main.js</code> est la concatenation des different .js qui constituent le codec du capteur, il aura le même comportement que les fichiers séparés mais ne fonctionnera pas avec JEST </p> 
+    DecodeUplink(input){
+        return output
+    }
 
 <p>L'entrée doit être un objet <code>input</code> de la forme :</p>
 
@@ -25,21 +28,22 @@
         warning:[""]
     }
 
-<p><code>data</code> est une liste d'objets formatés contenants <code>variable</code>,<code>value</code>,<code>date</code>. En standard, la majorité des cluster ne retournent qu'un objet ; mais certains retourne plusieurs objets en un payload. En batch il y a plusieurs objets<br>
-<code>variable</code> contient le nom de la donnée en string.<br>
-<code>value</code> contient la valeur de la donnée dans le format de la donnée (int, uint, float, ...).<br>
-<code>date</code> contient la date en string. C'est la date d'entrée pour un standard, pour un batch c'est la date de mesure qui peut être soit la date d'envoie de la trame (donc la date d'entrée), soit une date antérieur à la date d'envoie</p>
+<p><code>data</code> est une liste d'objets formatés contenants <code>variable</code>,<code>value</code>,<code>date</code>. En standard, la majorité des clusters ne retournent qu'un objet ; mais certains retourne plusieurs objets en un payload. En batch il y a plusieurs objets<br></p>
+
+<code>variable</code> contient le nom de la donnée en string [ici](#variables) 
+<p><code>value</code> contient la valeur de la donnée dans le format de la donnée (int, uint, float, ...).<br>
+<code>date</code> contient la date en string. C'est la date d'entrée pour un standard, pour un batch c'est la date de mesure qui peut être soit la date d'envoie de la trame (donc la date d'entrée), soit une date antérieure à la date d'envoie</p>
 
 <p><code>warning</code> est une liste qui est vide pour la majorité des payload traitables, elle ne se remplie qu'avec les alarm configurables sur le cluster associé, sous forme de message string formatés.</p>
 
-<p>Si le traitement retourne une erreur, output à la forme:</p>
+<p>Si le traitement retourne une erreur, output a la forme :</p>
 
     output:{
         error:""
         warning:[""]
     }
 
-<p>L'erreur retournée est la première rencontré, ce qui coupe le traitement. Elle est sous forme de string</p>
+<p>L'erreur retournée est la première rencontrée, ce qui coupe le traitement. Elle est sous forme de string</p>
 
 
 ## cluster table
