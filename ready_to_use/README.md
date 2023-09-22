@@ -15,7 +15,7 @@
 
 <p> <code>bytes</code> est une liste de valeurs hexadécimales convertit en valeurs décimales.<br>
 <code>fport</code> contient le port d'envoie en décimal.<br>
-<code>recvTime</code> est la date de rececption en string mais au format Date</p>
+<code>recvTime</code> est la date de reception en string mais au format Date</p>
 
 <p>la sortie est un objet <code>output</code> qui, si le traitement ne retourne pas d'erreur, a la forme: </p>
 

@@ -1,5 +1,5 @@
 # Codec-API-LoRaWAN
-Codec javascript compatible with the API LoRaWAN specification
+Codec javascript compatible with the API LoRaWAN specification [https://resources.lora-alliance.org/home/ts013-1-0-0-payload-codec-api]
 
 application repository actility: https://github.com/actility/device-catalog/tree/main/vendors/watteco
 application repository ttn: https://github.com/TheThingsNetwork/lorawan-devices/tree/master/vendor/watteco
@@ -12,7 +12,7 @@ application repository ttn: https://github.com/TheThingsNetwork/lorawan-devices/
 
 ## codec
 
-<p>La construction de ce codec vise à respecter la spécification ts013-1.0.0 de la lora alliance que vous trouverez ici:<br>
+<p>La construction de ce codec vise à respecter la spécification ts013-1.0.0 [https://resources.lora-alliance.org/home/ts013-1-0-0-payload-codec-api] de la lora alliance que vous trouverez ici:<br>
  https://resources.lora-alliance.org/document/ts013-1-0-0-payload-codec-api </p>
 
 ## devices
