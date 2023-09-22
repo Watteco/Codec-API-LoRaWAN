@@ -12,4 +12,8 @@ for (let i in devices){
         if (err) throw err;
         console.log('metadata.json was copied to destination');
     })
+    fs.copyFile(source+"/uplink.schema.json", dest+"/uplink.schema.json", (err) => {
+        if (err) throw err;
+        console.log('uplink.schema.json was copied to destination');
+    })
 }
