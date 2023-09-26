@@ -286,7 +286,7 @@
           "date": "2023-07-19T07:51:25.508306410Z"
         }
       ],
-      "warnings": [ "cause triggered",
+      "warnings": [
         "cause:{alarm:false, criterion_index: 0, mode: threshold, crossing: exceed}"
       ]
     }
@@ -448,7 +448,6 @@
         }
       ],
       "warnings": [
-        "cause triggered",
         "cause:{alarm:false, criterion_index: 0, mode: threshold, crossing: exceed, value: 50, gap: 1, occurences: 1, field: active_power_a}",
         "cause:{alarm:false, criterion_index: 1, mode: threshold, crossing: exceed, value: 20, gap: 0, occurences: 1, field: active_power_a}"
       ]

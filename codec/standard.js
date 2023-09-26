@@ -2193,8 +2193,6 @@ function Decoder(bytes, port) {
                         let listMess = []
                         if (cmdID===0x8a){
                             listMess.push("alarm triggered")
-                        }else{
-                            listMess.push("cause triggered")
                         }
                         let flag = 0
                         let divider = 100
@@ -2229,8 +2227,6 @@ function Decoder(bytes, port) {
                         let listMess = []
                         if (cmdID===0x8a){
                             listMess.push("alarm triggered")
-                        }else{
-                            listMess.push("cause triggered")
                         }
                         let flag = 0
                         let divider = 100
@@ -2261,8 +2257,6 @@ function Decoder(bytes, port) {
                         let listMess = []
                         if (cmdID===0x8a){
                             listMess.push("alarm triggered")
-                        }else{
-                            listMess.push("cause triggered")
                         }
                         let flag = 0
                         let divider = 1
@@ -2291,8 +2285,6 @@ function Decoder(bytes, port) {
                         let listMess = []
                         if (cmdID===0x8a){
                             listMess.push("alarm triggered")
-                        }else{
-                            listMess.push("cause triggered")
                         }
                         let flag = 0
                         let divider = 1
@@ -2337,8 +2329,6 @@ function Decoder(bytes, port) {
                         let listMess = []
                         if (cmdID===0x8a){
                             listMess.push("alarm triggered")
-                        }else{
-                            listMess.push("cause triggered")
                         }
                         let flag = 0
                         let divider = 1
@@ -2370,8 +2360,6 @@ function Decoder(bytes, port) {
                         let listMess = []
                         if (cmdID===0x8a){
                             listMess.push("alarm triggered")
-                        }else{
-                            listMess.push("cause triggered")
                         }
                         let flag = 0
                         let divider = 1
@@ -2410,8 +2398,6 @@ function Decoder(bytes, port) {
                         let listMess = []
                         if (cmdID===0x8a){
                             listMess.push("alarm triggered")
-                        }else{
-                            listMess.push("cause triggered")
                         }
                         let flag = 0
                         let divider = 100
@@ -2444,8 +2430,6 @@ function Decoder(bytes, port) {
                         let listMess = []
                         if (cmdID===0x8a){
                             listMess.push("alarm triggered")
-                        }else{
-                            listMess.push("cause triggered")
                         }
                         let flag = 0
                         let divider = 1
@@ -2792,8 +2776,6 @@ function Decoder(bytes, port) {
                         let listMess = []
                         if (cmdID===0x8a){
                             listMess.push("alarm triggered")
-                        }else{
-                            listMess.push("cause triggered")
                         }
                         let flag = 0
                         let divider = 1000
@@ -2850,8 +2832,6 @@ function Decoder(bytes, port) {
                         let listMess = []
                         if (cmdID===0x8a){
                             listMess.push("alarm triggered")
-                        }else{
-                            listMess.push("cause triggered")
                         }
                         let flag = 0
                         let divider = 1
@@ -2888,8 +2868,6 @@ function Decoder(bytes, port) {
                         let listMess = []
                         if (cmdID===0x8a){
                             listMess.push("alarm triggered")
-                        }else{
-                            listMess.push("cause triggered")
                         }
                         let flag = 0
                         let divider = 1
@@ -2925,8 +2903,6 @@ function Decoder(bytes, port) {
                         let listMess = []
                         if (cmdID===0x8a){
                             listMess.push("alarm triggered")
-                        }else{
-                            listMess.push("cause triggered")
                         }
                         let flag = 0
                         let divider = 1
@@ -2961,8 +2937,6 @@ function Decoder(bytes, port) {
                         let listMess = []
                         if (cmdID===0x8a){
                             listMess.push("alarm triggered")
-                        }else{
-                            listMess.push("cause triggered")
                         }
                         let flag = 0
                         let divider = 1
@@ -3000,8 +2974,6 @@ function Decoder(bytes, port) {
                         let listMess = []
                         if (cmdID===0x8a){
                             listMess.push("alarm triggered")
-                        }else{
-                            listMess.push("cause triggered")
                         }
                         let flag = 0
                         let divider = 1
@@ -3031,8 +3003,6 @@ function Decoder(bytes, port) {
                         let listMess = []
                         if (cmdID===0x8a){
                             listMess.push("alarm triggered")
-                        }else{
-                            listMess.push("cause triggered")
                         }
                         let flag = 0
                         let divider = 1
@@ -3063,8 +3033,6 @@ function Decoder(bytes, port) {
                         let listMess = []
                         if (cmdID===0x8a){
                             listMess.push("alarm triggered")
-                        }else{
-                            listMess.push("cause triggered")
                         }
                         let flag = 0
                         let divider = 1
@@ -3093,8 +3061,6 @@ function Decoder(bytes, port) {
                         let listMess = []
                         if (cmdID===0x8a){
                             listMess.push("alarm triggered")
-                        }else{
-                            listMess.push("cause triggered")
                         }
                         let flag = 0
                         let divider = 1
@@ -3123,8 +3089,6 @@ function Decoder(bytes, port) {
                         let listMess = []
                         if (cmdID===0x8a){
                             listMess.push("alarm triggered")
-                        }else{
-                            listMess.push("cause triggered")
                         }
                         let flag = 0
                         let divider = 1
