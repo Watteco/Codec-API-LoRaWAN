@@ -2101,6 +2101,7 @@ function BytesToHexStr(InBytes)
 }
 function Decoder(bytes, port) {
     let decoded = {};
+    let knowncmdID=0
     decoded.lora = {};
     decoded.lora.port  = port;
     let bytes_len_	= bytes.length;
@@ -2127,6 +2128,7 @@ function Decoder(bytes, port) {
             cmdID =  bytes[1]; decoded.zclheader.cmdID = decimalToHex(cmdID,2);
             clustID = bytes[2]*256 + bytes[3]; decoded.zclheader.clustID = decimalToHex(clustID,4);
             if((cmdID === 0x0a)|(cmdID === 0x8a)|(cmdID === 0x01)){
+                knowncmdID=1
                 decoded.data = {};
                 attID = bytes[4]*256 + bytes[5];decoded.zclheader.attID = decimalToHex(attID,4);
                 let firsthalfattID = bytes[4]
@@ -3196,8 +3198,12 @@ function Decoder(bytes, port) {
                 if (decoded.data[firstKey]===undefined){
                     throw new ValidationError("bad payload")
                 }
+                if(bytes.length<=7){
+                    throw new ValidationError("bad payload")
+                }
             }
             if(cmdID === 0x07){
+                knowncmdID=1
                 attID = bytes[6]*256 + bytes[7];decoded.zclheader.attID = decimalToHex(attID,4);
                 decoded.zclheader.status = bytes[4];
                 decoded.zclheader.report_parameters = {}
@@ -3221,6 +3227,7 @@ function Decoder(bytes, port) {
                 decoded.zclheader.report_parameters.batch = bits[7];
             }
             if(cmdID === 0x09){
+                knowncmdID=1
                 attID = bytes[6]*256 + bytes[7];decoded.zclheader.attID = decimalToHex(attID,4);
                 decoded.zclheader.status = bytes[4];
                 decoded.zclheader.report_parameters = {}
@@ -3262,6 +3269,9 @@ function Decoder(bytes, port) {
                         nb--
                     }
                 }
+            }
+            if(knowncmdID===0){
+                throw new ValidationError("bad payload")
             }
         }
         else
