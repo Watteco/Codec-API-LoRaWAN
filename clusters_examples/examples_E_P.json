@@ -56,7 +56,7 @@
           "date": "2023-07-19T07:51:25.508306410Z"
         }
       ],
-      "warnings": [ "" ]
+      "warnings": []
     }
   },
   {
@@ -117,7 +117,8 @@
         }
       ],
       "warnings": [
-        "alarm, criterion_index: 1, mode: threshold, crossing: fall, value: 15, gap: 0, occurences: 2, field: positive_reactive_power"
+        "alarm triggered",
+        "cause:{alarm:true, criterion_index: 1, mode: threshold, crossing: fall, value: 15, gap: 0, occurences: 2, field: positive_reactive_power}"
       ]
     }
   }

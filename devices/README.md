@@ -53,3 +53,8 @@ le chemin est relatif à la position du fichier webpack.config.js</p>
 Cette séparation est dûe à la compression du code dans main.js qui casse les liens logiques entre les fichiers, ainsi que le nom des fonctions ; JEST ne le supporte pas.</p>
 
 
+# TODO
+
+- ajout champ unit
+- error sur cmdID/clustID/attID inconnus
+- alarm function unique

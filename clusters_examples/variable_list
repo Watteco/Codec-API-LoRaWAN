@@ -1,0 +1,28 @@
+0000: firmware, kernel, manufacturer, model, date, position, application_name
+0402: temperature:[temperature_x]
+0403: pressure
+0405: humidity:[humidity_x]
+0400: illuminance
+0406: occupancy
+000F: index:[index_x], pin_state:[pin_state_x,violation_dection,open], polarity, edge_selection, debounce_period, poll_period, force_notify
+0013: output_value
+0006: output:[output_x]
+8008: differential_pressure
+8005: pin_state_1, pin_state_2, pin_state_3, pin_state_4:[NA], pin_state_5:[NA], pin_state_6:[NA], pin_state_7:[NA], pin_state_8:[NA], pin_state_9:[NA], pin_state_10:[NA]
+8006: speed, data_bit, parity, stop_bit
+000C: analog:[angle, Irms, 4-20_mA, 0-10_V, 0-100_mV, 0-70_V, 0-5_V_1, 0-5_V_2 , ratiometric_0-5_V_1, ratiometric_0-5_V_2 ], type, power_duration, mode, frequency, range
+8007: modbus_payload:[modbus_payload_EPx], modbus_slaveID:[modbus_slaveID_EPx], modbus_fnctID:[modbus_fnctID_EPx], modbus_datasize:[modbus_datasize_EPx]
+8009: modbus_frame_series_sent, modbus_frame_number_in_serie, modbus_last_frame_of_serie, modbus_EP0, modbus_EP1, modbus_EP2, modbus_EP3, modbus_EP4, modbus_EP5, modbus_EP6, modbus_EP7, modbus_EP8, modbus_EP9,
+0052: active_energy, reactive_energy, nb_samples, active_power, reactive_power
+8004: message_type, nb_retry, automatic_association, data_rate, ABP_dev_address, OTA_app_EUI
+0050: configuration, main_or_external_voltage, rechargeable_battery_voltage, disposable_battery_voltage, solar_harvesting_voltage, tic_harvesting_voltage
+800A: positive_active_energy:[positive_active_energy_y], negative_active_energy:[negative_active_energy_y], positive_reactive_energy:[positive_reactive_energy_y], negative_reactive_energy:[negative_reactive_energy_y], positive_active_power:[positive_active_power_y], negative_active_power:[negative_active_power_y], positive_reactive_power:[positive_reactive_power_y], negative_reactive_power:[negative_reactive_power_y]
+8010: active_energy_a, reactive_energy_a, active_energy_b, reactive_energy_b, active_energy_c, reactive_energy_c, active_energy_abc, reactive_energy_abc, active_power_a, reactive_power_a, active_power_b, reactive_power_b, active_power_c, reactive_power_c, active_power_abc, reactive_power_abc
+800B: Vrms, Irms, angle
+800D: Vrms_a, Irms_a, angle_a, Vrms_b, Irms_b, angle_b, Vrms_c, Irms_c, angle_c
+800C: concentration:[TVOC,CO2]
+8052: frequency, frequency_min, frequency_max, Vrms, Vrms_min, Vrms_max, Vpeak, Vpeak_min, Vpeak_max, over_voltage, sag_voltage
+800F: last, params, working_modes
+
+
+
