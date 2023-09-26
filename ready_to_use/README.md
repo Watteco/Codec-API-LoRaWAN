@@ -1,3 +1,55 @@
+# english
+## use
+
+<p> the called function is <code>DecodeUplink()</code>:</p>
+
+    DecodeUplink(input){
+        return output
+    }
+
+<p> the <code>input</code> object is built like:</p>
+
+    input:{
+        "bytes": [17, 10, 4, 2, 0, 0, 41, 11, 137]
+        "fport": 125
+        "recvTime": "2023-07-19T07:51:31.598957793Z"
+    }
+
+<p>bytes is decimal values list.<br>
+<code>fport</code></p> is the decimal value of the sender port.<br>
+<code>recvTime</code> is a string in Date format.
+
+<p>the <code>output</code> without errors is like:</p>
+
+
+    output:{
+        data:[{
+            "variable": "temperature",
+            "value": 29.53,
+            "date": "2023-07-19T07:51:31.598957793Z"
+        }]
+        warning:[""]
+    }
+
+<p><code>data</code> is a formatted objects list ; each object contains the fields <code>variable</code>,<code>value</code>,<code>date</code>.</p>
+
+<code>variable</code> contains a string of the name. [here](#variables)
+<p><code>value</code> contains the data value in its corresponding format (uint, int, float, ...). <br>
+<code>date</code> is a string in Date format. It is the input date for standard report or at last input date for batch report.<br>
+
+<code>warning</code> contains the alarms you configured on the reports</p>
+
+<p>the <code>output</code> with errors is like:</p>
+
+
+    output:{
+        error:""
+        warning:[]
+    }
+
+<p> As the try/catch method is used, error contains the first error encountered and cut the processing.</p>
+
+# french
 ## utilisation
 <p>La fonction à appeler est <code>DecodeUplink()</code>:</p>
 
@@ -25,7 +77,7 @@
             "value": 29.53,
             "date": "2023-07-19T07:51:31.598957793Z"
         }]
-        warning:[""]
+        warning:[]
     }
 
 <p><code>data</code> est une liste d'objets formatés contenants <code>variable</code>,<code>value</code>,<code>date</code>. En standard, la majorité des clusters ne retournent qu'un objet ; mais certains retourne plusieurs objets en un payload. En batch il y a plusieurs objets<br></p>
@@ -40,7 +92,7 @@
 
     output:{
         error:""
-        warning:[""]
+        warning:[]
     }
 
 <p>L'erreur retournée est la première rencontrée, ce qui coupe le traitement. Elle est sous forme de string</p>
