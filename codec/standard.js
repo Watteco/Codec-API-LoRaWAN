@@ -1,3 +1,10 @@
+class ValidationError extends Error {
+    constructor(message) {
+        super(message);
+        this.name = "ValidationError";
+    }
+}
+
 let attribute_types={
     0x10:{
         name:"boolean",
@@ -3184,6 +3191,10 @@ function Decoder(bytes, port) {
                         o.RstAftStdRpt_Y    = (bytes[i] & 0x02 ? "true" : "false");
                         o.RstAftStdRpt_7    = (bytes[i] & 0x04 ? "true" : "false");
                     }
+                }
+                let firstKey = Object.keys(decoded.data)[0]
+                if (decoded.data[firstKey]===undefined){
+                    throw new ValidationError("bad payload")
                 }
             }
             if(cmdID === 0x07){
