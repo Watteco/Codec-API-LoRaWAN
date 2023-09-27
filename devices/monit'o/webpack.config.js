@@ -6,7 +6,7 @@ module.exports = {
     entry: "./monit'o.js",
     output: {
         filename: "main.js",
-        path: path.resolve(__dirname, "../../ready_to_use/monit'o"),
+        path: path.resolve(__dirname, "../../distrib/monit'o"),
         library: "driver",
     },
 };

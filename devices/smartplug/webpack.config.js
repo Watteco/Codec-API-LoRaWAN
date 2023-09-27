@@ -6,7 +6,7 @@ module.exports = {
     entry: "./smartplug.js",
     output: {
         filename: "main.js",
-        path: path.resolve(__dirname, "../../ready_to_use/smartplug"),
+        path: path.resolve(__dirname, "../../distrib/smartplug"),
         library: "driver",
     },
 };

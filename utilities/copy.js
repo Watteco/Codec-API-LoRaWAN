@@ -3,7 +3,7 @@ let devices = ["atm'o","clos'o","flash'o","in'o","inclin'o","indoor_temperature"
 
 for (let i in devices){
     let source = "../devices/"+devices[i]
-    let dest = "../ready_to_use/"+devices[i]
+    let dest = "../distrib/"+devices[i]
     fs.copyFile(source+"/examples.json", dest+"/examples.json", (err) => {
         if (err) throw err;
         console.log('examples.json was copied to destination');

@@ -6,7 +6,7 @@ module.exports = {
     entry: "./atm'o.js",
     output: {
         filename: "main.js",
-        path: path.resolve(__dirname, "../../ready_to_use/atm'o"),
+        path: path.resolve(__dirname, "../../distrib/atm'o"),
         library: "driver",
     },
 };

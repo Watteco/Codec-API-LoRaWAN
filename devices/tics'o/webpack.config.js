@@ -6,7 +6,7 @@ module.exports = {
     entry: "./tics'o.js",
     output: {
         filename: "main.js",
-        path: path.resolve(__dirname, "../../ready_to_use/tics'o"),
+        path: path.resolve(__dirname, "../../distrib/tics'o"),
         library: "driver",
     },
 };
