@@ -16,4 +16,8 @@ for (let i in devices){
         if (err) throw err;
         console.log('uplink.schema.json was copied to destination');
     })
+    fs.copyFile(source+"/main.js", dest+"/main.js", (err) => {
+        if (err) throw err;
+        console.log('main.js was copied to destination');
+    })
 }

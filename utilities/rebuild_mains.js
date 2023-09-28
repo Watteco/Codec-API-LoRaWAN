@@ -5,7 +5,7 @@ for (let i in devices){
     let command ="npm --prefix ../devices/"+devices[i]+" run rebuild "
     console.log(command)
     execSync(command)
-    let command2 = "echo exports.driver=driver >> ../distrib/"+devices[i]+"/main.js"
+    let command2 = "echo exports.driver=driver >> ../devices/"+devices[i]+"/main.js"
     console.log(command2)
     execSync(command2)
 }

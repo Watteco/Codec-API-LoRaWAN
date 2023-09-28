@@ -6,7 +6,7 @@ module.exports = {
     entry: "./ventil'o.js",
     output: {
         filename: "main.js",
-        path: path.resolve(__dirname, "../../distrib/ventil'o"),
+        path: path.resolve(__dirname, "."),
         library: "driver",
     },
 };

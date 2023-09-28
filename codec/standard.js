@@ -3293,7 +3293,7 @@ function normalisation_standard(input, endpoint_parameters){
             warning = decoded.zclheader.alarmmsg
         }
 
-        if (bytes[1] === 0x07 && bytes[0]%2 !== 0){
+        if (bytes[1] === 0x07){
             return{
                 data: decoded.zclheader,
                 warning: warning
@@ -3381,31 +3381,8 @@ function normalisation_standard(input, endpoint_parameters){
                 type: "standard",
                 warning: warning
             }
-        }
-        else{
-            let flagstandard = true;
-            let indent = 0;
-            let data = []
-            while(flagstandard){
-                let firstKey = Object.keys(decoded.data)[indent];
-
-                if (firstKey === undefined){
-                    flagstandard = false;
-                    break;
-                }
-                else{
-                    data.push({variable: firstKey,
-                        value: decoded.data[firstKey],
-                        date: input.recvTime
-                    })
-                    indent++;
-                }
-            }
-            return {
-                data:data,
-                type: "standard",
-                warning: warning
-            }
+        }else{
+            throw ValidationError("bad decoding")
         }
     }
     return {

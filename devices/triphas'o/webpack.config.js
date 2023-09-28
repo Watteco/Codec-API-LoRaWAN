@@ -6,7 +6,7 @@ module.exports = {
     entry: "./triphas'o.js",
     output: {
         filename: "main.js",
-        path: path.resolve(__dirname, "../../distrib/triphas'o"),
+        path: path.resolve(__dirname, "."),
         library: "driver",
     },
 };

@@ -4,11 +4,10 @@ Codec javascript compatible with the API LoRaWAN specification [https://resource
 application repository actility: https://github.com/actility/device-catalog/tree/main/vendors/watteco
 application repository ttn: https://github.com/TheThingsNetwork/lorawan-devices/tree/master/vendor/watteco
 
-## dépendances
+## dépendances à installer sur la machine
 
-- nodejs
-- npm
-- webpack-cli
+- nodejs/npm: https://nodejs.org/en/download
+- lancer le script ```install_dependencies.js``` dans le répertoire utilities 
 
 ## codec
 
@@ -25,7 +24,7 @@ application repository ttn: https://github.com/TheThingsNetwork/lorawan-devices/
 <code>examples_0_common</code> est la concaténation d'un exemple des cluster 0x0000, 0x0050 et 0X8004<br>
 Les command_id 07 et 09 ont un retour différent car ils contiennent l'objet <code>report_parameters</code></p>
 
-## ready_to_use
+## distrib
 
 <p>Contient le fichier compréssé équivalent au codec en plusieurs fichiers, plus le fichier spécifique au capteur</p>
 

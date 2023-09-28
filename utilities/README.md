@@ -143,4 +143,10 @@ On peut rajouter un autre fichier en rajoutant une autre ligne :</p>
 
 <p>On peut aussi changer de repertoire en modifiant source ou destination. Le chemin est relatif à la position d'exécution, il faut donc ce trouvé dans le répertoire utilities pour que cela fonctionne : </p>
 
-    node run copy.js
+    node copy.js
+
+## install dependencies
+
+permet d'installer webpack, webpack-cli et jest pour chaque capteur sans le faire à la main
+
+    node install_dependencies.js 

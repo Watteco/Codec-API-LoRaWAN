@@ -6,7 +6,7 @@ module.exports = {
     entry: "./vaqa'o_lt.js",
     output: {
         filename: "main.js",
-        path: path.resolve(__dirname, "../../distrib/vaqa'o_lt"),
+        path: path.resolve(__dirname, "."),
         library: "driver",
     },
 };

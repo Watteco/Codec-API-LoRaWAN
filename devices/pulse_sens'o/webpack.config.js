@@ -6,7 +6,7 @@ module.exports = {
     entry: "./pulse_sens'o.js",
     output: {
         filename: "main.js",
-        path: path.resolve(__dirname, "../../distrib/pulse_sens'o"),
+        path: path.resolve(__dirname, "."),
         library: "driver",
     },
 };

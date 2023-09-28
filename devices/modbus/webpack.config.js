@@ -6,7 +6,7 @@ module.exports = {
     entry: "./modbus.js",
     output: {
         filename: "main.js",
-        path: path.resolve(__dirname, "../../distrib/modbus"),
+        path: path.resolve(__dirname, "."),
         library: "driver",
     },
 };

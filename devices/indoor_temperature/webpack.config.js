@@ -6,7 +6,7 @@ module.exports = {
     entry: "./indoor_temperature.js",
     output: {
         filename: "main.js",
-        path: path.resolve(__dirname, "../../distrib/indoor_temperature"),
+        path: path.resolve(__dirname, "."),
         library: "driver",
     },
 };
