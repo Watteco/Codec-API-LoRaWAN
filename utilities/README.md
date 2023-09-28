@@ -133,8 +133,8 @@ Son execution doit être faite dans le dossier <code>utilities</code>, car le ch
 
 ## copy
 
-<p> Le fichier <code>copy.js</code> permet de copier les fichier souhaités de devices a ready_to_use pour tous les capteurs.<br>
-On peut rajouter un autre fichier en rajoutant une autre ligne:</p>
+<p> Le fichier <code>copy.js</code> permet de copier les fichiers souhaités de devices à distrib pour tous les capteurs.<br>
+On peut rajouter un autre fichier en rajoutant une autre ligne :</p>
 
     fs.copyFile(source+"/[file]", dest+"/[file]", (err) => {
         if (err) throw err;
