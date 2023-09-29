@@ -1,4 +1,4 @@
-let watteco = require("../../codec/decode_uplink")
+let watteco = require("../decode_uplink")
 
 let batch_param = []
 let endpointCorresponder={

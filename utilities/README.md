@@ -19,10 +19,15 @@ Si on rencontre un problème entre le decoder et la normalisation, il faudra log
 
 ### déploiement
 
+#### distrib
+
+on exécute ```copy.js``` [ici](#copy)
+
 #### actility
 
 On doit effectuer un fork de la main branch d'actility dans laquelle on modifie les .js du codec dans devices et les .js spécifique dans le dossier <code>[device]_v4</code>, ainsi que <code>example.json</code>.<br>
 On push et on ouvre une pull request une fois sûr que le tout fonctionne.
+le script ```actility_deployement.js``` facilite cela [ici](#actility-deployement)
 
 #### ttn
 
@@ -44,6 +49,10 @@ Si le package existe déjà sur le compte watteco, il faut faire une nouvelle r�
     npm version <révision>
 
 On peut ensuite refaire un publish.
+
+Pour télécharger le package, on fait :
+
+    npm install <npm-package>
 
 La liste des npm package est la suivante :
 
@@ -198,3 +207,11 @@ On peut rajouter un autre fichier en rajoutant une autre ligne :</p>
 permet d'installer webpack, webpack-cli et jest pour chaque capteur sans le faire à la main
 
     node install_dependencies.js 
+
+## actility deployement
+
+il faut donner le chemin <strong>absolu</strong> du repo watteco puis celui du fork actility sur votre machine:
+
+    node actility_deployement <watteco-path> <actility-path>
+
+la liste actility_devices est dû au changement de nom qu'à fait actility sur certains dossiers (ex: outdoor-temperature). 

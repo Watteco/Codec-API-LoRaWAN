@@ -3,6 +3,10 @@
 <p>Le fichier <code>[device].js</code>est le point d'entrée des .js. Il prend un objet <code>input</code> contenant le payload sous forme de liste d'octets converti en décimal, le port et la date de reception.<br>
 La sortie est décrite dans le fichier<code>uplink.schema.json</code>.<br>
 
+## fichiers codec
+
+Il ne faut pas toucher aux fichier codec se trouvant dans devices, il seront écraser par ceux dans codec lorsque vous exécuterez ```rebuild_mains.js``` dans utilities.
+
 ## webpack
 
 <p>Afin de respecter la contrainte d'un seul fichier final pour le codec, on utilise webpack pour compiler les fichiers en un seul.</p>

@@ -49,7 +49,46 @@
 
 <p> As the try/catch method is used, error contains the first error encountered and cut the processing.</p>
 
+## npm
+
+if you wish to get the device via npm, you need to do this:
+
+    npm install <npm-package>
+
+our current packages are :
+
+|             name             | version |
+|:----------------------------:|:-------:|
+|        watteco-atm_o         |  1.0.0  |
+|        watteco-clos_o        |  1.0.0  |
+|       watteco-flash_o        |  1.0.0  |
+|         watteco-in_o         |  1.0.0  |
+|       watteco-inclin_o       |  1.0.0  |
+|  watteco-indoor_temperature  |  1.0.0  |
+|       watteco-intens_o       |  1.0.0  |
+|        watteco-lev_o         |  1.0.0  |
+|        watteco-modbus        |  1.0.0  |
+|       watteco-monit_o        |   NP    |
+|        watteco-move_o        |   NP    |
+| watteco-outdoor_temperature  |   NP    |
+|      watteco-pilot_wire      |   NP    |
+|       watteco-press_o        |   NP    |
+|     watteco-pulse_sens_o     |   NP    |
+|  watteco-pulse_sens_o_atex   |   NP    |
+|  watteco-remote_temperature  |   NP    |
+| watteco-remote_temperature_2 |   NP    |
+|      watteco-smartplug       |   NP    |
+|          watteco-th          |  1.0.3  |
+|        watteco-tics_o        |   NP    |
+|     watteco-toran_o_atex     |   NP    |
+|      watteco-triphas_o       |   NP    |
+|        watteco-vaqa_o        |   NP    |
+|      watteco-vaqa_o_lt       |   NP    |
+|     watteco-vaqa_o_plus      |   NP    |
+|       watteco-ventil_o       |   NP    |
+
 # french
+
 ## utilisation
 <p>La fonction à appeler est <code>DecodeUplink()</code>:</p>
 
@@ -97,6 +136,43 @@
 
 <p>L'erreur retournée est la première rencontrée, ce qui coupe le traitement. Elle est sous forme de string</p>
 
+## npm 
+
+pour télécharger le capteur via npm, on fait :
+
+    npm install <npm-package>
+
+nos package actuels sont :
+
+|             name             | version |
+|:----------------------------:|:-------:|
+|        watteco-atm_o         |  1.0.0  |
+|        watteco-clos_o        |  1.0.0  |
+|       watteco-flash_o        |  1.0.0  |
+|         watteco-in_o         |  1.0.0  |
+|       watteco-inclin_o       |  1.0.0  |
+|  watteco-indoor_temperature  |  1.0.0  |
+|       watteco-intens_o       |  1.0.0  |
+|        watteco-lev_o         |  1.0.0  |
+|        watteco-modbus        |  1.0.0  |
+|       watteco-monit_o        |   NP    |
+|        watteco-move_o        |   NP    |
+| watteco-outdoor_temperature  |   NP    |
+|      watteco-pilot_wire      |   NP    |
+|       watteco-press_o        |   NP    |
+|     watteco-pulse_sens_o     |   NP    |
+|  watteco-pulse_sens_o_atex   |   NP    |
+|  watteco-remote_temperature  |   NP    |
+| watteco-remote_temperature_2 |   NP    |
+|      watteco-smartplug       |   NP    |
+|          watteco-th          |  1.0.3  |
+|        watteco-tics_o        |   NP    |
+|     watteco-toran_o_atex     |   NP    |
+|      watteco-triphas_o       |   NP    |
+|        watteco-vaqa_o        |   NP    |
+|      watteco-vaqa_o_lt       |   NP    |
+|     watteco-vaqa_o_plus      |   NP    |
+|       watteco-ventil_o       |   NP    |
 
 ## cluster table
 
