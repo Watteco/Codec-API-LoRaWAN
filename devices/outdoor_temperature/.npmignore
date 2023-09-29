@@ -2,4 +2,5 @@ node_modules/
 test/
 coverage/
 specification/
-
+outdoor_temperature.js
+driver-examples.spec.js

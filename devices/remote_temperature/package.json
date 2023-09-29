@@ -1,5 +1,5 @@
 {
-  "name": "remote_temperature",
+  "name": "watteco-remote_temperature",
   "version": "1.0.0",
   "description": "",
   "main": "main.js",

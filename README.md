@@ -7,7 +7,10 @@ application repository ttn: https://github.com/TheThingsNetwork/lorawan-devices/
 ## dépendances à installer sur la machine
 
 - nodejs/npm: https://nodejs.org/en/download
-- lancer le script ```install_dependencies.js``` dans le répertoire utilities 
+- lancer le script ```install_dependencies.js``` dans le répertoire utilities : ```node install_dependencies.js```
+## utilisation
+
+On suivra la démarche décrite dans le README.md du répertoire utilities si l'on souhaite modifier le codec
 
 ## codec
 

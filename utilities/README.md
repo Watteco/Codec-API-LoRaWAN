@@ -29,6 +29,54 @@ On push et on ouvre une pull request une fois sûr que le tout fonctionne.
 On doit effectuer un fork de la main branch de ttn, puis il suffit de remplacer le <code>[device].js</code> par le <code>main.js</code>, qu'il faut renommer.<br>
 On push et on ouvre une pull request une fois sûr que le tout fonctionne.
 
+#### npm
+
+On se connecte avec le compte watteco :
+    
+    npm login
+
+Pour la première publication (après avoir fait un package.json correcte : [ici](https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/README.md#packaging) ):
+
+    npm publish
+
+Si le package existe déjà sur le compte watteco, il faut faire une nouvelle révision (patch/minor/major):
+
+    npm version <révision>
+
+On peut ensuite refaire un publish.
+
+La liste des npm package est la suivante :
+
+|             name             | version |
+|:----------------------------:|:-------:|
+|        watteco-atm_o         |  1.0.0  |
+|        watteco-clos_o        |  1.0.0  |
+|       watteco-flash_o        |  1.0.0  |
+|         watteco-in_o         |  1.0.0  |
+|       watteco-inclin_o       |  1.0.0  |
+|  watteco-indoor_temperature  |  1.0.0  |
+|       watteco-intens_o       |  1.0.0  |
+|        watteco-lev_o         |  1.0.0  |
+|        watteco-modbus        |  1.0.0  |
+|       watteco-monit_o        |   NP    |
+|        watteco-move_o        |   NP    |
+| watteco-outdoor_temperature  |   NP    |
+|      watteco-pilot_wire      |   NP    |
+|       watteco-press_o        |   NP    |
+|     watteco-pulse_sens_o     |   NP    |
+|  watteco-pulse_sens_o_atex   |   NP    |
+|  watteco-remote_temperature  |   NP    |
+| watteco-remote_temperature_2 |   NP    |
+|      watteco-smartplug       |   NP    |
+|          watteco-th          |  1.0.3  |
+|        watteco-tics_o        |   NP    |
+|     watteco-toran_o_atex     |   NP    |
+|      watteco-triphas_o       |   NP    |
+|        watteco-vaqa_o        |   NP    |
+|      watteco-vaqa_o_lt       |   NP    |
+|     watteco-vaqa_o_plus      |   NP    |
+|       watteco-ventil_o       |   NP    |
+
 ## debug
 
 <p>Le fichier <code>debug.js</code> permet d'observer l'entrée et la sortie du codec dans la console.<br>

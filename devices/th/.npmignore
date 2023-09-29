@@ -2,3 +2,5 @@ node_modules/
 test/
 coverage/
 specification/
+th.js
+driver-examples.spec.js

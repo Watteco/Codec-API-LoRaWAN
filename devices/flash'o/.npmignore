@@ -2,4 +2,5 @@ node_modules/
 test/
 coverage/
 specification/
-
+flash'o.js
+driver-examples.spec.js

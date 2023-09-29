@@ -1,6 +1,6 @@
 {
-  "name": "th",
-  "version": "1.0.0",
+  "name": "watteco-th",
+  "version": "1.0.3",
   "description": "TH captor npm packaged",
   "main": "index.js",
   "scripts": {
