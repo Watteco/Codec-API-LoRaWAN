@@ -40,7 +40,7 @@ On se connecte avec le compte watteco :
     
     npm login
 
-Pour la première publication (après avoir fait un package.json correcte : [ici](https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/README.md#packaging) ):
+Pour la première publication (après avoir fait un package.json correcte : [ici](https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/README.md#packaging)):
 
     npm publish
 
