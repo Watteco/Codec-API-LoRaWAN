@@ -84,7 +84,7 @@ our current packages are :
 |      watteco-triphas_o       |   NP    |
 |        watteco-vaqa_o        |   NP    |
 |      watteco-vaqa_o_lt       |   NP    |
-|     watteco-vaqa_o_plus      |   NP    |
+|  watteco-vaqa_o_sensor_plus  |  1.0.0  |
 |       watteco-ventil_o       |   NP    |
 
 # french
@@ -171,7 +171,7 @@ nos package actuels sont :
 |      watteco-triphas_o       |   NP    |
 |        watteco-vaqa_o        |   NP    |
 |      watteco-vaqa_o_lt       |   NP    |
-|     watteco-vaqa_o_plus      |   NP    |
+|  watteco-vaqa_o_sensor_plus  |  1.0.0  |
 |       watteco-ventil_o       |   NP    |
 
 ## cluster table
