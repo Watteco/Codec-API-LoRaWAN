@@ -6,7 +6,7 @@
  - Tutoriel de mise à jour du codec → [/utilities/README.md](/utilities/README.md)
 
 # Codec-API-LoRaWAN
-Codec javascript compatible with the [API LoRaWAN specification](https://resources.lora-alliance.org/home/ts013-1-0-0-payload-codec-api)
+Javascript codec compatible with the [LoRaWAN API specification](https://resources.lora-alliance.org/home/ts013-1-0-0-payload-codec-api)
 
 Application repository on Actility: https://github.com/actility/device-catalog/tree/main/vendors/watteco  
 Application repository on TTN: https://github.com/TheThingsNetwork/lorawan-devices/tree/master/vendor/watteco
@@ -15,6 +15,7 @@ Application repository on TTN: https://github.com/TheThingsNetwork/lorawan-devic
 
 - nodejs/npm: https://nodejs.org/en/download
 - lancer le script `install_dependencies.js` dans le répertoire utilities : 
+
 ```bash
     node install_dependencies.js
 ```
@@ -26,7 +27,8 @@ On suivra la démarche décrite dans [le README.md du répertoire utilities](/ut
 ## Codec
 
 La construction de ce codec vise à respecter la [spécification ts013-1.0.0](https://resources.lora-alliance.org/home/ts013-1-0-0-payload-codec-api) de la lora alliance que vous trouverez ici:  
- https://resources.lora-alliance.org/document/ts013-1-0-0-payload-codec-api  
+
+https://resources.lora-alliance.org/document/ts013-1-0-0-payload-codec-api  
 
 ## Devices
 
@@ -35,17 +37,17 @@ Contient le fichier javascript spécifique à un capteur, ainsi que le nécessai
 ## Clusters_examples
 
 Le dossier contient des payloads d'exemple rangés par cluster  
-`examples_0_common` est la concaténation d'un exemple des cluster 0x0000, 0x0050 et 0X8004  
+`examples_0_common` est la concaténation d'un exemple des clusters 0x0000, 0x0050 et 0X8004  
 Les command_id 07 et 09 ont un retour différent car ils contiennent l'objet `report_parameters`  
 
 ## Distrib
 
-Contient le fichier compréssé équivalent au codec en plusieurs fichiers, plus le fichier spécifique au capteur  
+Contient le fichier compréssé équivalent au codec en plusieurs fichiers, plus le fichier spécifique au capteur.  
 
 ## Scripts
 
-Contient les scripts permettant d'automatiser certaines tâches dût à la modification du codec.  
+Contient les scripts permettant d'automatiser certaines tâches dues à la modification du codec..  
 
 ## Utilities
 
-Plusieurs programmes permettant de simplifier certaines tâches  
+Plusieurs outils permettant de simplifier certaines tâches.  

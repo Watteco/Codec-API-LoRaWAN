@@ -10,7 +10,7 @@ The called function is `DecodeUplink()`:
     }
 ```
 
-The `input` object is built like:  
+The `input` object is built like this:  
 
 ```javascript
     input:{
@@ -20,11 +20,11 @@ The `input` object is built like:
     }
 ```
 
-`bytes` is decimal values list.  
-`fport` is the decimal value of the sender port.  
-`recvTime` is a string in Date format.
+`bytes` is a decimal values list.  
+`fPort` is the decimal value of the sender port.  
+`recvTime` is the time in a string of the ISO 8601 date format.
 
-The `output` without errors is like:  
+The `output` without errors is like this:  
 
 ```javascript
     output:{
@@ -39,13 +39,13 @@ The `output` without errors is like:
 
 `data` is a formatted objects list ; each object contains the fields `variable`,`value`,`date`.  
 
-`variable` contains a string of the name. [here](#variables)
+`variable` contains a string of the name. [(see *variables*)](#variables)
 `value` contains the data value in its corresponding format (uint, int, float, ...).   
-`date` is a string in Date format. It is the input date for standard report or at last input date for batch report.  
+`date` is a string in the ISO 8601 date format. It is the input date for standard report or at last input date for batch report.  
 
-`warning` contains the alarms you configured on the reports  
+`warning` contains the alarms you configured on the reports.  
 
-The `output` with errors is like:  
+The `output` with errors is like this:  
 
 ```javascript
     output:{
@@ -567,7 +567,7 @@ ___
 # Français
 [→ English](#english)
 ## Utilisation
-La fonction à appeler est `DecodeUplink()`:  
+La fonction à appeler est `DecodeUplink()` :  
 
 ```javascript
     DecodeUplink(input){
@@ -586,8 +586,8 @@ L'entrée doit être un objet `input` de la forme :
 ```
 
 `bytes` est une liste de valeurs hexadécimales convertit en valeurs décimales.  
-`fport` contient le port d'envoie en décimal.  
-`recvTime` est la date de reception en string mais au format Date  
+`fport` contient le port d'envoi en décimal.  
+`recvTime` est la date de reception en string mais au format date ISO 8601.  
 
 La sortie est un objet `output` qui, si le traitement ne retourne pas d'erreur, a la forme:   
 
@@ -602,15 +602,15 @@ La sortie est un objet `output` qui, si le traitement ne retourne pas d'erreur, 
     }
 ```
 
-`data` est une liste d'objets formatés contenants `variable`,`value`,`date`. En standard, la majorité des clusters ne retournent qu'un objet ; mais certains retourne plusieurs objets en un payload. En batch il y a plusieurs objets    
+`data` est une liste d'objets formatés contenants `variable`,`value`,`date`. En standard, la majorité des clusters ne retournent qu'un objet ; mais certains retourne plusieurs objets en un payload. En batch il y a plusieurs objets.  
 
-`variable` contient le nom de la donnée en string [ici](#variables) 
+`variable` contient le nom de la donnée en string. [(voir *variables*)](#variables) 
 `value` contient la valeur de la donnée dans le format de la donnée (int, uint, float, ...).  
-`date` contient la date en string. C'est la date d'entrée pour un standard, pour un batch c'est la date de mesure qui peut être soit la date d'envoie de la trame (donc la date d'entrée), soit une date antérieure à la date d'envoie  
+`date` contient la date en string au format date ISO 8601. C'est la date d'entrée pour un standard, pour un batch c'est la date de mesure qui peut être soit la date d'envoi de la trame (donc la date d'entrée), soit une date antérieure à la date d'envoi.  
 
-`warning` est une liste qui est vide pour la majorité des payload traitables, elle ne se remplie qu'avec les alarm configurables sur le cluster associé, sous forme de message string formatés.  
+`warning` est une liste qui est vide pour la majorité des payload traitables, elle ne se remplit qu'avec les alarmes configurables sur le cluster associé, sous forme de messages string formatés.  
 
-Si le traitement retourne une erreur, output a la forme :  
+Si le traitement retourne une erreur, `output` a la forme :  
 
 ```javascript
     output:{
@@ -619,7 +619,7 @@ Si le traitement retourne une erreur, output a la forme :
     }
 ```
 
-L'erreur retournée est la première rencontrée, ce qui coupe le traitement. Elle est sous forme de string  
+L'erreur retournée est la première rencontrée, ce qui coupe le traitement. Elle est sous forme de string.  
 
 ## Npm 
 
