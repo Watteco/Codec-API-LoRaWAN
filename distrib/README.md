@@ -577,9 +577,9 @@ L'entrée doit être un objet `input` de la forme :
 
 ```javascript
     input:{
-        "bytes": [17, 10, 4, 2, 0, 0, 41, 11, 137],
-        "fPort": 125,
-        "recvTime": "2023-07-19T07:51:31.598957793Z"
+        "bytes": [17, 10, 4, 2, 0, 0, 41, 11, 137],  // La trame sous forme de liste d'octets
+        "fPort": 125,                                // Le port (Watteco utilise toujours 125)
+        "recvTime": "2023-07-19T07:51:31.598957793Z" // La date au format ISO 8601
     }
 ```
 
