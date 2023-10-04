@@ -1,61 +1,69 @@
-# english
-## use
+# English
+[→ Français](#français)
+## Use
 
-<p> the called function is <code>DecodeUplink()</code>:</p>
+The called function is `DecodeUplink()`:  
 
+```javascript
     DecodeUplink(input){
         return output
     }
+```
 
-<p> the <code>input</code> object is built like:</p>
+The `input` object is built like:  
 
+```javascript
     input:{
-        "bytes": [17, 10, 4, 2, 0, 0, 41, 11, 137]
-        "fport": 125
-        "recvTime": "2023-07-19T07:51:31.598957793Z"
+        "bytes": [17, 10, 4, 2, 0, 0, 41, 11, 137],  // The frame in a bytes list
+        "fPort": 125,                                // The port (Watteco always use 125)
+        "recvTime": "2023-07-19T07:51:31.598957793Z" // The date in ISO 8601 format
     }
+```
 
-<p>bytes is decimal values list.<br>
-<code>fport</code></p> is the decimal value of the sender port.<br>
-<code>recvTime</code> is a string in Date format.
+`bytes` is decimal values list.  
+`fport` is the decimal value of the sender port.  
+`recvTime` is a string in Date format.
 
-<p>the <code>output</code> without errors is like:</p>
+The `output` without errors is like:  
 
-
+```javascript
     output:{
         data:[{
             "variable": "temperature",
             "value": 29.53,
             "date": "2023-07-19T07:51:31.598957793Z"
-        }]
+        }],
         warning:[""]
     }
+```
+`data` is a formatted objects list ; each object contains the fields `variable`,`value`,`date`.  
 
-<p><code>data</code> is a formatted objects list ; each object contains the fields <code>variable</code>,<code>value</code>,<code>date</code>.</p>
+`variable` contains a string of the name. [here](#variables)
+`value` contains the data value in its corresponding format (uint, int, float, ...).   
+`date` is a string in Date format. It is the input date for standard report or at last input date for batch report.  
 
-<code>variable</code> contains a string of the name. [here](#variables)
-<p><code>value</code> contains the data value in its corresponding format (uint, int, float, ...). <br>
-<code>date</code> is a string in Date format. It is the input date for standard report or at last input date for batch report.<br>
+`warning` contains the alarms you configured on the reports  
 
-<code>warning</code> contains the alarms you configured on the reports</p>
+The `output` with errors is like:  
 
-<p>the <code>output</code> with errors is like:</p>
-
-
+```javascript
     output:{
         error:""
         warning:[]
     }
+```
 
-<p> As the try/catch method is used, error contains the first error encountered and cut the processing.</p>
+As the try/catch method is used, error contains the first error encountered and cut the processing.  
 
-## npm
+## Npm
 
-if you wish to get the device via npm, you need to do this:
+If you wish to get the device via npm, you need to do this:
 
+```
     npm install <npm-package>
+```
 
-our current packages are :
+Our current packages are :
 
 |             name             | version |
 |:----------------------------:|:-------:|
@@ -85,96 +93,122 @@ our current packages are :
 |        watteco-vaqa_o        |   NP    |
 |      watteco-vaqa_o_lt       |   NP    |
 |  watteco-vaqa_o_sensor_plus  |  1.0.0  |
-|       watteco-ventil_o       |   NP    |
+|       watteco-ventil_o       |   NP    |  
+  
 
-# french
+# Using the Watteco codec API with NodeRED (>`1.3.0`)
 
-## utilisation
-<p>La fonction à appeler est <code>DecodeUplink()</code>:</p>
+The first step is to set-up a Javascript node to import the module you need via npm.  
+You'll find the modules list [here](https://www.npmjs.com/~watteco) or in the table [above](#npm).  
+To set that up, add the module in the "Setup" tab of the Javascript node.  
 
-    DecodeUplink(input){
-        return output
+![Setup tab](/sources_readme/wattecoConfNodeRedEn.png)
+
+You will then be able to call it from the node like this:
+`moduleName.driver.decodeUplink(input)`  
+with the input being in the format:
+
+```javascript
+{
+    "bytes": [17, 10, 4, 2, 0, 0, 41, 11, 137],  // The frame in a bytes list
+    "fPort": 125,                                // The port (Watteco always use 125)
+    "recvTime": "2023-07-19T07:51:31.598957793Z" // The date in ISO 8601 format
+}
+```
+
+You'll find an example of decoding a base64 Vaqa'o+ batch frame below, you can directly import it to NodeRED via the `Import` button in the right menu.
+
+<details>
+<summary>Vaqa'o+ NodeRED decoding example</summary>
+
+```json
+[
+    {
+        "id": "40642e89c9349958",
+        "type": "tab",
+        "label": "Vaqa'o+ decoding example",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "6e327578ec437d82",
+        "type": "inject",
+        "z": "40642e89c9349958",
+        "name": "Sample Vaqa'o+ batch base64 frame",
+        "props": [
+            {
+                "p": "payload.data",
+                "v": "IAWAi0kCgNjOiQAAAgHtPEED2Ekx",
+                "vt": "str"
+            },
+            {
+                "p": "payload.time",
+                "v": "",
+                "vt": "date"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 200,
+        "y": 100,
+        "wires": [
+            [
+                "adb486ffd01f5a71"
+            ]
+        ]
+    },
+    {
+        "id": "bcdb552b5eca5eda",
+        "type": "debug",
+        "z": "40642e89c9349958",
+        "name": "Output",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 550,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "adb486ffd01f5a71",
+        "type": "function",
+        "z": "40642e89c9349958",
+        "name": "decode",
+        "func": "// You must import the sensor decoder from npm via the configuration tab above\n// Don't forget to set \"functionExternalModules: true,\" in your \"settings.js\" file\n\nif (msg.payload.data && typeof msg.payload.data === 'string') {\n\n    const buffer = Buffer.from(msg.payload.data, 'base64'); // The frame arrives in base64 in msg.payload.data\n\n    var date = new Date(msg.payload.time); // The date is recuperated from msg.payload.time\n                                          // under any format and is transformed to ISO 8601\n    var inputObject = {\n        \"bytes\": buffer, // The frame in a bytes list\n        \"fPort\": 125,    // The port (Watteco always use 125)\n        \"recvTime\": date // The date in ISO 8601 format\n    }\n\n} else {\n    node.error(\"The message doesn't carry a Base64 frame\");\n    return null;\n}\n\nmsg.payload = wattecoVaqaOSensorPlus.driver.decodeUplink(inputObject);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "wattecoVaqaOSensorPlus",
+                "module": "watteco-vaqa_o_sensor_plus"
+            }
+        ],
+        "x": 420,
+        "y": 100,
+        "wires": [
+            [
+                "bcdb552b5eca5eda"
+            ]
+        ]
     }
+]
+```
 
-<p>L'entrée doit être un objet <code>input</code> de la forme :</p>
+</details>
 
-    input:{
-        "bytes": [17, 10, 4, 2, 0, 0, 41, 11, 137]
-        "fport": 125
-        "recvTime": "2023-07-19T07:51:31.598957793Z"
-    }
-
-<p> <code>bytes</code> est une liste de valeurs hexadécimales convertit en valeurs décimales.<br>
-<code>fport</code> contient le port d'envoie en décimal.<br>
-<code>recvTime</code> est la date de reception en string mais au format Date</p>
-
-<p>la sortie est un objet <code>output</code> qui, si le traitement ne retourne pas d'erreur, a la forme: </p>
-
-    output:{
-        data:[{
-            "variable": "temperature",
-            "value": 29.53,
-            "date": "2023-07-19T07:51:31.598957793Z"
-        }]
-        warning:[]
-    }
-
-<p><code>data</code> est une liste d'objets formatés contenants <code>variable</code>,<code>value</code>,<code>date</code>. En standard, la majorité des clusters ne retournent qu'un objet ; mais certains retourne plusieurs objets en un payload. En batch il y a plusieurs objets<br></p>
-
-<code>variable</code> contient le nom de la donnée en string [ici](#variables) 
-<p><code>value</code> contient la valeur de la donnée dans le format de la donnée (int, uint, float, ...).<br>
-<code>date</code> contient la date en string. C'est la date d'entrée pour un standard, pour un batch c'est la date de mesure qui peut être soit la date d'envoie de la trame (donc la date d'entrée), soit une date antérieure à la date d'envoie</p>
-
-<p><code>warning</code> est une liste qui est vide pour la majorité des payload traitables, elle ne se remplie qu'avec les alarm configurables sur le cluster associé, sous forme de message string formatés.</p>
-
-<p>Si le traitement retourne une erreur, output a la forme :</p>
-
-    output:{
-        error:""
-        warning:[]
-    }
-
-<p>L'erreur retournée est la première rencontrée, ce qui coupe le traitement. Elle est sous forme de string</p>
-
-## npm 
-
-pour télécharger le capteur via npm, on fait :
-
-    npm install <npm-package>
-
-nos package actuels sont :
-
-|             name             | version |
-|:----------------------------:|:-------:|
-|        watteco-atm_o         |  1.0.0  |
-|        watteco-clos_o        |  1.0.0  |
-|       watteco-flash_o        |  1.0.0  |
-|         watteco-in_o         |  1.0.0  |
-|       watteco-inclin_o       |  1.0.0  |
-|  watteco-indoor_temperature  |  1.0.0  |
-|       watteco-intens_o       |  1.0.0  |
-|        watteco-lev_o         |  1.0.0  |
-|        watteco-modbus        |  1.0.0  |
-|       watteco-monit_o        |   NP    |
-|        watteco-move_o        |   NP    |
-| watteco-outdoor_temperature  |   NP    |
-|      watteco-pilot_wire      |   NP    |
-|       watteco-press_o        |   NP    |
-|     watteco-pulse_sens_o     |   NP    |
-|  watteco-pulse_sens_o_atex   |   NP    |
-|  watteco-remote_temperature  |   NP    |
-| watteco-remote_temperature_2 |   NP    |
-|      watteco-smartplug       |   NP    |
-|          watteco-th          |  1.0.3  |
-|        watteco-tics_o        |   NP    |
-|     watteco-toran_o_atex     |   NP    |
-|      watteco-triphas_o       |   NP    |
-|        watteco-vaqa_o        |   NP    |
-|      watteco-vaqa_o_lt       |   NP    |
-|  watteco-vaqa_o_sensor_plus  |  1.0.0  |
-|       watteco-ventil_o       |   NP    |
-
-## cluster table
+## Cluster table
 
 |      | atm'o | clos'o | flash'o | in'o | inclin'o | indoor_temperature | intens'o | lev'o | modbus | monit'o | move'o | outdoor_temperature | pilot_wire | press'o | pulse_sens'o_atex | pulse_sens'o | remote_temperature | remote_temperature_2 | smartplug | TH | tics'o | toran'o_atex | triphas'o | vaqa'o_lt | vaqa'o | vaqa'o_plus | ventil'o |
 |:----:|:-----:|:------:|:-------:|:----:|:--------:|:------------------:|:--------:|:-----:|:------:|:-------:|:------:|:-------------------:|:----------:|:-------:|:-----------------:|:------------:|:------------------:|:--------------------:|:---------:|:--:|:------:|:------------:|:---------:|:---------:|:------:|:-----------:|:--------:|
@@ -208,7 +242,7 @@ nos package actuels sont :
 | 8010 |       |        |         |      |          |                    |          |       |        |         |        |                     |            |         |                   |              |                    |                      |           |    |        |              |     X     |           |        |             |          |
 | 8052 |       |        |         |      |          |                    |          |       |        |         |        |                     |            |         |                   |              |                    |                      |     X     |    |        |              |           |           |        |             |          |
 
-## cluster name
+## Cluster name
 |                name                |  ID  |
 |:----------------------------------:|:----:|
 |            analog input            | 000C |
@@ -238,7 +272,7 @@ nos package actuels sont :
 |    voltage and current metering    | 800B |
 | voltage and current multi metering | 800D |
 
-## variables
+## Variables
 | cluster |                                          |       |        |         |      |          |                    |          |       |        |         |        |                     |            |         |                   |              |                    |                      |           |    |        |              |           |           |        |             |          |
 |:-------:|:----------------------------------------:|:-----:|:------:|:-------:|:----:|:--------:|:------------------:|:--------:|:-----:|:------:|:-------:|:------:|:-------------------:|:----------:|:-------:|:-----------------:|:------------:|:------------------:|:--------------------:|:---------:|:--:|:------:|:------------:|:---------:|:---------:|:------:|:-----------:|:--------:|
 |         |                  device                  | atm'o | clos'o | flash'o | in'o | inclin'o | indoor_temperature | intens'o | lev'o | modbus | monit'o | move'o | outdoor_temperature | pilot_wire | press'o | pulse_sens'o_atex | pulse_sens'o | remote_temperature | remote_temperature_2 | smartplug | TH | tics'o | toran'o_atex | triphas'o | vaqa'o_lt | vaqa'o | vaqa'o_plus | ventil'o |
@@ -525,3 +559,222 @@ nos package actuels sont :
 |         |               over_voltage               |       |        |         |      |          |                    |          |       |        |         |        |                     |            |         |                   |              |                    |                      |     O     |    |        |              |           |           |        |             |          |
 |         |               sag_voltage                |       |        |         |      |          |                    |          |       |        |         |        |                     |            |         |                   |              |                    |                      |     O     |    |        |              |           |           |        |             |          |
 |         |                                          |       |        |         |      |          |                    |          |       |        |         |        |                     |            |         |                   |              |                    |                      |           |    |        |              |           |           |        |             |          |
+
+___
+
+# Français
+[→ English](#english)
+## Utilisation
+La fonction à appeler est `DecodeUplink()`:  
+
+```javascript
+    DecodeUplink(input){
+        return output
+    }
+```
+
+L'entrée doit être un objet `input` de la forme :  
+
+```javascript
+    input:{
+        "bytes": [17, 10, 4, 2, 0, 0, 41, 11, 137],
+        "fPort": 125,
+        "recvTime": "2023-07-19T07:51:31.598957793Z"
+    }
+```
+
+`bytes` est une liste de valeurs hexadécimales convertit en valeurs décimales.  
+`fport` contient le port d'envoie en décimal.  
+`recvTime` est la date de reception en string mais au format Date  
+
+La sortie est un objet `output` qui, si le traitement ne retourne pas d'erreur, a la forme:   
+
+```javascript
+    output:{
+        data:[{
+            "variable": "temperature",
+            "value": 29.53,
+            "date": "2023-07-19T07:51:31.598957793Z"
+        }]
+        warning:[]
+    }
+```
+
+`data` est une liste d'objets formatés contenants `variable`,`value`,`date`. En standard, la majorité des clusters ne retournent qu'un objet ; mais certains retourne plusieurs objets en un payload. En batch il y a plusieurs objets    
+
+`variable` contient le nom de la donnée en string [ici](#variables) 
+`value` contient la valeur de la donnée dans le format de la donnée (int, uint, float, ...).  
+`date` contient la date en string. C'est la date d'entrée pour un standard, pour un batch c'est la date de mesure qui peut être soit la date d'envoie de la trame (donc la date d'entrée), soit une date antérieure à la date d'envoie  
+
+`warning` est une liste qui est vide pour la majorité des payload traitables, elle ne se remplie qu'avec les alarm configurables sur le cluster associé, sous forme de message string formatés.  
+
+Si le traitement retourne une erreur, output a la forme :  
+
+```javascript
+    output:{
+        error:""
+        warning:[]
+    }
+```
+
+L'erreur retournée est la première rencontrée, ce qui coupe le traitement. Elle est sous forme de string  
+
+## Npm 
+
+Pour télécharger le capteur via npm, on fait :
+
+```
+    npm install <npm-package>
+```
+
+Nos packages actuels sont :
+
+|             name             | version |
+|:----------------------------:|:-------:|
+|        watteco-atm_o         |  1.0.0  |
+|        watteco-clos_o        |  1.0.0  |
+|       watteco-flash_o        |  1.0.0  |
+|         watteco-in_o         |  1.0.0  |
+|       watteco-inclin_o       |  1.0.0  |
+|  watteco-indoor_temperature  |  1.0.0  |
+|       watteco-intens_o       |  1.0.0  |
+|        watteco-lev_o         |  1.0.0  |
+|        watteco-modbus        |  1.0.0  |
+|       watteco-monit_o        |   NP    |
+|        watteco-move_o        |   NP    |
+| watteco-outdoor_temperature  |   NP    |
+|      watteco-pilot_wire      |   NP    |
+|       watteco-press_o        |   NP    |
+|     watteco-pulse_sens_o     |   NP    |
+|  watteco-pulse_sens_o_atex   |   NP    |
+|  watteco-remote_temperature  |   NP    |
+| watteco-remote_temperature_2 |   NP    |
+|      watteco-smartplug       |   NP    |
+|          watteco-th          |  1.0.3  |
+|        watteco-tics_o        |   NP    |
+|     watteco-toran_o_atex     |   NP    |
+|      watteco-triphas_o       |   NP    |
+|        watteco-vaqa_o        |   NP    |
+|      watteco-vaqa_o_lt       |   NP    |
+|  watteco-vaqa_o_sensor_plus  |  1.0.0  |
+|       watteco-ventil_o       |   NP    |
+
+# Utilisation de l'API codec Watteco avec NodeRED (>`1.3.0`)
+
+La première étape consiste à configurer un nœud JavaScript pour importer le module dont vous avez besoin via npm.  
+Vous trouverez la liste des modules [ici](https://www.npmjs.com/~watteco) ou dans le tableau [ci-dessus](#npm-1).  
+Pour le configurer, ajoutez le module dans l'onglet "Configuration" du nœud JavaScript.
+
+![Onglet Configuration](/sources_readme/wattecoConfNodeRedFr.png)
+
+Vous pourrez ensuite l'appeler depuis le nœud de la manière suivante :
+`nomDuModule.driver.decodeUplink(entrée)`
+avec l'entrée étant au format :
+
+```javascript
+{
+    "bytes": [17, 10, 4, 2, 0, 0, 41, 11, 137],  // La trame sous forme de liste d'octets
+    "fPort": 125,                                // Le port (Watteco utilise toujours 125)
+    "recvTime": "2023-07-19T07:51:31.598957793Z" // La date au format ISO 8601
+}
+```
+Vous trouverez un exemple de décodage d'une trame batch Vaqa'o+ en base64 ci-dessous, que vous pouvez importer directement dans NodeRED via le bouton `Importer` dans le menu de droite.
+
+<details>
+<summary>Exemple de décodage Vaqa'o+ NodeRED</summary>
+
+```json
+[
+    {
+        "id": "1a97c11010c7ed96",
+        "type": "tab",
+        "label": "Exemple décodage Vaqa'o+",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "16fda4bf7147d143",
+        "type": "inject",
+        "z": "1a97c11010c7ed96",
+        "name": "Exemple de trame base64 batch Vaqa'o+",
+        "props": [
+            {
+                "p": "payload.data",
+                "v": "IAWAi0kCgNjOiQAAAgHtPEED2Ekx",
+                "vt": "str"
+            },
+            {
+                "p": "payload.time",
+                "v": "",
+                "vt": "date"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 220,
+        "y": 100,
+        "wires": [
+            [
+                "da725e636ee88c77"
+            ]
+        ]
+    },
+    {
+        "id": "8a0459069140422f",
+        "type": "debug",
+        "z": "1a97c11010c7ed96",
+        "name": "Sortie",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 590,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "da725e636ee88c77",
+        "type": "function",
+        "z": "1a97c11010c7ed96",
+        "name": "décodage",
+        "func": "// Vous devez importer le décodeur du capteur depuis npm via l'onglet configuration ci-dessus\n// N'oubliez pas de définir \"functionExternalModules: true,\" dans votre fichier \"settings.js\"\n\nif (msg.payload.data && typeof msg.payload.data === 'string') {\n\n    const buffer = Buffer.from(msg.payload.data, 'base64'); // La trame arrive en base64 dans msg.payload.data\n\n    var date = new Date(msg.payload.time); // La date est récupérée depuis msg.payload.time\n                                          // sous n'importe quel format et est transformée en ISO 8601\n    var inputObject = {\n        \"bytes\": buffer, // La trame sous forme de liste de bytes\n        \"fPort\": 125,    // Le port (Watteco utilise toujours 125)\n        \"recvTime\": date // La date au format ISO 8601\n    }\n\n} else {\n    node.error(\"Le message ne contient pas de trame en Base64\");\n    return null;\n}\n\nmsg.payload = wattecoVaqaOSensorPlus.driver.decodeUplink(inputObject);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "wattecoVaqaOSensorPlus",
+                "module": "watteco-vaqa_o_sensor_plus"
+            }
+        ],
+        "x": 460,
+        "y": 100,
+        "wires": [
+            [
+                "8a0459069140422f"
+            ]
+        ]
+    }
+]
+```
+
+</details>
+
+## Tableau des clusters
+Voir [cluster table](#cluster-table)
+
+## Noms des clusters
+Voir [cluster name](#cluster-name)
+
+## Variables
+Voir [variables](#variables)
