@@ -1,40 +1,51 @@
+## Sommaire des Readme
+ - Fonctionnement des codecs → [/codec/README.md](/codec/README.md)
+ - Explication des fichiers codec et de JEST → [/devices/README.md](/devices/README.md)
+ - Tutoriel d'utilisation (plus [tuto NodeRED](/distrib/README.md#utilisation-de-lapi-codec-watteco-avec-nodered-130)) → [/distrib/README.md](/distrib/README.md#français)
+ - Description de `rebuild.js` pour créer les scripts de build → [/scripts/README.md](/scripts/README.md)
+ - Tutoriel de mise à jour du codec → [/utilities/README.md](/utilities/README.md)
+
 # Codec-API-LoRaWAN
-Codec javascript compatible with the API LoRaWAN specification [https://resources.lora-alliance.org/home/ts013-1-0-0-payload-codec-api]
+Codec javascript compatible with the [API LoRaWAN specification](https://resources.lora-alliance.org/home/ts013-1-0-0-payload-codec-api)
 
-application repository actility: https://github.com/actility/device-catalog/tree/main/vendors/watteco
-application repository ttn: https://github.com/TheThingsNetwork/lorawan-devices/tree/master/vendor/watteco
+Application repository on Actility: https://github.com/actility/device-catalog/tree/main/vendors/watteco  
+Application repository on TTN: https://github.com/TheThingsNetwork/lorawan-devices/tree/master/vendor/watteco
 
-## dépendances à installer sur la machine
+## Dépendances à installer sur la machine
 
 - nodejs/npm: https://nodejs.org/en/download
-- lancer le script ```install_dependencies.js``` dans le répertoire utilities : ```node install_dependencies.js```
-## utilisation
+- lancer le script `install_dependencies.js` dans le répertoire utilities : 
+```bash
+    node install_dependencies.js
+```
 
-On suivra la démarche décrite dans le README.md du répertoire utilities si l'on souhaite modifier le codec
+## Utilisation
 
-## codec
+On suivra la démarche décrite dans [le README.md du répertoire utilities](/utilities/README.md) si l'on souhaite modifier le codec.
 
-<p>La construction de ce codec vise à respecter la spécification ts013-1.0.0 [https://resources.lora-alliance.org/home/ts013-1-0-0-payload-codec-api] de la lora alliance que vous trouverez ici:<br>
- https://resources.lora-alliance.org/document/ts013-1-0-0-payload-codec-api </p>
+## Codec
 
-## devices
+La construction de ce codec vise à respecter la [spécification ts013-1.0.0](https://resources.lora-alliance.org/home/ts013-1-0-0-payload-codec-api) de la lora alliance que vous trouverez ici:  
+ https://resources.lora-alliance.org/document/ts013-1-0-0-payload-codec-api  
 
-<p>Contient le fichier javascript spécifique à un capteur, ainsi que le nécessaire pour tester des payload que l'on sait fonctionnels si on modifie le codec.</p>
+## Devices
 
-## clusters_examples
+Contient le fichier javascript spécifique à un capteur, ainsi que le nécessaire pour tester des payload que l'on sait fonctionnels si on modifie le codec.  
 
-<p>Le dossier contient des payloads d'exemple rangés par cluster<br>
-<code>examples_0_common</code> est la concaténation d'un exemple des cluster 0x0000, 0x0050 et 0X8004<br>
-Les command_id 07 et 09 ont un retour différent car ils contiennent l'objet <code>report_parameters</code></p>
+## Clusters_examples
 
-## distrib
+Le dossier contient des payloads d'exemple rangés par cluster  
+`examples_0_common` est la concaténation d'un exemple des cluster 0x0000, 0x0050 et 0X8004  
+Les command_id 07 et 09 ont un retour différent car ils contiennent l'objet `report_parameters`  
 
-<p>Contient le fichier compréssé équivalent au codec en plusieurs fichiers, plus le fichier spécifique au capteur</p>
+## Distrib
 
-## scripts
+Contient le fichier compréssé équivalent au codec en plusieurs fichiers, plus le fichier spécifique au capteur  
 
-<p>Contient les scripts permettant d'automatiser certaines tâches dût à la modification du codec.</p>
+## Scripts
 
-## utilities
+Contient les scripts permettant d'automatiser certaines tâches dût à la modification du codec.  
 
-<p>Plusieurs programmes permettant de simplifier certaines tâches</p>
+## Utilities
+
+Plusieurs programmes permettant de simplifier certaines tâches  

@@ -1,15 +1,15 @@
-## fonctionnement
+## Fonctionnement
 
-<p>On va mettre dans un objet <code>input</code> les paramètres d'entrés, qui seront envoyés à la fonction <code>watteco_decodeUplink()</code></p>
+On va mettre dans un objet `input` les paramètres d'entrés, qui seront envoyés à la fonction `watteco_decodeUplink()`  
 
-<p>Cette fonction va, dans un premier temps traiter le payload comme si c'était un standard, à l'aide la fonction <code>normalisation()</code> de <strong>standard.js</strong>.<br>
-Dans le cas d'un payload standard, on modifie le résultat de <code>Decoder()</code> pour retourner les donnés dans un format souhaité.<br>
-Si le payload est en fait un batch, on retourne le payload, qui est envoyé dans la fonction <code>normalisation()</code> de <strong>batch.js</strong>.
-De même, on modifie le résultat de <code>brUncompress()</code> pour retourner les donnés dans un format souhaité.</p> 
+Cette fonction va, dans un premier temps traiter le payload comme si c'était un standard, à l'aide la fonction `normalisation()` de **standard.js**.  
+Dans le cas d'un payload standard, on modifie le résultat de `Decoder()` pour retourner les donnés dans un format souhaité.  
+Si le payload est en fait un batch, on retourne le payload, qui est envoyé dans la fonction `normalisation()` de **batch.js**.
+De même, on modifie le résultat de `brUncompress()` pour retourner les donnés dans un format souhaité.   
 
-Les fichiers examples.json contiennent des couples entrée-sortie obtenus avec le codec.<br>
+Les fichiers examples.json contiennent des couples entrée-sortie obtenus avec le codec.  
 
-## nomalisation standard
+## Nomalisation standard
 
 Si zclheader existe, on regarde si on a remplie alarmmess. Si oui, on on remplace le warning vide par alarmmess.
 
@@ -23,11 +23,11 @@ Sinon, on donne un objet vide (mais il doit être donné). On peut alors remplir
 
 Si tous les tests au-dessus ne fonctionnent pas, on retourne le payload et le type batch.
 
-## normalisation batch
+## Normalisation batch
 
 On récupère le payload qu'on envoie dans brUncompress puis on récupère les données une à une pour remplire une liste qu'on mettra dans data.
 
-## watteco decodeUplink
+## Watteco decodeUplink
 
 L'ensemble des opérations se font dans des try catch afin de ne pas faire planter le programme en cas d'erreur, mais de récupérer l'erreur et la retourner dans le champ error de la spécification.
 

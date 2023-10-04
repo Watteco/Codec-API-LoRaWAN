@@ -32,10 +32,11 @@ The `output` without errors is like:
             "variable": "temperature",
             "value": 29.53,
             "date": "2023-07-19T07:51:31.598957793Z"
-        }],
-        warning:[""]
+        }]
+        warning:[]
     }
 ```
+
 `data` is a formatted objects list ; each object contains the fields `variable`,`value`,`date`.  
 
 `variable` contains a string of the name. [here](#variables)
@@ -59,11 +60,11 @@ As the try/catch method is used, error contains the first error encountered and 
 
 If you wish to get the device via npm, you need to do this:
 
-```
+```bash
     npm install <npm-package>
 ```
 
-Our current packages are :
+Our current packages are: (You can also see [the list on the npm website](https://www.npmjs.com/~watteco))
 
 |             name             | version |
 |:----------------------------:|:-------:|
@@ -97,6 +98,7 @@ Our current packages are :
   
 
 # Using the Watteco codec API with NodeRED (>`1.3.0`)
+[→ Français](#utilisation-de-lapi-codec-watteco-avec-nodered-130)
 
 The first step is to set-up a Javascript node to import the module you need via npm.  
 You'll find the modules list [here](https://www.npmjs.com/~watteco) or in the table [above](#npm).  
@@ -623,46 +625,19 @@ L'erreur retournée est la première rencontrée, ce qui coupe le traitement. El
 
 Pour télécharger le capteur via npm, on fait :
 
-```
+```bash
     npm install <npm-package>
 ```
 
 Nos packages actuels sont :
 
-|             name             | version |
-|:----------------------------:|:-------:|
-|        watteco-atm_o         |  1.0.0  |
-|        watteco-clos_o        |  1.0.0  |
-|       watteco-flash_o        |  1.0.0  |
-|         watteco-in_o         |  1.0.0  |
-|       watteco-inclin_o       |  1.0.0  |
-|  watteco-indoor_temperature  |  1.0.0  |
-|       watteco-intens_o       |  1.0.0  |
-|        watteco-lev_o         |  1.0.0  |
-|        watteco-modbus        |  1.0.0  |
-|       watteco-monit_o        |   NP    |
-|        watteco-move_o        |   NP    |
-| watteco-outdoor_temperature  |   NP    |
-|      watteco-pilot_wire      |   NP    |
-|       watteco-press_o        |   NP    |
-|     watteco-pulse_sens_o     |   NP    |
-|  watteco-pulse_sens_o_atex   |   NP    |
-|  watteco-remote_temperature  |   NP    |
-| watteco-remote_temperature_2 |   NP    |
-|      watteco-smartplug       |   NP    |
-|          watteco-th          |  1.0.3  |
-|        watteco-tics_o        |   NP    |
-|     watteco-toran_o_atex     |   NP    |
-|      watteco-triphas_o       |   NP    |
-|        watteco-vaqa_o        |   NP    |
-|      watteco-vaqa_o_lt       |   NP    |
-|  watteco-vaqa_o_sensor_plus  |  1.0.0  |
-|       watteco-ventil_o       |   NP    |
+Voir tableau [ici](#npm) ou [la liste sur le site npm](https://www.npmjs.com/~watteco)
 
 # Utilisation de l'API codec Watteco avec NodeRED (>`1.3.0`)
+[→ English](#using-the-watteco-codec-api-with-nodered-130)
 
 La première étape consiste à configurer un nœud JavaScript pour importer le module dont vous avez besoin via npm.  
-Vous trouverez la liste des modules [ici](https://www.npmjs.com/~watteco) ou dans le tableau [ci-dessus](#npm-1).  
+Vous trouverez la liste des modules [ici](https://www.npmjs.com/~watteco) ou dans le tableau [ci-dessus](#npm).  
 Pour le configurer, ajoutez le module dans l'onglet "Configuration" du nœud JavaScript.
 
 ![Onglet Configuration](/sources_readme/wattecoConfNodeRedFr.png)
