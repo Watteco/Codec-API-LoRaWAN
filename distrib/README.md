@@ -141,7 +141,7 @@ You'll find an example of decoding a base64 Vaqa'o+ batch frame below, you can d
         "props": [
             {
                 "p": "payload.data",
-                "v": "IAWAi0kCgNjOiQAAAgHtPEED2Ekx",
+                "v": "cAYAAOJ2AJDPwAFbAoQj+wMnKRmATBIcAD68W9aJXwBAAAtotywnoN203IB225IMaLcsGWBbBA==",
                 "vt": "str"
             },
             {
@@ -676,7 +676,7 @@ Vous trouverez un exemple de décodage d'une trame batch Vaqa'o+ en base64 ci-de
         "props": [
             {
                 "p": "payload.data",
-                "v": "IAWAi0kCgNjOiQAAAgHtPEED2Ekx",
+                "v": "cAYAAOJ2AJDPwAFbAoQj+wMnKRmATBIcAD68W9aJXwBAAAtotywnoN203IB225IMaLcsGWBbBA==",
                 "vt": "str"
             },
             {
