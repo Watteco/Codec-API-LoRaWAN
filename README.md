@@ -36,9 +36,9 @@ Contient le fichier javascript spécifique à un capteur, ainsi que le nécessai
 
 ## Clusters_examples
 
-Le dossier contient des payloads d'exemple rangés par cluster  
-`examples_0_common` est la concaténation d'un exemple des clusters 0x0000, 0x0050 et 0X8004  
-Les command_id 07 et 09 ont un retour différent car ils contiennent l'objet `report_parameters`  
+Le dossier contient des payloads d'exemple rangés par cluster.  
+`examples_0_common` est la concaténation d'un exemple des clusters `0x0000`, `0x0050` et `0X8004`.  
+Les `command_id` `07` et `09` ont un retour différent car ils contiennent l'objet `report_parameters`.  
 
 ## Distrib
 
@@ -46,7 +46,7 @@ Contient le fichier compréssé équivalent au codec en plusieurs fichiers, plus
 
 ## Scripts
 
-Contient les scripts permettant d'automatiser certaines tâches dues à la modification du codec..  
+Contient les scripts permettant d'automatiser certaines tâches dues à la modification du codec.  
 
 ## Utilities
 
