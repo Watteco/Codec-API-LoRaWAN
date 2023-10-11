@@ -88,13 +88,13 @@ Our current packages are: (You can also see [the list on the npm website](https:
 | watteco-remote_temperature_2 |  1.0.0  |
 |      watteco-smartplug       |  1.0.0  |
 |          watteco-th          |  1.0.3  |
-|        watteco-tics_o        |   NP    |
-|     watteco-toran_o_atex     |   NP    |
-|      watteco-triphas_o       |   NP    |
-|        watteco-vaqa_o        |   NP    |
-|      watteco-vaqa_o_lt       |   NP    |
-|  watteco-vaqa_o_sensor_plus  |  1.0.0  |
-|       watteco-ventil_o       |   NP    |  
+|        watteco-tics_o        |  1.0.0  |
+|     watteco-toran_o_atex     |  1.0.0  |
+|      watteco-triphas_o       |  1.0.0  |
+|        watteco-vaqa_o        |  1.0.0  |
+|      watteco-vaqa_o_lt       |  1.0.0  |
+|     watteco-vaqa_o_plus      |  1.0.0  |
+|       watteco-ventil_o       |  1.0.0  | 
   
 
 # Using the Watteco codec API with NodeRED (>`1.3.0`)
