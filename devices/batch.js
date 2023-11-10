@@ -351,8 +351,9 @@ function initTimestampCommonTable(out, buffer, nbSampleToParse, firstSamplei1) {
         if (bi <= BR_HUFF_MAX_i1_TABLE) {
             if (i === 0) timestampCommon.push(out.series[firstSamplei1].uncompressSamples[0].data_relative_timestamp)
             else {
+                const precedingTimestamp = timestampCommon[i - 1]
+
                 if (bi > 0) {
-                    let precedingTimestamp = timestampCommon[i - 1]
                     timestampCommon.push(
                         buffer.getNextSample(ST_U32, bi) +
                         precedingTimestamp +
@@ -453,7 +454,7 @@ function adaptToExpectedFormat(out, argList, batchAbsoluteTimestamp) {
     return returnedGlobalObject
 }
 function computeDataAbsoluteTimestamp(bat, brt, drt) {
-    return new Date(new Date(bat) - (brt - drt) * 1000).toISOString()
+    return new Date(new Date(bat).getTime() - (brt - drt) * 1000).toISOString()
 }
 function normalisation_batch(input){
     let date = input.date;
