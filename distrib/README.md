@@ -193,8 +193,8 @@ You'll find an example of decoding a base64 Vaqa'o+ batch frame below, you can d
         "finalize": "",
         "libs": [
             {
-                "var": "wattecoVaqaOSensorPlus",
-                "module": "watteco-vaqa_o_sensor_plus"
+                "var": "wattecoVaqaOPlus",
+                "module": "watteco-vaqa_o_plus"
             }
         ],
         "x": 420,
@@ -728,8 +728,8 @@ Vous trouverez un exemple de décodage d'une trame batch Vaqa'o+ en base64 ci-de
         "finalize": "",
         "libs": [
             {
-                "var": "wattecoVaqaOSensorPlus",
-                "module": "watteco-vaqa_o_sensor_plus"
+                "var": "wattecoVaqaOPlus",
+                "module": "watteco-vaqa_o_plus"
             }
         ],
         "x": 460,
