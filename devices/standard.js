@@ -536,8 +536,10 @@ function BytesToInt64(InBytes, Starti1, Type, LiEnd) {
     {
         inc = -1;
         start = Starti1 + BytesNb - 1;
+    } else {
+        inc =  1; 
+        start = Starti1;
     }
-    else inc =  1; start = Starti1 ;
     let tmpInt64 = 0;
     for (let j=start; nb > 0;(j+=inc,nb--))
     {
