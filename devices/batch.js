@@ -1,17 +1,17 @@
-let ST_UNDEF = 0;
-let ST_BL = 1;
-let ST_U4 = 2;
-let ST_I4 = 3;
-let ST_U8 = 4;
-let ST_I8 = 5;
-let ST_U16 = 6;
-let ST_I16 = 7;
-let ST_U24 = 8;
-let ST_I24 = 9;
-let ST_U32 = 10;
-let ST_I32 = 11;
-let ST_FL = 12;
-let ST = {};
+const ST_UNDEF = 0;
+const ST_BL = 1;
+const ST_U4 = 2;
+const ST_I4 = 3;
+const ST_U8 = 4;
+const ST_I8 = 5;
+const ST_U16 = 6;
+const ST_I16 = 7;
+const ST_U24 = 8;
+const ST_I24 = 9;
+const ST_U32 = 10;
+const ST_I32 = 11;
+const ST_FL = 12;
+const ST = [];
 ST[ST_UNDEF] = 0;
 ST[ST_BL] = 1;
 ST[ST_U4] = 4;
@@ -25,9 +25,9 @@ ST[ST_I24] = 24;
 ST[ST_U32] = 32;
 ST[ST_I32] = 32;
 ST[ST_FL] = 32;
-let BR_HUFF_MAX_i1_TABLE = 14;
-let NUMBER_OF_SERIES = 16;
-let HUFF = [
+const BR_HUFF_MAX_i1_TABLE = 14;
+const NUMBER_OF_SERIES = 16;
+const HUFF = [
     [
         { sz: 2, lbl: 0x000 },
         { sz: 2, lbl: 0x001 },
@@ -89,9 +89,9 @@ Math.trunc = Math.trunc || function(x) {
     return Math.ceil(x);
 };
 function brUncompress(tagsz, argList, hexString, batch_absolute_timestamp) {
-    let out = initResult();
-    let buffer = createBuffer(parseHexString(hexString));
-    let flag = generateFlag(buffer.getNextSample(ST_U8));
+    const out = initResult();
+    const buffer = createBuffer(parseHexString(hexString));
+    const flag = generateFlag(buffer.getNextSample(ST_U8));
     out.batch_counter = buffer.getNextSample(ST_U8, 3);
     buffer.getNextSample(ST_U8, 1);
     let temp = prePopulateOutput(out, buffer, argList, flag, tagsz);

@@ -507,9 +507,13 @@ const field={
 }
 
 function UintToInt(Uint, Size) {
-    if ((Size === 2) && ((Uint & 0x8000) > 0)) Uint -= 0x10000;
-    if ((Size === 3) && ((Uint & 0x800000) > 0)) Uint -= 0x1000000;
-    if ((Size === 4) && ((Uint & 0x80000000) > 0)) Uint -= 0x100000000;
+    if ((Size === 2) && ((Uint & 0x8000) > 0)) {
+        Uint -= 0x10000;
+    } else if ((Size === 3) && ((Uint & 0x800000) > 0)) {
+        Uint -= 0x1000000;
+    } else if ((Size === 4) && ((Uint & 0x80000000) > 0)) {
+        Uint -= 0x100000000;
+    }
     return Uint;
 }
 
@@ -522,14 +526,18 @@ function Bytes2Float32(bytes) {
         if (signi === 0) return 0;
         exp = -126;
         signi /= (1 << 23);
-    } else signi = (signi | (1 << 23)) / (1 << 23);
+    } else {
+        signi = (signi | (1 << 23)) / (1 << 23);
+    }
     return sign * signi * Math.pow(2, exp);
 }
 
 function BytesToInt64(InBytes, Starti1, Type, LiEnd) {
-    if(typeof(LiEnd) == 'undefined') LiEnd = false;
-    let Signed  = (Type.substr(0,1) != "U");
-    let BytesNb = parseInt(Type.substr(1,2), 10)/8;
+    if(typeof(LiEnd) == 'undefined') {
+        LiEnd = false;
+    }
+    const Signed  = (Type.substr(0,1) != "U");
+    const BytesNb = parseInt(Type.substr(1,2), 10)/8;
     let inc, start;
     let nb = BytesNb;
     if (LiEnd)
@@ -552,7 +560,7 @@ function BytesToInt64(InBytes, Starti1, Type, LiEnd) {
 
 function decimalToHex(d, pad) {
     let hex = d.toString(16).toUpperCase();
-    pad = typeof (pad) === "undefined" || pad === null ? pad = 2 : pad;
+    pad = pad ?? 2;
     while (hex.length < pad) {
         hex = "0" + hex;
     }
@@ -2154,7 +2162,7 @@ function Decoder(bytes, port) {
                     decoded.data.firmware += "."+rcbuild.toString()
                 }
                 if ((clustID === 0x0000 ) && (attID === 0x0003)){
-                    let length = bytes[i1];
+                    const length = bytes[i1];
                     decoded.data.kernel=""
                     for (let i = 0; i < length; i++) {
                         decoded.data.kernel += String.fromCharCode(bytes[i1 + 1 + i]);
@@ -2162,35 +2170,35 @@ function Decoder(bytes, port) {
                     }
                 }
                 if ((clustID === 0x0000 ) && (attID === 0x0004)){
-                    let length = bytes[i1];
+                    const length = bytes[i1];
                     decoded.data.manufacturer=""
                     for (let i = 0; i < length; i++) {
                         decoded.data.manufacturer += String.fromCharCode(bytes[i1 + 1 + i]);
                     }
                 }
                 if ((clustID === 0x0000 ) && (attID === 0x0005)){
-                    let length = bytes[i1];
+                    const length = bytes[i1];
                     decoded.data.model=""
                     for (let i = 0; i < length; i++) {
                         decoded.data.model += String.fromCharCode(bytes[i1 + 1 + i]);
                     }
                 }
                 if ((clustID === 0x0000 ) && (attID === 0x0006)){
-                    let length = bytes[i1];
+                    const length = bytes[i1];
                     decoded.data.date=""
                     for (let i = 0; i < length; i++) {
                         decoded.data.date += String.fromCharCode(bytes[i1 + 1 + i]);
                     }
                 }
                 if ((clustID === 0x0000 ) && (attID === 0x0010)){
-                    let length = bytes[i1];
+                    const length = bytes[i1];
                     decoded.data.position=""
                     for (let i = 0; i < length; i++) {
                         decoded.data.position += String.fromCharCode(bytes[i1 + 1 + i]);
                     }
                 }
                 if ((clustID === 0x0000 ) && (attID === 0x8001)){
-                    let length = bytes[i1];
+                    const length = bytes[i1];
                     decoded.data.application_name=""
                     for (let i = 0; i < length; i++) {
                         decoded.data.application_name += String.fromCharCode(bytes[i1 + 1 + i]);
@@ -2357,7 +2365,12 @@ function Decoder(bytes, port) {
                     }
                 }
                 if ((clustID === 0x0006 ) && (attID === 0x0000)) {
-                    let state = bytes[i1]; if(state === 1) decoded.data.output = "ON"; else decoded.data.output = "OFF" ;
+                    let state = bytes[i1];
+                    if(state === 1) {
+                        decoded.data.output = "ON";
+                    } else {
+                        decoded.data.output = "OFF" ;
+                    }
                 }
                 if ((clustID === 0x8008 ) && (attID === 0x0000)){
                     let attribute_type = bytes[i1-1]
@@ -2412,12 +2425,10 @@ function Decoder(bytes, port) {
                         ia+=1
                         if ((rc[2] === "0") && (rc[3] === "0")) {
                             decoded.zclheader.alarmmsg = listMess
-                        }
-                        if ((rc[2] === "0") && (rc[3] === "1")) {
+                        } else if ((rc[2] === "0") && (rc[3] === "1")) {
                             let length = 1
                             alarmShort(length, listMess, flag, bytes, decoded, ia)
-                        }
-                        if ((rc[2] === "1") && (rc[3] === "0")) {
+                        } else if ((rc[2] === "1") && (rc[3] === "0")) {
                             let length = 4
                             alarmLong(clustID, attID, length, listMess, flag, bytes, decoded, ia,attribute_type, divider, ftype)
                         }
@@ -3265,11 +3276,9 @@ function Decoder(bytes, port) {
     }
     return decoded;
 }
-function normalisation_standard(input, endpoint_parameters){
+function normalisation_standard(input, endpoint_parameters) {
     let warning = [];
     let bytes = input.bytes;
-    let flagstandard = true;
-    let indent = 0;
     let decoded = Decoder(bytes, input.fPort);
     if (decoded.zclheader !== undefined){
         if (decoded.zclheader.alarmmsg !== undefined){
@@ -3291,6 +3300,8 @@ function normalisation_standard(input, endpoint_parameters){
         else if (bytes[1] === 0x01) {
             if (decoded.zclheader.data === undefined) {
                 let data = []
+                let flagstandard = true;
+                let indent = 0;
                 while (flagstandard) {
                     let firstKey = Object.keys(decoded.data)[indent];
                     if (firstKey === undefined) {
