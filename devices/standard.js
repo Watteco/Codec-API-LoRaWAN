@@ -5,7 +5,7 @@ class ValidationError extends Error {
     }
 }
 
-let attribute_types={
+const attribute_types={
     0x10:{
         name:"boolean",
         size:1
@@ -89,7 +89,7 @@ let attribute_types={
 
 }
 
-let field={
+const field={
     0x800A:{
         0x0000:{
             0:{
@@ -507,13 +507,18 @@ let field={
 }
 
 function UintToInt(Uint, Size) {
-    if ((Size === 2) && ((Uint & 0x8000) > 0)) Uint -= 0x10000;
-    if ((Size === 3) && ((Uint & 0x800000) > 0)) Uint -= 0x1000000;
-    if ((Size === 4) && ((Uint & 0x80000000) > 0)) Uint -= 0x100000000;
+    if ((Size === 2) && ((Uint & 0x8000) > 0)) {
+        Uint -= 0x10000;
+    } else if ((Size === 3) && ((Uint & 0x800000) > 0)) {
+        Uint -= 0x1000000;
+    } else if ((Size === 4) && ((Uint & 0x80000000) > 0)) {
+        Uint -= 0x100000000;
+    }
     return Uint;
 }
+
 function Bytes2Float32(bytes) {
-    let sign = (bytes & 0x80000000) ? -1 : 1;
+    const sign = (bytes & 0x80000000) ? -1 : 1;
     let exp = ((bytes >> 23) & 0xFF) - 127;
     let signi = (bytes & ~(-1 << 23));
     if (exp === 128) return sign * ((signi) ? Number.NaN : Number.POSITIVE_INFINITY);
@@ -521,24 +526,30 @@ function Bytes2Float32(bytes) {
         if (signi === 0) return 0;
         exp = -126;
         signi /= (1 << 23);
-    } else signi = (signi | (1 << 23)) / (1 << 23);
+    } else {
+        signi = (signi | (1 << 23)) / (1 << 23);
+    }
     return sign * signi * Math.pow(2, exp);
 }
-function BytesToInt64(InBytes, Starti1, Type, LiEnd)
-{
-    if(typeof(LiEnd) == 'undefined') LiEnd = false;
-    let Signed  = (Type.substr(0,1) != "U");
-    let BytesNb = parseInt(Type.substr(1,2), 10)/8;
+
+function BytesToInt64(InBytes, Starti1, Type, LiEnd) {
+    if(typeof(LiEnd) == 'undefined') {
+        LiEnd = false;
+    }
+    const Signed  = (Type.substr(0,1) != "U");
+    const BytesNb = parseInt(Type.substr(1,2), 10)/8;
     let inc, start;
     let nb = BytesNb;
     if (LiEnd)
     {
         inc = -1;
         start = Starti1 + BytesNb - 1;
+    } else {
+        inc =  1; 
+        start = Starti1;
     }
-    else inc =  1; start = Starti1 ;
-    tmpInt64 = 0;
-    for (j=start; nb > 0;(j+=inc,nb--))
+    let tmpInt64 = 0;
+    for (let j=start; nb > 0;(j+=inc,nb--))
     {
         tmpInt64 = (tmpInt64 << 8) + InBytes[j];
     }
@@ -546,14 +557,16 @@ function BytesToInt64(InBytes, Starti1, Type, LiEnd)
         tmpInt64 = tmpInt64 - (0x01 << (BytesNb * 8));
     return tmpInt64;
 }
+
 function decimalToHex(d, pad) {
     let hex = d.toString(16).toUpperCase();
-    pad = typeof (pad) === "undefined" || pad === null ? pad = 2 : pad;
+    pad = pad ?? 2;
     while (hex.length < pad) {
         hex = "0" + hex;
     }
     return "0x" + hex;
 }
+//TODO: Never use ?
 function parseHexString(str) {
     let result = [];
     while (str.length >= 2) {
@@ -562,9 +575,24 @@ function parseHexString(str) {
     }
     return result;
 }
+
+/**
+ * 
+ * @param {*} num 
+ * @param {number} places 
+ * @returns 
+ */
 function zeroPad(num, places) {
-    return( String(num).padStart(places, '0') );
+    return (String(num).padStart(places, '0'));
 }
+
+/**
+ * 
+ * @param {number} clustID 
+ * @param {number} AttributeID 
+ * @param {*} BytesAfterSize 
+ * @returns 
+ */
 function TIC_Decode(clustID,AttributeID,BytesAfterSize)
 {
 
@@ -601,10 +629,17 @@ function TIC_Decode(clustID,AttributeID,BytesAfterSize)
             /* Todo: Add necessary Enums when known */
         ];
 
+        /**
+         * 
+         * @param {*} Bytes 
+         * @param {number} i 
+         * @param {string[]} Enums 
+         * @returns 
+         */
     function TICParseEnum(Bytes,i,Enums) {
-        var x = {};
+        let x = "";
         if ((Bytes[i] & 0x80) == 0) { // Really Enum
-            iEnum = Bytes[i] & 0x7F;
+            let iEnum = Bytes[i] & 0x7F;
 
             // Palliatif Anomalie 3.5.0.4852 à 3.5.0.5339 (Cf http://support.nke-watteco.com/tic/)
             // Ligne à commenter si le capteur PMEPMI a une version firmware différente de ci-dessus
@@ -612,7 +647,7 @@ function TIC_Decode(clustID,AttributeID,BytesAfterSize)
 
             x = Enums[iEnum]; i+=1;
         } else { // NString
-            sz = Bytes[i] & 0x7F; i += 1;
+            const sz = Bytes[i] & 0x7F; i += 1;
             if (sz > 0) {
                 x = String.fromCharCode.apply(null, Bytes.slice(i, i+sz)); i += sz;
             } else {
@@ -626,25 +661,25 @@ function TIC_Decode(clustID,AttributeID,BytesAfterSize)
     //------------------
     function TICParseDescToIndexes(DescIn) {
 
-        var Indexes = [];
+        let Indexes = [];
 
-        var DescHeader = DescIn[0];
-        var DescSize = (DescHeader & 0x1F);
+        const DescHeader = DescIn[0];
+        let DescSize = (DescHeader & 0x1F);
         if (DescSize == 0) {
             DescSize = 8; // Historical fixed size Descriptor
         }
-        IsVarIndexes = ((DescHeader & 0x20) != 0);
+        const IsVarIndexes = ((DescHeader & 0x20) != 0);
 
         if (IsVarIndexes) {
-            for (i=1; i < DescSize; i++) {
+            for (let i=1; i < DescSize; i++) {
                 Indexes.push(DescIn[i]);
             }
         } else {
             // is VarBitfields
-            iField = 0;
+            let iField = 0;
             // TODO if historical: 7 LSbit of first byte should be used ... TODO
-            for (var i=DescSize; i > 1; i--) {
-                for (b = 0; b < 8; b++) {
+            for (let i=DescSize; i > 1; i--) {
+                for (let b = 0; b < 8; b++) {
                     if ((DescIn[i-1] >> b) & 0x01) {
                         Indexes.push(iField);
                     }
@@ -657,7 +692,7 @@ function TIC_Decode(clustID,AttributeID,BytesAfterSize)
     }
 
     function TICParseDMYhms(b,i) {
-        x = zeroPad(BytesToInt64(b,i,"U8"),2) + "/"+ zeroPad(BytesToInt64(b,i+1,"U8"),2) + "/"+ zeroPad(BytesToInt64(b,i+2,"U8"),2) + " " +
+        const x = zeroPad(BytesToInt64(b,i,"U8"),2) + "/"+ zeroPad(BytesToInt64(b,i+1,"U8"),2) + "/"+ zeroPad(BytesToInt64(b,i+2,"U8"),2) + " " +
             zeroPad(BytesToInt64(b,i+3,"U8"),2) + ":"+ zeroPad(BytesToInt64(b,i+4,"U8"),2) + ":"+ zeroPad(BytesToInt64(b,i+5,"U8"),2);
         i+=6;
         return {x, i}
@@ -666,173 +701,171 @@ function TIC_Decode(clustID,AttributeID,BytesAfterSize)
     function TICParseTimeStamp(b,i,LittleEndian) {
         // EPOCH TIC: 01/01/2000 00:00:00
         // EPOCH UNIX: 01/01/1970 00:00:00
-        ts = BytesToInt64(b,i,"U32",LittleEndian); i += 4;
+        let ts = BytesToInt64(b,i,"U32",LittleEndian); i += 4;
         ts += (new Date("2000/01/01 00:00:00").getTime()/1000)
         ts += 3600; //TODO: find a way to beter manage this 1h shift due to TZ and DST of running computer
-        var a = new Date( ts * 1000);
-        var x =
+        const a = new Date(ts * 1000);
+        const x =
             zeroPad(a.getDate(),2) + '/' + zeroPad(a.getMonth(), 2) + '/' + a.getFullYear() + ' ' +
             zeroPad(a.getHours(),2) + ':' + zeroPad(a.getMinutes(),2) + ':' + zeroPad(a.getSeconds(),2) ;
         return {x, i};
     }
 
     function TICParseCString(b,i) {
-        eos = b.slice(i).indexOf(0);
-        x = String.fromCharCode.apply(null, b.slice(i, i + eos)); i += (eos + 1);
+        const eos = b.slice(i).indexOf(0);
+        const x = String.fromCharCode.apply(null, b.slice(i, i + eos)); i += (eos + 1);
         return {x,  i}
     }
 
     function TICParseNString(b,i, n) {
-        x = String.fromCharCode.apply(null, b.slice(i, i+n)); i+=n;
+        const x = String.fromCharCode.apply(null, b.slice(i, i+n)); i+=n;
         return {x,  i}
     }
-
-
 
     // ---------------------------------------------------------
     // FIELD PARSING
     function TYPE_EMPTY(b,i) { return {b,i}; }
     function TYPE_CHAR(b,i)    {
-        x = String.fromCharCode.apply(null, b.slice(0,1)); i+=1;
+        const x = String.fromCharCode.apply(null, b.slice(0,1)); i+=1;
         return {x , i}
     }
     function TYPE_CSTRING(b,i) { return TICParseCString(b,i); }
-    function TYPE_U8(b,i)      { x = BytesToInt64(b,i,"U8"); i+=1; return { x ,  i} }
-    function TYPE_U16(b,i)     { x = BytesToInt64(b,i,"U16"); i+=2; return { x ,  i} }
-    function TYPE_I16(b,i)     { x = BytesToInt64(b,i,"I16"); i+=2; return { x ,  i} }
+    function TYPE_U8(b,i)      { const x = BytesToInt64(b,i,"U8"); i+=1; return { x ,  i} }
+    function TYPE_U16(b,i)     { const x = BytesToInt64(b,i,"U16"); i+=2; return { x ,  i} }
+    function TYPE_I16(b,i)     { const x = BytesToInt64(b,i,"I16"); i+=2; return { x ,  i} }
     function TYPE_U24CSTRING(b,i) {
-        var x = {};
+        let x = {};
         x["Value"] = BytesToInt64(b,i,"U24"); i += 3;
-        s = TICParseCString(b,i);
+        const s = TICParseCString(b,i);
         x["Label"] = s.x; i = s.i;
         return {x, i}
     };
-    function TYPE_U24(b,i)     { x = BytesToInt64(b,i,"U24"); i+=3; return { x , i} }
+    function TYPE_U24(b,i)     { const x = BytesToInt64(b,i,"U24"); i+=3; return { x , i} }
     function TYPE_4U24(b,i)    {
-        var x = {};
+        let x = {};
         for (i=1;i<=4;i++) { x["Value_"+i] = BytesToInt64(b,i,"U24"); i += 3; }
         return {x, i}
     };
     function TYPE_6U24(b,i)    {
-        var x = {};
+        let x = {};
         for (i=1;i<=4;i++) { x["Value_"+i] = BytesToInt64(b,i,"U24"); i += 3; }
         return {x, i}
     }
-    function TYPE_U32(b,i)     { x = BytesToInt64(b,i,"U32"); i+=4; return { x , i} }
-    function TYPE_FLOAT(b,i)   { x = BytesToFloat32(b,i); i+=4; return { x , i} }
+    function TYPE_U32(b,i)     { const x = BytesToInt64(b,i,"U32"); i+=4; return { x , i} }
+    function TYPE_FLOAT(b,i)   { x = Bytes2Float32(b,i); i+=4; return { x , i} }
     function TYPE_DMYhms(b,i)  { return TICParseDMYhms(b,i); }
     function TYPE_tsDMYhms(b,i){ return TICParseTimeStamp(b,i); };
     function TYPE_DMYhmsCSTRING(b,i) {
-        var x = {};
-        var d = TICParseDMYhms(b,i); x["Date"]=d.x; ;
-        var s = TICParseCString(b,d.i);x["Label"]=s.x;
+        let x = {};
+        const d = TICParseDMYhms(b,i); x["Date"]=d.x; ;
+        const s = TICParseCString(b,d.i);x["Label"]=s.x;
         i = s.i;
         return {x, i};
     }
     function TYPE_E_PT(b,i)     { return TICParseEnum(b,i,E_PT); }
     function TYPE_E_STD_PT(b,i) { return TICParseEnum(b,i,E_STD_PT); }
     function TYPE_tsDMYhms_E_PT(b,i) {
-        var x = {};
-        var d = TICParseTimeStamp(b,i);
-        var e = TICParseEnum(b,d.i,E_PT);
+        let x = {};
+        const d = TICParseTimeStamp(b,i);
+        const e = TICParseEnum(b,d.i,E_PT);
         i = e.i;
         return {x , i}
     }
     function TYPE_hmDM(b,i) {
-        var x = {};
-        h = zeroPad(BytesToInt64(b,i,"U8"),2); i++;
-        m = zeroPad(BytesToInt64(b,i,"U8"),2); i++;
-        D = zeroPad(BytesToInt64(b,i,"U8"),2); i++;
-        M = zeroPad(BytesToInt64(b,i,"U8"),2); i++;
+        let x = "";
+        const h = zeroPad(BytesToInt64(b,i,"U8"),2); i++;
+        const m = zeroPad(BytesToInt64(b,i,"U8"),2); i++;
+        const D = zeroPad(BytesToInt64(b,i,"U8"),2); i++;
+        const M = zeroPad(BytesToInt64(b,i,"U8"),2); i++;
         x = D + "/" + M + " " + h + ":" + m;
         return {x, i}
     }
     function TYPE_DMh(b,i) {
-        var x = {};
-        D = zeroPad(BytesToInt64(b,i,"U8"),2); i++;
-        M = zeroPad(BytesToInt64(b,i,"U8"),2); i++;
-        h = zeroPad(BytesToInt64(b,i,"U8"),2); i++;
+        let x = "";
+        const D = zeroPad(BytesToInt64(b,i,"U8"),2); i++;
+        const M = zeroPad(BytesToInt64(b,i,"U8"),2); i++;
+        const h = zeroPad(BytesToInt64(b,i,"U8"),2); i++;
         x = D + "/" + M + " " + h ;
         return {x, i}
     }
     function TYPE_hm(b,i) {
-        var x = {};
-        h = zeroPad(BytesToInt64(b,i,"U8"),2); i++;
-        m = zeroPad(BytesToInt64(b,i,"U8"),2); i++;
+        let x = "";
+        const h = zeroPad(BytesToInt64(b,i,"U8"),2); i++;
+        const m = zeroPad(BytesToInt64(b,i,"U8"),2); i++;
         x = h + ":" + m;
         return {x, i}
     }
     function TYPE_SDMYhms(b,i) {
-        var x = {};
-        s = TICParseNString(b,i, 1);
-        d = TICParseDMYhms(b,s.i);
+        let x = {};
+        const s = TICParseNString(b,i, 1);
+        const d = TICParseDMYhms(b,s.i);
         x["S"]=s.x;
         x["Date"]=d.x;
         i=d.i;
         return {x,i}
     }
     function TYPE_SDMYhmsU8(b,i) {
-        var x = {};
-        s = TICParseNString(b,i, 1);
-        d = TICParseDMYhms(b,s.i);
-        n = BytesToInt64(b,i,"U8"); i = d.i + 1;
+        let x = {};
+        const s = TICParseNString(b,i, 1);
+        const d = TICParseDMYhms(b,s.i);
+        const n = BytesToInt64(b,i,"U8"); i = d.i + 1;
         x["S"]=s.x;
         x["Date"]=d.x;
         x["Value"]=n;
         return {x , i}
     }
     function TYPE_SDMYhmsU16(b,i) {
-        var x = {};
-        s = TICParseNString(b,i, 1);
-        d = TICParseDMYhms(b,s.i);
-        n = BytesToInt64(b,i,"U16"); i = d.i + 1;
+        let x = {};
+        const s = TICParseNString(b,i, 1);
+        const d = TICParseDMYhms(b,s.i);
+        const n = BytesToInt64(b,i,"U16"); i = d.i + 1;
         x["S"]=s.x;
         x["Date"]=d.x;
         x["Value"]=n;
         return {x , i}
     }
     function TYPE_SDMYhmsU24(b,i) {
-        var x = {};
-        s = TICParseNString(b,i, 1);
-        d = TICParseDMYhms(b,s.i);
-        n = BytesToInt64(b,i,"U24"); i = d.i + 1;
+        let x = {};
+        const s = TICParseNString(b,i, 1);
+        const d = TICParseDMYhms(b,s.i);
+        const n = BytesToInt64(b,i,"U24"); i = d.i + 1;
         x["S"]=s.x;
         x["Date"]=d.x;
         x["Value"]=n;
         return {x , i}
     }
     function TYPE_BF32xbe(b,i) {
-        var x = BytesToHexStr(b.slice(i,2)); i+=4;
+        const x = BytesToHexStr(b.slice(i,2)); i+=4;
         i+=4
         return {x , i}
     }   /* Bitfield 32 bits heXa Big Endian */
     function TYPE_HEXSTRING(b,i) {
-        var x = BytesToHexStr(b.slice(i+1,i+1+b[i]));
+        const x = BytesToHexStr(b.slice(i+1,i+1+b[i]));
         i+=b[i]+1;
-        d = {x, i}
+        const d = {x, i}
         return {x , i}
     }/* displayed as hexadecimal string Stored as <Size>+<byte string> */
     function TYPE_E_DIV(b,i) { return TICParseEnum(b,i,E_DIV); }
     function TYPE_U24_E_DIV(b,i) {
-        var x = {};
-        dd = BytesToInt64(b,i,"U24"); i += 3;
+        let x = {};
+        const dd = BytesToInt64(b,i,"U24"); i += 3;
         x.Value = dd;
-        e = TICParseEnum(b,i,E_DIV);
+        const e = TICParseEnum(b,i,E_DIV);
         x.Label = e.x; i = e.i;
         return {x, i}
     }
     function TYPE_E_CONTRAT(b,i) { return TICParseEnum(b,i,E_CONTRAT); }
     function TYPE_E_STD_CONTRAT(b,i) { return TICParseEnum(b,i,E_STD_CONTRAT); }
     function TYPE_11hhmmSSSS(b,i) {
-        var x = []
-        for (var j = 0 ; j < 11; j++) {
-            y = {};
-            h = zeroPad(BytesToInt64(b,i,"U8"),2); i++;
-            if (h == 0xFF) {
+        let x = []
+        for (let j = 0 ; j < 11; j++) {
+            let y = {};
+            const h = zeroPad(BytesToInt64(b,i,"U8"),2); i++;
+            if (h === 0xFF) {
                 y["Status"] = "NONUTILE"
             } else {
-                m = zeroPad(BytesToInt64(b,i,"U8"),2); i++;
-                s = BytesToHexStr(b.slice(i,2)); i++;
+                const m = zeroPad(BytesToInt64(b,i,"U8"),2); i++;
+                const s = BytesToHexStr(b.slice(i,2)); i++;
                 y["Time"] = h + ":" + m;
                 y["Status"] = s;
                 i+=b[i]+1;
@@ -851,7 +884,7 @@ function TIC_Decode(clustID,AttributeID,BytesAfterSize)
     /*   hh = 0xFF and No other bytes used in the binarized form */
     /*   "NONUTILE" string in the TIC ASCII format */
     function TYPE_BF8d(b,i) {
-        x = BytesToInt64(b,i,"U8"); i++;
+        const x = BytesToInt64(b,i,"U8"); i++;
         return {x , i}
     }		/* Bitfield de 8 bit with TIC decimal representation (0 à 255) */
 
@@ -1370,17 +1403,17 @@ function TIC_Decode(clustID,AttributeID,BytesAfterSize)
     // ============================================
 
     // Init object container for decoded fields
-    data = []
-
+    let data = []
+    let profil = {}
     // Select PROFIL according to cluster/attribute
     if (clustID == 0x0053) {
-        if (attributeID & 0x00FF == 0)	{
+        if (AttributeID & 0x00FF == 0)	{
             profil = ICE_General;
             data["_TICFrameType"]="ICE Generale";
-        } else if (attributeID & 0x00FF == 1)	{
+        } else if (AttributeID & 0x00FF == 1)	{
             profil = ICE_p;
             data["_TICFrameType"]="ICE Periode P";
-        } else if (attributeID & 0x0001 == 2)	{
+        } else if (AttributeID & 0x0001 == 2)	{
             profil = ICE_p1;
             data["_TICFrameType"]="ICE Periode P moins 1";
         } else {
@@ -1399,6 +1432,7 @@ function TIC_Decode(clustID,AttributeID,BytesAfterSize)
         profil = PMEPMI;
         data["_TICFrameType"]="PMEPMI";
     } else {
+        //TODO: return data et data ?
         return data;
         data["_TICFrameType"]="Unexpected";
     }
@@ -1406,8 +1440,8 @@ function TIC_Decode(clustID,AttributeID,BytesAfterSize)
     // Start Decoding descriptor
     let {DescSize, Indexes} = TICParseDescToIndexes(BytesAfterSize);
 
-    var DescBytes = BytesAfterSize.slice(0,DescSize);
-    var x = {}
+    let DescBytes = BytesAfterSize.slice(0,DescSize);
+    let x = {}
     if ((DescBytes[0] & 0x80) == 0x80) {
         x.Obsolete = true;
     }
@@ -1416,10 +1450,10 @@ function TIC_Decode(clustID,AttributeID,BytesAfterSize)
     data["_Descriptor"]= x;
 
     // Start effective fields decodings
-    var bytesIndex = DescSize;
-    for (var j=0; j<Indexes.length; j++) {
-        fieldIndex = Indexes[j];
-        d = profil[fieldIndex][1](BytesAfterSize,bytesIndex);
+    let bytesIndex = DescSize;
+    for (let j=0; j<Indexes.length; j++) {
+        const fieldIndex = Indexes[j];
+        const d = profil[fieldIndex][1](BytesAfterSize,bytesIndex);
         data[profil[fieldIndex][0]] = profil[fieldIndex][3](d.x);
         bytesIndex=d.i;
     }
@@ -1427,8 +1461,8 @@ function TIC_Decode(clustID,AttributeID,BytesAfterSize)
     return data;
 }
 function decimalToBitString(dec){
-    var bitString = "";
-    var bin = dec.toString(2);
+    let bitString = "";
+    let bin = dec.toString(2);
     bitString += zeroPad(bin, 8);
     return bitString;
 }
@@ -1554,13 +1588,10 @@ function alarmLong1Bytes(length, listMess, flag, bytes, decoded, i1,divider,name
                     temp = Bytes2Float32((bytes[i1 + 1 + ((length)*i)+shift] ) / divider).toString()
                     gap = Bytes2Float32((bytes[i1 + 2 + ((length)*i)+shift] ) / divider).toString()
                 }
-                count = decimalToBitString(bytes[i1 + 3 + ((length)*i)+shift])
-                count = parseInt(count, 2)
+                count = parseInt(decimalToBitString(bytes[i1 + 3 + ((length)*i)+shift]), 2)
                 if (count>=128){
-                    countUp=decimalToBitString(bytes[i1 + 4 + ((length)*i)+shift]*256+bytes[i1 + 5 + ((length)*i)+shift])
-                    countUp=parseInt(countUp,2)
-                    countDown=decimalToBitString(bytes[i1 + 6 + ((length)*i)+shift]*256+bytes[i1 + 7 + ((length)*i)+shift])
-                    countDown=parseInt(countDown,2)
+                    countUp=parseInt(decimalToBitString(bytes[i1 + 4 + ((length)*i)+shift]*256+bytes[i1 + 5 + ((length)*i)+shift]), 2)
+                    countDown=parseInt(decimalToBitString(bytes[i1 + 6 + ((length)*i)+shift]*256+bytes[i1 + 7 + ((length)*i)+shift]), 2)
                     shift+=4
 
                     mess = "cause:{alarm:"+alarm+", criterion_index: "+index + ", mode: threshold" + ", crossing: "+qual +  ", value: "+temp + ", gap: "+ gap + ", occurences_up: " + countUp + ", occurences_down: " + countDown+"}"
@@ -1581,13 +1612,10 @@ function alarmLong1Bytes(length, listMess, flag, bytes, decoded, i1,divider,name
                     temp = Bytes2Float32((bytes[i1 + 2 + ((length)*i)+shift] ) / divider).toString()
                     gap = Bytes2Float32((bytes[i1 + 3 + ((length)*i)+shift] ) / divider).toString()
                 }
-                count = decimalToBitString(bytes[i1 + 4 + ((length)*i)+shift])
-                count = parseInt(count, 2)
+                count = parseInt(decimalToBitString(bytes[i1 + 4 + ((length)*i)+shift]), 2)
                 if(count>=128){
-                    countUp=decimalToBitString(bytes[i1 + 5 + ((length)*i)+shift]*256+bytes[i1 + 6 + ((length)*i)+shift])
-                    countUp=parseInt(countUp,2)
-                    countDown=decimalToBitString(bytes[i1 + 7 + ((length)*i)+shift]*256+bytes[i1 + 8 + ((length)*i)+shift])
-                    countDown=parseInt(countDown,2)
+                    countUp=parseInt(decimalToBitString(bytes[i1 + 5 + ((length)*i)+shift]*256+bytes[i1 + 6 + ((length)*i)+shift]), 2)
+                    countDown=parseInt(decimalToBitString(bytes[i1 + 7 + ((length)*i)+shift]*256+bytes[i1 + 8 + ((length)*i)+shift]), 2)
                     shift+=4
 
                     mess = "cause:{alarm:"+alarm+", criterion_index: "+index + ", mode: threshold" + ", crossing: "+qual +  ", value: "+temp + ", gap: "+ gap + ", occurences_up: " + countUp + ", occurences_down: " + countDown + ", field: " + alarm_field+"}"
@@ -1701,13 +1729,10 @@ function alarmLong3Bytes(length, listMess, flag, bytes, decoded, i1,divider,name
                     temp = Bytes2Float32((bytes[i1 + 1 + ((length)*i)+shift] * 256 + bytes[i1 + 2 + ((length)*i)+shift] + bytes[i1+3+((length)*i)+shift]) / divider).toString()
                     gap = Bytes2Float32((bytes[i1 + 4 + ((length)*i)+shift] * 256 + bytes[i1 + 5 + ((length)*i)+shift] + bytes[i1+6+((length)*i)+shift]) / divider).toString()
                 }
-                count = decimalToBitString(bytes[i1 + 7 + ((length)*i)+shift])
-                count = parseInt(count, 2)
+                count = parseInt(decimalToBitString(bytes[i1 + 7 + ((length)*i)+shift]), 2)
                 if (count>=128){
-                    countUp=decimalToBitString(bytes[i1 + 8 + ((length)*i)+shift]*256+bytes[i1 + 9 + ((length)*i)+shift])
-                    countUp=parseInt(countUp,2)
-                    countDown=decimalToBitString(bytes[i1 + 10 + ((length)*i)+shift]*256+bytes[i1 + 11 + ((length)*i)+shift])
-                    countDown=parseInt(countDown,2)
+                    countUp=parseInt(decimalToBitString(bytes[i1 + 8 + ((length)*i)+shift]*256+bytes[i1 + 9 + ((length)*i)+shift]), 2)
+                    countDown=parseInt(decimalToBitString(bytes[i1 + 10 + ((length)*i)+shift]*256+bytes[i1 + 11 + ((length)*i)+shift]), 2)
                     shift+=4
 
                     mess = "cause:{alarm:"+alarm+", criterion_index: "+index + ", mode: threshold" + ", crossing: "+qual +  ", value: "+temp + ", gap: "+ gap + ", occurences_up: " + countUp + ", occurences_down: " + countDown+"}"
@@ -1729,13 +1754,10 @@ function alarmLong3Bytes(length, listMess, flag, bytes, decoded, i1,divider,name
                     temp = Bytes2Float32((bytes[i1 + 2 + ((length)*i)+shift] * 256 + bytes[i1 + 3 + ((length)*i)+shift]+ bytes[i1+4+((length)*i)+shift]) / divider).toString()
                     gap = Bytes2Float32((bytes[i1 + 5 + ((length)*i)+shift] * 256 + bytes[i1 + 6 + ((length)*i)+shift] + bytes[i1+7+((length)*i)+shift]) / divider).toString()
                 }
-                count = decimalToBitString(bytes[i1 + 8 + ((length)*i)+shift])
-                count = parseInt(count, 2)
+                count = parseInt(decimalToBitString(bytes[i1 + 8 + ((length)*i)+shift]),2)
                 if(count>=128){
-                    countUp=decimalToBitString(bytes[i1 + 9 + ((length)*i)+shift]*256+bytes[i1 + 10 + ((length)*i)+shift])
-                    countUp=parseInt(countUp,2)
-                    countDown=decimalToBitString(bytes[i1 + 11 + ((length)*i)+shift]*256+bytes[i1 + 12 + ((length)*i)+shift])
-                    countDown=parseInt(countDown,2)
+                    countUp=parseInt(decimalToBitString(bytes[i1 + 9 + ((length)*i)+shift]*256+bytes[i1 + 10 + ((length)*i)+shift]),2)
+                    countDown=parseInt(decimalToBitString(bytes[i1 + 11 + ((length)*i)+shift]*256+bytes[i1 + 12 + ((length)*i)+shift]),2)
                     shift+=4
 
                     mess = "cause:{alarm:"+alarm+", criterion_index: "+index + ", mode: threshold" + ", crossing: "+qual +  ", value: "+temp + ", gap: "+ gap + ", occurences_up: " + countUp + ", occurences_down: " + countDown + ", field: " + alarm_field+"}"
@@ -1851,13 +1873,10 @@ function alarmLong2Bytes(length, listMess, flag, bytes, decoded, i1,divider,name
                     temp = Bytes2Float32((bytes[i1 + 1 + ((length)*i)+shift] * 256 + bytes[i1 + 2 + ((length)*i)]+shift) / divider).toString()
                     gap = Bytes2Float32((bytes[i1 + 3 + ((length)*i)+shift] * 256 + bytes[i1 + 4 + ((length)*i)]+shift) / divider).toString()
                 }
-                count = decimalToBitString(bytes[i1 + 5 + ((length)*i)+shift])
-                count = parseInt(count, 2)
+                count = parseInt(decimalToBitString(bytes[i1 + 5 + ((length)*i)+shift]), 2)
                 if (count>=128){
-                    countUp=decimalToBitString(bytes[i1 + 6 + ((length)*i)+shift]*256+bytes[i1 + 7 + ((length)*i)+shift])
-                    countUp=parseInt(countUp,2)
-                    countDown=decimalToBitString(bytes[i1 + 8 + ((length)*i)+shift]*256+bytes[i1 + 9 + ((length)*i)+shift])
-                    countDown=parseInt(countDown,2)
+                    countUp=parseInt(decimalToBitString(bytes[i1 + 6 + ((length)*i)+shift]*256+bytes[i1 + 7 + ((length)*i)+shift]), 2)
+                    countDown=parseInt(decimalToBitString(bytes[i1 + 8 + ((length)*i)+shift]*256+bytes[i1 + 9 + ((length)*i)+shift]), 2)
                     shift+=4
 
                     mess = "cause:{alarm:"+alarm+", criterion_index: "+index + ", mode: threshold" + ", crossing: "+qual +  ", value: "+temp + ", gap: "+ gap + ", occurences_up: " + countUp + ", occurences_down: " + countDown+"}"
@@ -1879,13 +1898,10 @@ function alarmLong2Bytes(length, listMess, flag, bytes, decoded, i1,divider,name
                     temp = Bytes2Float32((bytes[i1 + 2 + ((length)*i)+shift] * 256 + bytes[i1 + 3 + ((length)*i)+shift]) / divider).toString()
                     gap = Bytes2Float32((bytes[i1 + 4 + ((length)*i)+shift] * 256 + bytes[i1 + 5 + ((length)*i)+shift]) / divider).toString()
                 }
-                count = decimalToBitString(bytes[i1 + 6 + ((length)*i)+shift])
-                count = parseInt(count, 2)
+                count = parseInt(decimalToBitString(bytes[i1 + 6 + ((length)*i)+shift]), 2)
                 if(count>=128){
-                    countUp=decimalToBitString(bytes[i1 + 7 + ((length)*i)+shift]*256+bytes[i1 + 8 + ((length)*i)+shift])
-                    countUp=parseInt(countUp,2)
-                    countDown=decimalToBitString(bytes[i1 + 9 + ((length)*i)+shift]*256+bytes[i1 + 10 + ((length)*i)+shift])
-                    countDown=parseInt(countDown,2)
+                    countUp=parseInt(decimalToBitString(bytes[i1 + 7 + ((length)*i)+shift]*256+bytes[i1 + 8 + ((length)*i)+shift]), 2)
+                    countDown=parseInt(decimalToBitString(bytes[i1 + 9 + ((length)*i)+shift]*256+bytes[i1 + 10 + ((length)*i)+shift]), 2)
                     shift+=4
 
                     mess = "cause:{alarm:"+alarm+", criterion_index: "+index + ", mode: threshold" + ", crossing: "+qual +  ", value: "+temp + ", gap: "+ gap + ", occurences_up: " + countUp + ", occurences_down: " + countDown + ", field: " + alarm_field+"}"
@@ -2001,13 +2017,10 @@ function alarmLong4Bytes(length, listMess, flag, bytes, decoded, i1,divider,name
                     temp = Bytes2Float32((bytes[i1 + 1 + ((length)*i)+shift]*256*256*256 + bytes[i1 + 2 + ((length)*i)+shift]*256*256 + bytes[i1 + 3 + ((length)*i)+shift]*256 + bytes[i1 + 4 + ((length)*i)+shift]) / divider).toString()
                     gap = Bytes2Float32((bytes[i1 + 5 + ((length)*i)+shift]*256*256*256 + bytes[i1 + 6 + ((length)*i)+shift]*256*256 + bytes[i1 + 7 + ((length)*i)+shift]*256 + bytes[i1 + 8 + ((length)*i)+shift]) / divider).toString()
                 }
-                count = decimalToBitString(bytes[i1 + 9 + ((length)*i)+shift])
-                count = parseInt(count, 2)
+                count = parseInt(decimalToBitString(bytes[i1 + 9 + ((length)*i)+shift]), 2)
                 if (count>=128){
-                    countUp=decimalToBitString(bytes[i1 + 10 + ((length)*i)+shift]*256+bytes[i1 + 11 + ((length)*i)+shift])
-                    countUp=parseInt(countUp,2)
-                    countDown=decimalToBitString(bytes[i1 + 12 + ((length)*i)+shift]*256+bytes[i1 + 13 + ((length)*i)+shift])
-                    countDown=parseInt(countDown,2)
+                    countUp=parseInt(decimalToBitString(bytes[i1 + 10 + ((length)*i)+shift]*256+bytes[i1 + 11 + ((length)*i)+shift]), 2)
+                    countDown=parseInt(decimalToBitString(bytes[i1 + 12 + ((length)*i)+shift]*256+bytes[i1 + 13 + ((length)*i)+shift]), 2)
                     shift+=4
 
                     mess = "cause:{alarm:"+alarm+", criterion_index: "+index + ", mode: threshold" + ", crossing: "+qual +  ", value: "+temp + ", gap: "+ gap + ", occurences_up: " + countUp + ", occurences_down: " + countDown+"}"
@@ -2029,13 +2042,10 @@ function alarmLong4Bytes(length, listMess, flag, bytes, decoded, i1,divider,name
                     temp = Bytes2Float32((bytes[i1 + 2 + ((length)*i)+shift]*256*256*256 + bytes[i1 + 3 + ((length)*i)+shift]*256*256 + bytes[i1 + 4 + ((length)*i)+shift]*256 + bytes[i1 + 5 + ((length)*i)+shift]) / divider).toString()
                     gap = Bytes2Float32((bytes[i1 + 6 + ((length)*i)+shift]*256*256*256 + bytes[i1 + 7 + ((length)*i)+shift]*256*256 + bytes[i1 + 8 + ((length)*i)+shift]*256 + bytes[i1 + 9 + ((length)*i)+shift]) / divider).toString()
                 }
-                count = decimalToBitString(bytes[i1 + 10 + ((length)*i)+shift])
-                count = parseInt(count, 2)
+                count = parseInt(decimalToBitString(bytes[i1 + 10 + ((length)*i)+shift]), 2)
                 if(count>=128){
-                    countUp=decimalToBitString(bytes[i1 + 11 + ((length)*i)+shift]*256+bytes[i1 + 12 + ((length)*i)+shift])
-                    countUp=parseInt(countUp,2)
-                    countDown=decimalToBitString(bytes[i1 + 13 + ((length)*i)+shift]*256+bytes[i1 + 14 + ((length)*i)+shift])
-                    countDown=parseInt(countDown,2)
+                    countUp=parseInt(decimalToBitString(bytes[i1 + 11 + ((length)*i)+shift]*256+bytes[i1 + 12 + ((length)*i)+shift]), 2)
+                    countDown=parseInt(decimalToBitString(bytes[i1 + 13 + ((length)*i)+shift]*256+bytes[i1 + 14 + ((length)*i)+shift]), 2)
                     shift+=4
 
                     mess = "cause:{alarm:"+alarm+", criterion_index: "+index + ", mode: threshold" + ", crossing: "+qual +  ", value: "+temp + ", gap: "+ gap + ", occurences_up: " + countUp + ", occurences_down: " + countDown + ", field: " + alarm_field+"}"
@@ -2126,8 +2136,9 @@ function Decoder(bytes, port) {
             let clustID = -1;
             decoded.zclheader.endpoint = ((bytes[0]&0xE0)>>5) | ((bytes[0]&0x06)<<2);
             cmdID =  bytes[1]; decoded.zclheader.cmdID = decimalToHex(cmdID,2);
-            clustID = bytes[2]*256 + bytes[3]; decoded.zclheader.clustID = decimalToHex(clustID,4);
-            if((cmdID === 0x0a)|(cmdID === 0x8a)|(cmdID === 0x01)){
+            clustID = bytes[2]*256 + bytes[3]; 
+            decoded.zclheader.clustID = decimalToHex(clustID,4);
+            if((cmdID === 0x0a)||(cmdID === 0x8a)||(cmdID === 0x01)){
                 knowncmdID=1
                 decoded.data = {};
                 attID = bytes[4]*256 + bytes[5];decoded.zclheader.attID = decimalToHex(attID,4);
@@ -2151,7 +2162,7 @@ function Decoder(bytes, port) {
                     decoded.data.firmware += "."+rcbuild.toString()
                 }
                 if ((clustID === 0x0000 ) && (attID === 0x0003)){
-                    let length = bytes[i1];
+                    const length = bytes[i1];
                     decoded.data.kernel=""
                     for (let i = 0; i < length; i++) {
                         decoded.data.kernel += String.fromCharCode(bytes[i1 + 1 + i]);
@@ -2159,35 +2170,35 @@ function Decoder(bytes, port) {
                     }
                 }
                 if ((clustID === 0x0000 ) && (attID === 0x0004)){
-                    let length = bytes[i1];
+                    const length = bytes[i1];
                     decoded.data.manufacturer=""
                     for (let i = 0; i < length; i++) {
                         decoded.data.manufacturer += String.fromCharCode(bytes[i1 + 1 + i]);
                     }
                 }
                 if ((clustID === 0x0000 ) && (attID === 0x0005)){
-                    let length = bytes[i1];
+                    const length = bytes[i1];
                     decoded.data.model=""
                     for (let i = 0; i < length; i++) {
                         decoded.data.model += String.fromCharCode(bytes[i1 + 1 + i]);
                     }
                 }
                 if ((clustID === 0x0000 ) && (attID === 0x0006)){
-                    let length = bytes[i1];
+                    const length = bytes[i1];
                     decoded.data.date=""
                     for (let i = 0; i < length; i++) {
                         decoded.data.date += String.fromCharCode(bytes[i1 + 1 + i]);
                     }
                 }
                 if ((clustID === 0x0000 ) && (attID === 0x0010)){
-                    let length = bytes[i1];
+                    const length = bytes[i1];
                     decoded.data.position=""
                     for (let i = 0; i < length; i++) {
                         decoded.data.position += String.fromCharCode(bytes[i1 + 1 + i]);
                     }
                 }
                 if ((clustID === 0x0000 ) && (attID === 0x8001)){
-                    let length = bytes[i1];
+                    const length = bytes[i1];
                     decoded.data.application_name=""
                     for (let i = 0; i < length; i++) {
                         decoded.data.application_name += String.fromCharCode(bytes[i1 + 1 + i]);
@@ -2195,7 +2206,7 @@ function Decoder(bytes, port) {
                 }
 
                 if ((clustID === 0x0402 ) && (attID === 0x0000)) {
-                    let attribute_type = bytes[i1-1]
+                    const attribute_type = bytes[i1-1]
                     decoded.data.temperature = (UintToInt(bytes[i1]*256+bytes[i1+1],2))/100;
                     let ia = i1+2
                     if ((cmdID===0x8a)||(bytes[ia]!==undefined)) {
@@ -2203,11 +2214,10 @@ function Decoder(bytes, port) {
                         if (cmdID===0x8a){
                             listMess.push("alarm triggered")
                         }
-                        let flag = 0
-                        let divider = 100
-                        let rc = ""
-                        let ftype="int"
-                        rc = decimalToBitString(bytes[ia])
+                        const flag = 0
+                        const divider = 100
+                        const rc = decimalToBitString(bytes[ia])
+                        const ftype="int"
                         ia+=1
                         if ((rc[2] === "0") && (rc[3] === "0")) {
                             decoded.zclheader.alarmmsg = listMess
@@ -2229,7 +2239,7 @@ function Decoder(bytes, port) {
                     decoded.data.max_temperature = (UintToInt(bytes[i1]*256+bytes[i1+1],2))/100;
                 }
                 if ((clustID === 0x0405 ) && (attID === 0x0000)){
-                    let attribute_type = bytes[i1-1]
+                    const attribute_type = bytes[i1-1]
                     decoded.data.humidity = (bytes[i1]*256+bytes[i1+1])/100;
                     let ia = i1+2
                     if ((cmdID===0x8a)||(bytes[ia]!==undefined)) {
@@ -2237,11 +2247,10 @@ function Decoder(bytes, port) {
                         if (cmdID===0x8a){
                             listMess.push("alarm triggered")
                         }
-                        let flag = 0
-                        let divider = 100
-                        let rc = ""
-                        let ftype="none"
-                        rc = decimalToBitString(bytes[ia])
+                        const flag = 0
+                        const divider = 100
+                        const rc = decimalToBitString(bytes[ia])
+                        const ftype="none"
                         ia+=1
                         if ((rc[2] === "0") && (rc[3] === "0")) {
                             decoded.zclheader.alarmmsg = listMess
@@ -2259,7 +2268,7 @@ function Decoder(bytes, port) {
                 if ((clustID === 0x0405 ) && (attID === 0x0001)) decoded.data.min_humidity = (bytes[i1]*256+bytes[i1+1])/100;
                 if ((clustID === 0x0405 ) && (attID === 0x0002)) decoded.data.max_humidity = (bytes[i1]*256+bytes[i1+1])/100;
                 if ((clustID === 0x000f ) && (attID === 0x0402)) {
-                    let attribute_type = bytes[i1-1]
+                    const attribute_type = bytes[i1-1]
                     decoded.data.index = (bytes[i1]*256*256*256+bytes[i1+1]*256*256+bytes[i1+2]*256+bytes[i1+3]);
                     let ia = i1+4
                     if ((cmdID===0x8a)||(bytes[ia]!==undefined)) {
@@ -2267,11 +2276,10 @@ function Decoder(bytes, port) {
                         if (cmdID===0x8a){
                             listMess.push("alarm triggered")
                         }
-                        let flag = 0
-                        let divider = 1
-                        let rc = ""
-                        let ftype="none"
-                        rc = decimalToBitString(bytes[ia])
+                        const flag = 0
+                        const divider = 1
+                        const rc = decimalToBitString(bytes[ia])
+                        const ftype="none"
                         ia+=1
                         if ((rc[2] === "0") && (rc[3] === "0")) {
                             decoded.zclheader.alarmmsg = listMess
@@ -2287,7 +2295,7 @@ function Decoder(bytes, port) {
                     }
                 }
                 if ((clustID === 0x000f ) && (attID === 0x0055)) {
-                    let attribute_type = bytes[i1-1]
+                    const attribute_type = bytes[i1-1]
                     decoded.data.pin_state = !(!bytes[i1]);
                     let ia = i1+1
                     if ((cmdID===0x8a)||(bytes[ia]!==undefined)) {
@@ -2295,11 +2303,10 @@ function Decoder(bytes, port) {
                         if (cmdID===0x8a){
                             listMess.push("alarm triggered")
                         }
-                        let flag = 0
-                        let divider = 1
-                        let rc = ""
-                        let ftype="none"
-                        rc = decimalToBitString(bytes[ia])
+                        const flag = 0
+                        const divider = 1
+                        const rc = decimalToBitString(bytes[ia])
+                        const ftype="none"
                         ia+=1
                         if ((rc[2] === "0") && (rc[3] === "0")) {
                             decoded.zclheader.alarmmsg = listMess
@@ -2339,11 +2346,10 @@ function Decoder(bytes, port) {
                         if (cmdID===0x8a){
                             listMess.push("alarm triggered")
                         }
-                        let flag = 0
-                        let divider = 1
-                        let rc = ""
-                        let ftype="none"
-                        rc = decimalToBitString(bytes[ia])
+                        const flag = 0
+                        const divider = 1
+                        const rc = decimalToBitString(bytes[ia])
+                        const ftype="none"
                         ia+=1
                         if ((rc[2] === "0") && (rc[3] === "0")) {
                             decoded.zclheader.alarmmsg = listMess
@@ -2359,7 +2365,12 @@ function Decoder(bytes, port) {
                     }
                 }
                 if ((clustID === 0x0006 ) && (attID === 0x0000)) {
-                    let state = bytes[i1]; if(state === 1) decoded.data.output = "ON"; else decoded.data.output = "OFF" ;
+                    let state = bytes[i1];
+                    if(state === 1) {
+                        decoded.data.output = "ON";
+                    } else {
+                        decoded.data.output = "OFF" ;
+                    }
                 }
                 if ((clustID === 0x8008 ) && (attID === 0x0000)){
                     let attribute_type = bytes[i1-1]
@@ -2370,11 +2381,10 @@ function Decoder(bytes, port) {
                         if (cmdID===0x8a){
                             listMess.push("alarm triggered")
                         }
-                        let flag = 0
-                        let divider = 1
-                        let rc = ""
-                        let ftype="none"
-                        rc = decimalToBitString(bytes[ia])
+                        const flag = 0
+                        const divider = 1
+                        const rc = decimalToBitString(bytes[ia])
+                        const ftype="none"
                         ia+=1
                         if ((rc[2] === "0") && (rc[3] === "0")) {
                             decoded.zclheader.alarmmsg = listMess
@@ -2408,20 +2418,17 @@ function Decoder(bytes, port) {
                         if (cmdID===0x8a){
                             listMess.push("alarm triggered")
                         }
-                        let flag = 0
-                        let divider = 100
-                        let rc = ""
-                        let ftype="none"
-                        rc = decimalToBitString(bytes[ia])
+                        const flag = 0
+                        const divider = 100
+                        const rc = decimalToBitString(bytes[ia])
+                        const ftype="none"
                         ia+=1
                         if ((rc[2] === "0") && (rc[3] === "0")) {
                             decoded.zclheader.alarmmsg = listMess
-                        }
-                        if ((rc[2] === "0") && (rc[3] === "1")) {
+                        } else if ((rc[2] === "0") && (rc[3] === "1")) {
                             let length = 1
                             alarmShort(length, listMess, flag, bytes, decoded, ia)
-                        }
-                        if ((rc[2] === "1") && (rc[3] === "0")) {
+                        } else if ((rc[2] === "1") && (rc[3] === "0")) {
                             let length = 4
                             alarmLong(clustID, attID, length, listMess, flag, bytes, decoded, ia,attribute_type, divider, ftype)
                         }
@@ -2440,11 +2447,10 @@ function Decoder(bytes, port) {
                         if (cmdID===0x8a){
                             listMess.push("alarm triggered")
                         }
-                        let flag = 0
-                        let divider = 1
-                        let rc = ""
-                        let ftype="float"
-                        rc = decimalToBitString(bytes[ia])
+                        const flag = 0
+                        const divider = 1
+                        const rc = decimalToBitString(bytes[ia])
+                        const ftype="float"
                         ia+=1
                         if ((rc[2] === "0") && (rc[3] === "0")) {
                             decoded.zclheader.alarmmsg = listMess
@@ -2468,13 +2474,13 @@ function Decoder(bytes, port) {
                 if ((clustID===0x000C)&&(attID===0x8004)){
                     let chockparammetters = {}
                     //byte to bite string
-                    let part1 = decimalToBitString(bytes[i1])
-                    let part2 = decimalToBitString(bytes[i1+1])
-                    let mode = part1[0]*2+part1[1]
+                    const part1 = decimalToBitString(bytes[i1])
+                    const part2 = decimalToBitString(bytes[i1+1])
+                    const mode = part1[0]*2+part1[1]
                     if (mode === 0) chockparammetters.mode = "idle"
                     if (mode === 1) chockparammetters.mode = "chock"
                     if (mode === 2) chockparammetters.mode = "click"
-                    let frequency = part1[2]*8+part1[3]*4+part1[4]*2+part1[5]
+                    const frequency = part1[2]*8+part1[3]*4+part1[4]*2+part1[5]
                     if (frequency === 0) chockparammetters.frequency = "idle"
                     if (frequency === 1) chockparammetters.frequency = "1Hz"
                     if (frequency === 2) chockparammetters.frequency = "10Hz"
@@ -2486,18 +2492,18 @@ function Decoder(bytes, port) {
                     if (frequency === 8) chockparammetters.frequency = "1620Hz"
                     if (frequency === 9) chockparammetters.frequency = "5376Hz"
                     chockparammetters.range={}
-                    let range = part1[6]*2+part1[7]
+                    const range = part1[6]*2+part1[7]
                     if (range === 0) {chockparammetters.range.precision = "+/- 2g"; chockparammetters.range.value = 16}
                     if (range === 1) {chockparammetters.range.precision = "+/- 4g"; chockparammetters.range.value = 32}
                     if (range === 2) {chockparammetters.range.precision = "+/- 8g"; chockparammetters.range.value = 64}
                     if (range === 3) {chockparammetters.range.precision = "+/- 16g"; chockparammetters.range.value = 128}
-                    let multiplicator = part2[0]*128+part2[1]*64+part2[2]*32+part2[3]*16+part2[4]*8+part2[5]*4+part2[6]*2+part2[7]
+                    const multiplicator = part2[0]*128+part2[1]*64+part2[2]*32+part2[3]*16+part2[4]*8+part2[5]*4+part2[6]*2+part2[7]
                     chockparammetters.threshold = multiplicator*chockparammetters.range.value
                 }
                 if ((clustID === 0x8007 ) && (attID === 0x0001))
                 {
                     decoded.data.modbus_payload = "";
-                    let size = bytes[i1];
+                    const size = bytes[i1];
                     for( let j = 0; j < size; j++ )
                     {
                         temp_hex_str   = bytes[i1+j+1].toString( 16 ).toUpperCase();
@@ -2511,8 +2517,8 @@ function Decoder(bytes, port) {
                 }
                 if ((clustID === 0x8009 ) && (attID === 0x0000))
                 {
-                    let b2 = bytes[i1+2]
-                    let b3 = bytes[i1+3]
+                    const b2 = bytes[i1+2]
+                    const b3 = bytes[i1+3]
                     decoded.data.modbus_frame_series_sent = bytes[i1+1];
                     decoded.data.modbus_frame_number_in_serie = (b2 & 0xE0) >> 5;
                     decoded.data.modbus_last_frame_of_serie = (b2 & 0x1C ) >> 2;
@@ -2527,7 +2533,7 @@ function Decoder(bytes, port) {
                     decoded.data.modbus_EP1 = ((b3&0x02) === 0x02);
                     decoded.data.modbus_EP0 = ((b3&0x01) === 0x01);
                     let i2 = i1 + 4;
-                    without_header = 0;
+                    const without_header = 0;
                     if (decoded.data.modbus_EP0 === true)
                     {
                         if (without_header === 0){
@@ -2750,22 +2756,20 @@ function Decoder(bytes, port) {
                     }
                 }
                 if ((clustID===0x0050) && (attID===0x0004)){
-                    let length = bytes[i1]*256+bytes[i1+1];
+                    const length = bytes[i1]*256+bytes[i1+1];
                     let configuration = {}
-                    let nbendpoints = bytes[i1+2];
+                    const nbendpoints = bytes[i1+2];
                     for (let i = 0; i < nbendpoints; i++) {
                         let endpoint = {}
                         endpoint.endpoint = bytes[i1+3+i*7];
                         let nbinput_cluster = bytes[i1+4+i*7];
                         endpoint.input_clusters = []
                         for (let j=0; j < nbinput_cluster; j++){
-                            let cluster = {}
                             endpoint.input_clusters[j] = decimalToHex(bytes[i1 + 5 + i * 7 + j * 2] * 256 + bytes[i1 + 6 + i * 7 + j * 2], 4);
                         }
                         let nboutput_cluster = bytes[i1+5+i*7+nbinput_cluster*2];
                         endpoint.output_clusters = []
                         for (let j=0; j < nboutput_cluster; j++){
-                            let cluster = {}
                             endpoint.output_clusters[j] = decimalToHex(bytes[i1 + 6 + i * 7 + j * 2] * 256 + bytes[i1 + 7 + i * 7 + j * 2], 4);
                         }
                         configuration[i] = endpoint;
@@ -2774,7 +2778,7 @@ function Decoder(bytes, port) {
                 }
                 if ((clustID === 0x0050 ) && (attID === 0x0006)) {
                     let i2 = i1 + 3;
-                    let attribute_type = bytes[i1-1];
+                    const attribute_type = bytes[i1-1];
                     if ((bytes[i1+2] &0x01) === 0x01) {decoded.data.main_or_external_voltage = (bytes[i2]*256+bytes[i2+1])/1000;i2=i2+2;}
                     if ((bytes[i1+2] &0x02) === 0x02) {decoded.data.rechargeable_battery_voltage = (bytes[i2]*256+bytes[i2+1])/1000;i2=i2+2;}
                     if ((bytes[i1+2] &0x04) === 0x04) {decoded.data.disposable_battery_voltage = (bytes[i2]*256+bytes[i2+1])/1000;i2=i2+2;}
@@ -2786,11 +2790,10 @@ function Decoder(bytes, port) {
                         if (cmdID===0x8a){
                             listMess.push("alarm triggered")
                         }
-                        let flag = 0
-                        let divider = 1000
-                        let ftype = "multistate"
-                        let rc = ""
-                        rc = decimalToBitString(bytes[ia])
+                        const flag = 0
+                        const divider = 1000
+                        const ftype = "multistate"
+                        const rc = decimalToBitString(bytes[ia])
 
                         ia+=1
                         let field_index = bytes[ia+1]
@@ -2808,10 +2811,10 @@ function Decoder(bytes, port) {
                     }
                 }
                 if ((clustID === 0x0050) && (firsthalfattID === 0xFF)){
-                    let secondhalfattID = bytes[5];
-                    let action = "action "+secondhalfattID.toString();
+                    const secondhalfattID = bytes[5];
+                    const action = "action "+secondhalfattID.toString();
                     decoded.data[action]=""
-                    let length = bytes[i1+1]
+                    const length = bytes[i1+1]
                     let actionvalue = "none"
                     for (let i = 0; i < length; i++) {
                         actionvalue += String.fromCharCode(bytes[i1 + 1 + i])
@@ -2820,7 +2823,7 @@ function Decoder(bytes, port) {
                 }
                 if (  (clustID === 0x800a) && (attID === 0x0000)) {
                     let i2 = i1;
-                    let attribute_type = bytes[i2-1];
+                    const attribute_type = bytes[i2-1];
                     decoded.data.positive_active_energy = UintToInt(bytes[i2+1]*256*256*256+bytes[i2+2]*256*256+bytes[i2+3]*256+bytes[i2+4],4);
                     i2 = i2 + 4;
                     decoded.data.negative_active_energy = UintToInt(bytes[i2+1]*256*256*256+bytes[i2+2]*256*256+bytes[i2+3]*256+bytes[i2+4],4);
@@ -2842,11 +2845,10 @@ function Decoder(bytes, port) {
                         if (cmdID===0x8a){
                             listMess.push("alarm triggered")
                         }
-                        let flag = 0
-                        let divider = 1
-                        let ftype = "multistate"
-                        let rc = ""
-                        rc = decimalToBitString(bytes[ia])
+                        const flag = 0
+                        const divider = 1
+                        const ftype = "multistate"
+                        const rc = decimalToBitString(bytes[ia])
                         ia+=1
                         let field_index = bytes[ia+1]
                         if ((rc[2] === "0") && (rc[3] === "0")) {
@@ -2862,8 +2864,8 @@ function Decoder(bytes, port) {
                         }
                     }
                 }
-                if (  (clustID === 0x8010) && (attID === 0x0000)) {
-                    let attribute_type = bytes[i1-1];
+                if ((clustID === 0x8010) && (attID === 0x0000)) {
+                    const attribute_type = bytes[i1-1];
                     decoded.data.active_energy_a=UintToInt(bytes[i1+1]*256*256*256+bytes[i1+2]*256*256+bytes[i1+3]*256+bytes[i1+4]);
                     decoded.data.reactive_energy_a=UintToInt(bytes[i1+5]*256*256*256+bytes[i1+6]*256*256+bytes[i1+7]*256+bytes[i1+8]);
                     decoded.data.active_energy_b=UintToInt(bytes[i1+9]*256*256*256+bytes[i1+10]*256*256+bytes[i1+11]*256+bytes[i1+12]);
@@ -2878,11 +2880,10 @@ function Decoder(bytes, port) {
                         if (cmdID===0x8a){
                             listMess.push("alarm triggered")
                         }
-                        let flag = 0
-                        let divider = 1
-                        let ftype = "multistate"
-                        let rc = ""
-                        rc = decimalToBitString(bytes[ia])
+                        const flag = 0
+                        const divider = 1
+                        const ftype = "multistate"
+                        const rc = decimalToBitString(bytes[ia])
                         ia+=1
                         let field_index = bytes[ia+1]
                         if ((rc[2] === "0") && (rc[3] === "0")) {
@@ -2897,8 +2898,8 @@ function Decoder(bytes, port) {
                             alarmLong(clustID, attID, length, listMess, flag, bytes, decoded, ia, attribute_type, divider, ftype, field_index)
                         }
                     }
-                } else if (  (clustID === 0x8010) && (attID === 0x0001)) {
-                    let attribute_type = bytes[i1-1];
+                } else if ((clustID === 0x8010) && (attID === 0x0001)) {
+                    const attribute_type = bytes[i1-1];
                     decoded.data.active_power_a= UintToInt(bytes[i1+1]*256*256*256+bytes[i1+2]*256*256+bytes[i1+3]*256+bytes[i1+4]);
                     decoded.data.reactive_power_a= UintToInt(bytes[i1+5]*256*256*256+bytes[i1+6]*256*256+bytes[i1+7]*256+bytes[i1+8]);
                     decoded.data.active_power_b=UintToInt(bytes[i1+9]*256*256*256+bytes[i1+10]*256*256+bytes[i1+11]*256+bytes[i1+12]);
@@ -2913,29 +2914,28 @@ function Decoder(bytes, port) {
                         if (cmdID===0x8a){
                             listMess.push("alarm triggered")
                         }
-                        let flag = 0
-                        let divider = 1
-                        let ftype = "multistate"
-                        let rc = ""
-                        rc = decimalToBitString(bytes[ia])
+                        const flag = 0
+                        const divider = 1
+                        const ftype = "multistate"
+                        const rc = decimalToBitString(bytes[ia])
                         ia+=1
-                        let field_index = bytes[ia+1]
+                        const field_index = bytes[ia+1]
                         if ((rc[2] === "0") && (rc[3] === "0")) {
                             decoded.zclheader.alarmmsg = listMess
                         }
                         if ((rc[2] === "0") && (rc[3] === "1")) {
-                            let length = 1
+                            const length = 1
                             alarmShort(length, listMess, flag, bytes, decoded, ia)
                         }
                         if ((rc[2] === "1") && (rc[3] === "0")) {
-                            let length = 10
+                            const length = 10
                             alarmLong(clustID, attID, length, listMess, flag, bytes, decoded, ia, attribute_type, divider, ftype, field_index)
                         }
                     }
                 }
                 if (  (clustID === 0x800b) && (attID === 0x0000)) {
                     let i2 = i1;
-                    let attribute_type = bytes[i2-1];
+                    const attribute_type = bytes[i2-1];
                     decoded.data.Vrms = UintToInt(bytes[i2+1]*256+bytes[i2+2],2)/10;
                     i2 = i2 + 2;
                     decoded.data.Irms = UintToInt(bytes[i2+1]*256+bytes[i2+2],2)/10;
@@ -2947,28 +2947,27 @@ function Decoder(bytes, port) {
                         if (cmdID===0x8a){
                             listMess.push("alarm triggered")
                         }
-                        let flag = 0
-                        let divider = 1
-                        let ftype = "multistate"
-                        let rc = ""
-                        rc = decimalToBitString(bytes[ia])
+                        const flag = 0
+                        const divider = 1
+                        const ftype = "multistate"
+                        const rc = decimalToBitString(bytes[ia])
                         ia+=1
-                        let field_index = bytes[ia+1]
+                        const field_index = bytes[ia+1]
                         if ((rc[2] === "0") && (rc[3] === "0")) {
                             decoded.zclheader.alarmmsg = listMess
                         }
                         if ((rc[2] === "0") && (rc[3] === "1")) {
-                            let length = 1
+                            const length = 1
                             alarmShort(length, listMess, flag, bytes, decoded, ia)
                         }
                         if ((rc[2] === "1") && (rc[3] === "0")) {
-                            let length = 6
+                            const length = 6
                             alarmLong(clustID, attID, length, listMess, flag, bytes, decoded, ia, attribute_type, divider, ftype, field_index)
                         }
                     }
                 }
                 if (  (clustID === 0x800d) && (attID === 0x0000)) {
-                    let attribute_type = bytes[i1-1]
+                    const attribute_type = bytes[i1-1]
                     decoded.data.Vrms_a=UintToInt(bytes[i1+1]*256+bytes[i1+2],2)/10;
                     decoded.data.Irms_a=UintToInt(bytes[i1+3]*256+bytes[i1+4],2)/10;
                     decoded.data.angle_a=UintToInt(bytes[i1+5]*256+bytes[i1+6],2);
@@ -2984,28 +2983,27 @@ function Decoder(bytes, port) {
                         if (cmdID===0x8a){
                             listMess.push("alarm triggered")
                         }
-                        let flag = 0
-                        let divider = 1
-                        let ftype = "multistate"
-                        let rc = ""
-                        rc = decimalToBitString(bytes[ia])
+                        const flag = 0
+                        const divider = 1
+                        const ftype = "multistate"
+                        const rc = decimalToBitString(bytes[ia])
                         ia+=1
-                        let field_index = bytes[ia+1]
+                        const field_index = bytes[ia+1]
                         if ((rc[2] === "0") && (rc[3] === "0")) {
                             decoded.zclheader.alarmmsg = listMess
                         }
                         if ((rc[2] === "0") && (rc[3] === "1")) {
-                            let length = 1
+                            const length = 1
                             alarmShort(length, listMess, flag, bytes, decoded, ia)
                         }
                         if ((rc[2] === "1") && (rc[3] === "0")) {
-                            let length = 6
+                            const length = 6
                             alarmLong(clustID, attID, length, listMess, flag, bytes, decoded, ia, attribute_type, divider, ftype, field_index)
                         }
                     }
                 }
                 if ((clustID === 0x800c) && (attID === 0x0000)){
-                    let attribute_type = bytes[i1-1]
+                    const attribute_type = bytes[i1-1]
                     decoded.data.concentration = (bytes[i1]*256+bytes[i1+1]);
                     let ia = i1+2
                     if ((cmdID===0x8a)||(bytes[ia]!==undefined)) {
@@ -3013,21 +3011,20 @@ function Decoder(bytes, port) {
                         if (cmdID===0x8a){
                             listMess.push("alarm triggered")
                         }
-                        let flag = 0
-                        let divider = 1
-                        let rc = ""
-                        let ftype="none"
-                        rc = decimalToBitString(bytes[ia])
+                        const flag = 0
+                        const divider = 1
+                        const rc = decimalToBitString(bytes[ia])
+                        const ftype="none"
                         ia+=1
                         if ((rc[2] === "0") && (rc[3] === "0")) {
                             decoded.zclheader.alarmmsg = listMess
                         }
                         if ((rc[2] === "0") && (rc[3] === "1")) {
-                            let length = 1
+                            const length = 1
                             alarmShort(length, listMess, flag, bytes, decoded, ia)
                         }
                         if ((rc[2] === "1") && (rc[3] === "0")) {
-                            let length = 6
+                            const length = 6
                             alarmLong(clustID, attID, length, listMess, flag, bytes, decoded, ia,attribute_type, divider, ftype)
                         }
                     }
@@ -3035,7 +3032,7 @@ function Decoder(bytes, port) {
                 if ((clustID===0x800C)&&(attID===0x0001)) decoded.data.analog=bytes[i1];
                 if ((clustID===0x800C)&&(attID===0x0002)) decoded.data.analog=bytes[i1];
                 if ((clustID === 0x0400) && (attID === 0x0000)) {
-                    let attribute_type = bytes[i1-1]
+                    const attribute_type = bytes[i1-1]
                     decoded.data.illuminance = (bytes[i1]*256+bytes[i1+1]);
                     let ia = i1+2
                     if ((cmdID===0x8a)||(bytes[ia]!==undefined)) {
@@ -3043,11 +3040,10 @@ function Decoder(bytes, port) {
                         if (cmdID===0x8a){
                             listMess.push("alarm triggered")
                         }
-                        let flag = 0
-                        let divider = 1
-                        let rc = ""
-                        let ftype="none"
-                        rc = decimalToBitString(bytes[ia])
+                        const flag = 0
+                        const divider = 1
+                        const rc = decimalToBitString(bytes[ia])
+                        const ftype="none"
                         ia+=1
                         if ((rc[2] === "0") && (rc[3] === "0")) {
                             decoded.zclheader.alarmmsg = listMess
@@ -3063,7 +3059,7 @@ function Decoder(bytes, port) {
                     }
                 }
                 if ((clustID === 0x0403) && (attID === 0x0000)) {
-                    let attribute_type = bytes[i1-1]
+                    const attribute_type = bytes[i1-1]
                     decoded.data.pressure = (UintToInt(bytes[i1]*256+bytes[i1+1],2));
                     let ia = i1+2
                     if ((cmdID===0x8a)||(bytes[ia]!==undefined)) {
@@ -3071,27 +3067,26 @@ function Decoder(bytes, port) {
                         if (cmdID===0x8a){
                             listMess.push("alarm triggered")
                         }
-                        let flag = 0
-                        let divider = 1
-                        let rc = ""
-                        let ftype="int"
-                        rc = decimalToBitString(bytes[ia])
+                        const flag = 0
+                        const divider = 1
+                        const rc = decimalToBitString(bytes[ia])
+                        const ftype="int"
                         ia+=1
                         if ((rc[2] === "0") && (rc[3] === "0")) {
                             decoded.zclheader.alarmmsg = listMess
                         }
                         if ((rc[2] === "0") && (rc[3] === "1")) {
-                            let length = 1
+                            const length = 1
                             alarmShort(length, listMess, flag, bytes, decoded, ia)
                         }
                         if ((rc[2] === "1") && (rc[3] === "0")) {
-                            let length = 6
+                            const length = 6
                             alarmLong(clustID, attID, length, listMess, flag, bytes, decoded, ia,attribute_type, divider, ftype)
                         }
                     }
                 }
                 if ((clustID === 0x0406) && (attID === 0x0000)) {
-                    let attribute_type = bytes[i1-1]
+                    const attribute_type = bytes[i1-1]
                     decoded.data.occupancy = !(!bytes[i1]);
                     let ia = i1+1
                     if ((cmdID===0x8a)||(bytes[ia]!==undefined)) {
@@ -3099,21 +3094,20 @@ function Decoder(bytes, port) {
                         if (cmdID===0x8a){
                             listMess.push("alarm triggered")
                         }
-                        let flag = 0
-                        let divider = 1
-                        let rc = ""
-                        let ftype="none"
-                        rc = decimalToBitString(bytes[ia])
+                        const flag = 0
+                        const divider = 1
+                        const ftype="none"
+                        const rc = decimalToBitString(bytes[ia])
                         ia+=1
                         if ((rc[2] === "0") && (rc[3] === "0")) {
                             decoded.zclheader.alarmmsg = listMess
                         }
                         if ((rc[2] === "0") && (rc[3] === "1")) {
-                            let length = 1
+                            const length = 1
                             alarmShort(length, listMess, flag, bytes, decoded, ia)
                         }
                         if ((rc[2] === "1") && (rc[3] === "0")) {
-                            let length = 4
+                            const length = 4
                             alarmLong(clustID, attID, length, listMess, flag, bytes, decoded, ia,attribute_type, divider, ftype)
                         }
                     }
@@ -3282,11 +3276,9 @@ function Decoder(bytes, port) {
     }
     return decoded;
 }
-function normalisation_standard(input, endpoint_parameters){
+function normalisation_standard(input, endpoint_parameters) {
     let warning = [];
     let bytes = input.bytes;
-    let flagstandard = true;
-    let indent = 0;
     let decoded = Decoder(bytes, input.fPort);
     if (decoded.zclheader !== undefined){
         if (decoded.zclheader.alarmmsg !== undefined){
@@ -3308,6 +3300,8 @@ function normalisation_standard(input, endpoint_parameters){
         else if (bytes[1] === 0x01) {
             if (decoded.zclheader.data === undefined) {
                 let data = []
+                let flagstandard = true;
+                let indent = 0;
                 while (flagstandard) {
                     let firstKey = Object.keys(decoded.data)[indent];
                     if (firstKey === undefined) {
@@ -3382,7 +3376,7 @@ function normalisation_standard(input, endpoint_parameters){
                 warning: warning
             }
         }else{
-            throw ValidationError("bad decoding")
+            throw new ValidationError("bad decoding")
         }
     }
     return {
