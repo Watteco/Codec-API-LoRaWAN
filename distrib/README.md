@@ -118,7 +118,34 @@ with the input being in the format:
 }
 ```
 
-You'll find an example of decoding a base64 Vaqa'o+ batch frame below, you can directly import it to NodeRED via the `Import` button in the right menu.
+Here is an example, assuming the input is coming in base64:
+
+```javascript
+// You must import the sensor decoder from npm via the configuration tab
+// Don't forget to set "functionExternalModules: true," in your "settings.js" file
+
+if (msg.payload.data && typeof msg.payload.data === 'string') {
+
+    const buffer = Buffer.from(msg.payload.data, 'base64'); // The frame arrives in base64 in msg.payload.data
+
+    var date = new Date(msg.payload.time); // The date is recuperated from msg.payload.time
+                                          // under any format and is transformed to ISO 8601
+    var inputObject = {
+        "bytes": buffer, // The frame in a bytes list
+        "fPort": 125,    // The port (Watteco always use 125)
+        "recvTime": date // The date in ISO 8601 format
+    }
+
+} else {
+    node.error("The message doesn't carry a Base64 frame");
+    return null;
+}
+
+msg.payload = wattecoVaqaOPlus.driver.decodeUplink(inputObject);
+return msg;
+```
+
+You'll find this example working, and decoding a base64 Vaqa'o+ batch frame below, you can directly import it to NodeRED via the `Import` button in the right menu.
 
 <details>
 <summary>Vaqa'o+ NodeRED (&gt;1.3.0) decoding example</summary>
@@ -239,8 +266,35 @@ with the input being in the format:
     "recvTime": "2023-07-19T07:51:31.598957793Z" // The date in ISO 8601 format
 }
 ```
+  
+Here is an example, assuming the input is coming in base64:
 
-You'll find an example of decoding a base64 Vaqa'o+ batch frame below, you can directly import it to NodeRED via the `Import` button in the right menu.
+```javascript
+// Insert here the "main.js" file from https://github.com/Watteco/Codec-API-LoRaWAN/tree/main/distrib
+// Remove "exports.driver=driver" from the end of the line.
+
+if (msg.payload.data && typeof msg.payload.data === 'string') {
+
+    const buffer = Buffer.from(msg.payload.data, 'base64'); // The frame arrives in base64 in msg.payload.data
+
+    var date = new Date(msg.payload.time); // The date is recuperated from msg.payload.time
+                                          // under any format and is transformed to ISO 8601
+    var inputObject = {
+        "bytes": buffer, // The frame in a bytes list
+        "fPort": 125,    // The port (Watteco always use 125)
+        "recvTime": date // The date in ISO 8601 format
+    }
+
+} else {
+    node.error("The message doesn't carry a Base64 frame");
+    return null;
+}
+
+msg.payload = driver.decodeUplink(inputObject); // The frame is decoded
+return msg;
+```
+
+You'll find this example working, and decoding a base64 Vaqa'o+ batch frame below, you can directly import it to NodeRED via the `Import` button in the right menu.
 
 <details>
 <summary>Vaqa'o+ NodeRED (&lt;1.3.0) decoding example</summary>
@@ -785,7 +839,7 @@ Voir tableau [ici](#npm) ou [la liste sur le site npm](https://www.npmjs.com/~wa
 
 La première étape consiste à configurer un nœud JavaScript pour importer le module dont vous avez besoin via npm.  
 Vous trouverez la liste des modules [ici](https://www.npmjs.com/~watteco) ou dans le tableau [ci-dessus](#npm).  
-Pour le configurer, ajoutez le module dans l'onglet "Configuration" du nœud JavaScript.
+Pour le configurer, ajoutez le module dans l'onglet "Configurations" du nœud JavaScript.
 
 ![Onglet Configuration](/sources_readme/wattecoConfNodeRedFr.png)
 
@@ -800,7 +854,35 @@ avec l'entrée étant au format :
     "recvTime": "2023-07-19T07:51:31.598957793Z" // La date au format ISO 8601
 }
 ```
-Vous trouverez un exemple de décodage d'une trame batch Vaqa'o+ en base64 ci-dessous, que vous pouvez importer directement dans NodeRED via le bouton `Importer` dans le menu de droite.
+  
+Voici un exemple, partant du principe que l'input arrive en base64 :
+
+```javascript
+// Vous devez importer le décodeur du capteur depuis npm via l'onglet configurations
+// N'oubliez pas de définir "functionExternalModules: true," dans votre fichier "settings.js"
+
+if (msg.payload.data && typeof msg.payload.data === 'string') {
+
+    const buffer = Buffer.from(msg.payload.data, 'base64'); // La trame arrive en base64 dans msg.payload.data
+
+    var date = new Date(msg.payload.time); // La date est récupérée depuis msg.payload.time
+                                          // sous n'importe quel format et est transformée en ISO 8601
+    var inputObject = {
+        "bytes": buffer, // La trame sous forme de liste de bytes
+        "fPort": 125,    // Le port (Watteco utilise toujours 125)
+        "recvTime": date // La date au format ISO 8601
+    }
+
+} else {
+    node.error("Le message ne contient pas de trame en Base64");
+    return null;
+}
+
+msg.payload = wattecoVaqaOPlus.driver.decodeUplink(inputObject);
+return msg;
+```
+
+Vous trouverez ci-dessous cet exemple fonctionnel, avec décodage d'une trame Vaqa'o+ en base64, vous pouvez l'importer directement dans NodeRED via le bouton `Importer` du menu de droite.
 
 <details>
 <summary>Exemple de décodage Vaqa'o+ NodeRED (&gt;1.3.0)</summary>
@@ -921,8 +1003,35 @@ avec l'input au format :
     "recvTime": "2023-07-19T07:51:31.598957793Z" // La date au format ISO 8601
 }
 ```
+  
+Voici un exemple, partant du principe que l'input arrive en base64 :
 
-Vous trouverez ci-dessous un exemple de décodage d'une trame Vaqa'o+ en base64, vous pouvez l'importer directement dans NodeRED via le bouton `Import` du menu de droite.
+```javascript
+// Insérez ici le fichier "main.js" de https://github.com/Watteco/Codec-API-LoRaWAN/tree/main/distrib (ici /vaqa'o_plus/main.js)
+// Retirez "exports.driver=driver" De la fin de la ligne.
+
+if (msg.payload.data && typeof msg.payload.data === 'string') {
+
+    const buffer = Buffer.from(msg.payload.data, 'base64'); // La trame arrive en base64 dans msg.payload.data
+
+    var date = new Date(msg.payload.time); // La date est récupérée depuis msg.payload.time
+                                          // sous n'importe quel format et est transformée en ISO 8601
+    var inputObject = {
+        "bytes": buffer, // La trame sous forme de liste de bytes
+        "fPort": 125,    // Le port (Watteco utilise toujours 125)
+        "recvTime": date // La date au format ISO 8601
+    }
+
+} else {
+    node.error("Le message ne contient pas de trame en Base64");
+    return null;
+}
+
+msg.payload = driver.decodeUplink(inputObject); // La trame est décodée
+return msg;
+```
+  
+Vous trouverez ci-dessous cet exemple fonctionnel, avec décodage d'une trame Vaqa'o+ en base64, vous pouvez l'importer directement dans NodeRED via le bouton `Importer` du menu de droite.
 
 <details>
 <summary>Exemple de décodage Vaqa'o+ NodeRED (&lt;1.3.0)</summary>
