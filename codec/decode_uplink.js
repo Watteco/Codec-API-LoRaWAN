@@ -24,7 +24,7 @@ function watteco_decodeUplink(input, batch_parameters, endpoint_parameters) {
                 }
             } catch (error) {
                 return {
-                    error: error.message,
+                    errors: error.message,
                     warnings: [],
                 }
             }
@@ -36,7 +36,7 @@ function watteco_decodeUplink(input, batch_parameters, endpoint_parameters) {
         }
     } catch (error) {
         return {
-            error: error.message,
+            errors: error.message,
             warnings: [],
         };
     }
