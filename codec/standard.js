@@ -608,7 +608,7 @@ function TIC_Decode(clustID,AttributeID,BytesAfterSize)
 
             // Palliatif Anomalie 3.5.0.4852 à 3.5.0.5339 (Cf http://support.nke-watteco.com/tic/)
             // Ligne à commenter si le capteur PMEPMI a une version firmware différente de ci-dessus
-            iEnum++;
+            //iEnum++;
 
             x = Enums[iEnum]; i+=1;
         } else { // NString
