@@ -3,7 +3,7 @@
     "type": "uplink",
     "description": "uplink standard report containing state of pin 1 | payload:110A000F00551001",
     "input": {
-      "bytes": [
+      "bytes__": [
         17,
         10,
         0,

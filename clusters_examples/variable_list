@@ -20,7 +20,7 @@
 8010: active_energy_a, reactive_energy_a, active_energy_b, reactive_energy_b, active_energy_c, reactive_energy_c, active_energy_abc, reactive_energy_abc, active_power_a, reactive_power_a, active_power_b, reactive_power_b, active_power_c, reactive_power_c, active_power_abc, reactive_power_abc
 800B: Vrms, Irms, angle
 800D: Vrms_a, Irms_a, angle_a, Vrms_b, Irms_b, angle_b, Vrms_c, Irms_c, angle_c
-800C: concentration:[TVOC,CO2]
+800C: concentration:[IAQ,CO2]
 8052: frequency, frequency_min, frequency_max, Vrms, Vrms_min, Vrms_max, Vpeak, Vpeak_min, Vpeak_max, over_voltage, sag_voltage
 800F: last, params, working_modes
 

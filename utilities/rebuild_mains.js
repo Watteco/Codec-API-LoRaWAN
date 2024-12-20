@@ -1,33 +1,38 @@
-const {execSync} = require('child_process')
+/**
+ * Script to build distributed devices by optionally filtering them using a regex pattern.
+ *
+ * Usage:
+ *  - Run without filter to process all devices:
+ *      node rebuild_main.js
+ *
+ *  - Run with a filter to process specific devices (use a regex pattern):
+ *      node rebuild_main.js "flash'o|intens'o|vaqa'o"
+ *
+ * Parameters:
+ *  - devices_to_process (optional): A regex pattern to match device names.
+ *
+ * Behavior:
+ *  - If a regex pattern is provided, only devices matching the pattern will be processed.
+ *  - If no devices match the pattern, the script exits with a message.
+ *  - Without a regex pattern, all devices in the list are processed.
+ */
+
+const { execSync } = require('child_process');
 const fs = require("fs");
-let devices = ["atm'o","clos'o","flash'o","in'o","inclin'o","indoor_temperature","intens'o","lev'o","modbus","monit'o","move'o","outdoor_temperature","pilot_wire","press'o","pulse_sens'o_atex","pulse_sens'o","remote_temperature_2","remote_temperature","smartplug","th","tics'o","toran'o_atex","triphas'o","vaqa'o_lt","vaqa'o_plus","vaqa'o","ventil'o"]
 
-let flag=0
-while(flag===0){
+tools=require("./_CommonTools.js");
 
-    fs.copyFile("../codec/standard.js", "../devices/standard.js", (err) => {
-        if (err) throw err;
+// Get devices to be processed
+const { devices, actility_devices } = tools.getDevices(process.argv[2]);
+if (devices.length === 0) process.exit(0); 
 
-    })
-    console.log('standard.js was copied to destination')
-    fs.copyFile("../codec/batch.js", "../devices/batch.js", (err) => {
-        if (err) throw err;
+// Execute commands for each filtered device
+for (let i in devices) {
+    let command = `npm --prefix ../devices/${devices[i]} run rebuild`;
+    console.log(command);
+    execSync(command);
 
-    })
-    console.log('batch.js was copied to destination');
-    fs.copyFile("../codec/decode_uplink.js", "../devices/decode_uplink.js", (err) => {
-        if (err) throw err;
-
-    })
-    console.log('decode_uplink.js was copied to destination');
-    flag=1
-}
-
-for (let i in devices){
-    let command ="npm --prefix ../devices/"+devices[i]+" run rebuild "
-    console.log(command)
-    execSync(command)
-    let command2 = "echo exports.driver=driver >> ../devices/"+devices[i]+"/main.js"
-    console.log(command2)
-    execSync(command2)
+    let command2 = `echo exports.driver=driver >> ../devices/${devices[i]}/main.js`;
+    console.log(command2);
+    execSync(command2);
 }

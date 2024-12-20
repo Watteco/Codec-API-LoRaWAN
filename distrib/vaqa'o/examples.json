@@ -55,7 +55,7 @@
   },
   {
     "type": "uplink",
-    "description": "uplink standard report containing TVOC value | payload:110A800C0000210019",
+    "description": "uplink standard report containing IAQ value | payload:110A800C0000210019",
     "input": {
       "bytes": [
         17, 10, 128, 12, 0,
@@ -68,7 +68,7 @@
     "output": {
       "data": [
         {
-          "variable": "TVOC",
+          "variable": "IAQ",
           "value": 25,
           "date": "2023-07-19T07:51:25.508306410Z"
         }
@@ -250,8 +250,8 @@
         },
         { "variable": "CO2", "value": 1540, "date": "2023-07-19T07:51:18.508Z" },
         { "variable": "CO2", "value": 1500, "date": "2023-07-19T07:51:23.508Z" },
-        { "variable": "TVOC", "value": 30, "date": "2023-07-19T07:51:16.508Z" },
-        { "variable": "TVOC", "value": 30, "date": "2023-07-19T07:51:21.508Z" }
+        { "variable": "IAQ", "value": 30, "date": "2023-07-19T07:51:16.508Z" },
+        { "variable": "IAQ", "value": 30, "date": "2023-07-19T07:51:21.508Z" }
       ],
       "warnings": []
     }
