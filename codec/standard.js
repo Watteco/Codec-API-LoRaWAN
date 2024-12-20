@@ -2522,8 +2522,8 @@ function Decoder(bytes, port) {
                     decoded.data.modbus_frame_series_sent = bytes[i1+1];
                     decoded.data.modbus_frame_number_in_serie = (b2 & 0xE0) >> 5;
                     decoded.data.modbus_last_frame_of_serie = (b2 & 0x1C ) >> 2;
-                    decoded.data.modbus_EP9 = ((b2&0x01) === 0x01);
-                    decoded.data.modbus_EP8 = ((b2&0x02) === 0x02);
+                    decoded.data.modbus_EP9 = ((b2&0x02) === 0x02);
+                    decoded.data.modbus_EP8 = ((b2&0x01) === 0x01);
                     decoded.data.modbus_EP7 = ((b3&0x80) === 0x80);
                     decoded.data.modbus_EP6 = ((b3&0x40) === 0x40);
                     decoded.data.modbus_EP5 = ((b3&0x20) === 0x20);
