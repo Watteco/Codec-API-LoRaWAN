@@ -3,10 +3,11 @@
     "type": "uplink",
     "description": "uplink standard report containing state value | payload:110A000600001001",
     "input": {
-      "bytes": [
+      "_bytes": [
         17, 10,  0, 6,
         0,  0, 16, 1
       ],
+      "bytes": "110A000600001601",
       "fPort": 125,
       "recvTime": "2023-07-19T07:51:25.508306410Z"
     },
@@ -212,6 +213,50 @@
           "variable": "message_type",
           "value": "unconfirmed",
           "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink batch report | payload:100180e3c61800202614b45b16bb65b15b16bb65b15b1613",
+    "input": {
+      "bytes": "100180e3c61800202614b45b16bb65b15b16bb65b15b1613",
+      "fPort": 125,
+      "recvTime": "2024-12-27T18:35:54.000Z"
+    },
+    "output": {
+      "data": [
+        {
+          "variable": "ActiveEnergy",
+          "value": 49,
+          "date": "2024-12-27T17:45:50.000Z"
+        },
+        {
+          "variable": "ActiveEnergy",
+          "value": 49,
+          "date": "2024-12-27T17:55:50.000Z"
+        },
+        {
+          "variable": "ActiveEnergy",
+          "value": 49,
+          "date": "2024-12-27T18:05:50.000Z"
+        },
+        {
+          "variable": "ActiveEnergy",
+          "value": 49,
+          "date": "2024-12-27T18:15:50.000Z"
+        },
+        {
+          "variable": "ActiveEnergy",
+          "value": 49,
+          "date": "2024-12-27T18:25:50.000Z"
+        },
+        {
+          "variable": "ActiveEnergy",
+          "value": 49,
+          "date": "2024-12-27T18:35:50.000Z"
         }
       ],
       "warnings": []
