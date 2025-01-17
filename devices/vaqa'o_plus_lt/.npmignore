@@ -1,0 +1,6 @@
+node_modules/
+test/
+coverage/
+specification/
+vaqa'o_plus_lt.js
+driver-examples.spec.js

@@ -1,0 +1,17 @@
+{
+  "name": "watteco-clim_o",
+  "version": "1.0.1",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "jest --collectCoverage",
+    "rebuild": "node ../../scripts/rebuild.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4"
+  }
+}
