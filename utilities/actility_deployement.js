@@ -23,8 +23,41 @@
  * 
  */
 
+const fs1 = require('fs'); // Use promises API for fs
 const fs = require('fs').promises; // Use promises API for fs
+const path = require('path'); 
 const tools = require("./_CommonTools.js");
+
+function syncMetadataToPackage(directoryPath) {
+  const metadataJsonPath = path.join(directoryPath, 'metadata.json');
+  const packageJsonPath = path.join(directoryPath, 'package.json');
+
+  // Check if package.json exists
+  if (!fs1.existsSync(packageJsonPath)) {
+    console.error(`File not found: ${packageJsonPath}`);
+    return;
+  }
+
+  // Check if metadata.json exists
+  if (!fs1.existsSync(metadataJsonPath)) {
+    console.error(`File not found: ${metadataJsonPath}`);
+    return;
+  }
+  // Read package.json and metadata.json files
+  const packageJson = JSON.parse(fs1.readFileSync(packageJsonPath, 'utf8'));
+  const metadataJson = JSON.parse(fs1.readFileSync(metadataJsonPath, 'utf8'));
+
+  // Get the current version from package.json
+  let currentVersion = metadataJson.version || '0.0.0';
+
+  // Synchronize the version in package.json if necessary
+  if (packageJson.version !== currentVersion) {
+    packageJson.version = updatedVersion;
+    fs1.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2), 'utf8');
+    console.log(`Version synchronized in package.json to: ${currentVersion}`);
+  }
+}
+
 
 async function updateRequireDecodeUplinkFile(filePath) {
   // Ensure the file exists before attempting to read it
@@ -102,6 +135,7 @@ async function copyAndDeployFiles(watteco_path, actility_path, devices, actility
         await fs.copyFile(`${watteco_path}/devices/${device}/examples.json`, `${actilityDevicePath}/examples.json`);
     
         await fs.copyFile(`${watteco_path}/devices/${device}/metadata.json`, `${actilityDevicePath}/metadata.json`);
+        syncMetadataToPackage(actilityDevicePath);
     
         await fs.copyFile(`${watteco_path}/devices/${device}/uplink.schema.json`, `${actilityDevicePath}/uplink.schema.json`);
     
