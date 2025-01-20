@@ -27,7 +27,9 @@ if (devices.length === 0) process.exit(0);
 
 // Execute test commands for each filtered device
 for (let i in devices) {
+        
+    console.log(`Testing ${devices[i]} ...`);
     let command = `npm --prefix ../devices/${devices[i]} run test`;
-    console.log(command);
+    //console.log(command);
     execSync(command);
 }

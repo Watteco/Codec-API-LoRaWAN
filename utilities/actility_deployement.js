@@ -3,10 +3,10 @@
  *
  * Usage:
  *  - Run without filter to process all devices:
- *      node actility_deployments.js <watteco_path> <actility_path>
+ *      node actility_deployment.js <watteco_path> <actility_path>
  *
  *  - Run with a filter to process specific devices (use a regex pattern):
- *      node actility_deployments.js <watteco_path> <actility_path> "flash'o|intens'o|vaqa'o"
+ *      node actility_deployment.js <watteco_path> <actility_path> "flash'o|intens'o|vaqa'o"
  *
  * Parameters:
  *  - watteco_path: Path to the Watteco directory.
@@ -80,30 +80,6 @@ async function updateRequireDecodeUplinkFile(filePath) {
   }
 }
 
-async function removeDriverExport(filePath) {
-  // Ensure the file exists before attempting to read it
-  try {
-    if (!(await fs.stat(filePath)).isFile()) {
-      throw new Error(`File not found: ${filePath}`);
-    }
-
-    // Read the content of the file
-    const data = await fs.readFile(filePath, 'utf8');
-
-    // Regular expression to match 'exports.driver = driver' with or without a semicolon at the end
-    const regex = /exports\.driver\s*=\s*driver\s*(?:;\s*)?$/m;
-
-    // Remove the line if it exists (with or without semicolon)
-    let modifiedData = data.replace(regex, '').trim();
-
-    // Write the modified content back to the file
-    await fs.writeFile(filePath, modifiedData, 'utf8');
-  } catch (err) {
-    console.error(`Error in removeDriverExport: ${err.message}`);
-    process.exit(1); // Exit the script immediately on error
-  }
-}
-
 async function copyAndDeployFiles(watteco_path, actility_path, devices, actility_devices) {
   try {
     // Copy common codec files
@@ -130,18 +106,20 @@ async function copyAndDeployFiles(watteco_path, actility_path, devices, actility
         await updateRequireDecodeUplinkFile(`${actilityDevicePath}/${device}.js`);
     
         await fs.copyFile(`${watteco_path}/devices/${device}/main.js`, `${actilityDevicePath}/main.js`);
-        await removeDriverExport(`${actilityDevicePath}/main.js`);
     
         await fs.copyFile(`${watteco_path}/devices/${device}/examples.json`, `${actilityDevicePath}/examples.json`);
     
         await fs.copyFile(`${watteco_path}/devices/${device}/metadata.json`, `${actilityDevicePath}/metadata.json`);
-        syncMetadataToPackage(actilityDevicePath);
+        tools.updateJSON_name_description(`${actilityDevicePath}/metadata.json`, `${device} v4`, `Driver for ${device} v4 sensor`);
     
         await fs.copyFile(`${watteco_path}/devices/${device}/uplink.schema.json`, `${actilityDevicePath}/uplink.schema.json`);
     
         // Not ready to deliver actility, to many differences
         // await fs.copyFile(`${watteco_path}/devices/${device}/package.json`, `${actilityDevicePath}/package.json`);
         // await fs.copyFile(`${watteco_path}/devices/${device}/package-lock.json`, `${actilityDevicePath}/package-lock.json`);
+        
+        // Only sync metata (version) to package (version) 
+        syncMetadataToPackage(actilityDevicePath);
     
         await fs.copyFile(`${watteco_path}/devices/${device}/webpack.config.js`, `${actilityDevicePath}/webpack.config.js`);
 

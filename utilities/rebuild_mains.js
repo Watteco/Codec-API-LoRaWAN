@@ -102,8 +102,6 @@ function updateVersionAndSyncMetadata(directoryPath, versionOrType = '') {
     metadataJson.version = updatedVersion;
     fs.writeFileSync(metadataJsonPath, JSON.stringify(metadataJson, null, 2), 'utf8');
     console.log(`Version synchronized in metadata.json to: ${updatedVersion}`);
-  } else {
-    console.log('No changes in version for metadata.json.');
   }
 }
 
@@ -132,14 +130,24 @@ if (devices.length === 0) process.exit(0);
 
 // Execute commands for each filtered device
 for (let i in devices) {
+        
+    console.log(`Building ${devices[i]} ...`);
     let command = `npm --prefix ../devices/${devices[i]} run rebuild`;
-    console.log(command);
+    //console.log(command);
     execSync(command);
 
     // Update version in package.json and metadata.json if versionOrTypeParam is provided
     updateVersionAndSyncMetadata(`../devices/${devices[i]}`, versionOrTypeParam);
 
-    let command2 = `echo exports.driver=driver >> ../devices/${devices[i]}/main.js`;
-    console.log(command2);
-    execSync(command2);
+   // Add driver exports that is executed "conditionnaly" if current JS environment allows it
+    let conditional_exports = `if (typeof exports !== "undefined" && typeof module !== "undefined" && module.exports) { exports.driver = driver; }`;
+    filePath = `../devices/${devices[i]}/main.js`;
+
+    try {
+      fs.appendFileSync(filePath, conditional_exports, "utf8");
+      //console.log(`Successfully appended conditional exports to ${filePath}`);
+    } catch (err) {
+      console.error(`Error appending conditional exports : ${err.message}`);
+    }
+
 }

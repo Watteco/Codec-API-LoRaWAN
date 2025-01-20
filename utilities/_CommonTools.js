@@ -41,8 +41,30 @@ const getDevices = (pattern = null) => {
     };
 };
 
+  function updateJSON_name_description(filePath, sensorName, descriptionTemplate = "Driver for ${sensorName} sensor") {
+    const description = descriptionTemplate.replace("${sensorName}", sensorName);
+
+    try {
+        // Read and parse the JSON file
+        const fileContent = fs.readFileSync(filePath, "utf8");
+        const jsonData = JSON.parse(fileContent);
+
+        // Update name and description
+        jsonData.name = sensorName;
+        jsonData.description = description;
+
+        // Write the updated JSON back to the file
+        fs.writeFileSync(filePath, JSON.stringify(jsonData, null, 2), "utf8");
+
+        //console.log(`File updated successfully for sensor: ${sensorName}`);
+    } catch (err) {
+        console.error(`Error updating the JSON file: ${err.message}`);
+    }
+  }
+
 
 // Export the function as a module
 module.exports = { 
-    getDevices 
+    getDevices,
+    updateJSON_name_description
 };
