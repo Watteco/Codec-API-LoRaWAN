@@ -52,7 +52,7 @@ function syncMetadataToPackage(directoryPath) {
 
   // Synchronize the version in package.json if necessary
   if (packageJson.version !== currentVersion) {
-    packageJson.version = updatedVersion;
+    packageJson.version = currentVersion;
     fs1.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2), 'utf8');
     console.log(`Version synchronized in package.json to: ${currentVersion}`);
   }
