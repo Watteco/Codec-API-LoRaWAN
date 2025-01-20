@@ -18,7 +18,7 @@
  *  - Without a regex pattern, all devices in the list are processed.
  * 
  * Uasage example: 
- *   Launch from utilities directory: node .\watteco_deployement.js "atm'o" 
+ *   Launch from utilities directory: node .\watteco_deployment.js "atm'o" 
  * 
  */
 

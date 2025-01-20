@@ -19,7 +19,7 @@
  *  - Without a regex pattern, all devices in the list are processed.
  * 
  * Uasage example: 
- *   Launch from utilities directory: node .\actility_deployement.js .. ..\..\_ForkActility\device-catalog\ "atm'o" 
+ *   Launch from utilities directory: node .\actility_deployment.js .. ..\..\_ForkActility\device-catalog\ "atm'o" 
  * 
  */
 

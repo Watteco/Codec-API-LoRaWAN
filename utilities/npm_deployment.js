@@ -3,10 +3,10 @@
  *
  * Usage:
  *  - Run without filter to process all devices:
- *      node npm_deployement.js 
+ *      node npm_deployment.js 
  *
  *  - Run with a filter to process specific devices (use a regex pattern):
- *      node npm_deployement.js <watteco_path> ["flash'o|intens'o|vaqa'o"]
+ *      node npm_deployment.js <watteco_path> ["flash'o|intens'o|vaqa'o"]
  *
  * Parameters:
  *  - watteco_path: Path to the Watteco directory. 
@@ -18,7 +18,7 @@
  *  - Without a regex pattern, all devices in the list are processed.
  * 
  * Uasage example: 
- *   Launch from utilities directory: node .\npm_deployement.js "atm'o" 
+ *   Launch from utilities directory: node .\npm_deployment.js "atm'o" 
  * 
  */
 
