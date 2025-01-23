@@ -109,20 +109,26 @@ async function copyAndDeployFiles(watteco_path, ttn_path, devices, ttn_devices) 
         // Copy device-specific files sequentially without creating intermediate variables
         
         console.log(`Processing ${device} ...`);
-    
+
+        let ttn_device =  ttn_devices[i];
+
+        // Make specific adaptation for some device name for ttn (TTN sensor names must be longer tha 3 chars)
+        // and in th case it make the same kind of name than "indoor-temperature" for "indoor-temperature-humidity"
+        if (ttn_device == "th") ttn_device = "indoor-temperature-humidity";
+
         // Create the effective codec js file from main.js of watteco
-        await fs.copyFile(`${watteco_path}/devices/${device}/main.js`, `${ttnDevicePath}/${ttn_devices[i]}.js`);
+        await fs.copyFile(`${watteco_path}/devices/${device}/main.js`, `${ttnDevicePath}/${ttn_device}.js`);
     
         // Create <device>.png from png file in the Watteco device
         let devicePurged = device.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
         let pngWattecoFilePath= `${watteco_path}/devices/${device}/watteco-${devicePurged}-sensor.png`;
-        await fs.copyFile(pngWattecoFilePath, `${ttnDevicePath}/${ttn_devices[i]}.png`);
+        await fs.copyFile(pngWattecoFilePath, `${ttnDevicePath}/${ttn_device}.png`);
 
         // Create <device>-codec.yaml with examples from examples.json
-        createTTNCodecYAML(`${watteco_path}/devices/${device}/examples.json`, `${ttnDevicePath}`, `${ttn_devices[i]}`);
+        createTTNCodecYAML(`${watteco_path}/devices/${device}/examples.json`, `${ttnDevicePath}`, `${ttn_device}`);
         
         // Then ensure device is well defined in index.yaml
-        ensureDeviceInYaml(`${ttnDevicePath}/index.yaml`, ttn_devices[i]);
+        ensureDeviceInYaml(`${ttnDevicePath}/index.yaml`, ttn_device);
 
 
       } catch (err) {
