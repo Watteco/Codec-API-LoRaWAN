@@ -21,7 +21,7 @@ const fs = require('fs');
 tools=require("./_CommonTools.js");
 
 // Get devices to be processed
-const { devices, actility_devices } = tools.getDevices(process.argv[2]);
+const { devices, actility_devices, ttn_devices} = tools.getDevices(process.argv[2]);
 if (devices.length === 0) process.exit(0); 
 
 // Copy files for each filtered device

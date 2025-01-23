@@ -125,7 +125,7 @@ for (let i = 0; i < args.length; i++) {
 }
 
 // Get devices to be processed
-const { devices, actility_devices } = tools.getDevices(filter);
+const { devices, actility_devices, ttn_devices} = tools.getDevices(filter);
 if (devices.length === 0) process.exit(0); 
 
 // Execute commands for each filtered device

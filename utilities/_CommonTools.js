@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-
 /**
  * Function to get devices and actility devices from '../devices' directory " with optional filtering
  * @param {string} [pattern] - Optional regex pattern to filter devices.
@@ -21,23 +20,30 @@ const getDevices = (pattern = null) => {
             : device.replace(/_/g, '-').toLowerCase()
     );
 
-    // If a filter pattern is provided, filter devices and actility_devices
+    const ttn_devices = devices.map(device => 
+        device.replace(/_/g, '-').replace(/'/g, '').toLowerCase()
+    );
+
+    // If a filter pattern is provided, filter devices and actility_devices and ttn_devices
     const regex = pattern ? new RegExp(pattern) : null;
     const filteredDevices = regex ? devices.filter(device => regex.test(device)) : devices;
     const filteredActilityDevices = regex 
         ? actility_devices.filter((_, index) => regex.test(devices[index])) 
         : actility_devices;
+    const filteredTTNDevices = regex 
+        ? ttn_devices.filter((_, index) => regex.test(devices[index])) 
+        : ttn_devices;
 
     // If a filter pattern is provided, filter devices and actility_devices
     if (filteredDevices.length === 0) { 
         console.log(`No devices match the provided directory (${directory}) or filter (${pattern}).`);
-
     };
 
     // Return the filtered devices, actility devices, and the count
     return {
         devices: filteredDevices,
-        actility_devices: filteredActilityDevices
+        actility_devices: filteredActilityDevices,
+        ttn_devices: filteredTTNDevices
     };
 };
 
@@ -61,7 +67,6 @@ const getDevices = (pattern = null) => {
         console.error(`Error updating the JSON file: ${err.message}`);
     }
   }
-
 
 // Export the function as a module
 module.exports = { 

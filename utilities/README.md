@@ -47,11 +47,16 @@ S'il faut modifier un codec (création, correctif, amélioration,...), la marche
 ```
 
 - Déployer pour TTN *(sur un fork du référentiel TTN, et suivi d'un pull request pour TTN)*:
-  
-  *Note: En cas de création du codec pour un nouveau capteur on créé/copie sa structure (watteco/[device]/*.*) à parir d'un modèle équivalent*
-```bash
-  node ttn_deployment.js .. <ttn-fork-path> "vaqa.*"
-```
+  ```bash
+   node ttn_deployment.js .. <ttn-fork-path> "vaqa.*"
+  ```
+  *Notes:*
+  - L'utilitaire de déploiement ne fait QUE la mise à jour des fichiers `device.js` et `*.png` dans le fork TTN
+  - En cas de création du codec pour un nouveau capteur on créé/copie sa structure (watteco/[device]/*.*) à parir d'un modèle équivalent puis on adapte tous les fichiers yaml*
+  - La ligne suivante créée les YAML àpartir des JSON examplescela peut aider pour l'intégration d'example dans les fichier device-codec.yaml de TTN :
+  ```bash
+    for dir in ../devices/*/; do   (echo $dir; cd "$dir" && node ../../exampleJSONtoYAML.js); done
+  ```
 
 **ATTENTION:** 
 - Avant d'exploiter les commandes de déploiements décrites ci-avant, il faut créer ou maintenir "manuellement" différents fichiers "descriptifs" des modèles de capteur ou Driver en conformité avec les modèles ou driver dèjà existants dans les référentiels cible TTN et actility.
@@ -192,6 +197,9 @@ Un ou plusieurs device(s) peuvent être déployés (sans option c'est tous).
     where
     <devices_filter>: Regular expression like "vaqao*" or "flash'o|intens'o|vaqa'o" or "Vaqao*|flash'o"
 ```
+
+**NOTA: **
+Une liste d'équivalences `ttn_devices` est définie par la fonction `getDevices()` du fichier `_CommonTools.js`. Elle est imposée par le changement de nom que requiert TTN sur sur les noms de produits. 
 
 ### install dependencies
 

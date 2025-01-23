@@ -76,7 +76,7 @@ async function main() {
     console.log("Sensor filter:", sensorFilter);
 
     // Get devices to be processed
-    const { devices, actility_devices } = tools.getDevices(sensorFilter);
+    const { devices, actility_devices, ttn_devices} = tools.getDevices(sensorFilter);
     if (devices.length === 0) process.exit(0);
 
     // Start the copy and deployment process
