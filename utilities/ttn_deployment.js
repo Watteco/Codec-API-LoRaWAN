@@ -114,7 +114,7 @@ async function copyAndDeployFiles(watteco_path, ttn_path, devices, ttn_devices) 
 
         // Make specific adaptation for some device name for ttn (TTN sensor names must be longer tha 3 chars)
         // and in th case it make the same kind of name than "indoor-temperature" for "indoor-temperature-humidity"
-        if (ttn_device == "th") ttn_device = "indoor-temperature-humidity";
+        if (ttn_device === "th") ttn_device = "indoor-temperature-humidity";
 
         // Create the effective codec js file from main.js of watteco
         await fs.copyFile(`${watteco_path}/devices/${device}/main.js`, `${ttnDevicePath}/${ttn_device}.js`);
@@ -128,7 +128,14 @@ async function copyAndDeployFiles(watteco_path, ttn_path, devices, ttn_devices) 
         createTTNCodecYAML(`${watteco_path}/devices/${device}/examples.json`, `${ttnDevicePath}`, `${ttn_device}`);
         
         // Then ensure device is well defined in index.yaml
-        ensureDeviceInYaml(`${ttnDevicePath}/index.yaml`, ttn_device);
+        
+        // Make specific adaptation for some device name for ttn devices that are multiplied in TTN
+        if (ttn_device === "modbus") {
+          ensureDeviceInYaml(`${ttnDevicePath}/index.yaml`, "modbus-class-a");
+          ensureDeviceInYaml(`${ttnDevicePath}/index.yaml`, "modbus-class-c");
+        } else {
+          ensureDeviceInYaml(`${ttnDevicePath}/index.yaml`, ttn_device);
+        }
 
 
       } catch (err) {
