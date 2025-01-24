@@ -2,5 +2,5 @@ node_modules/
 test/
 coverage/
 specification/
-move'o_lt.js
+move'o_lite.js
 driver-examples.spec.js

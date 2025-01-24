@@ -2,5 +2,5 @@ node_modules/
 test/
 coverage/
 specification/
-remote_temperature.js
+temp'o_remote_1_probe.js
 driver-examples.spec.js
