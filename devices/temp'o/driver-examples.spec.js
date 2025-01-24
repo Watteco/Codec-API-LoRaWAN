@@ -1,5 +1,5 @@
 let examples = require("./examples.json");
-let driver = require("./clim'o.js");
+let driver = require("./temp'o.js");
 /*..............
 Test suites
 ..............*/

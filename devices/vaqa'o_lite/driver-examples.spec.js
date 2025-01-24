@@ -1,5 +1,5 @@
 let examples = require("./examples.json");
-let driver = require("./vaqa'o_lt.js");
+let driver = require("./vaqa'o_lite.js");
 /*..............
 Test suites
 ..............*/

@@ -1,5 +1,5 @@
 let examples = require("./examples.json");
-let driver = require("./move'o_lt.js");
+let driver = require("./move'o_lite.js");
 /*..............
 Test suites
 ..............*/

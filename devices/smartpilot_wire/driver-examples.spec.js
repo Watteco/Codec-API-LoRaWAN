@@ -1,5 +1,5 @@
 let examples = require("./examples.json");
-let driver = require("./pilot_wire.js");
+let driver = require("./smartpilot_wire.js");
 /*..............
 Test suites
 ..............*/

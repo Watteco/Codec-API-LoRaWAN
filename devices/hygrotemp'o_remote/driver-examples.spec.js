@@ -1,5 +1,5 @@
 let examples = require("./examples.json");
-let driver = require("./hygrotemp'o.js");
+let driver = require("./hygrotemp'o_remote.js");
 /*..............
 Test suites
 ..............*/
