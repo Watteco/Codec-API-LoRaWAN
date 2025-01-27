@@ -1,0 +1,8 @@
+[
+	{ "cid": "0x0000", "variables": ["kernel", "manufacturer", "model", "date", "position", "application_name"] },
+	{ "cid": "0x0050", "variables": ["main_or_external_voltage"] },
+	{ "cid": "0x8004", "variables": ["message_type", "nb_retry", "automatic_association", "data_rate", "ABP_dev_address", "OTA_app_EUI"] },
+	{ "cid": "0x0006", "variables": ["output"] },
+	{ "cid": "0x0052", "variables": ["active_energy", "reactive_energy", "nb_samples", "active_power", "reactive_power"] },
+	{ "cid": "0x8052", "variables": ["frequency", "frequency_min", "frequency_max", "Vrms", "Vrms_min", "Vrms_max", "Vpeak", "Vpeak_min", "Vpeak_max", "over_voltage", "sag_voltage"] }
+]

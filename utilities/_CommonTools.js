@@ -68,8 +68,99 @@ const getDevices = (pattern = null) => {
     }
   }
 
+ /**
+ * Function to generate a Markdown file listing all devices and their clusters with variables.
+ *
+ * Reads cluster definitions from a shared Clusters.json file in the parent directory,
+ * and device-specific data (package.json and ClustersVariables.json) from subdirectories.
+ *
+ * Devices are sorted alphabetically by their directory names.
+ *
+ * @param {string} baseDirectory - Path to the directory containing all device subdirectories.
+ * @param {string} outputFile - Path to the resulting Markdown file.
+ */
+function generateDeviceDiverInfoMarkdown(baseDirectory, outputFile) {
+    try {
+        // Define the path for the shared Clusters.json file
+        const clustersFile = path.join(baseDirectory, "..", "Clusters.json");
+        const clusters = JSON.parse(fs.readFileSync(clustersFile, 'utf8')).clusters;
+
+        const priorityClusters = ["0x0000", "0x0050", "0x8004"];
+
+        // Get all subdirectories (device directories) sorted alphabetically
+        const deviceDirectories = fs.readdirSync(baseDirectory, { withFileTypes: true })
+            .filter(dirent => dirent.isDirectory() && dirent.name !== "..")
+            .map(dirent => dirent.name)
+            .sort();
+
+        let markdown = "## Available WATTECO LoRaWAN TS013 compliant decoders:\n\n";
+
+        // Iterate over each device directory
+        for (const deviceDir of deviceDirectories) {
+            const devicePath = path.join(baseDirectory, deviceDir);
+            try {
+
+                // Define paths for device-specific files
+                const variablesFile = path.join(devicePath, "ClustersVariables.json");
+                const packageFile = path.join(devicePath, "package.json");
+
+                // Check if required files exist
+                if (!fs.existsSync(variablesFile) || !fs.existsSync(packageFile)) {
+                    console.warn(`Skipping device directory '${deviceDir}' due to missing files.`);
+                    continue;
+                }
+
+                // Load device-specific data
+                const variables = JSON.parse(fs.readFileSync(variablesFile, 'utf8'));
+                const packageData = JSON.parse(fs.readFileSync(packageFile, 'utf8'));
+
+                const deviceName = deviceDir.toUpperCase();
+                const npmName = packageData.name || "Unknown Device";
+                const deviceVersion = packageData.version ? `${packageData.version}` : "?.?.?";
+
+                // Filter and prioritize clusters
+                const filteredClusters = clusters.filter(cluster =>
+                    variables.some(variable => variable.cid === cluster.cid)
+                );
+
+                const sortedClusters = filteredClusters.sort((a, b) => {
+                    const aPriority = priorityClusters.includes(a.cid) ? 0 : 1;
+                    const bPriority = priorityClusters.includes(b.cid) ? 0 : 1;
+
+                    if (aPriority !== bPriority) {
+                        return aPriority - bPriority;
+                    }
+
+                    return a.name.localeCompare(b.name);
+                });
+
+                // Generate Markdown for the device [Click here to visit OpenAI](https://www.openai.com)
+                markdown += `<details>\n<summary>${deviceName} [${deviceVersion}]</summary>\n\n`;
+                markdown += `  [NPM: ${npmName}](https://www.npmjs.com/package/${npmName})\n`;
+
+                sortedClusters.forEach(cluster => {
+                    const clusterVariables = variables.find(v => v.cid === cluster.cid)?.variables || [];
+                    const variablesList = clusterVariables.length > 0 ? clusterVariables.join(', ') : "Aucune variable disponible";
+                    markdown += `- **${cluster.name} (CID: ${cluster.cid})** : ${variablesList}\n`;
+                });
+
+                markdown += "\n</details>\n\n";
+            } catch (error) {
+                console.error(`Error generating MD for ${devicePath} :`, error);
+            }
+        }
+
+        // Write the final Markdown to the output file
+        fs.writeFileSync(outputFile, markdown, 'utf8');
+        console.log(`Markdown file successfully generated: ${outputFile}`);
+    } catch (error) {
+        console.error("An error occurred while generating the Markdown:", error);
+    }
+}
+
 // Export the function as a module
 module.exports = { 
     getDevices,
-    updateJSON_name_description
+    updateJSON_name_description,
+    generateDeviceDiverInfoMarkdown
 };

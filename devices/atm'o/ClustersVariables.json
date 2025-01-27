@@ -1,0 +1,9 @@
+[
+	{ "cid": "0x0000", "variables": ["kernel", "manufacturer", "model", "date", "position", "application_name"] },
+	{ "cid": "0x0050", "variables": ["disposable_battery_voltage"] },
+	{ "cid": "0x8004", "variables": ["message_type", "nb_retry", "automatic_association", "data_rate", "ABP_dev_address", "OTA_app_EUI"] },
+	{ "cid": "0x000F", "variables": ["index_1", "index_2", "pin_state_1", "pin_state_2", "polarity", "edge_selection", "debounce_period", "poll_period", "force_notify"] },
+	{ "cid": "0x0402", "variables": ["temperature"] },
+	{ "cid": "0x0403", "variables": ["pressure"] },
+	{ "cid": "0x0405", "variables": ["humidity"] }
+]

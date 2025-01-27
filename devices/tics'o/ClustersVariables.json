@@ -1,0 +1,11 @@
+[
+	{ "cid": "0x0000", "variables": ["kernel", "manufacturer", "model", "date", "position", "application_name"] },
+	{ "cid": "0x0050", "variables": ["main_or_external_voltage", "tic_harvesting_voltage"] },
+	{ "cid": "0x8004", "variables": ["message_type", "nb_retry", "automatic_association", "data_rate", "ABP_dev_address", "OTA_app_EUI"] },
+	{ "cid": "0x0052", "variables": ["active_energy", "reactive_energy", "nb_samples", "active_power", "reactive_power"] },
+	{ "cid": "0x0053", "variables": ["TIC-ICE_fields (https://support.watteco.com/wp-content/uploads/2020/04/TIC_Application_Layer_Description_1.2.pdf)"] },
+	{ "cid": "0x0054", "variables": ["TIC-CBE_fields (https://support.watteco.com/wp-content/uploads/2020/04/TIC_Application_Layer_Description_1.2.pdf)"] },
+	{ "cid": "0x0055", "variables": ["TIC-CJE_fields (https://support.watteco.com/wp-content/uploads/2020/04/TIC_Application_Layer_Description_1.2.pdf)"] },
+	{ "cid": "0x0056", "variables": ["TIC-STD_fields (https://support.watteco.com/wp-content/uploads/2020/04/TIC_Application_Layer_Description_1.2.pdf)"] },
+	{ "cid": "0x0057", "variables": ["TIC-PMEPMI_fields (https://support.watteco.com/wp-content/uploads/2020/04/TIC_Application_Layer_Description_1.2.pdf)"] }
+]

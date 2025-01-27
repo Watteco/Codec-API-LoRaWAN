@@ -164,7 +164,7 @@ Son execution doit être faite dans le dossier `utilities`, car le chemin écrit
 ### watteco deployment
 
 Le fichier `watteco_deployment.js` permet de copier différents fichiers de devices à distrib pour un ou plusieurs device(s) (sans option c'est tous)  
-On peut rajouter un autre fichier en rajoutant une autre ligne :  
+Cet utilitaire va aussi ajouter le fichier de synthèse de tous les codec disponibles: DRIVERS.md. Ce fichier est construit à partir du fichier Clusters.json et de tous les fichiers <devices>/*/ClustersVariables.json
 
 ```bash
     node watteco_deployment.js [<devices_filter>]
@@ -203,7 +203,10 @@ Une liste d'équivalences `ttn_devices` est définie par la fonction `getDevices
 
 ### install dependencies
 
-Permet d'installer *webpack*, *webpack-cli* et *jest* pour chaque capteur sans le faire à la main :
+Permet d'installer *webpack*, *webpack-cli*, *jest*, *babel* et *js-yaml* nécessaires au développement et déploiement des codecs watteco :
+
+L'installation des nodes-modules se fait au niveau du répertoire principal afin d'éviter la duplication de tous les modules dans les sous-repertoires Devices/*.
+Les packages.json individuels des capteurs, ne nécessitent qu'une sous-partie de ces modules (*webpack*, *webpack-cli*, *jest*).
 
 ```bash
     node install_dependencies.js 

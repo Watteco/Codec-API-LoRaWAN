@@ -1,0 +1,6 @@
+[
+	{ "cid": "0x0000", "variables": ["kernel", "manufacturer", "model", "date", "position", "application_name"] },
+	{ "cid": "0x0050", "variables": ["disposable_battery_voltage"] },
+	{ "cid": "0x8004", "variables": ["message_type", "nb_retry", "automatic_association", "data_rate", "ABP_dev_address", "OTA_app_EUI"] },
+	{ "cid": "0x000F", "variables": ["index", "violation_detection", "open", "polarity", "edge_selection", "debounce_period", "poll_period", "force_notify"] }
+]

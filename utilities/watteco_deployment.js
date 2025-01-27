@@ -23,6 +23,7 @@
  */
 
 const fs = require("fs");
+const path = require("path");
 const tools = require("./_CommonTools.js");
 
 async function copyAndDeployFiles(watteco_path, distrib_path, devices) {
@@ -81,6 +82,9 @@ async function main() {
 
     // Start the copy and deployment process
     copyAndDeployFiles(watteco_path, distrib_path, devices);
+
+    // Generate the DRIVERS.md file in distrib directory
+    tools.generateDeviceDiverInfoMarkdown(path.join("..","devices"),path.join("..","distrib", "DRIVERS.md") );
   } catch (err) {
     console.error('Error in script execution:', err.message);
     process.exit(1); // Exit the script immediately on error
