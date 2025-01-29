@@ -563,7 +563,11 @@ function parseHexString(str) {
     return result;
 }
 function zeroPad(num, places) {
-    return( String(num).padStart(places, '0') );
+    let str = String(num);
+    while (str.length < places) {
+        str = '0' + str;
+    }
+    return str;
 }
 function TIC_Decode(clustID,AttributeID,BytesAfterSize)
 {
