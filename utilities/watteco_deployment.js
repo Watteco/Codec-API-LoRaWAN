@@ -43,7 +43,7 @@ async function copyAndDeployFiles(watteco_path, distrib_path, devices) {
         
         console.log(`Processing ${device} ...`);
     
-        fs.copyFileSync(`${watteco_path}/devices/${device}/main.js`, `${distribDevicePath}/main.js`);
+        fs.copyFileSync(`${watteco_path}/devices/${device}/main.es5.js`, `${distribDevicePath}/main.js`);
     
         fs.copyFileSync(`${watteco_path}/devices/${device}/examples.json`, `${distribDevicePath}/examples.json`);
     
@@ -84,7 +84,7 @@ async function main() {
     copyAndDeployFiles(watteco_path, distrib_path, devices);
 
     // Generate the DRIVERS.md file in distrib directory
-    tools.generateDeviceDiverInfoMarkdown(path.join("..","devices"),path.join("..","distrib", "DRIVERS.md") );
+    tools.generateDeviceDriverInfoMarkdown(path.join("..","devices"),path.join("..","distrib", "DRIVERS.md") );
   } catch (err) {
     console.error('Error in script execution:', err.message);
     process.exit(1); // Exit the script immediately on error

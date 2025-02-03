@@ -1,5 +1,163 @@
 const fs = require('fs');
 const path = require('path');
+const webpack = require("webpack");
+const babel = require("@babel/core");
+const terser = require("terser"); // Import Terser for final minification
+const deasync = require("deasync"); // To force sync execution of Webpack
+
+/**
+ * Build and transpile a JavaScript project using Webpack and Babel synchronously.
+ *
+ * This function performs the following steps:
+ * 1. **Runs Webpack synchronously** using Webpack’s compiler API.
+ * 2. **Reads the generated Webpack output filename** from `webpack.config.js`.
+ * 3. **Uses Babel** to transpile the Webpack output to ES5 (`[output].es5.js`).
+ * 4. **Runs Webpack synchronously again** to re-bundle the ES5 file.
+ * 5. **Ensures all operations are fully synchronous (no async/await, no subprocesses).**
+ * 6. **Outputs two final bundled files directly inside the project directory**:
+ *    - `[webpack_output].js`  → Original Webpack bundle
+ *    - `[webpack_output].es5.js` → Transpiled & re-bundled ES5 file
+ *
+ * @param {string} projectDir - The absolute path to the project directory
+ * containing `webpack.config.js`, `package.json`, and source files.
+ *
+ * @throws {Error} If Webpack, Babel, or file operations fail.
+ *
+ * @example
+ * buildAndTranspile("/path/to/project");
+ */
+function buildAndTranspile(projectDir) {
+
+    // WEBPACK original sources ==> main.js
+    //-------------------------------------
+    const webpackConfigPath = path.join(projectDir, "webpack.config.js");
+
+    if (!fs.existsSync(webpackConfigPath)) {
+        throw new Error(`Error: webpack.config.js not found in ${projectDir}`);
+    }
+
+    const webpackConfig = require(webpackConfigPath);
+
+    // Ensure output.path is absolute
+    if (!path.isAbsolute(webpackConfig.output.path)) {
+        webpackConfig.output.path = path.resolve(projectDir, webpackConfig.output.path);
+    }
+
+    // Ensure entry is absolute
+    if (!path.isAbsolute(webpackConfig.entry)) {
+        webpackConfig.entry = path.resolve(projectDir, webpackConfig.entry);
+    }
+
+    const outputFilename = webpackConfig.output?.filename;
+
+    if (!outputFilename) {
+        throw new Error("Error: Webpack output filename not found in config.");
+    }
+
+    const outputPath = path.join(webpackConfig.output.path, outputFilename);
+    const es5Filename = outputFilename.replace(/\.js$/, ".es5.js");
+    const es5OutputPath = path.resolve(webpackConfig.output.path, es5Filename);
+
+    console.log("Running Webpack synchronously for original JS file...");
+
+    // Run Webpack synchronously using deasync
+    const compiler = webpack(webpackConfig);
+    let isDone = false;
+    let webpackError = null;
+
+    compiler.run((err, stats) => {
+        if (err || stats.hasErrors()) {
+            webpackError = err || new Error(stats.toString({ errors: true }));
+        }
+        isDone = true;
+    });
+
+    deasync.loopWhile(() => !isDone);
+
+    if (webpackError) {
+        throw new Error(`Webpack failed: ${webpackError.message}`);
+    }
+
+    console.log(`Webpack completed successfully: ${outputPath}`);
+
+    if (!fs.existsSync(outputPath)) {
+        throw new Error(`Error: Webpack output file not found: ${outputPath}`);
+    }
+    
+    // ADD conditionnal driver export  ==> main.js
+    //--------------------------------------------
+    // Add driver exports that is executed "conditionnaly" if current JS environment allows it
+    let conditional_exports = `if (typeof exports !== "undefined" && typeof module !== "undefined" && module.exports) { exports.driver = driver; }`;
+    //let conditional_exports   = `if (typeof module !== "undefined" && module.exports) { module.exports = { driver: { watteco_decodeUplink: watteco_decodeUplink  } }; }`;
+    try {
+        fs.appendFileSync(outputPath, conditional_exports, "utf8");
+        // console.log(`Successfully appended conditional exports to ${filePath}`);
+    } catch (err) {
+        throw new Error(`Error appending conditional exports to ${outputPath}: ${err.message}`);
+    }
+
+    // TRANSPILE (babel) to ES5 main.js to main.es5.js
+    //------------------------------------------------
+    const code = fs.readFileSync(outputPath, "utf8");
+
+    console.log("Transpiling to ES5 synchronously...");
+
+    const result = babel.transformSync(code, {
+        //presets: [["@babel/preset-env", { targets: "ie 11",useBuiltIns: "usage",corejs: 3}]],
+        presets: [["@babel/preset-env", { targets: "ie 11"}]],
+        plugins: ["@babel/plugin-transform-object-assign"],
+    });
+
+    if (!result || !result.code) {
+        throw new Error("Babel transpilation failed.");
+    }
+
+    fs.writeFileSync(es5OutputPath, result.code, "utf8");
+
+    console.log(`Transpiled to ES5: ${es5OutputPath}`);
+
+  
+    // TERSER Minify main.es5.js
+    //---------------------------
+    console.log("Running Terser minification for ES5 file...");
+
+    // Read the file safely
+    if (!fs.existsSync(es5OutputPath)) {
+        throw new Error(`Error: File not found - ${es5OutputPath}`);
+    }
+
+    const es5Code = fs.readFileSync(es5OutputPath, "utf8");
+
+    // Ensure file has content
+    if (!es5Code.trim()) {
+        throw new Error(`Error: File ${es5OutputPath} is empty, cannot minify.`);
+    }
+
+    // Minify in a synchronous way
+    let minifiedResult;
+    isDone = false;
+
+    terser.minify(es5Code, { compress: true, mangle: true }).then(result => {
+        minifiedResult = result;
+        isDone = true;
+    }).catch(error => {
+        throw new Error(`Terser minification failed: ${error}`);
+    });
+
+    deasync.loopWhile(() => !isDone);
+
+    // Ensure minified output is valid
+    if (!minifiedResult || !minifiedResult.code) {
+        throw new Error(`Error: Terser returned empty minified code.`);
+    }
+
+    // Write back the minified code synchronously
+    fs.writeFileSync(es5OutputPath, minifiedResult.code, "utf8");
+
+    console.log(`Final bundled ES5 file: ${es5OutputPath}`);
+
+}
+
 /**
  * Function to get devices and actility devices from '../devices' directory " with optional filtering
  * @param {string} [pattern] - Optional regex pattern to filter devices.
@@ -79,7 +237,7 @@ const getDevices = (pattern = null) => {
  * @param {string} baseDirectory - Path to the directory containing all device subdirectories.
  * @param {string} outputFile - Path to the resulting Markdown file.
  */
-function generateDeviceDiverInfoMarkdown(baseDirectory, outputFile) {
+function generateDeviceDriverInfoMarkdown(baseDirectory, outputFile) {
     try {
         // Define the path for the shared Clusters.json file
         const clustersFile = path.join(baseDirectory, "..", "Clusters.json");
@@ -94,6 +252,7 @@ function generateDeviceDiverInfoMarkdown(baseDirectory, outputFile) {
             .sort();
 
         let markdown = "## Available WATTECO LoRaWAN TS013 compliant decoders:\n\n";
+        markdown += "*(This `markdown` script is automatically generated. Please do not modify it.)*"
 
         // Iterate over each device directory
         for (const deviceDir of deviceDirectories) {
@@ -160,7 +319,8 @@ function generateDeviceDiverInfoMarkdown(baseDirectory, outputFile) {
 
 // Export the function as a module
 module.exports = { 
+    buildAndTranspile,
     getDevices,
     updateJSON_name_description,
-    generateDeviceDiverInfoMarkdown
+    generateDeviceDriverInfoMarkdown
 };

@@ -1,6 +1,6 @@
 {
   "name": "hygrotemp'o_remote v4",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "main": "main.js",
   "description": "Driver for Hygrotemp'o_remote v4 sensor",
   "codecId": "000F",

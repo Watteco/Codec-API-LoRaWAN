@@ -28,22 +28,25 @@ The `output` without errors is like this:
 
 ```javascript
     output:{
-        data:[{
+        data:{ "samples": [{
             "variable": "temperature",
             "value": 29.53,
             "date": "2023-07-19T07:51:31.598957793Z"
-        }]
+        }]},
+        "temperature": 29.53
         warning:[]
     }
 ```
 
-`data` is a formatted objects list ; each object contains the fields `variable`,`value`,`date`.  
+`data.samples` is a formatted objects list ; each object contains the fields `variable`,`value`,`date`.  
 
 - `variable` contains a string of the name. [(see possible *variables* from our drivers list)](https://github.com/Watteco/Codec-API-LoRaWAN/tree/main/distrib#drivers).
 - `value` contains the data value in its corresponding format (uint, int, float, ...).   
 - `date` is a string in the ISO 8601 date format. It is the input date for standard report or at last input date for batch report.  
 
 `warning` contains the alarms you configured on the reports.  
+
+Last sample of each variable is also extracted in a different format directly under data. ( "temperature": 29.53)
 
 The `output` with errors is like this:  
 
@@ -413,11 +416,12 @@ La sortie est un objet `output` qui, si le traitement ne retourne pas d'erreur, 
 
 ```javascript
     output:{
-        data:[{
+        data: "samples" :{[{
             "variable": "temperature",
             "value": 29.53,
             "date": "2023-07-19T07:51:31.598957793Z"
-        }]
+        }]},
+        "temperature": 29.53
         warning:[]
     }
 ```
@@ -429,6 +433,8 @@ La sortie est un objet `output` qui, si le traitement ne retourne pas d'erreur, 
 `date` contient la date en string au format date ISO 8601. C'est la date d'entrée pour un standard, pour un batch c'est la date de mesure qui peut être soit la date d'envoi de la trame (donc la date d'entrée), soit une date antérieure à la date d'envoi.  
 
 `warning` est une liste qui est vide pour la majorité des payload traitables, elle ne se remplit qu'avec les alarmes configurables sur le cluster associé, sous forme de messages string formatés.  
+
+La version actuel du driver extrait le dernier échantillon de la liste des échantillons. ("temperature": 29.53)
 
 Si le traitement retourne une erreur, `output` a la forme :  
 
@@ -449,9 +455,12 @@ Pour télécharger le capteur via npm, on fait :
     npm install <npm-package>
 ```
 
-Nos packages actuels sont :
+Nos packages actuels peuvent être listés :
 
-Voir tableau [ici](#npm) ou [la liste sur le site npm](https://www.npmjs.com/~watteco)
+- Depuis le dépôt actuel de Watteco [drivers du répertoire 'distrib'](https://github.com/Watteco/Codec-API-LoRaWAN/tree/main/distrib#drivers)
+- Depuis [la liste des drivers publiés sur le site npm](https://www.npmjs.com/~watteco)
+
+
 
 ## Utilisation de l'API codec Watteco avec NodeRED (>`1.3.0`)
 [→ English](#using-the-watteco-codec-api-with-nodered-130)

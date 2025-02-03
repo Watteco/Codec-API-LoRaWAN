@@ -132,22 +132,27 @@ if (devices.length === 0) process.exit(0);
 for (let i in devices) {
         
     console.log(`Building ${devices[i]} ...`);
-    let command = `npm --prefix ../devices/${devices[i]} run rebuild`;
-    //console.log(command);
-    execSync(command);
+
+    // let command = `npm --prefix ../devices/${devices[i]} run rebuild`;
+    // //console.log(command);
+    // execSync(command);
+
+    // // ADD conditionnal driver export  ==> main.js
+    // //--------------------------------------------
+    // // Add driver exports that is executed "conditionnaly" if current JS environment allows it
+    // let conditional_exports = `if (typeof exports !== "undefined" && typeof module !== "undefined" && module.exports) { exports.driver = driver; }`;
+    // //let conditional_exports   = `if (typeof module !== "undefined" && module.exports) { module.exports = { driver: { watteco_decodeUplink: watteco_decodeUplink  } }; }`;
+    // try {
+    //     fs.appendFileSync(`../devices/${devices[i]}/main.js`, conditional_exports, "utf8");
+    //     // console.log(`Successfully appended conditional exports to ${filePath}`);
+    // } catch (err) {
+    //     throw new Error(`Error appending conditional exports to ../devices/${devices[i]}/main.js: ${err.message}`);
+    // }
+
+
+    tools.buildAndTranspile(`../devices/${devices[i]}`);
 
     // Update version in package.json and metadata.json if versionOrTypeParam is provided
     updateVersionAndSyncMetadata(`../devices/${devices[i]}`, versionOrTypeParam);
-
-   // Add driver exports that is executed "conditionnaly" if current JS environment allows it
-    let conditional_exports = `if (typeof exports !== "undefined" && typeof module !== "undefined" && module.exports) { exports.driver = driver; }`;
-    filePath = `../devices/${devices[i]}/main.js`;
-
-    try {
-      fs.appendFileSync(filePath, conditional_exports, "utf8");
-      //console.log(`Successfully appended conditional exports to ${filePath}`);
-    } catch (err) {
-      console.error(`Error appending conditional exports : ${err.message}`);
-    }
 
 }
