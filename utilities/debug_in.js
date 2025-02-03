@@ -24,4 +24,5 @@ let file = argv[0];
 let driver = require("../devices/"+file.toString()+"/"+file.toString()+".js");
 
 let output = driver.decodeUplink(input);
-console.log(output)
+//console.log(output);
+console.log(JSON.stringify(output, null, 2));

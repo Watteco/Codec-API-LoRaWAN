@@ -24,4 +24,4 @@ let file = argv[0];
 let main = require("../distrib/"+file.toString()+"/main.js");
 
 let output = main.driver.decodeUplink(input);
-console.log(output)
+console.log(JSON.stringify(output, null, 2));
