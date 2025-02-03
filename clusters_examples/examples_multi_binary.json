@@ -3,66 +3,75 @@
     "type": "uplink",
     "description": "uplink standard report containing 10 state values | payload:110A80050000190371",
     "input": {
-      "bytes": [
-        17, 10, 128,   5, 0,
-        0, 25,   3, 113
-      ],
+      "bytes": "110a80050000190371",
       "fPort": 125,
       "recvTime": "2023-07-19T07:51:25.508306410Z"
     },
     "output": {
-      "data": [
-        {
-          "variable": "pin_state_1",
-          "value": true,
-          "date": "2023-07-19T07:51:25.508306410Z"
-        },
-        {
-          "variable": "pin_state_2",
-          "value": false,
-          "date": "2023-07-19T07:51:25.508306410Z"
-        },
-        {
-          "variable": "pin_state_3",
-          "value": false,
-          "date": "2023-07-19T07:51:25.508306410Z"
-        },
-        {
-          "variable": "pin_state_4",
-          "value": false,
-          "date": "2023-07-19T07:51:25.508306410Z"
-        },
-        {
-          "variable": "pin_state_5",
-          "value": true,
-          "date": "2023-07-19T07:51:25.508306410Z"
-        },
-        {
-          "variable": "pin_state_6",
-          "value": true,
-          "date": "2023-07-19T07:51:25.508306410Z"
-        },
-        {
-          "variable": "pin_state_7",
-          "value": true,
-          "date": "2023-07-19T07:51:25.508306410Z"
-        },
-        {
-          "variable": "pin_state_8",
-          "value": false,
-          "date": "2023-07-19T07:51:25.508306410Z"
-        },
-        {
-          "variable": "pin_state_9",
-          "value": true,
-          "date": "2023-07-19T07:51:25.508306410Z"
-        },
-        {
-          "variable": "pin_state_10",
-          "value": true,
-          "date": "2023-07-19T07:51:25.508306410Z"
-        }
-      ],
+      "data": {
+        "samples": [
+          {
+            "variable": "pin_state_1",
+            "value": true,
+            "date": "2023-07-19T07:51:25.508306410Z"
+          },
+          {
+            "variable": "pin_state_2",
+            "value": false,
+            "date": "2023-07-19T07:51:25.508306410Z"
+          },
+          {
+            "variable": "pin_state_3",
+            "value": false,
+            "date": "2023-07-19T07:51:25.508306410Z"
+          },
+          {
+            "variable": "pin_state_4",
+            "value": false,
+            "date": "2023-07-19T07:51:25.508306410Z"
+          },
+          {
+            "variable": "pin_state_5",
+            "value": true,
+            "date": "2023-07-19T07:51:25.508306410Z"
+          },
+          {
+            "variable": "pin_state_6",
+            "value": true,
+            "date": "2023-07-19T07:51:25.508306410Z"
+          },
+          {
+            "variable": "pin_state_7",
+            "value": true,
+            "date": "2023-07-19T07:51:25.508306410Z"
+          },
+          {
+            "variable": "pin_state_8",
+            "value": false,
+            "date": "2023-07-19T07:51:25.508306410Z"
+          },
+          {
+            "variable": "pin_state_9",
+            "value": true,
+            "date": "2023-07-19T07:51:25.508306410Z"
+          },
+          {
+            "variable": "pin_state_10",
+            "value": true,
+            "date": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "pin_state_1": true,
+        "pin_state_2": false,
+        "pin_state_3": false,
+        "pin_state_4": false,
+        "pin_state_5": true,
+        "pin_state_6": true,
+        "pin_state_7": true,
+        "pin_state_8": false,
+        "pin_state_9": true,
+        "pin_state_10": true
+      },
       "warnings": []
     }
   }

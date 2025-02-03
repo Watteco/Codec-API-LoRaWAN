@@ -3,10 +3,7 @@
     "type": "uplink",
     "description": "uplink standard report containing cmdID 0x07 response for temperature cluster | payload:1107040200800000",
     "input": {
-      "bytes": [
-        17,   7, 4, 2,
-        0, 128, 0, 0
-      ],
+      "bytes": "1107040200800000",
       "fPort": 125,
       "recvTime": "2023-07-19T07:51:25.508306410Z"
     },
@@ -29,6 +26,5 @@
       },
       "warnings": []
     }
-
   }
 ]
