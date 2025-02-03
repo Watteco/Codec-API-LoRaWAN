@@ -73,13 +73,7 @@ function createTTNCodecYAML(JSONExamplesInputFile,ttnDevicePath,ttnDevice) {
             recvTime: example.input.recvTime,
           },
           output: {
-            data: Array.isArray(example.output.data)
-              ? { samples: example.output.data.map(item => ({
-                  variable: item.variable,
-                  value: item.value,
-                  date: item.date,
-                })) }
-              : example.output.data, // If not an array, just use the data as is
+            data: example.output.data, 
             warnings: example.output.warnings || [],
           },
         };
