@@ -1,6 +1,9 @@
 /**
  * Script to build distributed devices by optionally filtering them using a regex pattern.
  * the script also allow to update "version" field from package.json and keep "version" from metadata synchronised
+ * 
+ * Note: This script uses buidandTranspile function from _CommonTools.js. 
+ *       This function webpacks, transpiles to ES5 and mangle again, giving the final main.js file.
  *
  * Usage:
  *  - Run without filter and without version argument to process all devices:
@@ -14,9 +17,12 @@
  *      node rebuild_main.js --version "1.2.3"
  *      node rebuild_main.js "atm'o" --version major
  *
+ *  - Run with "." as filter to use the current directory name as the filter:
+ *      node rebuild_main.js .
+ *
  * Parameters:
  *  - -v or --version (optional): A version type or custom version (major, minor, patch, or x.y.z).
- *  - filter (optional): A regex pattern to match device names.
+ *  - filter (optional): A regex pattern to match device names. If "." is used, it will take the current directory name
  *
  * Behavior:
  *  - If a regex pattern is provided, only devices matching the pattern will be processed.
@@ -124,6 +130,10 @@ for (let i = 0; i < args.length; i++) {
     }
 }
 
+if (filter === '.') {
+  filter = path.basename(process.cwd());
+}
+
 // Get devices to be processed
 const { devices, actility_devices, ttn_devices} = tools.getDevices(filter);
 if (devices.length === 0) process.exit(0); 
@@ -132,27 +142,11 @@ if (devices.length === 0) process.exit(0);
 for (let i in devices) {
         
     console.log(`Building ${devices[i]} ...`);
-
-    // let command = `npm --prefix ../devices/${devices[i]} run rebuild`;
-    // //console.log(command);
-    // execSync(command);
-
-    // // ADD conditionnal driver export  ==> main.js
-    // //--------------------------------------------
-    // // Add driver exports that is executed "conditionnaly" if current JS environment allows it
-    // let conditional_exports = `if (typeof exports !== "undefined" && typeof module !== "undefined" && module.exports) { exports.driver = driver; }`;
-    // //let conditional_exports   = `if (typeof module !== "undefined" && module.exports) { module.exports = { driver: { watteco_decodeUplink: watteco_decodeUplink  } }; }`;
-    // try {
-    //     fs.appendFileSync(`../devices/${devices[i]}/main.js`, conditional_exports, "utf8");
-    //     // console.log(`Successfully appended conditional exports to ${filePath}`);
-    // } catch (err) {
-    //     throw new Error(`Error appending conditional exports to ../devices/${devices[i]}/main.js: ${err.message}`);
-    // }
-
-
-    tools.buildAndTranspile(`../devices/${devices[i]}`);
+    
+    let devicePath = path.join(__dirname, `../devices/${devices[i]}`)
+    tools.buildAndTranspile(devicePath);
 
     // Update version in package.json and metadata.json if versionOrTypeParam is provided
-    updateVersionAndSyncMetadata(`../devices/${devices[i]}`, versionOrTypeParam);
+    updateVersionAndSyncMetadata(devicePath, versionOrTypeParam);
 
 }

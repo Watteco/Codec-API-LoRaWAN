@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "test": "jest --collectCoverage",
-    "rebuild": "node ../../scripts/rebuild.js"
+    "rebuild": "node ../../utilities/rebuild_mains.js ."
   },
   "author": "",
   "license": "ISC",

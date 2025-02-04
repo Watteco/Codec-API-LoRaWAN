@@ -55,10 +55,14 @@ function buildAndTranspile(projectDir) {
     }
 
     const outputPath = path.join(webpackConfig.output.path, outputFilename);
-    const es5Filename = outputFilename.replace(/\.js$/, ".es5.js");
+
+    const es5Filename = outputFilename;
+    // Following would create a separate .e5.js file. Beware deployments should be adapted to use this new filename
+    //const es5Filename = outputFilename.replace(/\.js$/, ".es5.js");
+    
     const es5OutputPath = path.resolve(webpackConfig.output.path, es5Filename);
 
-    console.log("Running Webpack synchronously for original JS file...");
+    process.stdout.write("Webpacking... ");
 
     // Run Webpack synchronously using deasync
     const compiler = webpack(webpackConfig);
@@ -78,7 +82,7 @@ function buildAndTranspile(projectDir) {
         throw new Error(`Webpack failed: ${webpackError.message}`);
     }
 
-    console.log(`Webpack completed successfully: ${outputPath}`);
+    //console.log(`Webpack completed successfully: ${outputPath}`);
 
     if (!fs.existsSync(outputPath)) {
         throw new Error(`Error: Webpack output file not found: ${outputPath}`);
@@ -99,8 +103,8 @@ function buildAndTranspile(projectDir) {
     // TRANSPILE (babel) to ES5 main.js to main.es5.js
     //------------------------------------------------
     const code = fs.readFileSync(outputPath, "utf8");
-
-    console.log("Transpiling to ES5 synchronously...");
+    
+    process.stdout.write("Transpiling to ES5... ");
 
     const result = babel.transformSync(code, {
         //presets: [["@babel/preset-env", { targets: "ie 11",useBuiltIns: "usage",corejs: 3}]],
@@ -114,12 +118,12 @@ function buildAndTranspile(projectDir) {
 
     fs.writeFileSync(es5OutputPath, result.code, "utf8");
 
-    console.log(`Transpiled to ES5: ${es5OutputPath}`);
+    // console.log(`Transpiled to ES5: ${es5OutputPath}`);
 
   
     // TERSER Minify main.es5.js
     //---------------------------
-    console.log("Running Terser minification for ES5 file...");
+    process.stdout.write("Running Terser minification... ");
 
     // Read the file safely
     if (!fs.existsSync(es5OutputPath)) {
@@ -137,6 +141,7 @@ function buildAndTranspile(projectDir) {
     let minifiedResult;
     isDone = false;
 
+    // TODO: More compact mangling could be done ... (look at result still some plaintext functions that ar not needed in plaintext)
     terser.minify(es5Code, { compress: true, mangle: true }).then(result => {
         minifiedResult = result;
         isDone = true;
@@ -154,7 +159,8 @@ function buildAndTranspile(projectDir) {
     // Write back the minified code synchronously
     fs.writeFileSync(es5OutputPath, minifiedResult.code, "utf8");
 
-    console.log(`Final bundled ES5 file: ${es5OutputPath}`);
+    console.log("Done.");
+    console.log(`==> ${es5OutputPath}\n`);
 
 }
 
@@ -165,7 +171,7 @@ function buildAndTranspile(projectDir) {
  */
 const getDevices = (pattern = null) => {
     // Scanned directory for subdirectories. One per device.
-    let directory = "../devices";
+    let directory =  path.join(__dirname, "../devices");
 
     // Get all subdirectories inside the provided directory path
     const subdirectories = fs.readdirSync(directory).filter(file => fs.statSync(path.join(directory, file)).isDirectory());

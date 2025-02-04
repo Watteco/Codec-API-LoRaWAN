@@ -43,7 +43,7 @@ async function copyAndDeployFiles(watteco_path, distrib_path, devices) {
         
         console.log(`Processing ${device} ...`);
     
-        fs.copyFileSync(`${watteco_path}/devices/${device}/main.es5.js`, `${distribDevicePath}/main.js`);
+        fs.copyFileSync(`${watteco_path}/devices/${device}/main.js`, `${distribDevicePath}/main.js`);
     
         fs.copyFileSync(`${watteco_path}/devices/${device}/examples.json`, `${distribDevicePath}/examples.json`);
     
