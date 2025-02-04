@@ -88,42 +88,7 @@
             "date": "2023-07-19T07:51:25.508306410Z"
           },
           {
-            "variable": "modbus_EP9",
-            "value": false,
-            "date": "2023-07-19T07:51:25.508306410Z"
-          },
-          {
-            "variable": "modbus_EP8",
-            "value": false,
-            "date": "2023-07-19T07:51:25.508306410Z"
-          },
-          {
-            "variable": "modbus_EP7",
-            "value": false,
-            "date": "2023-07-19T07:51:25.508306410Z"
-          },
-          {
-            "variable": "modbus_EP6",
-            "value": false,
-            "date": "2023-07-19T07:51:25.508306410Z"
-          },
-          {
-            "variable": "modbus_EP5",
-            "value": false,
-            "date": "2023-07-19T07:51:25.508306410Z"
-          },
-          {
-            "variable": "modbus_EP4",
-            "value": false,
-            "date": "2023-07-19T07:51:25.508306410Z"
-          },
-          {
-            "variable": "modbus_EP3",
-            "value": true,
-            "date": "2023-07-19T07:51:25.508306410Z"
-          },
-          {
-            "variable": "modbus_EP2",
+            "variable": "modbus_EP0",
             "value": true,
             "date": "2023-07-19T07:51:25.508306410Z"
           },
@@ -133,8 +98,43 @@
             "date": "2023-07-19T07:51:25.508306410Z"
           },
           {
-            "variable": "modbus_EP0",
+            "variable": "modbus_EP2",
             "value": true,
+            "date": "2023-07-19T07:51:25.508306410Z"
+          },
+          {
+            "variable": "modbus_EP3",
+            "value": true,
+            "date": "2023-07-19T07:51:25.508306410Z"
+          },
+          {
+            "variable": "modbus_EP4",
+            "value": false,
+            "date": "2023-07-19T07:51:25.508306410Z"
+          },
+          {
+            "variable": "modbus_EP5",
+            "value": false,
+            "date": "2023-07-19T07:51:25.508306410Z"
+          },
+          {
+            "variable": "modbus_EP6",
+            "value": false,
+            "date": "2023-07-19T07:51:25.508306410Z"
+          },
+          {
+            "variable": "modbus_EP7",
+            "value": false,
+            "date": "2023-07-19T07:51:25.508306410Z"
+          },
+          {
+            "variable": "modbus_EP8",
+            "value": false,
+            "date": "2023-07-19T07:51:25.508306410Z"
+          },
+          {
+            "variable": "modbus_EP9",
+            "value": false,
             "date": "2023-07-19T07:51:25.508306410Z"
           },
           {
@@ -221,16 +221,16 @@
         "modbus_frame_series_sent": 6,
         "modbus_frame_number_in_serie": 0,
         "modbus_last_frame_of_serie": 0,
-        "modbus_EP9": false,
-        "modbus_EP8": false,
-        "modbus_EP7": false,
-        "modbus_EP6": false,
-        "modbus_EP5": false,
-        "modbus_EP4": false,
-        "modbus_EP3": true,
-        "modbus_EP2": true,
-        "modbus_EP1": true,
         "modbus_EP0": true,
+        "modbus_EP1": true,
+        "modbus_EP2": true,
+        "modbus_EP3": true,
+        "modbus_EP4": false,
+        "modbus_EP5": false,
+        "modbus_EP6": false,
+        "modbus_EP7": false,
+        "modbus_EP8": false,
+        "modbus_EP9": false,
         "modbus_slaveID_EP0": 1,
         "modbus_fnctID_EP0": 3,
         "modbus_datasize_EP0": 4,
