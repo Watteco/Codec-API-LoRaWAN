@@ -1,12 +1,24 @@
-const {execSync} = require('child_process')
+const { execSync } = require("child_process");
 
+const dependencies = [
+    "webpack",
+    "webpack-cli",
+    "jest",
+    "@babel/plugin-transform-object-assign",
+    "@babel/core",
+    "@babel/cli",
+    "@babel/preset-env",
+    "terser",
+    "deasync"
+];
 
-let command ="npm --prefix .. install --save-dev webpack "
-console.log(command)
-execSync(command)
-let command2 ="npm --prefix .. install --save-dev webpack-cli "
-console.log(command2)
-execSync(command2)
-let command3 ="npm --prefix .. install --save-dev jest "
-console.log(command3)
-execSync(command3)
+const command = `npm --prefix .. install --save-dev ${dependencies.join(" ")}`;
+
+console.log("Running:", command);
+
+try {
+    execSync(command, { stdio: "inherit" });
+    console.log("Dependencies installed successfully!");
+} catch (error) {
+    console.error("Error installing dependencies:", error.message);
+}

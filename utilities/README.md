@@ -8,7 +8,7 @@ S'il faut modifier un codec (création, correctif, amélioration,...), la marche
 
 - On créé ou modifie les sources nécessaires pour le (ou les) sources et capteur(s) concerné(s):
 
-  - Sources javascript commun: `../codec/standard.js`, `../codec/batch.js` ou `codec\decode_uplink.js`.
+  - Sources javascript commun: `../codec/standard.js`, `../codec/batch.js` ou `codec/decode_uplink.js` ou `codec/convert_tools.js`
   - Sources javascript capteur: `../devices/[device]/[device].js`.
   - Sources recopiés (sans modificaion): (`.gitignore, driver-examples.spec.js, driver-build-examples.spec.js, package-lock.json`).
   - Sources recopiés et modifiés: (`.npmignore, examples.json, package.json`).
@@ -23,6 +23,20 @@ S'il faut modifier un codec (création, correctif, amélioration,...), la marche
   node rebuild_mains.js "vaqa.*" [-v patch]
   # L'option -v ne doit être utilisée que lorsqu'on est certain de vouloir faire évoluer la version du package.son
   node run_tests.js "vaqa.*"
+```
+  ou bien par npm:
+
+```bash
+  cd devices/atm'o
+  npm run rebuild
+  npm run test
+```
+  Pour construire et tester tous les sensor de `devices`:
+  
+```bash
+  cd utilities
+  node rebuild_mains.js 
+  node run_tests.js 
 ```
 
 ### Distribution/déploiement du (des) codec(s) validés
@@ -118,6 +132,12 @@ On l'exécute comme un capteur, mais en rajoutant l'argument `device` avant :
     node ./debug.js <device> <port> <payload> <date>
 ```
 
+par exemple: 
+
+```bash
+    node .\debug.js "tics'o" 125 "110a0056010041132402051445140a180525190001a81401cd4593" "2023-07-19T07:51:25.508306410Z
+```
+
 Il exécute le fichier javascript du capteur choisit se trouvant dans le dossier `distrib`.  
 Si des modifications dans l'arborescance sont effectués, assurez-vous que le chemin d'appel ait encore du sens. 
 Pensez à encadrer les noms de répertoire contenant des caractères spéciaux entre double cotes. Ex: "vaqa'o" 
@@ -131,6 +151,12 @@ On l'exécute comme un capteur, mais en rajoutant l'argument `device` avant:
 ```bash
     node ./debug_in.js <device> <port> <payload> <date>
 ```
+par exemple: 
+
+```bash
+    node .\debug_in.js "tics'o" 125 "110a0056010041132402051445140a180525190001a81401cd4593" "2023-07-19T07:51:25.508306410Z
+```
+
 
 Il exécute le .js du capteur choisit se trouvant dans le dossier `devices`.  
 Si des modifications dans l'arborescance sont effectués, assurez-vous que le chemin d'appel ait encore du sens.  
@@ -151,7 +177,7 @@ L'option facultative -v (--version) permet de faire évoluer la version du packa
 
 ### run tests
 
-Le fichier `run_tests.js` permet de lancer le s tests d'un ou plusieurs device(s) (sans option c'est tous les devices)
+Le fichier `run_tests.js` permet de lancer les tests d'un ou plusieurs device(s) (sans option c'est tous les devices)
 La liste des devices traités dépend des sous-répertoire de `devices` et du `<devices_filter>` utilisé. 
 Son execution doit être faite dans le dossier `utilities`, car le chemin écrit dans le `execSync()` est relatif à notre positon :  
 
