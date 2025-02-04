@@ -44,10 +44,6 @@ Les `command_id` `07` et `09` ont un retour différent car ils contiennent l'obj
 
 Contient le fichier compréssé équivalent au codec en plusieurs fichiers, plus le fichier spécifique au capteur.  
 
-## Scripts
-
-Contient les scripts permettant d'automatiser certaines tâches dues à la modification du codec.  
-
 ## Utilities
 
-Plusieurs outils permettant de simplifier certaines tâches.  
+Les outils de construction (build & transpile & versionning), tests (jest), déploiement et debug. Ces outils peuvent être exploités pour un, plusieurs ou tous les sensors.

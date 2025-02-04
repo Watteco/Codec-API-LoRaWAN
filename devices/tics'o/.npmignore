@@ -3,4 +3,5 @@ test/
 coverage/
 specification/
 tics'o.js
+tic.js
 driver-examples.spec.js

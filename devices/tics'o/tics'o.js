@@ -1,5 +1,7 @@
 let watteco = require("../../codec/decode_uplink")
 
+globalThis.TIC_Decode = require("./tic.js").TIC_Decode;
+
 let batch_param=[]
 let endpointCorresponder={}
 function decodeUplink(input) {
