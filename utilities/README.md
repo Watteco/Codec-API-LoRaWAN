@@ -229,7 +229,7 @@ Une liste d'équivalences `ttn_devices` est définie par la fonction `getDevices
 
 ### install dependencies
 
-Permet d'installer *webpack*, *webpack-cli*, *jest*, *babel* et *js-yaml* nécessaires au développement et déploiement des codecs watteco :
+Permet d'installer *webpack*, *webpack-cli*, *jest*, *babel*, *js-yaml*,... nécessaires au développement et déploiement des codecs watteco :
 
 L'installation des nodes-modules se fait au niveau du répertoire principal afin d'éviter la duplication de tous les modules dans les sous-repertoires Devices/*.
 Les packages.json individuels des capteurs, ne nécessitent qu'une sous-partie de ces modules (*webpack*, *webpack-cli*, *jest*).

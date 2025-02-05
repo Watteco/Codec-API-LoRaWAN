@@ -1,0 +1,82 @@
+[
+    {
+        "id": "40642e89c9349958",
+        "type": "tab",
+        "label": "Vaqa'o Lt decoding example (NodeRED Version >1.3.0)",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "6e327578ec437d82",
+        "type": "inject",
+        "z": "40642e89c9349958",
+        "name": "Sample Vaqa'o Lt batch base64 frame",
+        "props": [
+            {
+                "p": "payload.data",
+                "v": "MLIAtufHAE2IhyAv2nW5FLSygnbL8m5Zu1vW7Zbl3bKUgHbLkgD2",
+                "vt": "str"
+            },
+            {
+                "p": "payload.time",
+                "v": "",
+                "vt": "date"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 200,
+        "y": 100,
+        "wires": [
+            [
+                "adb486ffd01f5a71"
+            ]
+        ]
+    },
+    {
+        "id": "bcdb552b5eca5eda",
+        "type": "debug",
+        "z": "40642e89c9349958",
+        "name": "Output",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 550,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "adb486ffd01f5a71",
+        "type": "function",
+        "z": "40642e89c9349958",
+        "name": "decode",
+        "func": "// You must import the sensor decoder from npm via the \"Setup\" tab above\n// Don't forget to set \"functionExternalModules: true,\" in your \"settings.js\" file\n\nif (msg.payload.data && typeof msg.payload.data === 'string') {\n\n    const buffer = Buffer.from(msg.payload.data, 'base64'); // The frame arrives in base64 in msg.payload.data\n\n    var date = new Date(msg.payload.time); // The date is recuperated from msg.payload.time\n                                          // under any format and is transformed to ISO 8601\n    var inputObject = {\n        \"bytes\": buffer, // The frame in a bytes list\n        \"fPort\": 125,    // The port (Watteco always use 125)\n        \"recvTime\": date // The date in ISO 8601 format\n    }\n\n} else {\n    node.error(\"The message doesn't carry a Base64 frame\");\n    return null;\n}\n\nmsg.payload = wattecoVaqaOLite.driver.decodeUplink(inputObject);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "wattecoVaqaOLite",
+                "module": "watteco-vaqa_o_lite"
+            }
+        ],
+        "x": 420,
+        "y": 100,
+        "wires": [
+            [
+                "bcdb552b5eca5eda"
+            ]
+        ]
+    }
+]
