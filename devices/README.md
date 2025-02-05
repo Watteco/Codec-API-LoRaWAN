@@ -5,7 +5,7 @@ La sortie est décrite dans le fichier`uplink.schema.json`.
 
 ## Fichiers codec
 
-Il ne faut pas toucher aux fichiers codec se trouvant dans *devices*, il sont écrasés par ceux dans *codec* lorsque `rebuild_mains.js`, dans utilities, est exécuté.
+Le corp des codec (decode_uplink.js,standard.js et batch.js) provient du répertoire '../codec'
 
 ## Webpack
 

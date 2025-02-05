@@ -1,211 +1,202 @@
-## Mise à jour codec
+## Procédure générale de mise à jour de codec(s)
 
-S'il faut modifier le codec, la marche à suivre est la suivante: (sujet à évolution)  
+S'il faut modifier un codec (création, correctif, amélioration,...), la marche à suivre est, en général, la suivante: 
 
-### Changement du cœur du codec
+### Edition du (des) codec(s) Watteco:
 
-La plupart du temps le changement sera dans `standard.js` ou le `[device].js`  
+- Si besoin créer le nouveau répertoire dans `../devices/[nouveau]`, basé sur le contenu d'un existant.
 
-### build mains
+- On créé ou modifie les sources nécessaires pour le (ou les) sources et capteur(s) concerné(s):
 
-On lance `rebuild_mains.js` [ici](#rebuild-mains).
+  - Sources javascript commun: `../codec/standard.js`, `../codec/batch.js` ou `codec\decode_uplink.js`.
+  - Sources javascript capteur: `../devices/[device]/[device].js`.
+  - Sources recopiés (sans modificaion): (`.gitignore, driver-examples.spec.js, driver-build-examples.spec.js, package-lock.json`).
+  - Sources recopiés et modifiés: (`.npmignore, examples.json, package.json`).
+  - Image produit: (`*.png` fond transparent).
 
-### jest tests
+- Reconstruire et tester le ou les capteurs concernés puis les distribuer. 
 
-On lance `run_tests.js` [ici](#run-tests) pour lancer les tests jest sur chaque capteur l'un après l'autre, il plante au premier capteur ayant un payload qui ne fonctionne pas.  
-c'est là qu'on se sert de `debug.js` [ici](#debug) afin de tester le payload, puis mettre à jour `examples.json`. 
+  Par exemple, pour une mise à jour concernant les différents vaqa'o on lancerait:
+  
+```bash
+  cd utilities
+  node rebuild_mains.js "vaqa.*" [-v patch]
+  # L'option -v ne doit être utilisée que lorsqu'on est certain de vouloir faire évoluer la version du package.son
+  node run_tests.js "vaqa.*"
+```
 
-Si on rencontre un problème entre le decoder et la normalisation, il faudra log des étapes intermédiaires dans le cœur du codec et on utilisera `debug_in.js` [ici](#debug-in).
+### Distribution/déploiement du (des) codec(s) validés
 
-### déploiement
+- Distribuer le référentiel Watteco *(suivi d'un commit/push sur le référentiel)*
+```bash
+  node watteco_deployment.js .. "vaqa.*"
+```
 
-#### distrib
+- Déployer pour NPM *(après login npm sur compte watteco)*:
 
-On exécute `copy.js` [ici](#copy).
+  *Note: Lors d'un déploiement NPM il faut penser à avoir fait évoluer les versions (Cf. rebuild_main.js -v)*
+```bash
+  node npm_deployment.js .. "vaqa.*"
+```
 
-#### actility
+- Déployer pour ACTILITY *(sur un fork du référentiel actility, et suivi d'un pull request pour Actility)*:
+  
+  *Note: En cas de création du codec pour un nouveau capteur on créé/copie sa structure (watteco/models/[device]/ et watteco/drivers[device]/) à parir d'un modèle équivalent*
+```bash
+  node actility_deployment.js .. <actility-fork-path> "vaqa.*"
+```
 
-On doit effectuer un fork de la main branch d'actility dans laquelle on modifie les fichiers javascript du codec dans devices et les fichiers javascript spécifiques dans le dossier `[device]_v4`, ainsi que `example.json`.  
+- Déployer pour TTN *(sur un fork du référentiel TTN, et suivi d'un pull request pour TTN)*:
+  
+  *Note: En cas de création du codec pour un nouveau capteur on créé/copie sa structure (watteco/[device]/*.*) à parir d'un modèle équivalent*
+```bash
+  node ttn_deployment.js .. <ttn-fork-path> "vaqa.*"
+```
+
+**ATTENTION:** 
+- Avant d'exploiter les commandes de déploiements décrites ci-avant, il faut créer ou maintenir "manuellement" différents fichiers "descriptifs" des modèles de capteur ou Driver en conformité avec les modèles ou driver dèjà existants dans les référentiels cible TTN et actility.
+  - *Actility* :  
+    - `vendors/watteco/models/[device]/model.yaml`
+    - `vendors/watteco/drivers/[device]/(.gitignore, .npmignore, driver-examples.spec.js, driver.yaml, package.json, package-lock.json)`
+  - *TTN* :  
+    - `vendor/watteco/index.yaml`
+    - `vendor/watteco/[device]-codec.yaml`
+    - `vendor/watteco/[device]-profile.yaml`
+    - `vendor/watteco/[device].yaml`
+
+## Référentiels concernés
+
+### Référentiel watteco ([ici](https://github.com/Watteco/Codec-API-LoRaWAN.git))
+Il s'agit du présent référentiel.
+Il contient les pricipaux sources communs à tous les driver de capteurs. Ainsi ques-uns des fichiers utilisés pour la descriptions des package.
+
+Le répertoire `distrib` contient les 4 principaux fichier conformes au standard [TS013-1.0.0](https://resources.lora-alliance.org/technical-specifications/ts013-1-0-0-payload-codec-api) tel que défini par l'aliance LoRaWAN.
+
+Le script `watteco_deployment.js` permet de produire/mettre à kjour le répertoire distrib.
+
+On push une fois sûr que le tout fonctionne.
+
+
+### Référentiel actility ([ici](https://github.com/actility/device-catalog.git))
+
+On doit effectuer un fork de la main branch d'actility dans laquelle on modifie les fichiers dans les sous-répertoire:
+- device-catalog\vendors\watteco\drivers
+- device-catalog\vendors\watteco\models
+
+Le script `actility_deployment.js` facilite cela [ici](#actility-deployment).
+
 On push et on ouvre une pull-request une fois sûr que le tout fonctionne.
-Le script `actility_deployement.js` facilite cela [ici](#actility-deployement).
 
-#### ttn
+*Watteco on Actility repository: /vendors/watteco*
 
-On doit effectuer un fork de la branche `main` de ttn, puis il suffit de remplacer le `[device].js` par le `main.js`, qu'il faut renommer.  
+### Référentiel ttn ([ici](https://github.com/TheThingsNetwork/lorawan-devices.git))
+
+Pour pouvoir livrer TTN il faut effectuer un fork de la branche `main` de ttn, puis il faut mettre à jour le `[device].js` à patir du `main.js` du référentiel Watteco.
+
+Le script `actility_deployment.js` facilite cela [ici](#actility-deployment).
+
 On push et on ouvre une pull-request une fois sûr que le tout fonctionne.
 
-#### npm
+*Watteco on TTN repository: vendor/watteco*
 
-On se connecte avec le compte watteco :
+### Référentiel npm ([ici](https://www.npmjs.com/~watteco))
 
-```bash 
-    npm login
-```
 
-Pour la première publication (après avoir fait un `package.json` correct. [→ voir ici](https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/README.md#packaging)) :
+## Utilitaires disponibles
 
-```bash
-    npm publish
-```
-
-Si le package existe déjà sur le compte watteco, il faut faire une nouvelle révision (patch/minor/major):
-
-```bash
-    npm version <révision>
-```
-
-On peut ensuite refaire un publish.
-
-Pour télécharger le package, on fait :
-
-```bash
-    npm install <npm-package>
-```
-
-La liste des packets npm est disponible [ici](/distrib/README.md#npm) ou sur [la liste sur le site npm](https://www.npmjs.com/~watteco).
-
-## debug
+### debug
 
 Le fichier `debug.js` permet d'observer l'entrée et la sortie du codec dans la console.  
 On l'exécute comme un capteur, mais en rajoutant l'argument `device` avant :  
 
 ```bash
-    node ./codec/debug.js <device> <port> <payload> <date>
+    node ./debug.js <device> <port> <payload> <date>
 ```
 
 Il exécute le fichier javascript du capteur choisit se trouvant dans le dossier `distrib`.  
-Si des modifications dans l'arborescance sont effectués, assurez-vous que le chemin d'appel ait encore du sens.  
+Si des modifications dans l'arborescance sont effectués, assurez-vous que le chemin d'appel ait encore du sens. 
+Pensez à encadrer les noms de répertoire contenant des caractères spéciaux entre double cotes. Ex: "vaqa'o" 
 
-La liste des devices est la suivante :
 
-|         name         |
-|:--------------------:|
-|        atm'o         |
-|        clos'o        |
-|       flash'o        |
-|         in'o         |
-|       inclin'o       |
-|  indoor_temperature  |
-|       intens'o       |
-|        lev'o         |
-|        modbus        |
-|       monit'o        |
-|        move'o        |
-| outdoor_temperature  |
-|      pilot_wire      |
-|       press'o        |
-|     pulse_sens'o     |
-|  pulse_sens'o_atex   |
-|  remote_temperature  |
-| remote_temperature_2 |
-|      smartplug       |
-|          th          |
-|        tics'o        |
-|     toran'o_atex     |
-|      triphas'o       |
-|        vaqa'o        |
-|      vaqa'o_lt       |
-|     vaqa'o_plus      |
-|       ventil'o       |
-
-## debug in
+### debug in
 
 Le fichier `debug.js` permet d'observer l'entrée et la sortie du codec dans la console.  
 On l'exécute comme un capteur, mais en rajoutant l'argument `device` avant:  
 
 ```bash
-    node ./codec/debug_in.js <device> <port> <payload> <date>
+    node ./debug_in.js <device> <port> <payload> <date>
 ```
 
 Il exécute le .js du capteur choisit se trouvant dans le dossier `devices`.  
 Si des modifications dans l'arborescance sont effectués, assurez-vous que le chemin d'appel ait encore du sens.  
+Pensez à encadrer les noms de répertoire contenant des caractères spéciaux entre double cotes. Ex: "vaqa'o" 
 
-La liste des devices est la suivante :
 
-|         name         |
-|:--------------------:|
-|        atm'o         |
-|        clos'o        |
-|       flash'o        |
-|         in'o         |
-|       inclin'o       |
-|  indoor_temperature  |
-|       intens'o       |
-|        lev'o         |
-|        modbus        |
-|       monit'o        |
-|        move'o        |
-| outdoor_temperature  |
-|      pilot_wire      |
-|       press'o        |
-|     pulse_sens'o     |
-|  pulse_sens'o_atex   |
-|  remote_temperature  |
-| remote_temperature_2 |
-|      smartplug       |
-|          th          |
-|        tics'o        |
-|     toran'o_atex     |
-|      triphas'o       |
-|        vaqa'o        |
-|      vaqa'o_lt       |
-|     vaqa'o_plus      |
-|       ventil'o       |
+### rebuild mains
 
-## rebuild mains
-
-Le fichier `rebuild_mains.js` permet de recompiler le `main.js` de tous les devices.  
+Le fichier `rebuild_mains.js` permet de recompiler le `main.js` d'un ou plusieurs device(s) (sans option c'est tous les devices). 
 Il utilise un script `rebuild.js` dans le dossier `scripts`.  
+La liste des devices traités dépend des sous-répertoire de `devices` et du `<devices_filter>` utilisé. 
 On rajoute l'utilisation du script dans le `package.json` de chaque device, sous le nom *rebuild*.  
-Il faut aussi rajouter le nom du capteur dans la liste `devices`.  
 Son execution doit être faite dans le dossier `utilities`, car le chemin écrit dans le `execSync()` est relatif à notre positon : 
-
+L'option facultative -v (--version) permet de faire évoluer la version du package et metadata.
 ```bash
-    node rebuild_mains.js
+    node rebuild_mains.js [<devices_filter>] [-v|--version [patch|minor|major|x.y.z)]]
 ```
 
-## run tests
+### run tests
 
-Le fichier `run_tests.js` permet de lancer tous les tests JEST à la suite.  
-Il faut aussi rajouter le nom du capteur dans la liste `devices` pour un nouveau capteur.  
+Le fichier `run_tests.js` permet de lancer le s tests d'un ou plusieurs device(s) (sans option c'est tous les devices)
+La liste des devices traités dépend des sous-répertoire de `devices` et du `<devices_filter>` utilisé. 
 Son execution doit être faite dans le dossier `utilities`, car le chemin écrit dans le `execSync()` est relatif à notre positon :  
 
 ```bash
-    node run_tests.js
+    node run_tests.js [<devices_filter>]
+    where
+    <devices_to_process>: Regular expression like "vaqao*" or "flash'o|intens'o|vaqa'o" or "Vaqao*|flash'o"
 ```
 
-## copy
+### watteco deployment
 
-Le fichier `copy.js` permet de copier les fichiers souhaités de devices à distrib pour tous les capteurs.  
+Le fichier `watteco_deployment.js` permet de copier différents fichiers de devices à distrib pour un ou plusieurs device(s) (sans option c'est tous)  
 On peut rajouter un autre fichier en rajoutant une autre ligne :  
 
-```javascript
-    fs.copyFile(source+"/[file]", dest+"/[file]", (err) => {
-        if (err) throw err;
-        console.log('[file] was copied to destination');
-    })
+```bash
+    node watteco_deployment.js [<devices_filter>]
+    where
+    <devices_to_process>: Regular expression like "vaqao*" or "flash'o|intens'o|vaqa'o" or "Vaqao*|flash'o"
 ```
 
-On peut aussi changer de répertoire en modifiant *source* ou *destination*. Le chemin est relatif à la position d'exécution, il faut donc se trouver dans le répertoire `utilities` pour que cela fonctionne :  
+### actility_deployment
+
+Il faut donner le chemin **absolu** du repo watteco puis celui du fork actility sur votre machine :
+Un ou plusieurs device(s) peuvent être déployés (sans option c'est tous).
 
 ```bash
-    node copy.js
+    node actility_deployment <watteco-path> <actility-path> [<devices_filter>]
+    where
+    <devices_filter>: Regular expression like "vaqao*" or "flash'o|intens'o|vaqa'o" or "Vaqao*|flash'o"
 ```
 
-## install dependencies
+**NOTA: **
+Une liste d'équivalences `actility_devices` est définie par la fonction `getDevices()` du fichier `_CommonTools.js`. Elle est imposée par le changement de nom qu'a fait actility sur certains dossiers (ex: `outdoor-temperature`). 
+
+
+### ttn_deployment
+
+Il faut donner le chemin **absolu** du repo watteco puis celui du fork TTN sur votre machine :
+Un ou plusieurs device(s) peuvent être déployés (sans option c'est tous).
+
+```bash
+    node ttn_deployment <watteco-path> <actility-path> [<devices_filter>]
+    where
+    <devices_filter>: Regular expression like "vaqao*" or "flash'o|intens'o|vaqa'o" or "Vaqao*|flash'o"
+```
+
+### install dependencies
 
 Permet d'installer *webpack*, *webpack-cli* et *jest* pour chaque capteur sans le faire à la main :
 
 ```bash
     node install_dependencies.js 
 ```
-
-## actility deployement
-
-Il faut donner le chemin **absolu** du repo watteco puis celui du fork actility sur votre machine :
-
-```bash
-    node actility_deployement <watteco-path> <actility-path>
-```
-
-La liste `actility_devices` est due au changement de nom qu'a fait actility sur certains dossiers (ex: `outdoor-temperature`). 
