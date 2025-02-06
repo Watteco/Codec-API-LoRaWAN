@@ -49,12 +49,14 @@ function syncMetadataToPackage(directoryPath) {
 
   // Get the current version from package.json
   let currentVersion = metadataJson.version || '0.0.0';
+  let currentName = metadataJson.name || packageJson.name || 'unknown';
 
   // Synchronize the version in package.json if necessary
-  if (packageJson.version !== currentVersion) {
+  if ((packageJson.version !== currentVersion) || (currentName !== packageJson.name)) {
+    packageJson.name = currentName;
     packageJson.version = currentVersion;
     fs1.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2), 'utf8');
-    console.log(`Version synchronized in package.json to: ${currentVersion}`);
+    console.log(`Version & name synchronized in package.json to: ${currentVersion}`);
   }
 }
 
@@ -83,14 +85,14 @@ async function updateRequireDecodeUplinkFile(filePath) {
 async function copyAndDeployFiles(watteco_path, actility_path, devices, actility_devices) {
   try {
     // Copy common codec files
-    console.log(`Processing standard.js ...`);
-    await fs.copyFile(`${watteco_path}/codec/standard.js`, `${actility_path}/vendors/watteco/drivers/standard.js`);
+    // console.log(`Processing standard.js ...`);
+    // await fs.copyFile(`${watteco_path}/codec/standard.js`, `${actility_path}/vendors/watteco/drivers/standard.js`);
 
-    console.log(`Processing batch.js ...`);
-    await fs.copyFile(`${watteco_path}/codec/batch.js`, `${actility_path}/vendors/watteco/drivers/batch.js`);
+    // console.log(`Processing batch.js ...`);
+    // await fs.copyFile(`${watteco_path}/codec/batch.js`, `${actility_path}/vendors/watteco/drivers/batch.js`);
 
-    console.log(`Processing decode_uplink.js ...`);
-    await fs.copyFile(`${watteco_path}/codec/decode_uplink.js`, `${actility_path}/vendors/watteco/drivers/decode.js`);
+    // console.log(`Processing decode_uplink.js ...`);
+    // await fs.copyFile(`${watteco_path}/codec/decode_uplink.js`, `${actility_path}/vendors/watteco/drivers/decode.js`);
 
     // Copy and process device-specific files sequentially
     for (let i in devices) {
@@ -102,26 +104,28 @@ async function copyAndDeployFiles(watteco_path, actility_path, devices, actility
         
         console.log(`Processing ${device} ...`);
 
-        await fs.copyFile(`${watteco_path}/devices/${device}/${device}.js`, `${actilityDevicePath}/${device}.js`);
-        await updateRequireDecodeUplinkFile(`${actilityDevicePath}/${device}.js`);
+        //await fs.copyFile(`${watteco_path}/devices/${device}/${device}.js`, `${actilityDevicePath}/${device}.js`);
+        //await updateRequireDecodeUplinkFile(`${actilityDevicePath}/${device}.js`);
     
         await fs.copyFile(`${watteco_path}/devices/${device}/main.js`, `${actilityDevicePath}/main.js`);
     
         await fs.copyFile(`${watteco_path}/devices/${device}/examples.json`, `${actilityDevicePath}/examples.json`);
     
         await fs.copyFile(`${watteco_path}/devices/${device}/metadata.json`, `${actilityDevicePath}/metadata.json`);
-        tools.updateJSON_name_description(`${actilityDevicePath}/metadata.json`, `${device} v4`, `Driver for ${device} v4 sensor`);
+        let actilityDriverName = device.replace(/_/g, '-').replace(/'/g, '') + "_v4"; /* ie: "pulse_sens'o_atex" becomes "pulse-senso-atex_v4" */
+        tools.updateJSON_name_description(`${actilityDevicePath}/metadata.json`, `${actilityDriverName}`, `Driver for ${device} v4 sensor`);
     
         await fs.copyFile(`${watteco_path}/devices/${device}/uplink.schema.json`, `${actilityDevicePath}/uplink.schema.json`);
     
-        // Not ready to deliver actility, to many differences
+        // Not ready to deliver actility, to many differences with package.json and driver-example-spec.js from actility
         // await fs.copyFile(`${watteco_path}/devices/${device}/package.json`, `${actilityDevicePath}/package.json`);
+        // await fs.copyFile(`${watteco_path}/devices/${device}/driver-example-spec.js`, `${actilityDevicePath}/driver-example-spec.js`);
         // await fs.copyFile(`${watteco_path}/devices/${device}/package-lock.json`, `${actilityDevicePath}/package-lock.json`);
         
-        // Only sync metata (version) to package (version) 
+        // Only sync metata version and name to package version and name in actility directory
         syncMetadataToPackage(actilityDevicePath);
     
-        await fs.copyFile(`${watteco_path}/devices/${device}/webpack.config.js`, `${actilityDevicePath}/webpack.config.js`);
+        //await fs.copyFile(`${watteco_path}/devices/${device}/webpack.config.js`, `${actilityDevicePath}/webpack.config.js`);
 
       } catch (err) {
         console.error(`Error processing device ${device}: ${err.message}`);
