@@ -2,8 +2,7 @@
  - Fonctionnement des codecs → [/codec/README.md](/codec/README.md)
  - Explication des fichiers codec et de JEST → [/devices/README.md](/devices/README.md)
  - Tutoriel d'utilisation (plus [tuto NodeRED](/distrib/README.md#utilisation-de-lapi-codec-watteco-avec-nodered-130)) → [/distrib/README.md](/distrib/README.md#français)
- - Description de `rebuild.js` pour créer les scripts de build → [/scripts/README.md](/scripts/README.md)
- - Tutoriel de mise à jour du codec → [/utilities/README.md](/utilities/README.md)
+ - Outils de développement et tutoriel de mise à jour du codec → [/utilities/README.md](/utilities/README.md)
 
 # Codec-API-LoRaWAN
 Javascript codec compatible with the [LoRaWAN API specification](https://resources.lora-alliance.org/home/ts013-1-0-0-payload-codec-api)
@@ -46,4 +45,4 @@ Contient le fichier compréssé équivalent au codec en plusieurs fichiers, plus
 
 ## Utilities
 
-Les outils de construction (build & transpile & versionning), tests (jest), déploiement et debug. Ces outils peuvent être exploités pour un, plusieurs ou tous les sensors.
+Les outils de construction (build & transpile & versionning), tests (jest), déploiement et debug. Ces outils peuvent être exploités pour un, plusieurs ou tous les sensors. ([README](/utilities/README.md))

@@ -1,6 +1,9 @@
 ## Procédure générale de mise à jour de codec(s)
 
-S'il faut modifier un codec (création, correctif, amélioration,...), la marche à suivre est, en général, la suivante: 
+S'il faut modifier un codec (création, correctif, amélioration,...), la marche à suivre est, en général, celle décrite dans les chapitres suivants.
+
+*La première chose à faire étant d'installer l'environnement de développement javascript [`NodeJS/npm`](https://nodejs.org/en/download) ainsi que les modules dont dépendent les utilitaires de 'construction (build)' et de 'déploiement (deploy)' des codecs. Une fois NodeJS installé l'utilitaire [install_dependancies]](#install_dependencies) installe automatiquement les dépendances nécessaires.*
+
 
 ### Edition du (des) codec(s) Watteco:
 
@@ -31,7 +34,7 @@ S'il faut modifier un codec (création, correctif, amélioration,...), la marche
   npm run rebuild
   npm run test
 ```
-  Pour construire et tester tous les sensor de `devices`:
+  Pour construire et tester TOUS les sensor de `devices`:
   
 ```bash
   cd utilities
@@ -61,16 +64,14 @@ S'il faut modifier un codec (création, correctif, amélioration,...), la marche
 ```
 
 - Déployer pour TTN *(sur un fork du référentiel TTN, et suivi d'un pull request pour TTN)*:
-  ```bash
+```bash
    node ttn_deployment.js .. <ttn-fork-path> "vaqa.*"
-  ```
+```
+
   *Notes:*
-  - L'utilitaire de déploiement ne fait QUE la mise à jour des fichiers `device.js` et `*.png` dans le fork TTN
+  - L'utilitaire de déploiement TTN effectue la mise à jour des fichiers `<device>.js` et `*.png` dans le fork TTN, ainsi que la création du fichier codec.yaml avec le examples de `examples.json` reformatés e YAML.
   - En cas de création du codec pour un nouveau capteur on créé/copie sa structure (watteco/[device]/*.*) à parir d'un modèle équivalent puis on adapte tous les fichiers yaml*
-  - La ligne suivante créée les YAML àpartir des JSON examplescela peut aider pour l'intégration d'example dans les fichier device-codec.yaml de TTN :
-  ```bash
-    for dir in ../devices/*/; do   (echo $dir; cd "$dir" && node ../../exampleJSONtoYAML.js); done
-  ```
+ 
 
 **ATTENTION:** 
 - Avant d'exploiter les commandes de déploiements décrites ci-avant, il faut créer ou maintenir "manuellement" différents fichiers "descriptifs" des modèles de capteur ou Driver en conformité avec les modèles ou driver dèjà existants dans les référentiels cible TTN et actility.
@@ -102,7 +103,7 @@ On doit effectuer un fork de la main branch d'actility dans laquelle on modifie 
 - device-catalog\vendors\watteco\drivers
 - device-catalog\vendors\watteco\models
 
-Le script `actility_deployment.js` facilite cela [ici](#actility-deployment).
+Le script `actility_deployment.js` facilite cela [ici](#actility_deployment).
 
 On push et on ouvre une pull-request une fois sûr que le tout fonctionne.
 
@@ -112,7 +113,7 @@ On push et on ouvre une pull-request une fois sûr que le tout fonctionne.
 
 Pour pouvoir livrer TTN il faut effectuer un fork de la branche `main` de ttn, puis il faut mettre à jour le `[device].js` à patir du `main.js` du référentiel Watteco.
 
-Le script `actility_deployment.js` facilite cela [ici](#actility-deployment).
+Le script `ttn_deployment.js` facilite cela [ici](#ttn_deployment).
 
 On push et on ouvre une pull-request une fois sûr que le tout fonctionne.
 
@@ -122,6 +123,17 @@ On push et on ouvre une pull-request une fois sûr que le tout fonctionne.
 
 
 ## Utilitaires disponibles
+
+### install_dependencies
+
+Permet d'installer *webpack*, *webpack-cli*, *jest*, *babel*, *js-yaml*,... nécessaires au développement et déploiement des codecs watteco :
+
+L'installation des nodes-modules se fait au niveau du répertoire principal (`Codec-API-LoRaWAN`) afin d'éviter la duplication de tous les modules dans les sous-repertoires Devices/*.
+Les packages.json individuels des capteurs, ne nécessitent qu'une sous-partie de ces modules (*jest* en particulier).
+
+```bash
+    node install_dependencies.js 
+```
 
 ### debug
 
@@ -143,7 +155,7 @@ Si des modifications dans l'arborescance sont effectués, assurez-vous que le ch
 Pensez à encadrer les noms de répertoire contenant des caractères spéciaux entre double cotes. Ex: "vaqa'o" 
 
 
-### debug in
+### debug_in
 
 Le fichier `debug.js` permet d'observer l'entrée et la sortie du codec dans la console.  
 On l'exécute comme un capteur, mais en rajoutant l'argument `device` avant:  
@@ -163,7 +175,7 @@ Si des modifications dans l'arborescance sont effectués, assurez-vous que le ch
 Pensez à encadrer les noms de répertoire contenant des caractères spéciaux entre double cotes. Ex: "vaqa'o" 
 
 
-### rebuild mains
+### rebuild_mains
 
 Le fichier `rebuild_mains.js` permet de recompiler le `main.js` d'un ou plusieurs device(s) (sans option c'est tous les devices). 
 Il utilise un script `rebuild.js` dans le dossier `scripts`.  
@@ -175,7 +187,7 @@ L'option facultative -v (--version) permet de faire évoluer la version du packa
     node rebuild_mains.js [<devices_filter>] [-v|--version [patch|minor|major|x.y.z)]]
 ```
 
-### run tests
+### run_tests
 
 Le fichier `run_tests.js` permet de lancer les tests d'un ou plusieurs device(s) (sans option c'est tous les devices)
 La liste des devices traités dépend des sous-répertoire de `devices` et du `<devices_filter>` utilisé. 
@@ -187,7 +199,7 @@ Son execution doit être faite dans le dossier `utilities`, car le chemin écrit
     <devices_to_process>: Regular expression like "vaqao*" or "flash'o|intens'o|vaqa'o" or "Vaqao*|flash'o"
 ```
 
-### watteco deployment
+### watteco_deployment
 
 Le fichier `watteco_deployment.js` permet de copier différents fichiers de devices à distrib pour un ou plusieurs device(s) (sans option c'est tous)  
 Cet utilitaire va aussi ajouter le fichier de synthèse de tous les codec disponibles: DRIVERS.md. Ce fichier est construit à partir du fichier Clusters.json et de tous les fichiers <devices>/*/ClustersVariables.json
@@ -209,8 +221,8 @@ Un ou plusieurs device(s) peuvent être déployés (sans option c'est tous).
     <devices_filter>: Regular expression like "vaqao*" or "flash'o|intens'o|vaqa'o" or "Vaqao*|flash'o"
 ```
 
-**NOTA: **
-Une liste d'équivalences `actility_devices` est définie par la fonction `getDevices()` du fichier `_CommonTools.js`. Elle est imposée par le changement de nom qu'a fait actility sur certains dossiers (ex: `outdoor-temperature`). 
+**NOTES: **
+- Une liste d'équivalences `actility_devices` est définie par la fonction `getDevices()` du fichier `_CommonTools.js`. Elle est imposée par le changement de nom qu'a fait actility sur certains dossiers (ex: `outdoor-temperature`). 
 
 
 ### ttn_deployment
@@ -224,16 +236,12 @@ Un ou plusieurs device(s) peuvent être déployés (sans option c'est tous).
     <devices_filter>: Regular expression like "vaqao*" or "flash'o|intens'o|vaqa'o" or "Vaqao*|flash'o"
 ```
 
-**NOTA: **
-Une liste d'équivalences `ttn_devices` est définie par la fonction `getDevices()` du fichier `_CommonTools.js`. Elle est imposée par le changement de nom que requiert TTN sur sur les noms de produits. 
-
-### install dependencies
-
-Permet d'installer *webpack*, *webpack-cli*, *jest*, *babel*, *js-yaml*,... nécessaires au développement et déploiement des codecs watteco :
-
-L'installation des nodes-modules se fait au niveau du répertoire principal afin d'éviter la duplication de tous les modules dans les sous-repertoires Devices/*.
-Les packages.json individuels des capteurs, ne nécessitent qu'une sous-partie de ces modules (*webpack*, *webpack-cli*, *jest*).
-
+**NOTES: **
+- Une liste d'équivalences `ttn_devices` est définie par la fonction `getDevices()` du fichier `_CommonTools.js`. Elle est imposée par le changement de nom que requiert TTN sur sur les noms de produits. 
+- Important il est important avant de "qualifier" au sens TTN sa distribution au moyen des outils fournis par TTN.
+  Tout est décrit dans le [README du repository TTN lorawan-devices](https://github.com/TheThingsNetwork/lorawan-devices/blob/master/README.md)
+  Pour résumer en quelques mots. Il faut un environnement Linux (par exemple sous windows WSL) y installer les outils décrits dans le README (Node.js v16.x, npm v8.x, Go v1.18.x), puis lancer la commande suivante sous le Linux WSL:
 ```bash
-    node install_dependencies.js 
+    cd _ForkTTN/lorawan-devices
+    make validate VENDOR_ID=watteco
 ```

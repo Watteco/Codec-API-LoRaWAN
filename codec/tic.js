@@ -1,4 +1,4 @@
-const { UintToInt, Bytes2Float32, BytesToInt64, decimalToHex, zeroPad, BytesToHexStr } = require("../../codec/convert_tools.js");
+const { UintToInt, Bytes2Float32, BytesToInt64, decimalToHex, zeroPad, BytesToHexStr } = require("./convert_tools.js");
 
 /**
  * 

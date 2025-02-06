@@ -84,15 +84,26 @@ async function updateRequireDecodeUplinkFile(filePath) {
 
 async function copyAndDeployFiles(watteco_path, actility_path, devices, actility_devices) {
   try {
-    // Copy common codec files
-    // console.log(`Processing standard.js ...`);
-    // await fs.copyFile(`${watteco_path}/codec/standard.js`, `${actility_path}/vendors/watteco/drivers/standard.js`);
+    // Copy common codec files ["standard.js", batch.js,convert_tools.js, tic.js, decode_uplink.js]
+    const filesToCopy = ["standard.js", "batch.js", "convert_tools.js", "tic.js", "decode_uplink.js"];
+    const sourceDir = `${watteco_path}/codec`;
+    const destDir = `${actility_path}/vendors/watteco/codec`;
+    console.log(`Coping files from '${sourceDir}' to '${destDir}'`);
+    filesToCopy.forEach(file => {
+      const sourceFilePath = path.join(sourceDir, file);
+      const destFilePath = path.join(destDir, file);
+      fs.copyFile(sourceFilePath, destFilePath);
+        //console.log(`Copied: ${file}`);
+    });
+    
+    console.log(`Processing standard.js ...`);
+    await fs.copyFile(`${watteco_path}/codec/standard.js`, `${actility_path}/vendors/watteco/codec/standard.js`);
 
-    // console.log(`Processing batch.js ...`);
-    // await fs.copyFile(`${watteco_path}/codec/batch.js`, `${actility_path}/vendors/watteco/drivers/batch.js`);
+    console.log(`Processing batch.js ...`);
+    await fs.copyFile(`${watteco_path}/codec/batch.js`, `${actility_path}/vendors/watteco/codec/batch.js`);
 
-    // console.log(`Processing decode_uplink.js ...`);
-    // await fs.copyFile(`${watteco_path}/codec/decode_uplink.js`, `${actility_path}/vendors/watteco/drivers/decode.js`);
+    console.log(`Processing decode_uplink.js ...`);
+    await fs.copyFile(`${watteco_path}/codec/decode_uplink.js`, `${actility_path}/vendors/watteco/codec/decode_uplink.js`);
 
     // Copy and process device-specific files sequentially
     for (let i in devices) {
@@ -104,7 +115,7 @@ async function copyAndDeployFiles(watteco_path, actility_path, devices, actility
         
         console.log(`Processing ${device} ...`);
 
-        //await fs.copyFile(`${watteco_path}/devices/${device}/${device}.js`, `${actilityDevicePath}/${device}.js`);
+        await fs.copyFile(`${watteco_path}/devices/${device}/${device}.js`, `${actilityDevicePath}/${device}.js`);
         //await updateRequireDecodeUplinkFile(`${actilityDevicePath}/${device}.js`);
     
         await fs.copyFile(`${watteco_path}/devices/${device}/main.js`, `${actilityDevicePath}/main.js`);
@@ -121,11 +132,11 @@ async function copyAndDeployFiles(watteco_path, actility_path, devices, actility
         // await fs.copyFile(`${watteco_path}/devices/${device}/package.json`, `${actilityDevicePath}/package.json`);
         // await fs.copyFile(`${watteco_path}/devices/${device}/driver-example-spec.js`, `${actilityDevicePath}/driver-example-spec.js`);
         // await fs.copyFile(`${watteco_path}/devices/${device}/package-lock.json`, `${actilityDevicePath}/package-lock.json`);
+      
+        //await fs.copyFile(`${watteco_path}/devices/${device}/webpack.config.js`, `${actilityDevicePath}/webpack.config.js`);
         
         // Only sync metata version and name to package version and name in actility directory
         syncMetadataToPackage(actilityDevicePath);
-    
-        //await fs.copyFile(`${watteco_path}/devices/${device}/webpack.config.js`, `${actilityDevicePath}/webpack.config.js`);
 
       } catch (err) {
         console.error(`Error processing device ${device}: ${err.message}`);
