@@ -1,0 +1,293 @@
+{
+  "sensors": [
+    {
+      "name": "atm'o",
+      "clusters": [
+        { "cid": "0x0000", "variables": ["kernel", "manufacturer", "model", "date", "position", "application_name"] },
+        { "cid": "0x0050", "variables": ["disposable_battery_voltage"] },
+        { "cid": "0x8004", "variables": ["message_type", "nb_retry", "automatic_association", "data_rate", "ABP_dev_address", "OTA_app_EUI"] },
+        { "cid": "0x000F", "variables": ["index_1", "index_2", "pin_state_1", "pin_state_2", "polarity", "edge_selection", "debounce_period", "poll_period", "force_notify"] },
+        { "cid": "0x0402", "variables": ["temperature"] },
+        { "cid": "0x0403", "variables": ["pressure"] },
+        { "cid": "0x0405", "variables": ["humidity"] }
+      ]
+    },
+    {
+      "name": "closo",
+      "clusters": [
+        { "cid": "0x0000", "variables": ["kernel", "manufacturer", "model", "date", "position", "application_name"] },
+        { "cid": "0x0050", "variables": ["disposable_battery_voltage"] },
+        { "cid": "0x8004", "variables": ["message_type", "nb_retry", "automatic_association", "data_rate", "ABP_dev_address", "OTA_app_EUI"] },
+        { "cid": "0x000F", "variables": ["index", "violation_detection", "open", "polarity", "edge_selection", "debounce_period", "poll_period", "force_notify"] }
+      ]
+    },
+    {
+      "name": "flash'o",
+      "clusters": [
+        { "cid": "0x0000", "variables": ["kernel", "manufacturer", "model", "date", "position", "application_name"] },
+        { "cid": "0x0050", "variables": ["disposable_battery_voltage"] },
+        { "cid": "0x8004", "variables": ["message_type", "nb_retry", "automatic_association", "data_rate", "ABP_dev_address", "OTA_app_EUI"] },
+        { "cid": "0x000F", "variables": ["index", "pin_state", "polarity", "edge_selection", "debounce_period", "poll_period", "force_notify"] }
+      ]
+    },
+    {
+      "name": "in'o",
+      "clusters": [
+        { "cid": "0x0000", "variables": ["kernel", "manufacturer", "model", "date", "position", "application_name"] },
+        { "cid": "0x0050", "variables": ["main_or_external_voltage", "disposable_battery_voltage"] },
+        { "cid": "0x8004", "variables": ["message_type", "nb_retry", "automatic_association", "data_rate", "ABP_dev_address", "OTA_app_EUI"] },
+        { "cid": "0x0006", "variables": ["output_1", "output_2", "output_3", "output_4"] },
+        { "cid": "0x000F", "variables": ["index_1", "index_2", "index_3", "index_4", "index_5", "index_6", "index_7", "index_8", "index_9", "index_10", "pin_state_1", "pin_state_2", "pin_state_3", "pin_state_4", "pin_state_5", "pin_state_6", "pin_state_7", "pin_state_8", "pin_state_9", "pin_state_10", "polarity", "edge_selection", "debounce_period", "poll_period", "force_notify"] },
+        { "cid": "0x8005", "variables": ["pin_state_1", "pin_state_2", "pin_state_3", "pin_state_4", "pin_state_5", "pin_state_6", "pin_state_7", "pin_state_8", "pin_state_9", "pin_state_10"] }
+      ]
+    },
+    {
+      "name": "inclin'o",
+      "clusters": [
+        { "cid": "0x0000", "variables": ["kernel", "manufacturer", "model", "date", "position", "application_name"] },
+        { "cid": "0x0050", "variables": ["disposable_battery_voltage"] },
+        { "cid": "0x8004", "variables": ["message_type", "nb_retry", "automatic_association", "data_rate", "ABP_dev_address", "OTA_app_EUI"] },
+        { "cid": "0x000C", "variables": ["angle"] },
+        { "cid": "0x0406", "variables": ["occupancy"] }
+      ]
+    },
+    {
+      "name": "indoor_temperature",
+      "clusters": [
+        { "cid": "0x0000", "variables": ["kernel", "manufacturer", "model", "date", "position", "application_name"] },
+        { "cid": "0x0050", "variables": ["disposable_battery_voltage"] },
+        { "cid": "0x8004", "variables": ["message_type", "nb_retry", "automatic_association", "data_rate", "ABP_dev_address", "OTA_app_EUI"] },
+        { "cid": "0x0402", "variables": ["temperature"] }
+      ]
+    },
+    {
+      "name": "intens'o",
+      "clusters": [
+        { "cid": "0x0000", "variables": ["kernel", "manufacturer", "model", "date", "position", "application_name"] },
+        { "cid": "0x0050", "variables": ["disposable_battery_voltage"] },
+        { "cid": "0x8004", "variables": ["message_type", "nb_retry", "automatic_association", "data_rate", "ABP_dev_address", "OTA_app_EUI"] },
+        { "cid": "0x000C", "variables": ["Irms"] }
+      ]
+    },
+    {
+      "name": "lev'o",
+      "clusters": [
+        { "cid": "0x0000", "variables": ["kernel", "manufacturer", "model", "date", "position", "application_name"] },
+        { "cid": "0x0050", "variables": ["disposable_battery_voltage"] },
+        { "cid": "0x8004", "variables": ["message_type", "nb_retry", "automatic_association", "data_rate", "ABP_dev_address", "OTA_app_EUI"] },
+        { "cid": "0x000C", "variables": ["4-20_mA", "0-10_V"] }
+      ]
+    },
+    {
+      "name": "modbus",
+      "clusters": [
+        { "cid": "0x0000", "variables": ["kernel", "manufacturer", "model", "date", "position", "application_name"] },
+        { "cid": "0x0050", "variables": ["main_or_external_voltage", "disposable_battery_voltage"] },
+        { "cid": "0x8004", "variables": ["message_type", "nb_retry", "automatic_association", "data_rate", "ABP_dev_address", "OTA_app_EUI"] },
+        { "cid": "0x8006", "variables": ["speed", "data_bit", "parity", "stop_bit"] },
+        { "cid": "0x8007", "variables": ["modbus_payload_EP0", "modbus_payload_EP1", "modbus_payload_EP2", "modbus_payload_EP3", "modbus_payload_EP4", "modbus_payload_EP5", "modbus_payload_EP6", "modbus_payload_EP7", "modbus_payload_EP8", "modbus_payload_EP9", "modbus_slaveID_EP0", "modbus_slaveID_EP1", "modbus_slaveID_EP2", "modbus_slaveID_EP3", "modbus_slaveID_EP4", "modbus_slaveID_EP5", "modbus_slaveID_EP6", "modbus_slaveID_EP7", "modbus_slaveID_EP8", "modbus_slaveID_EP9", "modbus_fnctID_EP0", "modbus_fnctID_EP1", "modbus_fnctID_EP2", "modbus_fnctID_EP3", "modbus_fnctID_EP4", "modbus_fnctID_EP5", "modbus_fnctID_EP6", "modbus_fnctID_EP7", "modbus_fnctID_EP8", "modbus_fnctID_EP9", "modbus_datasize_EP0", "modbus_datasize_EP1", "modbus_datasize_EP2", "modbus_datasize_EP3", "modbus_datasize_EP4", "modbus_datasize_EP5", "modbus_datasize_EP6", "modbus_datasize_EP7", "modbus_datasize_EP8", "modbus_datasize_EP9"] },
+        { "cid": "0x8009", "variables": ["modbus_frame_series_sent", "modbus_frame_number_in_serie", "modbus_last_frame_of_serie", "modbus_EP0", "modbus_EP1", "modbus_EP2", "modbus_EP3", "modbus_EP4", "modbus_EP5", "modbus_EP6", "modbus_EP7", "modbus_EP8", "modbus_EP9"", "+8007 clusterstructureforeach "true""] }
+      ]
+    },
+    {
+      "name": "monit'o",
+      "clusters": [
+        { "cid": "0x0000", "variables": ["kernel", "manufacturer", "model", "date", "position", "application_name"] },
+        { "cid": "0x0050", "variables": ["disposable_battery_voltage"] },
+        { "cid": "0x8004", "variables": ["message_type", "nb_retry", "automatic_association", "data_rate", "ABP_dev_address", "OTA_app_EUI"] },
+        { "cid": "0x000C", "variables": ["0-100_mV", "0-70_V"] }
+      ]
+    },
+    {
+      "name": "move'o",
+      "clusters": [
+        { "cid": "0x0000", "variables": ["kernel", "manufacturer", "model", "date", "position", "application_name"] },
+        { "cid": "0x0050", "variables": ["disposable_battery_voltage"] },
+        { "cid": "0x8004", "variables": ["message_type", "nb_retry", "automatic_association", "data_rate", "ABP_dev_address", "OTA_app_EUI"] },
+        { "cid": "0x0400", "variables": ["illuminance"] },
+        { "cid": "0x0402", "variables": ["temperature"] },
+        { "cid": "0x0403", "variables": ["pressure"] },
+        { "cid": "0x0405", "variables": ["humidity"] },
+        { "cid": "0x0406", "variables": ["occupancy"] }
+      ]
+    },
+    {
+      "name": "outdoor_temperature",
+      "clusters": [
+        { "cid": "0x0000", "variables": ["kernel", "manufacturer", "model", "date", "position", "application_name"] },
+        { "cid": "0x0050", "variables": ["disposable_battery_voltage"] },
+        { "cid": "0x8004", "variables": ["message_type", "nb_retry", "automatic_association", "data_rate", "ABP_dev_address", "OTA_app_EUI"] },
+        { "cid": "0x0402", "variables": ["temperature"] }
+      ]
+    },
+    {
+      "name": "pilot_wire",
+      "clusters": [
+        { "cid": "0x0000", "variables": ["kernel", "manufacturer", "model", "date", "position", "application_name"] },
+        { "cid": "0x0050", "variables": ["main_or_external_voltage"] },
+        { "cid": "0x8004", "variables": ["message_type", "nb_retry", "automatic_association", "data_rate", "ABP_dev_address", "OTA_app_EUI"] },
+        { "cid": "0x0013", "variables": ["output_value"] }
+      ]
+    },
+    {
+      "name": "press'o",
+      "clusters": [
+        { "cid": "0x0000", "variables": ["kernel", "manufacturer", "model", "date", "position", "application_name"] },
+        { "cid": "0x0050", "variables": ["main_or_external_voltage", "disposable_battery_voltage"] },
+        { "cid": "0x8004", "variables": ["message_type", "nb_retry", "automatic_association", "data_rate", "ABP_dev_address", "OTA_app_EUI"] },
+        { "cid": "0x000C", "variables": ["4-20_mA", "0-10_V"] },
+        { "cid": "0x000F", "variables": ["index", "pin_state", "polarity", "edge_selection", "debounce_period", "poll_period", "force_notify"] }
+      ]
+    },
+    {
+      "name": "pulse_sens'o_atex",
+      "clusters": [
+        { "cid": "0x0000", "variables": ["kernel", "manufacturer", "model", "date", "position", "application_name"] },
+        { "cid": "0x0050", "variables": ["disposable_battery_voltage"] },
+        { "cid": "0x8004", "variables": ["message_type", "nb_retry", "automatic_association", "data_rate", "ABP_dev_address", "OTA_app_EUI"] },
+        { "cid": "0x000F", "variables": ["index_1", "index_2", "index_3", "pin_state_1", "pin_state_2", "pin_state_3", "polarity", "edge_selection", "debounce_period", "poll_period", "force_notify"] },
+        { "cid": "0x8005", "variables": ["pin_state_1", "pin_state_2", "pin_state_3", ""] }
+      ]
+    },
+    {
+      "name": "pulse_sens'o",
+      "clusters": [
+        { "cid": "0x0000", "variables": ["kernel", "manufacturer", "model", "date", "position", "application_name"] },
+        { "cid": "0x0050", "variables": ["disposable_battery_voltage"] },
+        { "cid": "0x8004", "variables": ["message_type", "nb_retry", "automatic_association", "data_rate", "ABP_dev_address", "OTA_app_EUI"] },
+        { "cid": "0x000F", "variables": ["index_1", "index_2", "index_3", "pin_state_1", "pin_state_2", "pin_state_3", "polarity", "edge_selection", "debounce_period", "poll_period", "force_notify"] },
+        { "cid": "0x8005", "variables": ["pin_state_1", "pin_state_2", "pin_state_3", ""] }
+      ]
+    },
+    {
+      "name": "remote_temperature",
+      "clusters": [
+        { "cid": "0x0000", "variables": ["kernel", "manufacturer", "model", "date", "position", "application_name"] },
+        { "cid": "0x0050", "variables": ["disposable_battery_voltage"] },
+        { "cid": "0x8004", "variables": ["message_type", "nb_retry", "automatic_association", "data_rate", "ABP_dev_address", "OTA_app_EUI"] },
+        { "cid": "0x0402", "variables": ["temperature"] }
+      ]
+    },
+    {
+      "name": "remote_temperature_2",
+      "clusters": [
+        { "cid": "0x0000", "variables": ["kernel", "manufacturer", "model", "date", "position", "application_name"] },
+        { "cid": "0x0050", "variables": ["disposable_battery_voltage"] },
+        { "cid": "0x8004", "variables": ["message_type", "nb_retry", "automatic_association", "data_rate", "ABP_dev_address", "OTA_app_EUI"] },
+        { "cid": "0x0402", "variables": ["temperature_1", "temperature_2"] }
+      ]
+    },
+    {
+      "name": "smartplug",
+      "clusters": [
+        { "cid": "0x0000", "variables": ["kernel", "manufacturer", "model", "date", "position", "application_name"] },
+        { "cid": "0x0050", "variables": ["main_or_external_voltage"] },
+        { "cid": "0x8004", "variables": ["message_type", "nb_retry", "automatic_association", "data_rate", "ABP_dev_address", "OTA_app_EUI"] },
+        { "cid": "0x0006", "variables": ["output"] },
+        { "cid": "0x0052", "variables": ["active_energy", "reactive_energy", "nb_samples", "active_power", "reactive_power"] },
+        { "cid": "0x8052", "variables": ["frequency", "frequency_min", "frequency_max", "Vrms", "Vrms_min", "Vrms_max", "Vpeak", "Vpeak_min", "Vpeak_max", "over_voltage", "sag_voltage"] }
+      ]
+    },
+    {
+      "name": "TH",
+      "clusters": [
+        { "cid": "0x0000", "variables": ["kernel", "manufacturer", "model", "date", "position", "application_name"] },
+        { "cid": "0x0050", "variables": ["disposable_battery_voltage"] },
+        { "cid": "0x8004", "variables": ["message_type", "nb_retry", "automatic_association", "data_rate", "ABP_dev_address", "OTA_app_EUI"] },
+        { "cid": "0x000F", "variables": ["index"] },
+        { "cid": "0x0402", "variables": ["temperature"] },
+        { "cid": "0x0405", "variables": ["humidity"] }
+      ]
+    },
+    {
+      "name": "tics'o",
+      "clusters": [
+        { "cid": "0x0000", "variables": ["kernel", "manufacturer", "model", "date", "position", "application_name"] },
+        { "cid": "0x0050", "variables": ["main_or_external_voltage", "tic_harvesting_voltage"] },
+        { "cid": "0x8004", "variables": ["message_type", "nb_retry", "automatic_association", "data_rate", "ABP_dev_address", "OTA_app_EUI"] },
+        { "cid": "0x0052", "variables": ["active_energy", "reactive_energy", "nb_samples", "active_power", "reactive_power"] },
+        { "cid": "0x0053", "variables": ["TIC-ICE_fields (https://support.watteco.com/wp-content/uploads/2020/04/TIC_Application_Layer_Description_1.2.pdf)"] },
+        { "cid": "0x0054", "variables": ["TIC-CBE_fields (https://support.watteco.com/wp-content/uploads/2020/04/TIC_Application_Layer_Description_1.2.pdf)"] },
+        { "cid": "0x0055", "variables": ["TIC-CJE_fields (https://support.watteco.com/wp-content/uploads/2020/04/TIC_Application_Layer_Description_1.2.pdf)"] },
+        { "cid": "0x0056", "variables": ["TIC-STD_fields (https://support.watteco.com/wp-content/uploads/2020/04/TIC_Application_Layer_Description_1.2.pdf)"] },
+        { "cid": "0x0057", "variables": ["TIC-PMEPMI_fields (https://support.watteco.com/wp-content/uploads/2020/04/TIC_Application_Layer_Description_1.2.pdf)"] }
+      ]
+    },
+    {
+      "name": "toran'o_atex",
+      "clusters": [
+        { "cid": "0x0000", "variables": ["kernel", "manufacturer", "model", "date", "position", "application_name"] },
+        { "cid": "0x0050", "variables": ["disposable_battery_voltage"] },
+        { "cid": "0x8004", "variables": ["message_type", "nb_retry", "automatic_association", "data_rate", "ABP_dev_address", "OTA_app_EUI"] },
+        { "cid": "0x000C", "variables": ["4-20_mA", "0-5_V_1", "0-5_V_2", "ratiometric_0-5_V_1", "ratiometric_0-5_V_2"] },
+        { "cid": "0x000F", "variables": ["index_1", "index_2", "index_3", "pin_state_1", "pin_state_2", "pin_state_3"] },
+        { "cid": "0x8005", "variables": ["pin_state_1", "pin_state_2", "pin_state_3", ""] }
+      ]
+    },
+    {
+      "name": "triphas'o",
+      "clusters": [
+        { "cid": "0x0000", "variables": ["kernel", "manufacturer", "model", "date", "position", "application_name"] },
+        { "cid": "0x0050", "variables": ["main_or_external_voltage"] },
+        { "cid": "0x8004", "variables": ["message_type", "nb_retry", "automatic_association", "data_rate", "ABP_dev_address", "OTA_app_EUI"] },
+        { "cid": "0x0006", "variables": ["output"] },
+        { "cid": "0x000F", "variables": ["index"] },
+        { "cid": "0x800A", "variables": ["positive_active_energy_a", "positive_active_energy_b", "positive_active_energy_c", "positive_active_energy_abc", "negative_active_energy_a", "negative_active_energy_b", "negative_active_energy_c", "negative_active_energy_abc", "positive_reactive_energy_a", "positive_reactive_energy_b", "positive_reactive_energy_c", "positive_reactive_energy_abc", "negative_reactive_energy_a", "negative_reactive_energy_b", "negative_reactive_energy_c", "negative_reactive_energy_abc", "positive_active_power_a", "positive_active_power_b", "positive_active_power_c", "positive_active_power_abc", "negative_active_power_a", "negative_active_power_b", "negative_active_power_c", "negative_active_power_abc", "positive_reactive_power_a", "positive_reactive_power_b", "positive_reactive_power_c", "positive_reactive_power_abc", "negative_reactive_power_a", "negative_reactive_power_b", "negative_reactive_power_c", "negative_reactive_power_abc"] },
+        { "cid": "0x800B", "variables": ["Vrms_a", "Vrms_b", "Vrms_c", "Irms_a", "Irms_b", "Irms_c", "angle_a", "angle_b", "angle_c"] },
+        { "cid": "0x800D", "variables": ["Vrms_a", "Vrms_b", "Vrms_c", "Irms_a", "Irms_b", "Irms_c", "angle_a", "angle_b", "angle_c"] },
+        { "cid": "0x8010", "variables": ["active_energy_a", "reactive_energy_a", "active_energy_b", "reactive_energy_b", "active_energy_c", "reactive_energy_c", "active_energy_abc", "reactive_energy_abc", "active_power_a", "reactive_power_a", "active_power_b", "reactive_power_b", "active_power_c", "reactive_power_c", "active_power_abc", "reactive_power_abc"] }
+      ]
+    },
+    {
+      "name": "vaqa'o_lt",
+      "clusters": [
+        { "cid": "0x0000", "variables": ["kernel", "manufacturer", "model", "date", "position", "application_name"] },
+        { "cid": "0x0050", "variables": ["disposable_battery_voltage"] },
+        { "cid": "0x8004", "variables": ["message_type", "nb_retry", "automatic_association", "data_rate", "ABP_dev_address", "OTA_app_EUI"] },
+        { "cid": "0x000F", "variables": ["violation_detection"] },
+        { "cid": "0x0402", "variables": ["temperature_1", "temperature_2"] },
+        { "cid": "0x0405", "variables": ["humidity_1", "humidity_2"] },
+        { "cid": "0x800C", "variables": ["IAQ", "CO2"] }
+      ]
+    },
+    {
+      "name": "vaqa'o",
+      "clusters": [
+        { "cid": "0x0000", "variables": ["kernel", "manufacturer", "model", "date", "position", "application_name"] },
+        { "cid": "0x0050", "variables": ["disposable_battery_voltage"] },
+        { "cid": "0x8004", "variables": ["message_type", "nb_retry", "automatic_association", "data_rate", "ABP_dev_address", "OTA_app_EUI"] },
+        { "cid": "0x000F", "variables": ["violation_detection"] },
+        { "cid": "0x0402", "variables": ["temperature_1", "temperature_2"] },
+        { "cid": "0x0403", "variables": ["pressure"] },
+        { "cid": "0x0405", "variables": ["humidity_1", "humidity_2"] },
+        { "cid": "0x800C", "variables": ["IAQ", "CO2"] }
+      ]
+    },
+    {
+      "name": "vaqa'o_plus",
+      "clusters": [
+        { "cid": "0x0000", "variables": ["kernel", "manufacturer", "model", "date", "position", "application_name"] },
+        { "cid": "0x0050", "variables": ["disposable_battery_voltage"] },
+        { "cid": "0x8004", "variables": ["message_type", "nb_retry", "automatic_association", "data_rate", "ABP_dev_address", "OTA_app_EUI"] },
+        { "cid": "0x000F", "variables": ["violation_detection"] },
+        { "cid": "0x0400", "variables": ["illuminance"] },
+        { "cid": "0x0402", "variables": ["temperature_1", "temperature_2"] },
+        { "cid": "0x0403", "variables": ["pressure"] },
+        { "cid": "0x0405", "variables": ["humidity_1", "humidity_2"] },
+        { "cid": "0x0406", "variables": ["occupancy"] },
+        { "cid": "0x800C", "variables": ["IAQ", "CO2"] }
+      ]
+    },
+    {
+      "name": "ventil'o",
+      "clusters": [
+        { "cid": "0x0000", "variables": ["kernel", "manufacturer", "model", "date", "position", "application_name"] },
+        { "cid": "0x0050", "variables": ["main_or_external_voltage", "solar_harvesting_voltage"] },
+        { "cid": "0x8004", "variables": ["message_type", "nb_retry", "automatic_association", "data_rate", "ABP_dev_address", "OTA_app_EUI"] },
+        { "cid": "0x000F", "variables": ["index", "pin_state"] },
+        { "cid": "0x0402", "variables": ["temperature"] },
+        { "cid": "0x8008", "variables": ["differential_pressure"] }
+      ]
+    }
+  ]
+}

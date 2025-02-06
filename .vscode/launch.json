@@ -1,0 +1,21 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Debug debug_in.js with arguments",
+            "program": "${workspaceFolder}/utilities/debug_in.js",
+            "args": [
+                "clim'o",
+                "125",
+                "118a0402000029010ea0b008fc000001b10834000001b207d0000001",
+                "2024-12-27T18:35:54.000Z"
+            ],
+            "console": "integratedTerminal",
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
+        }
+    ]
+}
