@@ -4,3 +4,4 @@ coverage/
 specification/
 smartplug.js
 driver-examples.spec.js
+webpack.config.js

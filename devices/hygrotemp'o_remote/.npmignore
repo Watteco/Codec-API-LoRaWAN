@@ -4,3 +4,4 @@ coverage/
 specification/
 hygrotemp'o_remote.js
 driver-examples.spec.js
+webpack.config.js

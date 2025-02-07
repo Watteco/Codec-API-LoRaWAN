@@ -4,3 +4,4 @@ coverage/
 specification/
 triphas'o.js
 driver-examples.spec.js
+webpack.config.js

@@ -4,3 +4,4 @@ coverage/
 specification/
 th.js
 driver-examples.spec.js
+webpack.config.js

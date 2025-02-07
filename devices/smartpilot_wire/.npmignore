@@ -4,3 +4,4 @@ coverage/
 specification/
 smartpilot_wire.js
 driver-examples.spec.js
+webpack.config.js

@@ -4,3 +4,5 @@ coverage/
 specification/
 indoor_temperature.js
 driver-examples.spec.js
+
+webpack.config.js

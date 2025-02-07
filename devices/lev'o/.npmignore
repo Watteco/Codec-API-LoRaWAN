@@ -4,3 +4,4 @@ coverage/
 specification/
 lev'o.js
 driver-examples.spec.js
+webpack.config.js

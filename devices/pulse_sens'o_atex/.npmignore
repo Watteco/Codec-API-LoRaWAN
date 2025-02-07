@@ -4,3 +4,4 @@ coverage/
 specification/
 pulse_sens'o_atex.js
 driver-examples.spec.js
+webpack.config.js

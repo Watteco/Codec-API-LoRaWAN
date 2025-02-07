@@ -4,3 +4,4 @@ coverage/
 specification/
 move'o_lite.js
 driver-examples.spec.js
+webpack.config.js
