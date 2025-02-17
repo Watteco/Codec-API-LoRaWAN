@@ -4,7 +4,7 @@
 The drivers are provided as `main.js` files, with one file per sensor type. Each driver, regardless of the sensor, offers a simple API that complies with the  
 [TSO13-1.0.0 Payload Codec API](https://resources.lora-alliance.org/technical-specifications/ts013-1-0-0-payload-codec-api) specifications.
 
-You can consult the [list of drivers](https://github.com/Watteco/Codec-API-LoRaWAN/tree/main/distrib#drivers) provided by Watteco, which also includes the "variables" that each driver can return.
+You can consult the [list of drivers](DRIVERS.md) provided by Watteco, which also includes the "variables" that each driver can return.
 
 ## Usage
 
@@ -51,7 +51,7 @@ The `output` without errors is like this:
 
 `data.samples` is a formatted objects list ; each object contains the fields `variable`,`value`,`date`.  
 
-- `variable` contains a string of the name. [(see possible *variables* from our drivers list)](https://github.com/Watteco/Codec-API-LoRaWAN/tree/main/distrib#drivers).
+- `variable` contains a string of the name. [(see possible *variables* from our drivers list)](DRIVERS.md).
 - `value` contains the data value in its corresponding format (uint, int, float, ...).   
 - `date` is a string in the ISO 8601 date format. It is the input date for standard report or at last input date for batch report.  
 
@@ -79,7 +79,7 @@ If you wish to get the device via npm, you need to do this:
 ```
 
 Our current modules can be listed : 
-- From current Watteco repository [drivers from'distrib' directory] (https://github.com/Watteco/Codec-API-LoRaWAN/tree/main/distrib#drivers)
+- From current Watteco repository [drivers from'distrib' directory](DRIVERS.md)
 - From [the list of published drivers on the npm website](https://www.npmjs.com/~watteco)
 
 
@@ -188,7 +188,7 @@ Les drivers sont fournis sous forme de fichiers `main.js`, un fichier par type d
 Chaque driver, quel que soit le capteur, offre une API simple conforme aux spécifications de la  
 [TSO13-1.0.0 Payload Codec API](https://resources.lora-alliance.org/technical-specifications/ts013-1-0-0-payload-codec-api).
 
-Vous pouvez consulter la [liste des drivers](https://github.com/Watteco/Codec-API-LoRaWAN/tree/main/distrib#drivers)  
+Vous pouvez consulter la [liste des drivers](DRIVERS.md)  
 mise à disposition par Watteco, qui inclut également les "variables" pouvant être retournées par chaque driver.
 
 
@@ -237,7 +237,7 @@ La sortie `output` sans erreurs ressemble à ceci :
 
 `data.samples` est une liste d'objets formatés ; chaque objet contient les champs `variable`,`value`,`date`.  
 
-- `variable` contient une chaîne avec le nom. [(voir les *variables* possibles dans notre liste de drivers)](https://github.com/Watteco/Codec-API-LoRaWAN/tree/main/distrib#drivers).
+- `variable` contient une chaîne avec le nom. [(voir les *variables* possibles dans notre liste de drivers)](DRIVERS.md).
 - `value` contient la valeur des données dans son format correspondant (uint, int, float, ...).   
 - `date` est une chaîne au format de date ISO 8601. Il s'agit de la date d'entrée pour un rapport standard ou de la dernière date d'entrée pour un rapport de type batch.  
 
@@ -265,7 +265,7 @@ Si vous souhaitez obtenir le module via npm, vous devez exécuter :
 ```
 
 Nos modules actuels sont listés : 
-- Depuis le dépôt Watteco [drivers du répertoire 'distrib'](https://github.com/Watteco/Codec-API-LoRaWAN/tree/main/distrib#drivers)
+- Depuis le dépôt Watteco [drivers du répertoire 'distrib'](DRIVERS.md)
 - Depuis [la liste des drivers publiés sur le site npm](https://www.npmjs.com/~watteco)
 
 ## Utilisation de l'API codec Watteco avec NodeRED (>`1.3.0`)
