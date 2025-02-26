@@ -78,13 +78,13 @@ function postProcessDataContent(dataContentIn) {
  * @param {Object} endpoint_parameters - Parameters for endpoint normalization.
  * @returns {Object} - The decoded data with potential warnings or errors.
  */
-function watteco_decodeUplink(input, batch_parameters, endpoint_parameters) {
+function watteco_decodeUplink(input, batch_parameters, endpoint_parameters, TIC_Decode=null) {
     let bytes = input.bytes;
     let port = input.fPort;
     let date = input.recvTime;
 
     try {
-        let decoded = standard.normalisation_standard(input, endpoint_parameters)
+        let decoded = standard.normalisation_standard(input, endpoint_parameters, TIC_Decode)
         let payload = decoded.payload;
         
         if (decoded.type === "batch") {

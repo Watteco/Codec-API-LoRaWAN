@@ -702,7 +702,7 @@ function processAlarm(cmdId, clustID, attID, bytes, decoded, startIndex, attribu
 
 }
 
-function Decoder(bytes, port) {
+function Decoder(bytes, port, TIC_Decode = null) {
     let decoded = {};
     let knowncmdID=0
     decoded.lora = {};
@@ -742,8 +742,8 @@ function Decoder(bytes, port) {
                 if (cmdID === 0x01)	{i1 = 8; decoded.zclheader.status = bytes[6];}
 
                 if (( clustID === 0x0053 ) || ( clustID === 0x0054 ) || ( clustID === 0x0055 ) || ( clustID === 0x0056 )  || ( clustID === 0x0057 )) {
-                    if (typeof globalThis.TIC_Decode === "function") {
-                        decoded.data = globalThis.TIC_Decode(clustID,attID,bytes.slice(i1 + 1)); 
+                    if (typeof TIC_Decode === "function") {
+                        decoded.data = TIC_Decode(clustID,attID,bytes.slice(i1 + 1)); 
                     } else {
                         throw new ValidationError("TIC_Decode function not found")
                     }
@@ -1330,10 +1330,10 @@ function Decoder(bytes, port) {
     }
     return decoded;
 }
-function normalisation_standard(input, endpoint_parameters) {
+function normalisation_standard(input, endpoint_parameters,TIC_Decode=null) {
     let warning = [];
     let bytes = input.bytes;
-    let decoded = Decoder(bytes, input.fPort);
+    let decoded = Decoder(bytes, input.fPort, TIC_Decode);
     if (decoded.zclheader !== undefined){
         if (decoded.zclheader.alarmmsg !== undefined){
             warning = decoded.zclheader.alarmmsg
