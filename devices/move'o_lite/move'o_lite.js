@@ -7,8 +7,10 @@ let batch_param=[3, [{ taglbl: 0, resol: 1, sampletype: 4,lblname: "OCC", divide
 let endpointCorresponder={
     pin_state:["violation_detection"]
 }
-function decodeUplink(input) {
-    return watteco.watteco_decodeUplink(input,batch_param,endpointCorresponder);
+function decodeUplink(input,optBatchParams = null, optEndpointCorresponder = null) {
+	if (optBatchParams) { batch_param = optBatchParams;}
+	if (optEndpointCorresponder) { endpointCorresponder = optEndpointCorresponder;}
+	return watteco.watteco_decodeUplink(input,batch_param,endpointCorresponder);
 }
 exports.decodeUplink = decodeUplink;
 

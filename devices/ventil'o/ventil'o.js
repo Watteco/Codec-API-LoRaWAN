@@ -9,8 +9,10 @@ let batch_param = [3, [{taglbl: 0,resol: 1, sampletype: 7,lblname: "mean_differe
     { taglbl: 7, resol: 1, sampletype: 1,lblname: "state", divide: 1}]];
 
 let endpointCorresponder={}
-function decodeUplink(input) {
-    return watteco.watteco_decodeUplink(input,batch_param,endpointCorresponder);
+function decodeUplink(input,optBatchParams = null, optEndpointCorresponder = null) {
+	if (optBatchParams) { batch_param = optBatchParams;}
+	if (optEndpointCorresponder) { endpointCorresponder = optEndpointCorresponder;}
+	return watteco.watteco_decodeUplink(input,batch_param,endpointCorresponder);
 }
 exports.decodeUplink = decodeUplink;
 

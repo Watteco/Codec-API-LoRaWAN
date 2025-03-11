@@ -9,9 +9,10 @@ let batch_param = [2, [{ taglbl: 0, resol: 10, sampletype: 7, lblname: "temperat
 let endpointCorresponder={
     pin_state:["violation_detection"]
 }
-function decodeUplink(input) {
+function decodeUplink(input,optBatchParams = null, optEndpointCorresponder = null) {
+    if (optBatchParams) { batch_param = optBatchParams;}
+    if (optEndpointCorresponder) { endpointCorresponder = optEndpointCorresponder;}
     return watteco.watteco_decodeUplink(input,batch_param,endpointCorresponder);
-
 }
 exports.decodeUplink = decodeUplink;
 

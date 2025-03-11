@@ -5,6 +5,31 @@ const standard = require("./standard.js");
 const batch = require("./batch.js");
 
 /**
+ * Recursively sorts the keys of an object alphabetically.
+ * This function addedto avoid "order" issues in the output data when examples are tested accross different js platforms
+ *
+ * @param {Object|Array} obj - The object or array to sort.
+ * @returns {Object|Array} - The sorted object or array.
+ */
+function sortObject(obj) {
+    // If the input is null or not an object, return it as is.
+    if (obj === null || typeof obj !== 'object') {
+        return obj;
+    }
+
+    // If the input is an array, recursively sort each element.
+    if (Array.isArray(obj)) {
+        return obj.map(sortObject);
+    }
+
+    // For objects, sort the keys alphabetically and recursively sort nested objects.
+    return Object.keys(obj).sort().reduce((acc, key) => {
+        acc[key] = sortObject(obj[key]); // Recursively sort the value.
+        return acc;
+    }, {});
+}
+
+/**
  * Ensures the given parameter conforms to the TS013 "data" field specification.
  *
  * @param {*} param - The input data of any type.
@@ -66,8 +91,10 @@ function postProcessDataContent(dataContentIn) {
             processedData[key] = latestValues[key].value;
         }
     }
+
     
     return processedData;
+    // return sortObject(processedData); /* TODO: Evaluate if this could solve the problem of order in the output data in TTN Automatised Tests */
 }
 
 /**
@@ -81,8 +108,13 @@ function postProcessDataContent(dataContentIn) {
 function watteco_decodeUplink(input, batch_parameters, endpoint_parameters, TIC_Decode=null) {
     let bytes = input.bytes;
     let port = input.fPort;
-    let date = input.recvTime;
 
+    // Avoid non valid recvTime. Saw on multitech mPowerEdge Conduit AP, firmware 7.0.0
+    if (! input.recvTime) {
+        input.recvTime = (new Date()).toISOString();
+    }
+    let date = input.recvTime;
+    
     try {
         let decoded = standard.normalisation_standard(input, endpoint_parameters, TIC_Decode)
         let payload = decoded.payload;

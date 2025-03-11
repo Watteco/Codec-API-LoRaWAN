@@ -4,9 +4,10 @@ let batch_param = []
 let endpointCorresponder={
     pin_state:["violation_detection","open"]
 }
-function decodeUplink(input) {
+function decodeUplink(input,optBatchParams = null, optEndpointCorresponder = null) {
+    if (optBatchParams) { batch_param = optBatchParams;}
+    if (optEndpointCorresponder) { endpointCorresponder = optEndpointCorresponder;}
     return watteco.watteco_decodeUplink(input,batch_param,endpointCorresponder);
-
 }
 exports.decodeUplink = decodeUplink;
 

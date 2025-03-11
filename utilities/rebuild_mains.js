@@ -22,6 +22,9 @@
  *
  * Parameters:
  *  - -v or --version (optional): A version type or custom version (major, minor, patch, or x.y.z).
+ *     BEWARE: For now, the building tools can manage only a single "major.minor" version. Changing major or minor :
+ *     - MUST be done in all devices at the same time
+ *     - IMPLY a manual modification of the versions in actility_deployment.js (currentVersionMajorMinor and actilityVersion)
  *  - filter (optional): A regex pattern to match device names. If "." is used, it will take the current directory name
  *
  * Behavior:
@@ -140,11 +143,15 @@ if (devices.length === 0) process.exit(0);
 
 // Execute commands for each filtered device
 for (let i in devices) {
-        
-    console.log(`Building ${devices[i]} ...`);
+    sensorName = devices[i];
+    console.log(`Building ${sensorName} ...`);
     
-    let devicePath = path.join(__dirname, `../devices/${devices[i]}`)
+    let devicePath = path.join(__dirname, `../devices/${sensorName}`)
     tools.buildAndTranspile(devicePath);
+
+    // Force name (npm: watteco-<device with _ replacing space and '>) or description for sensors (activate when needed)
+    npmSensorName = `watteco-${sensorName.replace(/ /g, '_').replace(/'/g, '_')}`;
+    tools.updateJSON_name_description(`${devicePath}/package.json`, npmSensorName, `Driver for ${sensorName} sensor`);
 
     // Update version in package.json and metadata.json if versionOrTypeParam is provided
     updateVersionAndSyncMetadata(devicePath, versionOrTypeParam);

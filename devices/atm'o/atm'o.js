@@ -11,7 +11,9 @@ let endpointCorresponder={
     index:["index_1","index_2"],
     pin_state:["pin_state_1","pin_state_2"]
 }
-function decodeUplink(input) {
+function decodeUplink(input,optBatchParams = null, optEndpointCorresponder = null) {
+    if (optBatchParams) { batch_param = optBatchParams;}
+    if (optEndpointCorresponder) { endpointCorresponder = optEndpointCorresponder;}
     return watteco.watteco_decodeUplink(input,batch_param,endpointCorresponder);
 }
 exports.decodeUplink = decodeUplink;

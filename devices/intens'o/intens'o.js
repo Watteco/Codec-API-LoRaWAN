@@ -5,8 +5,10 @@ let batch_param =[2, [{taglbl: 0,resol: 0.1, sampletype: 12,lblname: "Irms", div
 let endpointCorresponder={
     analog:["Irms"]
 }
-function decodeUplink(input) {
-    return watteco.watteco_decodeUplink(input,batch_param,endpointCorresponder);
+function decodeUplink(input,optBatchParams = null, optEndpointCorresponder = null) {
+	if (optBatchParams) { batch_param = optBatchParams;}
+	if (optEndpointCorresponder) { endpointCorresponder = optEndpointCorresponder;}
+	return watteco.watteco_decodeUplink(input,batch_param,endpointCorresponder);
 }
 exports.decodeUplink = decodeUplink;
 

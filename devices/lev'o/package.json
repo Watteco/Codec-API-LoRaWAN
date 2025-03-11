@@ -1,7 +1,7 @@
 {
   "name": "watteco-lev_o",
-  "version": "1.1.1",
-  "description": "",
+  "version": "1.1.2",
+  "description": "Driver for lev'o sensor",
   "main": "main.js",
   "scripts": {
     "test": "jest --collectCoverage",

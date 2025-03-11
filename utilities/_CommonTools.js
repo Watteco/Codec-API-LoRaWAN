@@ -167,7 +167,7 @@ function buildAndTranspile(projectDir) {
 /**
  * Function to get devices and actility devices from '../devices' directory " with optional filtering
  * @param {string} [pattern] - Optional regex pattern to filter devices.
- * @returns {Object} An object containing filtered devices, actility devices of filtered devices.
+ * @returns {Object} An object containing filtered devices, actility devices & ttn_devices of filtered devices.
  */
 const getDevices = (pattern = null) => {
     // Scanned directory for subdirectories. One per device.
@@ -181,7 +181,7 @@ const getDevices = (pattern = null) => {
     const actility_devices = devices.map(device => 
         device === "remote_temperature_2" 
             ? "remote-temperature2" 
-            : device.replace(/_/g, '-').toLowerCase()
+            : device.replace(/_/g, '-').replace(/'/g, '').toLowerCase()
     );
 
     const ttn_devices = devices.map(device => 
@@ -211,7 +211,7 @@ const getDevices = (pattern = null) => {
     };
 };
 
-  function updateJSON_name_description(filePath, sensorName, descriptionTemplate = "Driver for ${sensorName} sensor") {
+  function updateJSON_name_description(filePath, sensorName = null, descriptionTemplate = null) {
     const description = descriptionTemplate.replace("${sensorName}", sensorName);
 
     try {
@@ -220,11 +220,13 @@ const getDevices = (pattern = null) => {
         const jsonData = JSON.parse(fileContent);
 
         // Update name and description
-        jsonData.name = sensorName;
-        jsonData.description = description;
+        jsonData.name = (sensorName == null ? jsonData.name : sensorName);
+        jsonData.description = (description == null ? jsonData.description : description);
 
         // Write the updated JSON back to the file
-        fs.writeFileSync(filePath, JSON.stringify(jsonData, null, 2), "utf8");
+        if (sensorName != null || description != null) {
+            fs.writeFileSync(filePath, JSON.stringify(jsonData, null, 2), "utf8");
+        }
 
         //console.log(`File updated successfully for sensor: ${sensorName}`);
     } catch (err) {

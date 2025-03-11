@@ -58,17 +58,32 @@ function ensureDeviceInYaml(filePath, deviceName) {
 function createTTNCodecYAML(JSONExamplesInputFile,ttnDevicePath,ttnDevice) {
   // Read the JSON file
   const jsonData = JSON.parse(fs1.readFileSync(JSONExamplesInputFile, 'utf8'));
-
+  
   // Transform the JSON data
   const yamlData = {
     uplinkDecoder: {
       fileName: `${ttnDevice}.js`,
       examples: jsonData.map((example) => {
+        
+        // Format the bytes array into a YAML-friendly format with max 10 bytes per line but keep array on the same line than bytes if less or equal than 15
+        const bytesArray = example.input.bytes.match(/.{1,2}/g).map(byte => `0x${byte.toLowerCase()}`);
+        let bytesFieldFormated;
+        if (bytesArray.length <= 15) {
+          bytesFieldFormated = `[${bytesArray.join(', ')}]`;
+        } else {
+          const formattedBytes = [];
+          for (let i = 0; i < bytesArray.length; i += 10) {
+            formattedBytes.push(bytesArray.slice(i, i + 10).join(', '));
+          }
+          bytesFieldFormated = `[\n  ${formattedBytes.join(',\n  ')}\n]`;
+        }
+
         return {
           description: example.description,
           input: {
             // Convert bytes into an array of hex values
-            bytes: `[${example.input.bytes.match(/.{1,2}/g).map((byte) => `0x${byte.toLowerCase()}`).join(', ')}]`,
+            //bytes: `[${example.input.bytes.match(/.{1,2}/g).map((byte) => `0x${byte.toLowerCase()}`).join(', ')}]`,
+            bytes: bytesFieldFormated,
             fPort: example.input.fPort,
             recvTime: example.input.recvTime,
           },
@@ -87,7 +102,7 @@ function createTTNCodecYAML(JSONExamplesInputFile,ttnDevicePath,ttnDevice) {
     noRefs: true,          // Prevent duplicate references
     lineWidth: -1,         // Ensure arrays are always in a single line
     quotingType: "'",      // Use single quotes for strings
-  }).replace(/'?\[(.*?)\]'?/g, '[$1]')); // Remove quotes around arrays
+  }).replace(/'?\[(.*?)\]'?/g, '[$1]').replace(/bytes:\s*\|\-/g, 'bytes:')); // Remove quotes around arrays and |- formater for bytes
 
 }
 

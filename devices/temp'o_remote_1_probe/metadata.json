@@ -1,8 +1,8 @@
 {
-  "name": "temp'o remote 1 probe v4",
-  "version": "1.1.1",
+  "name": "temp'o remote 1 probe",
+  "version": "1.1.2",
   "main": "main.js",
-  "description": "Driver for Temp'o remote 1 probe v4 sensor",
+  "description": "Driver for Temp'o remote 1 probe sensor",
   "codecId": "0025",
   "sourceUrl": "https://github.com/actility/device-catalog/tree/main/vendors/watteco",
   "vendorId": "0128",

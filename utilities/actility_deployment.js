@@ -50,18 +50,20 @@ function syncMetadataToPackage(directoryPath) {
   // Get the current version from package.json
   let currentVersion = metadataJson.version || '0.0.0';
   let currentName = metadataJson.name || packageJson.name || 'unknown';
+  let currentDescription = metadataJson.description || packageJson.description || '';
 
   // Synchronize the version in package.json if necessary
-  if ((packageJson.version !== currentVersion) || (currentName !== packageJson.name)) {
+  if ((packageJson.version !== currentVersion) || (currentName !== packageJson.name) || (currentDescription !== packageJson.description)) {
     packageJson.name = currentName;
     packageJson.version = currentVersion;
+    packageJson.description = currentDescription;
     fs1.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2), 'utf8');
     console.log(`Version & name synchronized in package.json to: ${currentVersion}`);
   }
 }
 
 
-async function updateRequireDecodeUplinkFile(filePath) {
+async function updateRequireDecodeUplinkFile(filePath, currentVersionMajorMinor) {
   // Ensure the file exists before attempting to read it
   try {
     if (!(await fs.stat(filePath)).isFile()) {
@@ -71,8 +73,8 @@ async function updateRequireDecodeUplinkFile(filePath) {
     // Read the content of the file
     const data = await fs.readFile(filePath, 'utf8');
 
-    // Replace occurrences of "../../codec/decode_uplink" and "../../codec/decode_uplink.js"
-    let modifiedData = data.replace(/(?:\.\.\/\.\.\/codec\/decode_uplink(?:\.js)?)/g, '../decode.js');
+    // Replace occurrences of "../../codec/decode_uplink" and "../../codec/decode_uplink.js" with the current version
+    let modifiedData = data.replace(/(?:\.\.\/\.\.\/codec\/decode_uplink(?:\.js)?)/g, `../../codec${currentVersionMajorMinor}/decode_uplink.js`);
 
     // Write the modified content back to the file
     await fs.writeFile(filePath, modifiedData, 'utf8');
@@ -83,11 +85,15 @@ async function updateRequireDecodeUplinkFile(filePath) {
 }
 
 async function copyAndDeployFiles(watteco_path, actility_path, devices, actility_devices) {
+  // TODO: Update variables below according current sources version and actility version
+  let currentVersionMajorMinor = "v1.1"
+  let actilityVersion = "v5"
+
   try {
     // Copy common codec files ["standard.js", batch.js,convert_tools.js, tic.js, decode_uplink.js]
     const filesToCopy = ["standard.js", "batch.js", "convert_tools.js", "tic.js", "decode_uplink.js"];
     const sourceDir = `${watteco_path}/codec`;
-    const destDir = `${actility_path}/vendors/watteco/codec`;
+    const destDir = `${actility_path}/vendors/watteco/codec_${currentVersionMajorMinor}`;
     console.log(`Coping files from '${sourceDir}' to '${destDir}'`);
     filesToCopy.forEach(file => {
       const sourceFilePath = path.join(sourceDir, file);
@@ -95,20 +101,11 @@ async function copyAndDeployFiles(watteco_path, actility_path, devices, actility
       fs.copyFile(sourceFilePath, destFilePath);
         //console.log(`Copied: ${file}`);
     });
-    
-    console.log(`Processing standard.js ...`);
-    await fs.copyFile(`${watteco_path}/codec/standard.js`, `${actility_path}/vendors/watteco/codec/standard.js`);
-
-    console.log(`Processing batch.js ...`);
-    await fs.copyFile(`${watteco_path}/codec/batch.js`, `${actility_path}/vendors/watteco/codec/batch.js`);
-
-    console.log(`Processing decode_uplink.js ...`);
-    await fs.copyFile(`${watteco_path}/codec/decode_uplink.js`, `${actility_path}/vendors/watteco/codec/decode_uplink.js`);
 
     // Copy and process device-specific files sequentially
     for (let i in devices) {
       const device = devices[i];
-      const actilityDevicePath = `${actility_path}/vendors/watteco/drivers/${actility_devices[i]}`;
+      const actilityDevicePath = `${actility_path}/vendors/watteco/drivers/${actility_devices[i]}_${currentVersionMajorMinor}`;
     
       try {
         // Copy device-specific files sequentially without creating intermediate variables
@@ -116,15 +113,15 @@ async function copyAndDeployFiles(watteco_path, actility_path, devices, actility
         console.log(`Processing ${device} ...`);
 
         await fs.copyFile(`${watteco_path}/devices/${device}/${device}.js`, `${actilityDevicePath}/${device}.js`);
-        //await updateRequireDecodeUplinkFile(`${actilityDevicePath}/${device}.js`);
+        await updateRequireDecodeUplinkFile(`${actilityDevicePath}/${device}.js`,`_${currentVersionMajorMinor}`);
     
         await fs.copyFile(`${watteco_path}/devices/${device}/main.js`, `${actilityDevicePath}/main.js`);
     
         await fs.copyFile(`${watteco_path}/devices/${device}/examples.json`, `${actilityDevicePath}/examples.json`);
     
         await fs.copyFile(`${watteco_path}/devices/${device}/metadata.json`, `${actilityDevicePath}/metadata.json`);
-        let actilityDriverName = device.replace(/_/g, '-').replace(/'/g, '') + "_v4"; /* ie: "pulse_sens'o_atex" becomes "pulse-senso-atex_v4" */
-        tools.updateJSON_name_description(`${actilityDevicePath}/metadata.json`, `${actilityDriverName}`, `Driver for ${device} v4 sensor`);
+        let actilityDriverName = device.replace(/_/g, '-').replace(/'/g, '') + `_${actilityVersion}`; /* ie: "pulse_sens'o_atex" becomes "pulse-senso-atex_v5" */
+        tools.updateJSON_name_description(`${actilityDevicePath}/metadata.json`, `${actilityDriverName}`, `Driver for ${device} sensor`);
     
         await fs.copyFile(`${watteco_path}/devices/${device}/uplink.schema.json`, `${actilityDevicePath}/uplink.schema.json`);
     
@@ -135,7 +132,7 @@ async function copyAndDeployFiles(watteco_path, actility_path, devices, actility
       
         //await fs.copyFile(`${watteco_path}/devices/${device}/webpack.config.js`, `${actilityDevicePath}/webpack.config.js`);
         
-        // Only sync metata version and name to package version and name in actility directory
+        // Only sync metata version description and name to package version and name in actility directory
         syncMetadataToPackage(actilityDevicePath);
 
       } catch (err) {
