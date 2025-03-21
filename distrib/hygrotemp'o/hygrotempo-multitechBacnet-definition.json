@@ -1,0 +1,9 @@
+{
+  "description": "HygroTemp'O v0.1",
+  "properties": {
+    "temperature"     : {"type": "float"},
+    "humidity"        : {"type": "float"},
+    "battery_voltage" : {"type": "float"}
+  },
+  "decoder": "hygrotempo-decoder.js"
+}

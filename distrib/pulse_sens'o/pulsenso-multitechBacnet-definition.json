@@ -1,0 +1,13 @@
+{
+  "description": "Pulsens'O v0.1",
+  "properties": {
+    "pin_state_1"                : {"type": "bool"},
+    "pin_state_2"                : {"type": "bool"},
+    "pin_state_3"                : {"type": "bool"},
+    "index_1"                    : {"type": "uint32"},
+    "index_2"                    : {"type": "uint32"},
+    "index_3"                    : {"type": "uint32"},
+    "disposable_battery_voltage" : {"type": "float"}
+  },
+  "decoder": "pulsenso-decoder.js"
+}
