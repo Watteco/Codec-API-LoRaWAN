@@ -133,7 +133,7 @@
 </details>
 
 <details>
-<summary>MODBUS [1.1.2]</summary>
+<summary>MODBUS [1.1.3]</summary>
 
   [NPM: watteco-modbus](https://www.npmjs.com/package/watteco-modbus)
 - **basic (CID: 0x0000)** : kernel, manufacturer, model, date, position, application_name
