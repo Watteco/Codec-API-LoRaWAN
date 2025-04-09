@@ -1,0 +1,15 @@
+{
+  "description": "Watteco Smart Pilot Wire v0.3",
+  "properties": {
+    "sendHexFrame"      : {"type": "string", "downlink" : true},
+    "sendConfirmedMode" : {"type": "uint8", "downlink" : true},
+    "sendReboot"        : {"type": "bool", "downlink" : true},
+    "sendFactoryReset"  : {"type": "bool", "downlink" : true},
+    "sendLoraRetries"   : {"type": "uint8", "downlink" : true},
+    "sendLoraRejoin"    : {"type": "uint16", "downlink" : true, "unit": "minutes"},
+
+    "output_value"      : {"type": "uint8"},
+    "sendMSOMode"       : {"type": "uint8", "downlink" : true}
+  },
+  "decoder": "smartpilot_wire-decoder.js"
+}
