@@ -40,9 +40,9 @@ Ne sert qu'à appeler la fonction personnalisée qui donne les paramètres suppl
 
 La fonction qui permet d'encoder des messages descendants vers le capteur.  
 Elle utilise un objet `dlFrames`, présent dans `<capteur>.js` qui contient des templates de trames avec des placeholders pour les valeurs à insérer.
-Ces templates suivent le format: `"commande": "trame_hexadecimale<TYPE:parametre>"` où:
+Ces templates suivent le format: `"commande": "trame_hexadecimale<TYPE:commande>"` où:
 - `TYPE` indique le type de donnée (U8, U16, etc.) (Attention : **Pas de U24**)
-- `parametre` est le nom du paramètre qui sera fourni dans l'objet d'entrée
+- `commande` est le nom du paramètre qui sera fourni dans l'objet d'entrée, il est le même que le nom de la commande.
 
 Exemple d'utilisation:
 ```javascript
@@ -53,8 +53,7 @@ const dlFrames = {
 
 // Utilisation
 encodeDownlink({ 
-    command: "sendMSOMode", 
-    params: { 
+    data: { 
         sendMSOMode: 1 
     } 
 });
