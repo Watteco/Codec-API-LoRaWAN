@@ -36,6 +36,45 @@ L'ensemble des opérations se font dans des *try catch* afin de ne pas faire pla
 La fonction qui se trouve dans le fichier spécifique au capteur.  
 Ne sert qu'à appeler la fonction personnalisée qui donne les paramètres supplémentaires nécessaires à certaines fonctionnalités (report batch/remplacement d'étiquette).
 
+## encodeDownlink
+
+La fonction qui permet d'encoder des messages descendants vers le capteur.  
+Elle utilise un objet `dlFrames`, présent dans `<capteur>.js` qui contient des templates de trames avec des placeholders pour les valeurs à insérer.
+Ces templates suivent le format: `"commande": "trame_hexadecimale<TYPE:parametre>"` où:
+- `TYPE` indique le type de donnée (U8, U16, etc.) (Attention : **Pas de U24**)
+- `parametre` est le nom du paramètre qui sera fourni dans l'objet d'entrée
+
+Exemple d'utilisation:
+```javascript
+// Définition du template
+const dlFrames = {
+    sendMSOMode: "11050013005520<U8:sendMSOMode>"
+}
+
+// Utilisation
+encodeDownlink({ 
+    command: "sendMSOMode", 
+    params: { 
+        sendMSOMode: 1 
+    } 
+});
+```
+
+### Templates globaux disponibles
+
+En plus des templates spécifiques à chaque capteur, les templates globaux suivants sont disponibles pour tous les capteurs :
+
+- `sendHexFrame` : Permet d'envoyer une trame hexadécimale brute (`"<sendHexFrame>"`). 
+  * Particularité : Accepte aussi le format `"hexdata:port"` pour spécifier un port LoRaWAN personnalisé  
+    Exemple : `"0102030405:100"` enverra les données `0102030405` sur le port 100
+- `sendConfirmedMode` : Configure le mode confirmé (`"11058004000008<U8:sendConfirmedMode>"`)
+- `sendReboot` : Redémarre le capteur (`"1150005000"`)
+- `sendFactoryReset` : Réinitialise le capteur aux paramètres d'usine (`"1150005007"`)
+- `sendLoraRetries` : Configure le nombre de tentatives LoRa (`"1105800400000120<U8:sendLoraRetries>"`)
+- `sendLoraRejoin` : Réassocie le capteur après un délai spécifié en minutes (`"1150800400<U16:sendLoraRejoin>"`)
+
+La fonction renvoie le payload encodé prêt à être envoyé au capteur via le réseau LoRaWAN.
+
 
 
 
