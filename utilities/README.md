@@ -147,7 +147,7 @@ On l'exécute comme un capteur, mais en rajoutant l'argument `device` avant :
 par exemple: 
 
 ```bash
-    node .\debug.js "tics'o" 125 "110a0056010041132402051445140a180525190001a81401cd4593" "2023-07-19T07:51:25.508306410Z
+    node .\debug.js "tics'o" 125 "110a0056010041132402051445140a180525190001a81401cd4593" "2023-07-19T07:51:25.508306410Z"
 ```
 
 Il exécute le fichier javascript du capteur choisit se trouvant dans le dossier `distrib`.  
@@ -166,7 +166,7 @@ On l'exécute comme un capteur, mais en rajoutant l'argument `device` avant:
 par exemple: 
 
 ```bash
-    node .\debug_in.js "tics'o" 125 "110a0056010041132402051445140a180525190001a81401cd4593" "2023-07-19T07:51:25.508306410Z
+    node .\debug_in.js "tics'o" 125 "110a0056010041132402051445140a180525190001a81401cd4593" "2023-07-19T07:51:25.508306410Z"
 ```
 
 

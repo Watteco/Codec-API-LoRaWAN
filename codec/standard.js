@@ -548,7 +548,8 @@ function decodeAlarms(
     
 	index++;
     if (index >= byteArray.length) {
-        throw new Error(`Alarm decoding: Unexpected end of causes.)`);
+        decodedData.causesMessages.push("cause:{}");
+        return decodedData;
     }
 
 	let defaultAlarmField = "FieldUndef !";
