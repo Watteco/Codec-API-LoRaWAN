@@ -228,5 +228,159 @@
       },
       "warnings": []
     }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Set onOff state to 0 (on) for endpoint 1",
+    "input": {
+      "data": {
+        "sendOnOffStateEP1": 0
+      }
+    },
+    "output": {
+      "bytes": [17, 80, 0, 6, 0, 0],
+      "fPort": 125,
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Set onOff state to 0 (on) for endpoint 2",
+    "input": {
+      "data": {
+        "sendOnOffStateEP2": 0
+      }
+    },
+    "output": {
+      "bytes": [49, 80, 0, 6, 0, 0],
+      "fPort": 125,
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Set onOff state to 0 (on) for endpoint 3",
+    "input": {
+      "data": {
+        "sendOnOffStateEP3": 0
+      }
+    },
+    "output": {
+      "bytes": [81, 80, 0, 6, 0, 0],
+      "fPort": 125,
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Set onOff state to 0 (on) for endpoint 4",
+    "input": {
+      "data": {
+        "sendOnOffStateEP4": 0
+      }
+    },
+    "output": {
+      "bytes": [113, 80, 0, 6, 0, 0],
+      "fPort": 125,
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Send a custom hex frame (here: read firmware version)",
+    "input": {
+      "data": {
+        "sendHexFrame": "110000000002"
+      }
+    },
+    "output": {
+      "bytes": [17, 0, 0, 0, 0, 2],
+      "fPort": 125,
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Send a custom hex frame with specific port",
+    "input": {
+      "data": {
+        "sendHexFrame": "110000000002:100"
+      }
+    },
+    "output": {
+      "bytes": [17, 0, 0, 0, 0, 2],
+      "fPort": 100,
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Set confirmed transmission mode (1=confirmed, 0=unconfirmed)",
+    "input": {
+      "data": {
+        "sendConfirmedMode": 1
+      }
+    },
+    "output": {
+      "bytes": [17, 5, 128, 4, 0, 0, 8, 1],
+      "fPort": 125,
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Reboot device",
+    "input": {
+      "data": {
+        "sendReboot": true
+      }
+    },
+    "output": {
+      "bytes": [17, 80, 0, 80, 0],
+      "fPort": 125,
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Factory reset device",
+    "input": {
+      "data": {
+        "sendFactoryReset": true
+      }
+    },
+    "output": {
+      "bytes": [17, 80, 0, 80, 7],
+      "fPort": 125,
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Set LoRa retries to 3",
+    "input": {
+      "data": {
+        "sendLoraRetries": 3
+      }
+    },
+    "output": {
+      "bytes": [17, 5, 128, 4, 0, 1, 32, 3],
+      "fPort": 125,
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "LoRa Rejoin with 60 minutes interval",
+    "input": {
+      "data": {
+        "sendLoraRejoin": 60
+      }
+    },
+    "output": {
+      "bytes": [17, 80, 128, 4, 0, 0, 60],
+      "fPort": 125,
+      "warnings": []
+    }
   }
 ]
