@@ -23,3 +23,28 @@ exports.decodeUplink = decodeUplink;
 const globalObject = typeof globalThis !== 'undefined' ? globalThis : this;
 globalObject.decodeUplink = decodeUplink;
 
+// Add downlink encoder
+let encoder = require("../../codec/encode_downlink")
+
+// Define downlink frame templates below
+// Format: commandName: "hexadecimalPrefix<dataType:commandName>"
+// Example: sendMSOMode: "11050013005520<U8:sendMSOMode>" where:
+//   - "sendMSOMode" is used as the command identifier
+//   - "11050013005520" is the hex prefix of the frame
+//   - "U8" specifies an unsigned 8-bit integer data type
+//   - "sendMSOMode" is the parameter name that will be replaced with the actual value
+const dlFrames = {
+    
+}
+
+function encodeDownlink(input) {
+    return encoder.watteco_encodeDownlink({ dlFrames: dlFrames }, input);
+}
+exports.encodeDownlink = encodeDownlink;
+
+const encodePayload = encoder.encodePayload;
+exports.encodePayload = encodePayload;
+
+globalObject.encodeDownlink = encodeDownlink;
+globalObject.encodePayload = encodePayload;
+
