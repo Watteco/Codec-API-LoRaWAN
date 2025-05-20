@@ -1,11 +1,11 @@
 ## Utilisation
 
-Le fichier `[device].js` est le point d'entrée du Javascript. Il prend un objet `input` contenant le payload sous forme de liste d'octets converti en décimal, le port et la date de reception.  
-La sortie est décrite dans le fichier`uplink.schema.json`.  
+Le fichier `[device].js` est le point d'entrée du Javascript. Il prend un objet `input` contenant le payload sous forme de liste d'octets converti en décimal, le port et la date de réception.  
+La sortie est décrite dans le fichier `uplink.schema.json`.  
 
 ## Fichiers codec
 
-Le corp des codec (decode_uplink.js,standard.js et batch.js) provient du répertoire '../codec'
+Le corps des codec (decode_uplink.js,standard.js et batch.js) provient du répertoire '../codec'
 
 ## Webpack
 
@@ -31,18 +31,18 @@ Le chemin est relatif à la position du fichier **webpack.config.js**
 Notre **webpack.config.js** est spécifique au capteur associé :  
 
 ```javascript
-    const path = require("path");
+const path = require("path");
 
-    module.exports = {
+module.exports = {
     target: "node",
     mode: "production",
     entry: "./[device].js",
     output: {
-    filename: "main.js",
-    path: path.resolve(__dirname, "."),
-    library: "driver",
-        },
-    };
+        filename: "main.js",
+        path: path.resolve(__dirname, "."),
+        library: "driver",
+    },
+};
 ```
 
 ## JEST
