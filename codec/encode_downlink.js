@@ -20,7 +20,7 @@ function watteco_encodeDownlink(config, input) {
     dlFrames.sendConfirmedMode = "11058004000008<U8:sendConfirmedMode>";
     dlFrames.sendReboot = "1150005000";
     dlFrames.sendFactoryReset = "1150005007";
-    dlFrames.sendLoraRetries = "1105800400000120<U8:sendLoraRetries>";
+    dlFrames.sendLoraRetries = "11058004000120<U8:sendLoraRetries>";
     dlFrames.sendLoraRejoin = "1150800400<U16:sendLoraRejoin>"; //minutes
     const commandKey = Object.keys(input.data).find(key => dlFrames[key]);
     
