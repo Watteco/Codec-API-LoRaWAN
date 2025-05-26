@@ -100,14 +100,15 @@ function postProcessDataContent(dataContentIn) {
 /**
  * Decodes uplink messages from Watteco devices and processes the payload data.
  *
- * @param {Object} input - The uplink message containing bytes, fPort, and recvTime.
+ * @param {Object} input - The uplink message containing bytes (array or hex string), fPort, and recvTime.
  * @param {Array} batch_parameters - Parameters for batch decoding.
  * @param {Object} endpoint_parameters - Parameters for endpoint normalization.
+* @param {Function} TIC_Decode - Optional TIC decode function.
  * @returns {Object} - The decoded data with potential warnings or errors.
  */
 function watteco_decodeUplink(input, batch_parameters, endpoint_parameters, TIC_Decode=null) {
-    let bytes = input.bytes;
-    let port = input.fPort;
+    // Accepts string or byte array
+    input.bytes = Buffer.from(input.bytes, "hex"); // Note: If hex string, becomes a bytes array
 
     // Avoid non valid recvTime. Saw on multitech mPowerEdge Conduit AP, firmware 7.0.0
     if (! input.recvTime) {
