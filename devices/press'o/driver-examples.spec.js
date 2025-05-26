@@ -52,7 +52,7 @@ describe("Decode downlink", () => {
             });
         }
     });
-});
+});*/
 
 describe("Encode downlink", () => {
     examples.forEach((example) => {
@@ -67,4 +67,4 @@ describe("Encode downlink", () => {
             });
         }
     });
-});*/
+});

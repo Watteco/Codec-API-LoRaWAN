@@ -52,14 +52,14 @@ describe("Decode downlink", () => {
             });
         }
     });
-});
+});*/
 
 describe("Encode downlink", () => {
     examples.forEach((example) => {
         if (example.type === "downlink-encode") {
             it(example.description, () => {
                 // When
-                const result = driver.encodeDownlink(example.input);
+                const result = main.driver.encodeDownlink(example.input);
 
                 // Then
                 const expected = example.output;
@@ -67,4 +67,4 @@ describe("Encode downlink", () => {
             });
         }
     });
-});*/
+});
