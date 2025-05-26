@@ -103,7 +103,7 @@ function postProcessDataContent(dataContentIn) {
  * @param {Object} input - The uplink message containing bytes (array or hex string), fPort, and recvTime.
  * @param {Array} batch_parameters - Parameters for batch decoding.
  * @param {Object} endpoint_parameters - Parameters for endpoint normalization.
-* @param {Function} TIC_Decode - Optional TIC decode function.
+ * @param {Function} TIC_Decode - Optional TIC decode function.
  * @returns {Object} - The decoded data with potential warnings or errors.
  */
 function watteco_decodeUplink(input, batch_parameters, endpoint_parameters, TIC_Decode=null) {

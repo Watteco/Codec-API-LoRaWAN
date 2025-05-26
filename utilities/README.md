@@ -198,7 +198,35 @@ ou dans PowerShell:
 
 S'il n'y a pas de données JSON spécifiées, l'utilitaire utilisera un exemple par défaut (commande de redémarrage `sendReboot: true`).
   
-Il exécute le .js du capteur choisit se trouvant dans le dossier `devices`.  
+Il exécute le main.js du capteur choisi se trouvant dans le dossier `devices`.  
+Si des modifications dans l'arborescance sont effectués, assurez-vous que le chemin d'appel ait encore du sens.  
+Pensez à encadrer les noms de répertoire contenant des caractères spéciaux entre double cotes. Ex: "vaqa'o" 
+
+### debug_downlink_in
+
+Le fichier `debug_downlink_in.js` permet de tester et visualiser l'encodage d'une commande downlink dans la console.  
+Le résultat affiche le payload encodé à la fois en format JSON et en chaîne hexadécimale pour une meilleure lisibilité.  
+On l'exécute en spécifiant le nom du capteur et optionnellement les données JSON à encoder :
+
+```bash
+    node ./debug_downlink_in.js <device> [<json_data>]
+```
+
+Par exemple:
+
+```bash
+    node ./debug_downlink_in.js "smartpilot_wire" "{\"sendMSOMode\":5}"
+```
+
+ou dans PowerShell:
+
+```powershell
+    node ./debug_downlink_in.js "smartpilot_wire" '{\"sendMSOMode\":5}'
+```
+
+S'il n'y a pas de données JSON spécifiées, l'utilitaire utilisera un exemple par défaut (commande de redémarrage `sendReboot: true`).
+  
+Il exécute le <sensor>.js du capteur choisi se trouvant dans le dossier `devices`.  
 Si des modifications dans l'arborescance sont effectués, assurez-vous que le chemin d'appel ait encore du sens.  
 Pensez à encadrer les noms de répertoire contenant des caractères spéciaux entre double cotes. Ex: "vaqa'o" 
 
