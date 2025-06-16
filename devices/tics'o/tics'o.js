@@ -9,7 +9,7 @@ function decodeUplink(input, optBatchParams = null, optEndpointCorresponder = nu
     if (optBatchParams) { batch_param = optBatchParams;}
     if (optEndpointCorresponder) { endpointCorresponder = optEndpointCorresponder;}
     if (optUnits) { units = optUnits;}
-    return watteco.watteco_decodeUplink(input,batch_param,endpointCorresponder,TIC_Decode);
+    return watteco.watteco_decodeUplink(input, batch_param, endpointCorresponder, units, TIC_Decode);
 }
 
 exports.decodeUplink = decodeUplink;
