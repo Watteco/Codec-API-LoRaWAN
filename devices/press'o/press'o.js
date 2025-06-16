@@ -8,7 +8,7 @@ let batch_param = [3, [{taglbl: 0,resol: 0.004, sampletype: 12,lblname: "4-20_mA
     { taglbl: 4, resol: 1, sampletype: 10,lblname: "index", divide: 1}]];
 
 let endpointCorresponder={
-    analog:["4_20_mA","0_10_V"]
+    analog:["4-20_mA","0-10_V"]
 }
 function decodeUplink(input,optBatchParams = null, optEndpointCorresponder = null) {
     if (optBatchParams) { batch_param = optBatchParams;}

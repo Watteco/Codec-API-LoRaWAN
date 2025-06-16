@@ -394,6 +394,12 @@ const field={
                 name:"sag_voltage",
                 size:2
             },
+            11:{
+                divider:1,
+                function_type:"int",
+                name:"brownout_number",
+                size:2
+            }
         }
     },
     0x8005:{
@@ -1191,6 +1197,8 @@ function Decoder(bytes, port, TIC_Decode = null) {
                     decoded.data.over_voltage = UintToInt(bytes[i2 + 1] * 256 + bytes[i2 + 2], 2);
                     i2 = i2 + 2;
                     decoded.data.sag_voltage = UintToInt(bytes[i2 + 1] * 256 + bytes[i2 + 2], 2);
+                    i2 = i2 + 2;
+                    decoded.data.brownout_number = UintToInt(bytes[i2 + 1] * 256 + bytes[i2 + 2], 2);
                 }
 
 
