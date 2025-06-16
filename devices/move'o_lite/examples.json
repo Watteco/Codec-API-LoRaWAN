@@ -13,10 +13,12 @@
           {
             "variable": "temperature",
             "value": 29.53,
-            "date": "2023-07-19T07:51:31.598957793Z"
+            "date": "2023-07-19T07:51:31.598957793Z",
+            "unit": "Cel"
           }
         ],
-        "temperature": 29.53
+        "temperature": 29.53,
+        "temperature_unit": "Cel"
       },
       "warnings": []
     }
@@ -35,10 +37,12 @@
           {
             "variable": "humidity",
             "value": 37.21,
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "%RH"
           }
         ],
-        "humidity": 37.21
+        "humidity": 37.21,
+        "humidity_unit": "%RH"
       },
       "warnings": []
     }
@@ -79,10 +83,12 @@
           {
             "variable": "illuminance",
             "value": 1861,
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "lx"
           }
         ],
-        "illuminance": 1861
+        "illuminance": 1861,
+        "illuminance_unit": "lx"
       },
       "warnings": []
     }
@@ -145,10 +151,12 @@
           {
             "variable": "disposable_battery_voltage",
             "value": 3.688,
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "V"
           }
         ],
-        "disposable_battery_voltage": 3.688
+        "disposable_battery_voltage": 3.688,
+        "disposable_battery_voltage_unit": "V"
       },
       "warnings": []
     }

@@ -13,10 +13,12 @@
           {
             "variable": "temperature_1",
             "value": 29.53,
-            "date": "2023-07-19T07:51:31.598957793Z"
+            "date": "2023-07-19T07:51:31.598957793Z",
+            "unit": "Cel"
           }
         ],
-        "temperature_1": 29.53
+        "temperature_1": 29.53,
+        "temperature_1_unit": "Cel"
       },
       "warnings": []
     }
@@ -57,10 +59,12 @@
           {
             "variable": "disposable_battery_voltage",
             "value": 3.688,
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "V"
           }
         ],
-        "disposable_battery_voltage": 3.688
+        "disposable_battery_voltage": 3.688,
+        "disposable_battery_voltage_unit": "V"
       },
       "warnings": []
     }
@@ -101,16 +105,20 @@
           {
             "variable": "temperature_1",
             "value": 31.4,
-            "date": "2023-07-19T07:50:55.508Z"
+            "date": "2023-07-19T07:50:55.508Z",
+            "unit": "Cel"
           },
           {
             "variable": "temperature_2",
             "value": 22.9,
-            "date": "2023-07-19T07:51:25.508Z"
+            "date": "2023-07-19T07:51:25.508Z",
+            "unit": "Cel"
           }
         ],
         "temperature_1": 31.4,
-        "temperature_2": 22.9
+        "temperature_2": 22.9,
+        "temperature_1_unit": "Cel",
+        "temperature_2_unit": "Cel"
       },
       "warnings": []
     }

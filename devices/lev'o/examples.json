@@ -13,10 +13,12 @@
           {
             "variable": "4-20_mA",
             "value": 13,
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "mA"
           }
         ],
-        "4-20_mA": 13
+        "4-20_mA": 13,
+        "4-20_mA_unit": "mA"
       },
       "warnings": []
     }
@@ -57,10 +59,12 @@
           {
             "variable": "disposable_battery_voltage",
             "value": 3.688,
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "V"
           }
         ],
-        "disposable_battery_voltage": 3.688
+        "disposable_battery_voltage": 3.688,
+        "disposable_battery_voltage_unit": "V"
       },
       "warnings": []
     }

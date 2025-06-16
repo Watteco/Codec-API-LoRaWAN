@@ -13,10 +13,12 @@
           {
             "variable": "0-70_V",
             "value": 13,
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "V"
           }
         ],
-        "0-70_V": 13
+        "0-70_V": 13,
+        "0-70_V_unit": "V"
       },
       "warnings": []
     }
@@ -35,10 +37,12 @@
           {
             "variable": "0-100_mV",
             "value": 13,
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "mV"
           }
         ],
-        "0-100_mV": 13
+        "0-100_mV": 13,
+        "0-100_mV_unit": "mV"
       },
       "warnings": []
     }
@@ -79,10 +83,12 @@
           {
             "variable": "disposable_battery_voltage",
             "value": 3.688,
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "V"
           }
         ],
-        "disposable_battery_voltage": 3.688
+        "disposable_battery_voltage": 3.688,
+        "disposable_battery_voltage_unit": "V"
       },
       "warnings": []
     }
@@ -123,22 +129,28 @@
           {
             "variable": "0-100_mV",
             "value": 0.4599999785423279,
-            "date": "2023-07-19T07:51:24.508Z"
+            "date": "2023-07-19T07:51:24.508Z",
+            "unit": "mV"
           },
           {
             "variable": "0-70_V",
             "value": 17,
-            "date": "2023-07-19T07:51:24.508Z"
+            "date": "2023-07-19T07:51:24.508Z",
+            "unit": "V"
           },
           {
             "variable": "battery_voltage",
             "value": 3.6,
-            "date": "2023-07-19T07:51:24.508Z"
+            "date": "2023-07-19T07:51:24.508Z",
+            "unit": "V"
           }
         ],
         "0-100_mV": 0.4599999785423279,
         "0-70_V": 17,
-        "battery_voltage": 3.6
+        "battery_voltage": 3.6,
+        "0-100_mV_unit": "mV",
+        "0-70_V_unit": "V",
+        "battery_voltage_unit": "V"
       },
       "warnings": []
     }

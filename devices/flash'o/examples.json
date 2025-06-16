@@ -79,10 +79,12 @@
           {
             "variable": "disposable_battery_voltage",
             "value": 3.688,
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "V"
           }
         ],
-        "disposable_battery_voltage": 3.688
+        "disposable_battery_voltage": 3.688,
+        "disposable_battery_voltage_unit": "V"
       },
       "warnings": []
     }
@@ -133,11 +135,13 @@
           {
             "variable": "battery_voltage",
             "value": 3.6,
-            "date": "2023-07-19T07:49:49.508Z"
+            "date": "2023-07-19T07:49:49.508Z",
+            "unit": "V"
           }
         ],
         "index": 0,
-        "battery_voltage": 3.6
+        "battery_voltage": 3.6,
+        "battery_voltage_unit": "V"
       },
       "warnings": []
     }
