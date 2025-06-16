@@ -18,7 +18,6 @@ id;name;value;type;access_mode;value_type;precision;units;cov_increment;min_valu
 0-70_V;0-70V sensor value;0;number;R;FLOAT;2;V;0,01;0;70;all;0-70V voltage sensor value
 4-20_mA;4-20mA sensor value;0;number;R;FLOAT;2;mA;0,01;4;20;all;4-20mA current loop sensor value
 ABP_dev_address;ABP device address;"""""";string;R;STRING;;;;;;all;ABP device address
-ABP_dev_address;ABP device address;"""""";string;R;STRING;;;;;;all;ABP device address
 ACCmg;Acceleration in mg;0;number;R;UINT16;0;mg;1;0;65535;all;Acceleration value in millig
 active_energy;Active energy;0;number;R;INT32;0;Wh;1;-8388608;8388607;all;Active energy in watt-hours
 active_energy_a;Active energy phase A;0;number;R;INT32;0;Wh;1;-2147483648;2147483647;all;Active energy on phase A
@@ -55,8 +54,8 @@ external_power_voltage;External Power Voltage;0;number;R;FLOAT;3;V;0,001;0;24;al
 firmware;Firmware version;"""""";string;R;STRING;;;;;;all;Device firmware version
 force_notify;Force notification flag;false;boolean;R;BOOL;;;;;;all;Force notification parameter
 frequency;Frequency;0;number;R;FLOAT;3;Hz;0,001;0;100;all;Frequency in hertz
-frequency_max;Frequency;0;number;R;FLOAT;3;Hz;0,001;0;100;all;Frequency in hertz
-frequency_min;Frequency;0;number;R;FLOAT;3;Hz;0,001;0;100;all;Frequency in hertz
+frequency_max;Maximum Frequency;0;number;R;FLOAT;3;Hz;0,001;0;100;all;Maximum Frequency in hertz
+frequency_min;Minimum Frequency;0;number;R;FLOAT;3;Hz;0,001;0;100;all;Minimum Frequency in hertz
 humidity;Relative humidity;0;number;R;FLOAT;2;%RH;0,01;0;100;all;Relative humidity percentage
 humidity_1;Humidity sensor 1;0;number;R;FLOAT;2;%RH;0,01;0;100;all;Humidity from sensor 1
 humidity_2;Humidity sensor 2;0;number;R;FLOAT;2;%RH;0,01;0;100;all;Humidity from sensor 2
@@ -166,7 +165,6 @@ OCC;OCC;false;boolean;R;BOOL;;;;;;all;OCC measurement value
 occupancy;Occupancy detection;false;boolean;R;BOOL;;;;;;all;Occupancy detection state
 open;Open state;false;boolean;R;BOOL;;;;;;all;Open state of contact sensor
 OTA_app_EUI;OTA application EUI;"""""";string;R;STRING;;;;;;all;OTA application EUI
-OTA_app_EUI;OTA application EUI;"""""";string;R;STRING;;;;;;all;OTA application EUI
 output;Output state;"""""";string;R;STRING;;;;;;all;Output state (ON/OFF)
 output_1;Output 1 state;"""""";string;R;STRING;;;;;;all;Output 1 state (ON/OFF)
 output_2;Output 2 state;"""""";string;R;STRING;;;;;;all;Output 2 state (ON/OFF)
@@ -233,10 +231,10 @@ solar_harvesting_voltage;Solar harvesting voltage;0;number;R;FLOAT;3;V;0,001;0;2
 speed;Modbus speed;0;number;R;UINT24;0;bps;1;0;16777215;all;Modbus communication speed in bps
 state;State;false;boolean;R;BOOL;;;;;;all;State measurement value
 stop_bit;Modbus stop bits;0;number;R;UINT8;0;;1;1;2;all;Number of stop bits in Modbus frame
-temperature;Temperature;0;number;R;FLOAT;2;Cel;0,01;0;55;all;Temperature in degrees Celsius
+temperature;Temperature;0;number;R;FLOAT;2;Cel;0,01;0;55;others;Temperature in degrees Celsius
 Temperature;Temperature;0;number;R;FLOAT;2;Cel;0,01;0;55;all;Temperature in degrees Celsius
-temperature_1;Temperature sensor 1;0;number;R;FLOAT;2;Cel;0,01;0;55;all;Temperature from sensor 1
-temperature_2;Temperature sensor 2;0;number;R;FLOAT;2;Cel;0,01;0;55;all;Temperature from sensor 2
+temperature_1;Temperature sensor 1;0;number;R;FLOAT;2;Cel;0,01;0;55;others;Temperature from sensor 1
+temperature_2;Temperature sensor 2;0;number;R;FLOAT;2;Cel;0,01;0;55;others;Temperature from sensor 2
 Temperature;Temperature;0;number;R;FLOAT;2;Cel;0,01;-20;80;hygrotempo-remote;Temperature in degrees Celsius
 temperature_1;Temperature sensor 1;0;number;R;FLOAT;2;Cel;0,01;-20;80;hygrotempo-remote;Temperature from sensor 1
 temperature_2;Temperature sensor 2;0;number;R;FLOAT;2;Cel;0,01;-20;80;hygrotempo-remote;Temperature from sensor 2
@@ -258,5 +256,5 @@ Vrms;RMS voltage;0;number;R;FLOAT;1;V;0,1;0;300;all;RMS voltage
 Vrms_a;RMS voltage phase A;0;number;R;FLOAT;1;V;0,1;0;600;all;RMS voltage on phase A
 Vrms_b;RMS voltage phase B;0;number;R;FLOAT;1;V;0,1;0;600;all;RMS voltage on phase B
 Vrms_c;RMS voltage phase C;0;number;R;FLOAT;1;V;0,1;0;600;all;RMS voltage on phase C
-Vrms_max;RMS voltage;0;number;R;FLOAT;1;V;0,1;0;600;all;RMS voltage
-Vrms_min;RMS voltage;0;number;R;FLOAT;1;V;0,1;0;600;all;RMS voltage
+Vrms_max;Maximum RMS voltage;0;number;R;FLOAT;1;V;0,1;0;600;all;Maximum RMS voltage
+Vrms_min;Minimum RMS voltage;0;number;R;FLOAT;1;V;0,1;0;600;all;Minimum RMS voltage
