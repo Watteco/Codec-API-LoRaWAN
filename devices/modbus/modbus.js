@@ -1,4 +1,5 @@
 let watteco = require("../../codec/decode_uplink")
+let units = require("./units.auto.js")
 
 let batch_param=[]
 let endpointCorresponder={
@@ -7,10 +8,11 @@ let endpointCorresponder={
     modbus_fnctID:["modbus_fnctID_EP1","modbus_fnctID_EP2","modbus_fnctID_EP3","modbus_fnctID_EP4","modbus_fnctID_EP5","modbus_fnctID_EP6","modbus_fnctID_EP7","modbus_fnctID_EP8","modbus_fnctID_EP9"],
     modbus_datasize:["modbus_datasize_EP1","modbus_datasize_EP2","modbus_datasize_EP3","modbus_datasize_EP4","modbus_datasize_EP5","modbus_datasize_EP6","modbus_datasize_EP7","modbus_datasize_EP8","modbus_datasize_EP9"]
 }
-function decodeUplink(input,optBatchParams = null, optEndpointCorresponder = null) {
+function decodeUplink(input, optBatchParams = null, optEndpointCorresponder = null, optUnits = null) {
     if (optBatchParams) { batch_param = optBatchParams;}
     if (optEndpointCorresponder) { endpointCorresponder = optEndpointCorresponder;}
-    return watteco.watteco_decodeUplink(input,batch_param,endpointCorresponder);
+    if (optUnits) { units = optUnits;}
+    return watteco.watteco_decodeUplink(input, batch_param, endpointCorresponder, units);
 }
 exports.decodeUplink = decodeUplink;
 

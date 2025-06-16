@@ -1,4 +1,5 @@
-let watteco = require("../../codec/decode_uplink.js");
+let watteco = require("../../codec/decode_uplink.js")
+let units = require("./units.auto.js");
 
 let endpointCorresponder={
     pin_state:["pin_state_1","pin_state_2", "pin_state_3", "pin_state_4", "pin_state_5", "pin_state_6", "pin_state_7", "pin_state_8", "pin_state_9", "pin_state_10"],
@@ -7,10 +8,11 @@ let endpointCorresponder={
 
 }
 let batch_param=[]
-function decodeUplink(input,optBatchParams = null, optEndpointCorresponder = null) {
+function decodeUplink(input, optBatchParams = null, optEndpointCorresponder = null, optUnits = null) {
 	if (optBatchParams) { batch_param = optBatchParams;}
 	if (optEndpointCorresponder) { endpointCorresponder = optEndpointCorresponder;}
-	return watteco.watteco_decodeUplink(input,batch_param,endpointCorresponder);
+    if (optUnits) { units = optUnits;}
+	return watteco.watteco_decodeUplink(input, batch_param, endpointCorresponder, units);
 }
 exports.decodeUplink = decodeUplink;
 

@@ -1,12 +1,14 @@
-let watteco = require("../../codec/decode_uplink");
+let watteco = require("../../codec/decode_uplink")
+let units = require("./units.auto.js");
 let TIC_Decode = require("../../codec/tic.js").TIC_Decode;
 
 let batch_param=[]
 let endpointCorresponder={}
 
-function decodeUplink(input,optBatchParams = null, optEndpointCorresponder = null) {
+function decodeUplink(input, optBatchParams = null, optEndpointCorresponder = null, optUnits = null) {
     if (optBatchParams) { batch_param = optBatchParams;}
     if (optEndpointCorresponder) { endpointCorresponder = optEndpointCorresponder;}
+    if (optUnits) { units = optUnits;}
     return watteco.watteco_decodeUplink(input,batch_param,endpointCorresponder,TIC_Decode);
 }
 

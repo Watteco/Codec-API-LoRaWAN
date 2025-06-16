@@ -1,4 +1,5 @@
 let watteco = require("../../codec/decode_uplink")
+let units = require("./units.auto.js")
 let batch_param = [4,[{taglbl: 0,resol: 1, sampletype: 10,lblname: "index_1", divide: 1},
     { taglbl: 1, resol: 1, sampletype: 10,lblname: "index_2", divide: 1},
     { taglbl: 2, resol: 1, sampletype: 10,lblname: "index_3", divide: 1},
@@ -25,10 +26,11 @@ let endpointCorresponder = {
     pin_state_9:["NA"],
     pin_state_10:["NA"],
 }
-function decodeUplink(input,optBatchParams = null, optEndpointCorresponder = null) {
+function decodeUplink(input, optBatchParams = null, optEndpointCorresponder = null, optUnits = null) {
 	if (optBatchParams) { batch_param = optBatchParams;}
 	if (optEndpointCorresponder) { endpointCorresponder = optEndpointCorresponder;}
-	return watteco.watteco_decodeUplink(input,batch_param,endpointCorresponder);
+    if (optUnits) { units = optUnits;}
+	return watteco.watteco_decodeUplink(input, batch_param, endpointCorresponder, units);
 }
 exports.decodeUplink = decodeUplink;
 
