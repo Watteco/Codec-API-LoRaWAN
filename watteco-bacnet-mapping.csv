@@ -54,8 +54,8 @@ external_power_voltage;External Power Voltage;0;number;R;FLOAT;3;V;0,001;0;24;al
 firmware;Firmware version;"""""";string;R;STRING;;;;;;all;Device firmware version
 force_notify;Force notification flag;false;boolean;R;BOOL;;;;;;all;Force notification parameter
 frequency;Frequency;0;number;R;FLOAT;3;Hz;0,001;0;100;all;Frequency in hertz
-frequency_max;Maximum Frequency;0;number;R;FLOAT;3;Hz;0,001;0;100;all;Maximum Frequency in hertz
-frequency_min;Minimum Frequency;0;number;R;FLOAT;3;Hz;0,001;0;100;all;Minimum Frequency in hertz
+frequency_max;Maximum frequency;0;number;R;FLOAT;3;Hz;0,001;0;100;all;Maximum frequency in hertz
+frequency_min;Minimum frequency;0;number;R;FLOAT;3;Hz;0,001;0;100;all;Minimum frequency in hertz
 humidity;Relative humidity;0;number;R;FLOAT;2;%RH;0,01;0;100;all;Relative humidity percentage
 humidity_1;Humidity sensor 1;0;number;R;FLOAT;2;%RH;0,01;0;100;all;Humidity from sensor 1
 humidity_2;Humidity sensor 2;0;number;R;FLOAT;2;%RH;0,01;0;100;all;Humidity from sensor 2
@@ -66,12 +66,12 @@ index_1;Pulse counter index 1;0;number;R;UINT32;0;;1;0;4294967295;all;Pulse coun
 index_10;Pulse counter index 10;0;number;R;UINT32;0;;1;0;4294967295;all;Pulse counter index 10 value
 index_2;Pulse counter index 2;0;number;R;UINT32;0;;1;0;4294967295;all;Pulse counter index 2 value
 index_3;Pulse counter index 3;0;number;R;UINT32;0;;1;0;4294967295;all;Pulse counter index 3 value
-index_4;Pulse counter index 4;0;number;R;UINT32;0;;1;0;4294967295;all;Pulse counter index 2 value
-index_5;Pulse counter index 5;0;number;R;UINT32;0;;1;0;4294967295;all;Pulse counter index 3 value
-index_6;Pulse counter index 6;0;number;R;UINT32;0;;1;0;4294967295;all;Pulse counter index 2 value
-index_7;Pulse counter index 7;0;number;R;UINT32;0;;1;0;4294967295;all;Pulse counter index 3 value
-index_8;Pulse counter index 8;0;number;R;UINT32;0;;1;0;4294967295;all;Pulse counter index 2 value
-index_9;Pulse counter index 9;0;number;R;UINT32;0;;1;0;4294967295;all;Pulse counter index 3 value
+index_4;Pulse counter index 4;0;number;R;UINT32;0;;1;0;4294967295;all;Pulse counter index 4 value
+index_5;Pulse counter index 5;0;number;R;UINT32;0;;1;0;4294967295;all;Pulse counter index 5 value
+index_6;Pulse counter index 6;0;number;R;UINT32;0;;1;0;4294967295;all;Pulse counter index 6 value
+index_7;Pulse counter index 7;0;number;R;UINT32;0;;1;0;4294967295;all;Pulse counter index 7 value
+index_8;Pulse counter index 8;0;number;R;UINT32;0;;1;0;4294967295;all;Pulse counter index 8 value
+index_9;Pulse counter index 9;0;number;R;UINT32;0;;1;0;4294967295;all;Pulse counter index 9 value
 Irms;RMS current;0;number;R;FLOAT;1;A;0,1;0;40;all;RMS current
 Irms_a;RMS current phase A;0;number;R;FLOAT;1;A;0,1;0;4000;all;RMS current on phase A
 Irms_b;RMS current phase B;0;number;R;FLOAT;1;A;0,1;0;4000;all;RMS current on phase B
@@ -185,7 +185,7 @@ pin_state_7;Digital input state 7;false;boolean;R;BOOL;;;;;;all;State of digital
 pin_state_8;Digital input state 8;false;boolean;R;BOOL;;;;;;all;State of digital input pin 8
 pin_state_9;Digital input state 9;false;boolean;R;BOOL;;;;;;all;State of digital input pin 9
 polarity;Input polarity;"""""";string;R;STRING;;;;;;all;Polarity of the input (normal or reverse)
-poll_period;Polling period;0;number;R;UINT16;0;ms;1;0;65535;all;Polling period in seconds
+poll_period;Polling period;0;number;R;UINT16;0;ms;1;0;65535;all;Polling period
 position;Device position;"""""";string;R;STRING;;;;;;all;Physical location of the device
 positive_active_energy_a;Positive active energy phase A;0;number;R;UINT32;0;Wh;1;0;4294967295;all;Positive active energy on phase A
 positive_active_energy_abc;Total positive active energy;0;number;R;UINT32;0;Wh;1;0;4294967295;all;Total positive active energy across all phases
