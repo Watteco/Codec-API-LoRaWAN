@@ -164,6 +164,11 @@
             "variable": "sag_voltage",
             "value": 2,
             "date": "2023-07-19T07:51:25.508306410Z"
+          },
+          {
+            "variable": "brownout_number",
+            "value": 3,
+            "date": "2023-07-19T07:51:25.508306410Z"
           }
         ],
         "frequency": 30.97,
@@ -176,7 +181,8 @@
         "Vpeak_min": 0,
         "Vpeak_max": 873.8,
         "over_voltage": 1,
-        "sag_voltage": 2
+        "sag_voltage": 2,
+        "brownout_number": 3
       },
       "warnings": []
     }
