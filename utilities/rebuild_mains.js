@@ -144,9 +144,13 @@ if (devices.length === 0) process.exit(0);
 // Execute commands for each filtered device
 for (let i in devices) {
     sensorName = devices[i];
-    console.log(`Building ${sensorName} ...`);
+    console.log(`Building ${sensorName} ...`);    
     
     let devicePath = path.join(__dirname, `../devices/${sensorName}`)
+    
+    // Generate units.auto.js file for the device
+    tools.generateDeviceUnitsAutoFile(devicePath);
+    
     tools.buildAndTranspile(devicePath);
 
     // Force name (npm: watteco-<device with _ replacing space and '>) or description for sensors (activate when needed)
@@ -155,5 +159,4 @@ for (let i in devices) {
 
     // Update version in package.json and metadata.json if versionOrTypeParam is provided
     updateVersionAndSyncMetadata(devicePath, versionOrTypeParam);
-
 }

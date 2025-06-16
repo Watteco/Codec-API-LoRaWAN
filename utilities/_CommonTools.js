@@ -325,10 +325,198 @@ function generateDeviceDriverInfoMarkdown(baseDirectory, outputFile) {
     }
 }
 
+/**
+ * Generates a units.auto.js file for a specific device by matching variable names 
+ * with units from the BACnet mapping CSV file.
+ * 
+ * Extracts variable names from:
+ * 1. Device's main JS file: batch_param lblnames
+ * 2. Device's main JS file: endpointCorresponder values
+ * 3. Device's ClustersVariables.json: variables arrays
+ * 
+ * @param {string} devicePath - Path to the device directory
+ * @param {string} bacnetMappingPath - Path to the BACnet mapping CSV file
+ * @returns {boolean} - True if file was generated successfully, false otherwise
+ */
+function generateDeviceUnitsAutoFile(devicePath, bacnetMappingPath = null) {
+    try {
+        const deviceName = path.basename(devicePath);
+        console.log(`Generating units.auto.js for ${deviceName}...`);
+        
+        // Default path for BACnet mapping file if not provided
+        if (!bacnetMappingPath) {
+            bacnetMappingPath = path.join(path.dirname(devicePath), '..', 'watteco-bacnet-mapping.csv');
+        }
+        
+        // Check if files exist
+        const jsFilePath = path.join(devicePath, `${deviceName}.js`);
+        const clustersVarsPath = path.join(devicePath, 'ClustersVariables.json');
+        
+        if (!fs.existsSync(jsFilePath)) {
+            console.error(`Error: Sensor JS file not found at ${jsFilePath}`);
+            return false;
+        }
+        
+        if (!fs.existsSync(clustersVarsPath)) {
+            console.error(`Error: ClustersVariables.json not found at ${clustersVarsPath}`);
+            return false;
+        }
+        
+        if (!fs.existsSync(bacnetMappingPath)) {
+            console.error(`Error: BACnet mapping file not found at ${bacnetMappingPath}`);
+            return false;
+        }
+        
+        // 1. Parse the BACnet mapping CSV to extract variable units
+        const bacnetMappingContent = fs.readFileSync(bacnetMappingPath, 'utf8');
+        const bacnetRows = bacnetMappingContent.split('\n')
+            .filter(line => !line.startsWith('//') && !line.startsWith('##') && line.trim() !== '')
+            .map(line => {
+                const columns = line.split(';');
+                if (columns.length >= 8) {
+                    return {
+                        id: columns[0].trim(),
+                        name: columns[1].trim(),
+                        unit: columns[7].trim()
+                    };
+                }
+                return null;
+            })
+            .filter(item => item !== null && item.unit !== '');
+        
+        // Create a map of variable names to units
+        const unitMap = {};
+        bacnetRows.forEach(row => {
+            if (row.unit && row.unit !== '') {
+                unitMap[row.id] = row.unit;
+            }
+        });
+        
+        // 2. Extract variable names from the device's JS file
+        const jsFileContent = fs.readFileSync(jsFilePath, 'utf8');
+        
+        // Extract lblnames from batch_param
+        const batchParamRegex = /batch_param\s*=\s*\[[^[]*\[\s*([^\]]*)\]\s*\]/s;
+        const batchParamMatch = jsFileContent.match(batchParamRegex);
+        let batchParamVariables = [];
+        
+        if (batchParamMatch && batchParamMatch[1]) {
+            const entriesText = batchParamMatch[1];
+            const lblnameRegex = /lblname\s*:\s*["']([^"']+)["']/g;
+            let match;
+            while ((match = lblnameRegex.exec(entriesText)) !== null) {
+                batchParamVariables.push(match[1]);
+            }
+        }
+        
+        // Extract variables from endpointCorresponder
+        const endpointCorresponderRegex = /endpointCorresponder\s*=\s*{([^}]*)}/s;
+        const endpointCorresponderMatch = jsFileContent.match(endpointCorresponderRegex);
+        let endpointCorresponderVariables = [];
+        
+        if (endpointCorresponderMatch && endpointCorresponderMatch[1]) {
+            const entriesText = endpointCorresponderMatch[1];
+            const valuesRegex = /:\s*\[\s*([^\]]+)\s*\]/g;
+            let match;
+            while ((match = valuesRegex.exec(entriesText)) !== null) {
+                const values = match[1].split(',').map(v => 
+                    v.trim().replace(/["']/g, '')
+                );
+                endpointCorresponderVariables = endpointCorresponderVariables.concat(values);
+            }
+        }
+        
+        // 3. Extract variables from ClustersVariables.json
+        const clustersVarsContent = fs.readFileSync(clustersVarsPath, 'utf8');
+        const clustersVars = JSON.parse(clustersVarsContent);
+        let clusterVariables = [];
+        
+        clustersVars.forEach(cluster => {
+            if (cluster.variables && Array.isArray(cluster.variables)) {
+                clusterVariables = clusterVariables.concat(cluster.variables);
+            }
+        });
+        
+        // 4. Combine all variable names and remove duplicates
+        const allVariables = [...new Set([
+            ...clusterVariables,
+            ...batchParamVariables,
+            ...endpointCorresponderVariables
+        ])];
+        
+        // 5. Match variables with units and create the units object
+        const deviceUnits = {};
+        allVariables.forEach(varName => {
+            if (unitMap[varName]) {
+                deviceUnits[varName] = unitMap[varName];
+            }
+        });
+        
+        // 6. Generate the units.auto.js file
+        const outputPath = path.join(devicePath, 'units.auto.js');
+        
+        const fileContent = 
+`// DO NOT MODIFY, FILE AUTOMATICALLY GENERATED ON BUILD (utilities/rebuild_mains.js)
+
+// If you want to modify an unit, please do so in watteco-bacnet-mapping.csv
+// If you want to add a variable, please do so in ClustersVariables.json
+
+// After modifying/adding anything, please run "node utilities/rebuild_mains.js" to update the units.auto.js file
+
+let units = ${JSON.stringify(deviceUnits, null, 4)}
+
+module.exports = units;`;
+        
+        fs.writeFileSync(outputPath, fileContent, 'utf8');
+        console.log(`Generated units.auto.js for ${deviceName} with ${Object.keys(deviceUnits).length} units`);
+        
+        return true;
+    } catch (error) {
+        console.error(`Error generating units.auto.js file: ${error.message}`);
+        return false;
+    }
+}
+
+/**
+ * Generates units.auto.js files for all devices or a filtered subset
+ * 
+ * @param {string} [pattern] - Optional regex pattern to filter devices
+ * @param {string} [bacnetMappingPath] - Optional custom path to the BACnet mapping file
+ * @returns {Object} - Results with success and failure counts
+ */
+function generateAllDeviceUnitsAutoFiles(pattern = null, bacnetMappingPath = null) {
+    const { devices } = getDevices(pattern);
+    const baseDir = path.join(__dirname, '../devices');
+    
+    let results = {
+        total: devices.length,
+        success: 0,
+        failed: 0
+    };
+    
+    console.log(`Generating units.auto.js files for ${devices.length} devices...`);
+    
+    devices.forEach(device => {
+        const devicePath = path.join(baseDir, device);
+        const success = generateDeviceUnitsAutoFile(devicePath, bacnetMappingPath);
+        
+        if (success) {
+            results.success++;
+        } else {
+            results.failed++;
+        }
+    });
+    
+    console.log(`Units auto files generation complete: ${results.success} successful, ${results.failed} failed`);
+    return results;
+}
+
 // Export the function as a module
 module.exports = { 
     buildAndTranspile,
     getDevices,
     updateJSON_name_description,
-    generateDeviceDriverInfoMarkdown
+    generateDeviceDriverInfoMarkdown,
+    generateDeviceUnitsAutoFile,
+    generateAllDeviceUnitsAutoFiles
 };
