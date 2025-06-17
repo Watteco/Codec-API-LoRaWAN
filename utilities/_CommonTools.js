@@ -829,10 +829,24 @@ function generateAllMultitechBacnetDefinitions(pattern = null) {
     const results = {
         success: 0,
         failure: 0,
+        skipped: 0,
         total: devices.length
     };
     
+    // Define a list of devices to skip (special cases)
+    const skipDevices = ["tics'o"];
+    
     for (const device of devices) {
+        // Skip special devices that need manual definition files
+        if (skipDevices.some(skipDevice => 
+            device.toLowerCase() === skipDevice.toLowerCase() || 
+            device.replace(/['"]/g, '') === skipDevice.replace(/['"]/g, '')
+        )) {
+            console.log(`Skipping ${device} - using existing manual definition file`);
+            results.skipped++;
+            continue;
+        }
+        
         const devicePath = path.join(__dirname, '..', 'devices', device);
         const success = generateMultitechBacnetDefinition(devicePath);
         
@@ -844,7 +858,7 @@ function generateAllMultitechBacnetDefinitions(pattern = null) {
     }
     
     console.log(`MultitechBacnet definition generation complete:`);
-    console.log(`Total: ${results.total}, Success: ${results.success}, Failure: ${results.failure}`);
+    console.log(`Total: ${results.total}, Success: ${results.success}, Failure: ${results.failure}, Skipped: ${results.skipped}`);
     
     return results;
 }

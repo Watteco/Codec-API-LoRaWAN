@@ -151,8 +151,21 @@ for (let i in devices) {
     // Generate units.auto.js file for the device
     tools.generateDeviceUnitsAutoFile(devicePath);
     
-    // Generate MultitechBacnet definition
-    tools.generateMultitechBacnetDefinition(devicePath);
+    // Define a list of devices to skip for MultitechBacnet definition generation
+    const skipMultitechDevices = ["tics'o"];
+    
+    // Check if this device should skip MultitechBacnet definition generation
+    const shouldSkipMultitech = skipMultitechDevices.some(skipDevice => 
+        sensorName.toLowerCase() === skipDevice.toLowerCase() || 
+        sensorName.replace(/['"]/g, '') === skipDevice.replace(/['"]/g, '')
+    );
+    
+    if (shouldSkipMultitech) {
+        console.log(`Skipping MultitechBacnet definition for ${sensorName} - using existing manual definition file`);
+    } else {
+        // Generate MultitechBacnet definition
+        tools.generateMultitechBacnetDefinition(devicePath);
+    }
     
     tools.buildAndTranspile(devicePath);
 
