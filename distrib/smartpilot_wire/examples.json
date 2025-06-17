@@ -117,14 +117,14 @@
   },
   {
     "type": "downlink-encode",
-    "description": "Send a custom hex frame",
+    "description": "Send a custom hex frame (here: read firmware version)",
     "input": {
       "data": {
-        "sendHexFrame": "11050013005520FF"
+        "sendHexFrame": "110000000002"
       }
     },
     "output": {
-      "bytes": [17, 5, 0, 19, 0, 85, 32, 255],
+      "bytes": [17, 0, 0, 0, 0, 2],
       "fPort": 125,
       "warnings": []
     }
@@ -134,11 +134,11 @@
     "description": "Send a custom hex frame with specific port",
     "input": {
       "data": {
-        "sendHexFrame": "11050013005520FF:100"
+        "sendHexFrame": "110000000002:100"
       }
     },
     "output": {
-      "bytes": [17, 5, 0, 19, 0, 85, 32, 255],
+      "bytes": [17, 0, 0, 0, 0, 2],
       "fPort": 100,
       "warnings": []
     }
@@ -194,7 +194,7 @@
       }
     },
     "output": {
-      "bytes": [17, 5, 128, 4, 0, 0, 1, 32, 3],
+      "bytes": [17, 5, 128, 4, 0, 1, 32, 3],
       "fPort": 125,
       "warnings": []
     }
