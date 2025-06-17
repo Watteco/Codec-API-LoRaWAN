@@ -511,6 +511,338 @@ function generateAllDeviceUnitsAutoFiles(pattern = null, bacnetMappingPath = nul
     return results;
 }
 
+/**
+ * Generates a multitechBacnet-definition.json file for a specific device based on
+ * the device's ClustersVariables.json and units.auto.js
+ * 
+ * @param {string} devicePath - Path to the device directory
+ * @param {string} bacnetMappingPath - Path to the BACnet mapping CSV file
+ * @returns {boolean} - True if file was generated successfully, false otherwise
+ */
+function generateMultitechBacnetDefinition(devicePath, bacnetMappingPath = null) {
+    try {
+        const deviceName = path.basename(devicePath);
+        console.log(`Generating multitechBacnet definition for ${deviceName}...`);
+        
+        // Default path for BACnet mapping file if not provided
+        if (!bacnetMappingPath) {
+            bacnetMappingPath = path.join(path.dirname(devicePath), '..', 'watteco-bacnet-mapping.csv');
+        }
+        
+        // Check if required files exist
+        const jsFilePath = path.join(devicePath, `${deviceName}.js`);
+        const clustersVarsPath = path.join(devicePath, 'ClustersVariables.json');
+        
+        if (!fs.existsSync(jsFilePath)) {
+            console.error(`Error: Main JS file not found at ${jsFilePath}`);
+            return false;
+        }
+        
+        if (!fs.existsSync(clustersVarsPath)) {
+            console.error(`Error: ClustersVariables.json not found at ${clustersVarsPath}`);
+            return false;
+        }
+        
+        if (!fs.existsSync(bacnetMappingPath)) {
+            console.error(`Error: BACnet mapping file not found at ${bacnetMappingPath}`);
+            return false;
+        }
+        
+        // 1. Parse the BACnet mapping CSV to extract variable types and units - MOVED EARLIER
+        const bacnetMappingContent = fs.readFileSync(bacnetMappingPath, 'utf8');
+        const bacnetMap = {};
+        
+        // Process BACnet mapping CSV
+        bacnetMappingContent.split('\n')
+            .filter(line => !line.startsWith('//') && !line.startsWith('##') && line.trim() !== '')
+            .forEach(line => {
+                const columns = line.split(';');
+                if (columns.length >= 8) {
+                    const id = columns[0].trim();
+                    const unit = columns[7].trim();
+                    const type = columns[5].trim(); // BACnet value_type
+                    
+                    if (id && (unit || type)) {
+                        bacnetMap[id] = {
+                            unit: unit || "",
+                            type: type || ""
+                        };
+                    }
+                }
+            });
+        
+        // Helper function to map BACnet types to Multitech types
+        function mapBacnetTypeToMultitech(bacnetType) {
+            if (!bacnetType) return "float";
+            
+            switch (bacnetType) {
+                case "BOOL": return "bool";
+                case "UINT8": return "uint8";
+                case "UINT16": return "uint16";
+                case "UINT32":
+                case "UINT24": return "uint32";
+                case "INT16": return "int16";
+                case "INT32":
+                case "INT": return "int32";
+                case "FLOAT": return "float";
+                case "STRING": return "string";
+                default: return "float";
+            }
+        }
+
+        // Helper function to map downlink data types to Multitech types
+        function mapDownlinkTypeToMultitech(dataType) {
+            if (!dataType) return "float";
+            
+            switch (dataType) {
+                case "U8": return "uint8";
+                case "U16": return "uint16";
+                case "U32": return "uint32";
+                case "S8": return "int8";
+                case "S16": return "int16";
+                case "S32": return "int32";
+                case "BOOL": return "bool";
+                case "STR": return "string";
+                default: return "float";
+            }
+        }
+        
+        // Load metadata to get description
+        let description = "";
+        const metadataPath = path.join(devicePath, 'metadata.json');
+        if (fs.existsSync(metadataPath)) {
+            try {
+                const metadata = JSON.parse(fs.readFileSync(metadataPath, 'utf8'));
+                if (metadata.name) {
+                    description = `Watteco ${metadata.name}`;
+                    if (metadata.version) {
+                        description += ` v${metadata.version}`;
+                    }
+                }
+            } catch (err) {
+                console.warn(`Warning: Could not parse metadata.json for ${deviceName}`);
+            }
+        }
+        
+        if (!description) {
+            description = `Watteco ${deviceName}`;
+        }
+        
+        // Initialize definition object
+        const definition = {
+            "description": description,
+            "properties": {}
+        };
+        
+        // Add standard downlink properties
+        const standardDownlinks = [
+            "sendHexFrame", "sendConfirmedMode", "sendReboot", 
+            "sendFactoryReset", "sendLoraRetries", "sendLoraRejoin"
+        ];
+
+        for (const prop of standardDownlinks) {
+            if (bacnetMap[prop]) {
+                // Use BACnet mapping for type and unit
+                definition.properties[prop] = {
+                    type: mapBacnetTypeToMultitech(bacnetMap[prop].type),
+                    downlink: true
+                };
+                
+                if (bacnetMap[prop].unit) {
+                    definition.properties[prop].unit = bacnetMap[prop].unit;
+                }
+            } else {
+                // Use default values if not in BACnet mapping
+                if (prop === "sendHexFrame") {
+                    definition.properties[prop] = {"type": "string", "downlink": true};
+                } else if (prop === "sendConfirmedMode" || prop === "sendLoraRetries") {
+                    definition.properties[prop] = {"type": "uint8", "downlink": true};
+                } else if (prop === "sendLoraRejoin") {
+                    definition.properties[prop] = {"type": "uint16", "downlink": true, "unit": "minutes"};
+                } else if (prop === "sendReboot" || prop === "sendFactoryReset") {
+                    definition.properties[prop] = {"type": "bool", "downlink": true};
+                }
+            }
+        }
+        
+        // Load units if available
+        let units = {};
+        const unitsPath = path.join(devicePath, 'units.auto.js');
+        if (fs.existsSync(unitsPath)) {
+            try {
+                delete require.cache[require.resolve(unitsPath)];
+                units = require(unitsPath);
+            } catch (err) {
+                console.warn(`Warning: Error loading units.auto.js: ${err.message}`);
+            }
+        }
+        
+        // Extract all variables from ClustersVariables.json
+        const allVariables = new Set();
+        
+        // Load ClustersVariables.json
+        const clustersVarsContent = fs.readFileSync(clustersVarsPath, 'utf8');
+        const clustersVars = JSON.parse(clustersVarsContent);
+        
+        // Check if the file follows format 1 (array of cluster objects)
+        if (Array.isArray(clustersVars)) {
+            for (const cluster of clustersVars) {
+                if (cluster.variables && Array.isArray(cluster.variables)) {
+                    for (const variable of cluster.variables) {
+                        allVariables.add(variable);
+                    }
+                }
+            }
+        } 
+        // Check if the file follows format 2 (object with clusters array)
+        else if (clustersVars.clusters && Array.isArray(clustersVars.clusters)) {
+            for (const cluster of clustersVars.clusters) {
+                if (cluster.variables && Array.isArray(cluster.variables)) {
+                    for (const variable of cluster.variables) {
+                        allVariables.add(variable);
+                    }
+                }
+            }
+        }
+        
+        // Add variables from units directly as fallback
+        for (const variable in units) {
+            allVariables.add(variable);
+        }
+        
+        // Add all variables to definition
+        for (const variable of allVariables) {
+            // Skip if it's already added (avoid duplicates with downlink commands)
+            if (definition.properties[variable]) continue;
+            
+            // Determine variable type from BACnet mapping
+            let varType = "float"; // Default type
+            
+            if (bacnetMap[variable]) {
+                // Map BACnet types to Multitech types
+                const bacnetType = bacnetMap[variable].type;
+                varType = mapBacnetTypeToMultitech(bacnetType);
+            } else {
+                // Fallback type determination based on naming conventions
+                if (variable.endsWith("_bool") || variable === "state") {
+                    varType = "bool";
+                } else if (variable.endsWith("_u8") || variable.includes("index")) {
+                    varType = "uint8";
+                } else if (variable.endsWith("_u16")) {
+                    varType = "uint16";
+                } else if (variable.endsWith("_u32")) {
+                    varType = "uint32";
+                } else if (variable.endsWith("_counter")) {
+                    varType = "uint32";
+                }
+            }
+            
+            // Create property entry
+            definition.properties[variable] = {"type": varType};
+            
+            // Add unit if available (from units.auto.js or BACnet mapping)
+            if (units[variable]) {
+                definition.properties[variable].unit = units[variable];
+            } else if (bacnetMap[variable] && bacnetMap[variable].unit) {
+                definition.properties[variable].unit = bacnetMap[variable].unit;
+            }
+        }
+        
+        // 2. Extract custom downlink frames from the device's JS file
+        const jsFileContent = fs.readFileSync(jsFilePath, 'utf8');
+
+        // Find the dlFrames object
+        const dlFramesRegex = /const\s+dlFrames\s*=\s*{([^}]*)}/s;
+        const dlFramesMatch = jsFileContent.match(dlFramesRegex);
+
+        const customDownlinks = {};
+        if (dlFramesMatch && dlFramesMatch[1]) {
+            const dlFramesContent = dlFramesMatch[1];
+            
+            // Parse each downlink entry
+            const dlEntryRegex = /(\w+)\s*:\s*"[^"]*<(\w+):(\w+)>"/g;
+            let match;
+            
+            while ((match = dlEntryRegex.exec(dlFramesContent)) !== null) {
+                const cmdName = match[1];
+                const dataType = match[2]; // U8, U16, S32, etc.
+                
+                // First check if command exists in BACnet mapping
+                if (bacnetMap[cmdName]) {
+                    // Use BACnet mapping for type and unit
+                    customDownlinks[cmdName] = {
+                        type: mapBacnetTypeToMultitech(bacnetMap[cmdName].type),
+                        downlink: true
+                    };
+                    
+                    if (bacnetMap[cmdName].unit) {
+                        customDownlinks[cmdName].unit = bacnetMap[cmdName].unit;
+                    }
+                } else {
+                    // Map data type to property type if not in BACnet mapping
+                    let propType = mapDownlinkTypeToMultitech(dataType);
+                    
+                    customDownlinks[cmdName] = {
+                        type: propType,
+                        downlink: true
+                    };
+                }
+            }
+        }
+
+        // Add custom downlinks to properties
+        for (const [cmdName, config] of Object.entries(customDownlinks)) {
+            definition.properties[cmdName] = config;
+        }
+        
+        // Add decoder information
+        const safeDeviceName = deviceName.replace(/'/g, "");
+        definition.decoder = `${safeDeviceName}-decoder.js`;
+        
+        // Write the file
+        const outputPath = path.join(devicePath, `${safeDeviceName}-multitechBacnet-definition.json`);
+        fs.writeFileSync(outputPath, JSON.stringify(definition, null, 2), 'utf8');
+        
+        console.log(`MultitechBacnet definition generated at: ${outputPath}`);
+        return true;
+    } catch (error) {
+        console.error(`Error generating MultitechBacnet definition:`, error);
+        return false;
+    }
+}
+
+/**
+ * Generates MultitechBacnet definition files for all devices or a filtered subset
+ * 
+ * @param {string} [pattern] - Optional regex pattern to filter devices
+ * @returns {Object} - Results with success and failure counts
+ */
+function generateAllMultitechBacnetDefinitions(pattern = null) {
+    const { devices } = getDevices(pattern);
+    
+    const results = {
+        success: 0,
+        failure: 0,
+        total: devices.length
+    };
+    
+    for (const device of devices) {
+        const devicePath = path.join(__dirname, '..', 'devices', device);
+        const success = generateMultitechBacnetDefinition(devicePath);
+        
+        if (success) {
+            results.success++;
+        } else {
+            results.failure++;
+        }
+    }
+    
+    console.log(`MultitechBacnet definition generation complete:`);
+    console.log(`Total: ${results.total}, Success: ${results.success}, Failure: ${results.failure}`);
+    
+    return results;
+}
+
 // Export the function as a module
 module.exports = { 
     buildAndTranspile,
@@ -518,5 +850,7 @@ module.exports = {
     updateJSON_name_description,
     generateDeviceDriverInfoMarkdown,
     generateDeviceUnitsAutoFile,
-    generateAllDeviceUnitsAutoFiles
+    generateAllDeviceUnitsAutoFiles,
+    generateMultitechBacnetDefinition,
+    generateAllMultitechBacnetDefinitions
 };

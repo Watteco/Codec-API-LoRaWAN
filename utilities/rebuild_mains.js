@@ -151,6 +151,9 @@ for (let i in devices) {
     // Generate units.auto.js file for the device
     tools.generateDeviceUnitsAutoFile(devicePath);
     
+    // Generate MultitechBacnet definition
+    tools.generateMultitechBacnetDefinition(devicePath);
+    
     tools.buildAndTranspile(devicePath);
 
     // Force name (npm: watteco-<device with _ replacing space and '>) or description for sensors (activate when needed)
