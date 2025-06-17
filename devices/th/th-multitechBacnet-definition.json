@@ -1,0 +1,86 @@
+{
+  "description": "Watteco TH v1.1.4",
+  "properties": {
+    "sendHexFrame": {
+      "type": "string",
+      "downlink": true
+    },
+    "sendConfirmedMode": {
+      "type": "uint8",
+      "downlink": true
+    },
+    "sendReboot": {
+      "type": "bool",
+      "downlink": true
+    },
+    "sendFactoryReset": {
+      "type": "bool",
+      "downlink": true
+    },
+    "sendLoraRetries": {
+      "type": "uint8",
+      "downlink": true
+    },
+    "sendLoraRejoin": {
+      "type": "uint16",
+      "downlink": true,
+      "unit": "min"
+    },
+    "kernel": {
+      "type": "string"
+    },
+    "manufacturer": {
+      "type": "string"
+    },
+    "model": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string"
+    },
+    "position": {
+      "type": "string"
+    },
+    "application_name": {
+      "type": "string"
+    },
+    "disposable_battery_voltage": {
+      "type": "float",
+      "unit": "V"
+    },
+    "message_type": {
+      "type": "string"
+    },
+    "nb_retry": {
+      "type": "uint8"
+    },
+    "automatic_association": {
+      "type": "float"
+    },
+    "data_rate": {
+      "type": "uint8"
+    },
+    "ABP_dev_address": {
+      "type": "string"
+    },
+    "OTA_app_EUI": {
+      "type": "string"
+    },
+    "index": {
+      "type": "uint32"
+    },
+    "temperature": {
+      "type": "float",
+      "unit": "Cel"
+    },
+    "humidity": {
+      "type": "float",
+      "unit": "%RH"
+    },
+    "battery_voltage": {
+      "type": "float",
+      "unit": "V"
+    }
+  },
+  "decoder": "th-decoder.js"
+}

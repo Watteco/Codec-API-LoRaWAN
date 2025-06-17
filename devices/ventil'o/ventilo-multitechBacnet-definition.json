@@ -1,0 +1,105 @@
+{
+  "description": "Watteco ventil'o v1.1.4",
+  "properties": {
+    "sendHexFrame": {
+      "type": "string",
+      "downlink": true
+    },
+    "sendConfirmedMode": {
+      "type": "uint8",
+      "downlink": true
+    },
+    "sendReboot": {
+      "type": "bool",
+      "downlink": true
+    },
+    "sendFactoryReset": {
+      "type": "bool",
+      "downlink": true
+    },
+    "sendLoraRetries": {
+      "type": "uint8",
+      "downlink": true
+    },
+    "sendLoraRejoin": {
+      "type": "uint16",
+      "downlink": true,
+      "unit": "min"
+    },
+    "kernel": {
+      "type": "string"
+    },
+    "manufacturer": {
+      "type": "string"
+    },
+    "model": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string"
+    },
+    "position": {
+      "type": "string"
+    },
+    "application_name": {
+      "type": "string"
+    },
+    "main_or_external_voltage": {
+      "type": "float",
+      "unit": "V"
+    },
+    "solar_harvesting_voltage": {
+      "type": "float",
+      "unit": "V"
+    },
+    "message_type": {
+      "type": "string"
+    },
+    "nb_retry": {
+      "type": "uint8"
+    },
+    "automatic_association": {
+      "type": "float"
+    },
+    "data_rate": {
+      "type": "uint8"
+    },
+    "ABP_dev_address": {
+      "type": "string"
+    },
+    "OTA_app_EUI": {
+      "type": "string"
+    },
+    "index": {
+      "type": "uint32"
+    },
+    "pin_state": {
+      "type": "bool"
+    },
+    "temperature": {
+      "type": "float",
+      "unit": "Cel"
+    },
+    "differential_pressure": {
+      "type": "int16",
+      "unit": "Pa"
+    },
+    "mean_differential_pressure_since_last_report": {
+      "type": "int16",
+      "unit": "Pa"
+    },
+    "minimal_differential_pressure_since_last_report": {
+      "type": "int16",
+      "unit": "Pa"
+    },
+    "maximal_differential_pressure_since_last_report": {
+      "type": "int16",
+      "unit": "Pa"
+    },
+    "battery_voltage": {
+      "type": "float",
+      "unit": "V"
+    }
+  },
+  "decoder": "ventilo-decoder.js"
+}

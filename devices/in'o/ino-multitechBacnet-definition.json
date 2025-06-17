@@ -1,0 +1,180 @@
+{
+  "description": "Watteco in'o v1.1.4",
+  "properties": {
+    "sendHexFrame": {
+      "type": "string",
+      "downlink": true
+    },
+    "sendConfirmedMode": {
+      "type": "uint8",
+      "downlink": true
+    },
+    "sendReboot": {
+      "type": "bool",
+      "downlink": true
+    },
+    "sendFactoryReset": {
+      "type": "bool",
+      "downlink": true
+    },
+    "sendLoraRetries": {
+      "type": "uint8",
+      "downlink": true
+    },
+    "sendLoraRejoin": {
+      "type": "uint16",
+      "downlink": true,
+      "unit": "min"
+    },
+    "kernel": {
+      "type": "string"
+    },
+    "manufacturer": {
+      "type": "string"
+    },
+    "model": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string"
+    },
+    "position": {
+      "type": "string"
+    },
+    "application_name": {
+      "type": "string"
+    },
+    "main_or_external_voltage": {
+      "type": "float",
+      "unit": "V"
+    },
+    "disposable_battery_voltage": {
+      "type": "float",
+      "unit": "V"
+    },
+    "message_type": {
+      "type": "string"
+    },
+    "nb_retry": {
+      "type": "uint8"
+    },
+    "automatic_association": {
+      "type": "float"
+    },
+    "data_rate": {
+      "type": "uint8"
+    },
+    "ABP_dev_address": {
+      "type": "string"
+    },
+    "OTA_app_EUI": {
+      "type": "string"
+    },
+    "output_1": {
+      "type": "string"
+    },
+    "output_2": {
+      "type": "string"
+    },
+    "output_3": {
+      "type": "string"
+    },
+    "output_4": {
+      "type": "string"
+    },
+    "index_1": {
+      "type": "uint32"
+    },
+    "index_2": {
+      "type": "uint32"
+    },
+    "index_3": {
+      "type": "uint32"
+    },
+    "index_4": {
+      "type": "uint32"
+    },
+    "index_5": {
+      "type": "uint32"
+    },
+    "index_6": {
+      "type": "uint32"
+    },
+    "index_7": {
+      "type": "uint32"
+    },
+    "index_8": {
+      "type": "uint32"
+    },
+    "index_9": {
+      "type": "uint32"
+    },
+    "index_10": {
+      "type": "uint32"
+    },
+    "pin_state_1": {
+      "type": "bool"
+    },
+    "pin_state_2": {
+      "type": "bool"
+    },
+    "pin_state_3": {
+      "type": "bool"
+    },
+    "pin_state_4": {
+      "type": "bool"
+    },
+    "pin_state_5": {
+      "type": "bool"
+    },
+    "pin_state_6": {
+      "type": "bool"
+    },
+    "pin_state_7": {
+      "type": "bool"
+    },
+    "pin_state_8": {
+      "type": "bool"
+    },
+    "pin_state_9": {
+      "type": "bool"
+    },
+    "pin_state_10": {
+      "type": "bool"
+    },
+    "polarity": {
+      "type": "string"
+    },
+    "edge_selection": {
+      "type": "string"
+    },
+    "debounce_period": {
+      "type": "uint8",
+      "unit": "ms"
+    },
+    "poll_period": {
+      "type": "uint16",
+      "unit": "ms"
+    },
+    "force_notify": {
+      "type": "bool"
+    },
+    "sendOnOffStateEP1": {
+      "type": "uint8",
+      "downlink": true
+    },
+    "sendOnOffStateEP2": {
+      "type": "uint8",
+      "downlink": true
+    },
+    "sendOnOffStateEP3": {
+      "type": "uint8",
+      "downlink": true
+    },
+    "sendOnOffStateEP4": {
+      "type": "uint8",
+      "downlink": true
+    }
+  },
+  "decoder": "ino-decoder.js"
+}

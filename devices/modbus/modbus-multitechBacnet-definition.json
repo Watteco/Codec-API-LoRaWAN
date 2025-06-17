@@ -1,0 +1,250 @@
+{
+  "description": "Watteco modbus v1.1.5",
+  "properties": {
+    "sendHexFrame": {
+      "type": "string",
+      "downlink": true
+    },
+    "sendConfirmedMode": {
+      "type": "uint8",
+      "downlink": true
+    },
+    "sendReboot": {
+      "type": "bool",
+      "downlink": true
+    },
+    "sendFactoryReset": {
+      "type": "bool",
+      "downlink": true
+    },
+    "sendLoraRetries": {
+      "type": "uint8",
+      "downlink": true
+    },
+    "sendLoraRejoin": {
+      "type": "uint16",
+      "downlink": true,
+      "unit": "min"
+    },
+    "kernel": {
+      "type": "string"
+    },
+    "manufacturer": {
+      "type": "string"
+    },
+    "model": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string"
+    },
+    "position": {
+      "type": "string"
+    },
+    "application_name": {
+      "type": "string"
+    },
+    "main_or_external_voltage": {
+      "type": "float",
+      "unit": "V"
+    },
+    "disposable_battery_voltage": {
+      "type": "float",
+      "unit": "V"
+    },
+    "message_type": {
+      "type": "string"
+    },
+    "nb_retry": {
+      "type": "uint8"
+    },
+    "automatic_association": {
+      "type": "float"
+    },
+    "data_rate": {
+      "type": "uint8"
+    },
+    "ABP_dev_address": {
+      "type": "string"
+    },
+    "OTA_app_EUI": {
+      "type": "string"
+    },
+    "speed": {
+      "type": "uint32",
+      "unit": "bps"
+    },
+    "data_bit": {
+      "type": "uint8"
+    },
+    "parity": {
+      "type": "uint8"
+    },
+    "stop_bit": {
+      "type": "uint8"
+    },
+    "modbus_payload_EP0": {
+      "type": "string"
+    },
+    "modbus_payload_EP1": {
+      "type": "string"
+    },
+    "modbus_payload_EP2": {
+      "type": "string"
+    },
+    "modbus_payload_EP3": {
+      "type": "string"
+    },
+    "modbus_payload_EP4": {
+      "type": "string"
+    },
+    "modbus_payload_EP5": {
+      "type": "string"
+    },
+    "modbus_payload_EP6": {
+      "type": "string"
+    },
+    "modbus_payload_EP7": {
+      "type": "string"
+    },
+    "modbus_payload_EP8": {
+      "type": "string"
+    },
+    "modbus_payload_EP9": {
+      "type": "string"
+    },
+    "modbus_slaveID_EP0": {
+      "type": "uint8"
+    },
+    "modbus_slaveID_EP1": {
+      "type": "uint8"
+    },
+    "modbus_slaveID_EP2": {
+      "type": "uint8"
+    },
+    "modbus_slaveID_EP3": {
+      "type": "uint8"
+    },
+    "modbus_slaveID_EP4": {
+      "type": "uint8"
+    },
+    "modbus_slaveID_EP5": {
+      "type": "uint8"
+    },
+    "modbus_slaveID_EP6": {
+      "type": "uint8"
+    },
+    "modbus_slaveID_EP7": {
+      "type": "uint8"
+    },
+    "modbus_slaveID_EP8": {
+      "type": "uint8"
+    },
+    "modbus_slaveID_EP9": {
+      "type": "uint8"
+    },
+    "modbus_fnctID_EP0": {
+      "type": "uint8"
+    },
+    "modbus_fnctID_EP1": {
+      "type": "uint8"
+    },
+    "modbus_fnctID_EP2": {
+      "type": "uint8"
+    },
+    "modbus_fnctID_EP3": {
+      "type": "uint8"
+    },
+    "modbus_fnctID_EP4": {
+      "type": "uint8"
+    },
+    "modbus_fnctID_EP5": {
+      "type": "uint8"
+    },
+    "modbus_fnctID_EP6": {
+      "type": "uint8"
+    },
+    "modbus_fnctID_EP7": {
+      "type": "uint8"
+    },
+    "modbus_fnctID_EP8": {
+      "type": "uint8"
+    },
+    "modbus_fnctID_EP9": {
+      "type": "uint8"
+    },
+    "modbus_datasize_EP0": {
+      "type": "uint8"
+    },
+    "modbus_datasize_EP1": {
+      "type": "uint8"
+    },
+    "modbus_datasize_EP2": {
+      "type": "uint8"
+    },
+    "modbus_datasize_EP3": {
+      "type": "uint8"
+    },
+    "modbus_datasize_EP4": {
+      "type": "uint8"
+    },
+    "modbus_datasize_EP5": {
+      "type": "uint8"
+    },
+    "modbus_datasize_EP6": {
+      "type": "uint8"
+    },
+    "modbus_datasize_EP7": {
+      "type": "uint8"
+    },
+    "modbus_datasize_EP8": {
+      "type": "uint8"
+    },
+    "modbus_datasize_EP9": {
+      "type": "uint8"
+    },
+    "modbus_frame_series_sent": {
+      "type": "uint8"
+    },
+    "modbus_frame_number_in_serie": {
+      "type": "uint8"
+    },
+    "modbus_last_frame_of_serie": {
+      "type": "uint8"
+    },
+    "modbus_EP0": {
+      "type": "bool"
+    },
+    "modbus_EP1": {
+      "type": "bool"
+    },
+    "modbus_EP2": {
+      "type": "bool"
+    },
+    "modbus_EP3": {
+      "type": "bool"
+    },
+    "modbus_EP4": {
+      "type": "bool"
+    },
+    "modbus_EP5": {
+      "type": "bool"
+    },
+    "modbus_EP6": {
+      "type": "bool"
+    },
+    "modbus_EP7": {
+      "type": "bool"
+    },
+    "modbus_EP8": {
+      "type": "bool"
+    },
+    "modbus_EP9": {
+      "type": "bool"
+    },
+    "+8007 clusterstructure for each true": {
+      "type": "float"
+    }
+  },
+  "decoder": "modbus-decoder.js"
+}

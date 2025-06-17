@@ -1,0 +1,143 @@
+{
+  "description": "Watteco smartplug v1.1.4",
+  "properties": {
+    "sendHexFrame": {
+      "type": "string",
+      "downlink": true
+    },
+    "sendConfirmedMode": {
+      "type": "uint8",
+      "downlink": true
+    },
+    "sendReboot": {
+      "type": "bool",
+      "downlink": true
+    },
+    "sendFactoryReset": {
+      "type": "bool",
+      "downlink": true
+    },
+    "sendLoraRetries": {
+      "type": "uint8",
+      "downlink": true
+    },
+    "sendLoraRejoin": {
+      "type": "uint16",
+      "downlink": true,
+      "unit": "min"
+    },
+    "kernel": {
+      "type": "string"
+    },
+    "manufacturer": {
+      "type": "string"
+    },
+    "model": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string"
+    },
+    "position": {
+      "type": "string"
+    },
+    "application_name": {
+      "type": "string"
+    },
+    "main_or_external_voltage": {
+      "type": "float",
+      "unit": "V"
+    },
+    "message_type": {
+      "type": "string"
+    },
+    "nb_retry": {
+      "type": "uint8"
+    },
+    "automatic_association": {
+      "type": "float"
+    },
+    "data_rate": {
+      "type": "uint8"
+    },
+    "ABP_dev_address": {
+      "type": "string"
+    },
+    "OTA_app_EUI": {
+      "type": "string"
+    },
+    "output": {
+      "type": "string"
+    },
+    "active_energy": {
+      "type": "int32",
+      "unit": "Wh"
+    },
+    "reactive_energy": {
+      "type": "int32",
+      "unit": "VArh"
+    },
+    "nb_samples": {
+      "type": "uint16"
+    },
+    "active_power": {
+      "type": "int16",
+      "unit": "W"
+    },
+    "reactive_power": {
+      "type": "int16",
+      "unit": "VAr"
+    },
+    "frequency": {
+      "type": "float",
+      "unit": "Hz"
+    },
+    "frequency_min": {
+      "type": "float",
+      "unit": "Hz"
+    },
+    "frequency_max": {
+      "type": "float",
+      "unit": "Hz"
+    },
+    "Vrms": {
+      "type": "float",
+      "unit": "V"
+    },
+    "Vrms_min": {
+      "type": "float",
+      "unit": "V"
+    },
+    "Vrms_max": {
+      "type": "float",
+      "unit": "V"
+    },
+    "Vpeak": {
+      "type": "float",
+      "unit": "V"
+    },
+    "Vpeak_min": {
+      "type": "float",
+      "unit": "V"
+    },
+    "Vpeak_max": {
+      "type": "float",
+      "unit": "V"
+    },
+    "over_voltage": {
+      "type": "uint16"
+    },
+    "sag_voltage": {
+      "type": "uint16"
+    },
+    "ActiveEnergy": {
+      "type": "int32",
+      "unit": "Wh"
+    },
+    "sendOnOffState": {
+      "type": "uint8",
+      "downlink": true
+    }
+  },
+  "decoder": "smartplug-decoder.js"
+}

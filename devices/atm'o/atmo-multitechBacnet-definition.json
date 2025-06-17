@@ -1,0 +1,116 @@
+{
+  "description": "Watteco atm'o v1.1.4",
+  "properties": {
+    "sendHexFrame": {
+      "type": "string",
+      "downlink": true
+    },
+    "sendConfirmedMode": {
+      "type": "uint8",
+      "downlink": true
+    },
+    "sendReboot": {
+      "type": "bool",
+      "downlink": true
+    },
+    "sendFactoryReset": {
+      "type": "bool",
+      "downlink": true
+    },
+    "sendLoraRetries": {
+      "type": "uint8",
+      "downlink": true
+    },
+    "sendLoraRejoin": {
+      "type": "uint16",
+      "downlink": true,
+      "unit": "min"
+    },
+    "kernel": {
+      "type": "string"
+    },
+    "manufacturer": {
+      "type": "string"
+    },
+    "model": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string"
+    },
+    "position": {
+      "type": "string"
+    },
+    "application_name": {
+      "type": "string"
+    },
+    "disposable_battery_voltage": {
+      "type": "float",
+      "unit": "V"
+    },
+    "message_type": {
+      "type": "string"
+    },
+    "nb_retry": {
+      "type": "uint8"
+    },
+    "automatic_association": {
+      "type": "float"
+    },
+    "data_rate": {
+      "type": "uint8"
+    },
+    "ABP_dev_address": {
+      "type": "string"
+    },
+    "OTA_app_EUI": {
+      "type": "string"
+    },
+    "index_1": {
+      "type": "uint32"
+    },
+    "index_2": {
+      "type": "uint32"
+    },
+    "pin_state_1": {
+      "type": "bool"
+    },
+    "pin_state_2": {
+      "type": "bool"
+    },
+    "polarity": {
+      "type": "string"
+    },
+    "edge_selection": {
+      "type": "string"
+    },
+    "debounce_period": {
+      "type": "uint8",
+      "unit": "ms"
+    },
+    "poll_period": {
+      "type": "uint16",
+      "unit": "ms"
+    },
+    "force_notify": {
+      "type": "bool"
+    },
+    "temperature": {
+      "type": "float",
+      "unit": "Cel"
+    },
+    "pressure": {
+      "type": "int32",
+      "unit": "hPa"
+    },
+    "humidity": {
+      "type": "float",
+      "unit": "%RH"
+    },
+    "battery_voltage": {
+      "type": "float",
+      "unit": "V"
+    }
+  },
+  "decoder": "atmo-decoder.js"
+}

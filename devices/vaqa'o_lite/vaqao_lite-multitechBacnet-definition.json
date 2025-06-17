@@ -1,0 +1,108 @@
+{
+  "description": "Watteco vaqa'o lite v1.1.4",
+  "properties": {
+    "sendHexFrame": {
+      "type": "string",
+      "downlink": true
+    },
+    "sendConfirmedMode": {
+      "type": "uint8",
+      "downlink": true
+    },
+    "sendReboot": {
+      "type": "bool",
+      "downlink": true
+    },
+    "sendFactoryReset": {
+      "type": "bool",
+      "downlink": true
+    },
+    "sendLoraRetries": {
+      "type": "uint8",
+      "downlink": true
+    },
+    "sendLoraRejoin": {
+      "type": "uint16",
+      "downlink": true,
+      "unit": "min"
+    },
+    "kernel": {
+      "type": "string"
+    },
+    "manufacturer": {
+      "type": "string"
+    },
+    "model": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string"
+    },
+    "position": {
+      "type": "string"
+    },
+    "application_name": {
+      "type": "string"
+    },
+    "disposable_battery_voltage": {
+      "type": "float",
+      "unit": "V"
+    },
+    "message_type": {
+      "type": "string"
+    },
+    "nb_retry": {
+      "type": "uint8"
+    },
+    "automatic_association": {
+      "type": "float"
+    },
+    "data_rate": {
+      "type": "uint8"
+    },
+    "ABP_dev_address": {
+      "type": "string"
+    },
+    "OTA_app_EUI": {
+      "type": "string"
+    },
+    "violation_detection": {
+      "type": "bool"
+    },
+    "illuminance": {
+      "type": "uint16",
+      "unit": "lx"
+    },
+    "temperature_1": {
+      "type": "float",
+      "unit": "Cel"
+    },
+    "temperature_2": {
+      "type": "float",
+      "unit": "Cel"
+    },
+    "pressure": {
+      "type": "int32",
+      "unit": "hPa"
+    },
+    "humidity_1": {
+      "type": "float",
+      "unit": "%RH"
+    },
+    "humidity_2": {
+      "type": "float",
+      "unit": "%RH"
+    },
+    "occupancy": {
+      "type": "bool"
+    },
+    "IAQ": {
+      "type": "uint16"
+    },
+    "CO2": {
+      "type": "uint16",
+      "unit": "ppm"
+    }
+  },
+  "decoder": "vaqao_lite-decoder.js"
+}
