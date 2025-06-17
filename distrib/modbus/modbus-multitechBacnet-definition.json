@@ -241,9 +241,6 @@
     },
     "modbus_EP9": {
       "type": "bool"
-    },
-    "+8007 clusterstructure for each true": {
-      "type": "float"
     }
   },
   "decoder": "modbus-decoder.js"
