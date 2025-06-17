@@ -118,8 +118,8 @@ function addUnitsToData(data, units = {}) {
     
     // Add units to top-level variables
     for (const key in units) {
-        // If the key exists in the data, add a corresponding unit property
-        if (result[key] !== undefined) {
+        // If the key exists in the data and the unit is not an empty string, add a corresponding unit property
+        if (result[key] !== undefined && units[key] !== "") {
             result[`${key}_unit`] = units[key];
         }
     }
@@ -127,7 +127,8 @@ function addUnitsToData(data, units = {}) {
     // Add units to samples if they exist
     if (result.samples && Array.isArray(result.samples)) {
         result.samples = result.samples.map(sample => {
-            if (sample.variable && units[sample.variable]) {
+            // Only add unit if it exists and is not an empty string
+            if (sample.variable && units[sample.variable] && units[sample.variable] !== "") {
                 return { ...sample, unit: units[sample.variable] };
             }
             return sample;
