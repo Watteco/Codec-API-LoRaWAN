@@ -24,7 +24,7 @@
     "sendLoraRejoin": {
       "type": "uint16",
       "downlink": true,
-      "unit": "min"
+      "units": "min"
     },
     "kernel": {
       "type": "string"
@@ -46,7 +46,7 @@
     },
     "disposable_battery_voltage": {
       "type": "float",
-      "unit": "V"
+      "units": "V"
     },
     "message_type": {
       "type": "string"
@@ -71,15 +71,15 @@
     },
     "temperature": {
       "type": "float",
-      "unit": "Cel"
+      "units": "Cel"
     },
     "humidity": {
       "type": "float",
-      "unit": "%RH"
+      "units": "%RH"
     },
     "battery_voltage": {
       "type": "float",
-      "unit": "V"
+      "units": "V"
     }
   },
   "decoder": "th-decoder.js"

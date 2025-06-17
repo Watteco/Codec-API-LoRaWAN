@@ -24,7 +24,7 @@
     "sendLoraRejoin": {
       "type": "uint16",
       "downlink": true,
-      "unit": "min"
+      "units": "min"
     },
     "kernel": {
       "type": "string"
@@ -46,7 +46,7 @@
     },
     "disposable_battery_voltage": {
       "type": "float",
-      "unit": "V"
+      "units": "V"
     },
     "message_type": {
       "type": "string"
@@ -68,18 +68,18 @@
     },
     "angle": {
       "type": "int16",
-      "unit": "deg"
+      "units": "deg"
     },
     "occupancy": {
       "type": "bool"
     },
     "ACCmg": {
       "type": "uint16",
-      "unit": "mg"
+      "units": "mg"
     },
     "Deg": {
       "type": "int16",
-      "unit": "deg"
+      "units": "deg"
     }
   },
   "decoder": "inclino-decoder.js"

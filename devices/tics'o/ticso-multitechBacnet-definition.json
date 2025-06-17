@@ -24,7 +24,7 @@
     "sendLoraRejoin": {
       "type": "uint16",
       "downlink": true,
-      "unit": "min"
+      "units": "min"
     },
     "kernel": {
       "type": "string"
@@ -46,11 +46,11 @@
     },
     "main_or_external_voltage": {
       "type": "float",
-      "unit": "V"
+      "units": "V"
     },
     "tic_harvesting_voltage": {
       "type": "float",
-      "unit": "V"
+      "units": "V"
     },
     "message_type": {
       "type": "string"
@@ -72,22 +72,22 @@
     },
     "active_energy": {
       "type": "int32",
-      "unit": "Wh"
+      "units": "Wh"
     },
     "reactive_energy": {
       "type": "int32",
-      "unit": "VArh"
+      "units": "VArh"
     },
     "nb_samples": {
       "type": "uint16"
     },
     "active_power": {
       "type": "int16",
-      "unit": "W"
+      "units": "W"
     },
     "reactive_power": {
       "type": "int16",
-      "unit": "VAr"
+      "units": "VAr"
     },
     "TIC-ICE_fields (https://support.watteco.com/wp-content/uploads/2020/04/TIC_Application_Layer_Description_1.2.pdf)": {
       "type": "float"

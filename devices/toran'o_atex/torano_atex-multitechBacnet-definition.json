@@ -24,7 +24,7 @@
     "sendLoraRejoin": {
       "type": "uint16",
       "downlink": true,
-      "unit": "min"
+      "units": "min"
     },
     "kernel": {
       "type": "string"
@@ -46,7 +46,7 @@
     },
     "disposable_battery_voltage": {
       "type": "float",
-      "unit": "V"
+      "units": "V"
     },
     "message_type": {
       "type": "string"
@@ -68,23 +68,23 @@
     },
     "4-20_mA": {
       "type": "float",
-      "unit": "mA"
+      "units": "mA"
     },
     "0-5_V_1": {
       "type": "float",
-      "unit": "V"
+      "units": "V"
     },
     "0-5_V_2": {
       "type": "float",
-      "unit": "V"
+      "units": "V"
     },
     "ratiometric_0-5_V_1": {
       "type": "float",
-      "unit": "V"
+      "units": "V"
     },
     "ratiometric_0-5_V_2": {
       "type": "float",
-      "unit": "V"
+      "units": "V"
     },
     "index_1": {
       "type": "uint32"
@@ -109,7 +109,7 @@
     },
     "battery_voltage": {
       "type": "float",
-      "unit": "V"
+      "units": "V"
     }
   },
   "decoder": "torano_atex-decoder.js"

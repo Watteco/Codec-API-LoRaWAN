@@ -649,7 +649,7 @@ function generateMultitechBacnetDefinition(devicePath, bacnetMappingPath = null)
                 };
                 
                 if (bacnetMap[prop].unit) {
-                    definition.properties[prop].unit = bacnetMap[prop].unit;
+                    definition.properties[prop].units = bacnetMap[prop].unit;
                 }
             } else {
                 // Use default values if not in BACnet mapping
@@ -658,7 +658,7 @@ function generateMultitechBacnetDefinition(devicePath, bacnetMappingPath = null)
                 } else if (prop === "sendConfirmedMode" || prop === "sendLoraRetries") {
                     definition.properties[prop] = {"type": "uint8", "downlink": true};
                 } else if (prop === "sendLoraRejoin") {
-                    definition.properties[prop] = {"type": "uint16", "downlink": true, "unit": "minutes"};
+                    definition.properties[prop] = {"type": "uint16", "downlink": true, "units": "minutes"};
                 } else if (prop === "sendReboot" || prop === "sendFactoryReset") {
                     definition.properties[prop] = {"type": "bool", "downlink": true};
                 }
@@ -742,9 +742,9 @@ function generateMultitechBacnetDefinition(devicePath, bacnetMappingPath = null)
             
             // Add unit if available (from units.auto.js or BACnet mapping)
             if (units[variable]) {
-                definition.properties[variable].unit = units[variable];
+                definition.properties[variable].units = units[variable];
             } else if (bacnetMap[variable] && bacnetMap[variable].unit) {
-                definition.properties[variable].unit = bacnetMap[variable].unit;
+                definition.properties[variable].units = bacnetMap[variable].unit;
             }
         }
         
@@ -793,6 +793,12 @@ function generateMultitechBacnetDefinition(devicePath, bacnetMappingPath = null)
         // Add custom downlinks to properties
         for (const [cmdName, config] of Object.entries(customDownlinks)) {
             definition.properties[cmdName] = config;
+            
+            // Make sure any unit property is renamed to units
+            if (config.unit) {
+                definition.properties[cmdName].units = config.unit;
+                delete definition.properties[cmdName].unit;
+            }
         }
         
         // Add decoder information
