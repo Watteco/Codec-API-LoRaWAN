@@ -24,7 +24,7 @@
     "sendLoraRejoin": {
       "type": "uint16",
       "downlink": true,
-      "unit": "min"
+      "units": "min"
     },
     "kernel": {
       "type": "string"
@@ -46,11 +46,11 @@
     },
     "main_or_external_voltage": {
       "type": "float",
-      "unit": "V"
+      "units": "V"
     },
     "solar_harvesting_voltage": {
       "type": "float",
-      "unit": "V"
+      "units": "V"
     },
     "message_type": {
       "type": "string"
@@ -78,27 +78,27 @@
     },
     "temperature": {
       "type": "float",
-      "unit": "Cel"
+      "units": "Cel"
     },
     "differential_pressure": {
       "type": "int16",
-      "unit": "Pa"
+      "units": "Pa"
     },
     "mean_differential_pressure_since_last_report": {
       "type": "int16",
-      "unit": "Pa"
+      "units": "Pa"
     },
     "minimal_differential_pressure_since_last_report": {
       "type": "int16",
-      "unit": "Pa"
+      "units": "Pa"
     },
     "maximal_differential_pressure_since_last_report": {
       "type": "int16",
-      "unit": "Pa"
+      "units": "Pa"
     },
     "battery_voltage": {
       "type": "float",
-      "unit": "V"
+      "units": "V"
     }
   },
   "decoder": "ventilo-decoder.js"

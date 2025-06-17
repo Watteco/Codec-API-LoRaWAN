@@ -24,7 +24,7 @@
     "sendLoraRejoin": {
       "type": "uint16",
       "downlink": true,
-      "unit": "min"
+      "units": "min"
     },
     "kernel": {
       "type": "string"
@@ -46,7 +46,7 @@
     },
     "disposable_battery_voltage": {
       "type": "float",
-      "unit": "V"
+      "units": "V"
     },
     "message_type": {
       "type": "string"
@@ -71,27 +71,27 @@
     },
     "illuminance": {
       "type": "uint16",
-      "unit": "lx"
+      "units": "lx"
     },
     "temperature_1": {
       "type": "float",
-      "unit": "Cel"
+      "units": "Cel"
     },
     "temperature_2": {
       "type": "float",
-      "unit": "Cel"
+      "units": "Cel"
     },
     "pressure": {
       "type": "int32",
-      "unit": "hPa"
+      "units": "hPa"
     },
     "humidity_1": {
       "type": "float",
-      "unit": "%RH"
+      "units": "%RH"
     },
     "humidity_2": {
       "type": "float",
-      "unit": "%RH"
+      "units": "%RH"
     },
     "occupancy": {
       "type": "bool"
@@ -101,7 +101,7 @@
     },
     "CO2": {
       "type": "uint16",
-      "unit": "ppm"
+      "units": "ppm"
     }
   },
   "decoder": "vaqao_lite-decoder.js"

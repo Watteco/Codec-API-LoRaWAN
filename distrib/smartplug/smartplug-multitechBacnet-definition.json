@@ -24,7 +24,7 @@
     "sendLoraRejoin": {
       "type": "uint16",
       "downlink": true,
-      "unit": "min"
+      "units": "min"
     },
     "kernel": {
       "type": "string"
@@ -46,7 +46,7 @@
     },
     "main_or_external_voltage": {
       "type": "float",
-      "unit": "V"
+      "units": "V"
     },
     "message_type": {
       "type": "string"
@@ -71,58 +71,58 @@
     },
     "active_energy": {
       "type": "int32",
-      "unit": "Wh"
+      "units": "Wh"
     },
     "reactive_energy": {
       "type": "int32",
-      "unit": "VArh"
+      "units": "VArh"
     },
     "nb_samples": {
       "type": "uint16"
     },
     "active_power": {
       "type": "int16",
-      "unit": "W"
+      "units": "W"
     },
     "reactive_power": {
       "type": "int16",
-      "unit": "VAr"
+      "units": "VAr"
     },
     "frequency": {
       "type": "float",
-      "unit": "Hz"
+      "units": "Hz"
     },
     "frequency_min": {
       "type": "float",
-      "unit": "Hz"
+      "units": "Hz"
     },
     "frequency_max": {
       "type": "float",
-      "unit": "Hz"
+      "units": "Hz"
     },
     "Vrms": {
       "type": "float",
-      "unit": "V"
+      "units": "V"
     },
     "Vrms_min": {
       "type": "float",
-      "unit": "V"
+      "units": "V"
     },
     "Vrms_max": {
       "type": "float",
-      "unit": "V"
+      "units": "V"
     },
     "Vpeak": {
       "type": "float",
-      "unit": "V"
+      "units": "V"
     },
     "Vpeak_min": {
       "type": "float",
-      "unit": "V"
+      "units": "V"
     },
     "Vpeak_max": {
       "type": "float",
-      "unit": "V"
+      "units": "V"
     },
     "over_voltage": {
       "type": "uint16"
@@ -132,7 +132,7 @@
     },
     "ActiveEnergy": {
       "type": "int32",
-      "unit": "Wh"
+      "units": "Wh"
     },
     "sendOnOffState": {
       "type": "uint8",

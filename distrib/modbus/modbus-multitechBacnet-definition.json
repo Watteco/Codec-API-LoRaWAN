@@ -24,7 +24,7 @@
     "sendLoraRejoin": {
       "type": "uint16",
       "downlink": true,
-      "unit": "min"
+      "units": "min"
     },
     "kernel": {
       "type": "string"
@@ -46,11 +46,11 @@
     },
     "main_or_external_voltage": {
       "type": "float",
-      "unit": "V"
+      "units": "V"
     },
     "disposable_battery_voltage": {
       "type": "float",
-      "unit": "V"
+      "units": "V"
     },
     "message_type": {
       "type": "string"
@@ -72,7 +72,7 @@
     },
     "speed": {
       "type": "uint32",
-      "unit": "bps"
+      "units": "bps"
     },
     "data_bit": {
       "type": "uint8"

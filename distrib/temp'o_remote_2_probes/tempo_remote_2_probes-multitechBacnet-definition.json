@@ -24,7 +24,7 @@
     "sendLoraRejoin": {
       "type": "uint16",
       "downlink": true,
-      "unit": "min"
+      "units": "min"
     },
     "kernel": {
       "type": "string"
@@ -46,7 +46,7 @@
     },
     "disposable_battery_voltage": {
       "type": "float",
-      "unit": "V"
+      "units": "V"
     },
     "message_type": {
       "type": "string"
@@ -68,15 +68,15 @@
     },
     "temperature_1": {
       "type": "float",
-      "unit": "Cel"
+      "units": "Cel"
     },
     "temperature_2": {
       "type": "float",
-      "unit": "Cel"
+      "units": "Cel"
     },
     "battery_voltage": {
       "type": "float",
-      "unit": "V"
+      "units": "V"
     }
   },
   "decoder": "tempo_remote_2_probes-decoder.js"

@@ -24,7 +24,7 @@
     "sendLoraRejoin": {
       "type": "uint16",
       "downlink": true,
-      "unit": "min"
+      "units": "min"
     },
     "kernel": {
       "type": "string"
@@ -46,7 +46,7 @@
     },
     "main_or_external_voltage": {
       "type": "float",
-      "unit": "V"
+      "units": "V"
     },
     "message_type": {
       "type": "string"
@@ -74,231 +74,231 @@
     },
     "positive_active_energy_a": {
       "type": "uint32",
-      "unit": "Wh"
+      "units": "Wh"
     },
     "positive_active_energy_b": {
       "type": "uint32",
-      "unit": "Wh"
+      "units": "Wh"
     },
     "positive_active_energy_c": {
       "type": "uint32",
-      "unit": "Wh"
+      "units": "Wh"
     },
     "positive_active_energy_abc": {
       "type": "uint32",
-      "unit": "Wh"
+      "units": "Wh"
     },
     "negative_active_energy_a": {
       "type": "uint32",
-      "unit": "Wh"
+      "units": "Wh"
     },
     "negative_active_energy_b": {
       "type": "uint32",
-      "unit": "Wh"
+      "units": "Wh"
     },
     "negative_active_energy_c": {
       "type": "uint32",
-      "unit": "Wh"
+      "units": "Wh"
     },
     "negative_active_energy_abc": {
       "type": "uint32",
-      "unit": "Wh"
+      "units": "Wh"
     },
     "positive_reactive_energy_a": {
       "type": "uint32",
-      "unit": "VArh"
+      "units": "VArh"
     },
     "positive_reactive_energy_b": {
       "type": "uint32",
-      "unit": "VArh"
+      "units": "VArh"
     },
     "positive_reactive_energy_c": {
       "type": "uint32",
-      "unit": "VArh"
+      "units": "VArh"
     },
     "positive_reactive_energy_abc": {
       "type": "uint32",
-      "unit": "VArh"
+      "units": "VArh"
     },
     "negative_reactive_energy_a": {
       "type": "uint32",
-      "unit": "VArh"
+      "units": "VArh"
     },
     "negative_reactive_energy_b": {
       "type": "uint32",
-      "unit": "VArh"
+      "units": "VArh"
     },
     "negative_reactive_energy_c": {
       "type": "uint32",
-      "unit": "VArh"
+      "units": "VArh"
     },
     "negative_reactive_energy_abc": {
       "type": "uint32",
-      "unit": "VArh"
+      "units": "VArh"
     },
     "positive_active_power_a": {
       "type": "uint32",
-      "unit": "W"
+      "units": "W"
     },
     "positive_active_power_b": {
       "type": "uint32",
-      "unit": "W"
+      "units": "W"
     },
     "positive_active_power_c": {
       "type": "uint32",
-      "unit": "W"
+      "units": "W"
     },
     "positive_active_power_abc": {
       "type": "uint32",
-      "unit": "W"
+      "units": "W"
     },
     "negative_active_power_a": {
       "type": "uint32",
-      "unit": "W"
+      "units": "W"
     },
     "negative_active_power_b": {
       "type": "uint32",
-      "unit": "W"
+      "units": "W"
     },
     "negative_active_power_c": {
       "type": "uint32",
-      "unit": "W"
+      "units": "W"
     },
     "negative_active_power_abc": {
       "type": "uint32",
-      "unit": "W"
+      "units": "W"
     },
     "positive_reactive_power_a": {
       "type": "uint32",
-      "unit": "VAr"
+      "units": "VAr"
     },
     "positive_reactive_power_b": {
       "type": "uint32",
-      "unit": "VAr"
+      "units": "VAr"
     },
     "positive_reactive_power_c": {
       "type": "uint32",
-      "unit": "VAr"
+      "units": "VAr"
     },
     "positive_reactive_power_abc": {
       "type": "uint32",
-      "unit": "VAr"
+      "units": "VAr"
     },
     "negative_reactive_power_a": {
       "type": "uint32",
-      "unit": "VAr"
+      "units": "VAr"
     },
     "negative_reactive_power_b": {
       "type": "uint32",
-      "unit": "VAr"
+      "units": "VAr"
     },
     "negative_reactive_power_c": {
       "type": "uint32",
-      "unit": "VAr"
+      "units": "VAr"
     },
     "negative_reactive_power_abc": {
       "type": "uint32",
-      "unit": "VAr"
+      "units": "VAr"
     },
     "Vrms_a": {
       "type": "float",
-      "unit": "V"
+      "units": "V"
     },
     "Vrms_b": {
       "type": "float",
-      "unit": "V"
+      "units": "V"
     },
     "Vrms_c": {
       "type": "float",
-      "unit": "V"
+      "units": "V"
     },
     "Irms_a": {
       "type": "float",
-      "unit": "A"
+      "units": "A"
     },
     "Irms_b": {
       "type": "float",
-      "unit": "A"
+      "units": "A"
     },
     "Irms_c": {
       "type": "float",
-      "unit": "A"
+      "units": "A"
     },
     "angle_a": {
       "type": "int16",
-      "unit": "deg"
+      "units": "deg"
     },
     "angle_b": {
       "type": "int16",
-      "unit": "deg"
+      "units": "deg"
     },
     "angle_c": {
       "type": "int16",
-      "unit": "deg"
+      "units": "deg"
     },
     "active_energy_a": {
       "type": "int32",
-      "unit": "Wh"
+      "units": "Wh"
     },
     "reactive_energy_a": {
       "type": "int32",
-      "unit": "VArh"
+      "units": "VArh"
     },
     "active_energy_b": {
       "type": "int32",
-      "unit": "Wh"
+      "units": "Wh"
     },
     "reactive_energy_b": {
       "type": "int32",
-      "unit": "VArh"
+      "units": "VArh"
     },
     "active_energy_c": {
       "type": "int32",
-      "unit": "Wh"
+      "units": "Wh"
     },
     "reactive_energy_c": {
       "type": "int32",
-      "unit": "VArh"
+      "units": "VArh"
     },
     "active_energy_abc": {
       "type": "int32",
-      "unit": "Wh"
+      "units": "Wh"
     },
     "reactive_energy_abc": {
       "type": "int32",
-      "unit": "VArh"
+      "units": "VArh"
     },
     "active_power_a": {
       "type": "int32",
-      "unit": "W"
+      "units": "W"
     },
     "reactive_power_a": {
       "type": "int32",
-      "unit": "VAr"
+      "units": "VAr"
     },
     "active_power_b": {
       "type": "int32",
-      "unit": "W"
+      "units": "W"
     },
     "reactive_power_b": {
       "type": "int32",
-      "unit": "VAr"
+      "units": "VAr"
     },
     "active_power_c": {
       "type": "int32",
-      "unit": "W"
+      "units": "W"
     },
     "reactive_power_c": {
       "type": "int32",
-      "unit": "VAr"
+      "units": "VAr"
     },
     "active_power_abc": {
       "type": "int32",
-      "unit": "W"
+      "units": "W"
     },
     "reactive_power_abc": {
       "type": "int32",
-      "unit": "VAr"
+      "units": "VAr"
     }
   },
   "decoder": "triphaso-decoder.js"

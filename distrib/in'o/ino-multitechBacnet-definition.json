@@ -24,7 +24,7 @@
     "sendLoraRejoin": {
       "type": "uint16",
       "downlink": true,
-      "unit": "min"
+      "units": "min"
     },
     "kernel": {
       "type": "string"
@@ -46,11 +46,11 @@
     },
     "main_or_external_voltage": {
       "type": "float",
-      "unit": "V"
+      "units": "V"
     },
     "disposable_battery_voltage": {
       "type": "float",
-      "unit": "V"
+      "units": "V"
     },
     "message_type": {
       "type": "string"
@@ -150,11 +150,11 @@
     },
     "debounce_period": {
       "type": "uint8",
-      "unit": "ms"
+      "units": "ms"
     },
     "poll_period": {
       "type": "uint16",
-      "unit": "ms"
+      "units": "ms"
     },
     "force_notify": {
       "type": "bool"
