@@ -226,6 +226,11 @@ sendLoraRejoin;Send LoRa Rejoin command;0;number;W;UINT16;0;min;1;0;65535;all;Se
 sendLoraRetries;Send LoRa Retries;0;number;W;UINT8;0;;1;1;7;all;Set the amount of LoRa retries
 sendMSOMode;Send MSO Mode;0;number;W;UINT8;0;;1;0;5;all;Set Multi State Output mode
 sendMSORelay;Send MSO Relay State;0;number;W;UINT8;0;;1;0;1;all;Set Multi State Relay state
+sendOnOffState;Set on/off state;0;number;W;UINT8;0;;1;0;2;all;0 = On, 1 = Off, 2 = Toggle
+sendOnOffStateEP1;Set on/off state for endpoint 1;0;number;W;UINT8;0;;1;0;2;all;0 = On, 1 = Off, 2 = Toggle
+sendOnOffStateEP2;Set on/off state for endpoint 2;0;number;W;UINT8;0;;1;0;2;all;0 = On, 1 = Off, 2 = Toggle
+sendOnOffStateEP3;Set on/off state for endpoint 3;0;number;W;UINT8;0;;1;0;2;all;0 = On, 1 = Off, 2 = Toggle
+sendOnOffStateEP4;Set on/off state for endpoint 4;0;number;W;UINT8;0;;1;0;2;all;0 = On, 1 = Off, 2 = Toggle
 sendReboot;Send Reboot command;false;boolean;W;BOOL;;;;;;all;Send reboot command to the device
 solar_harvesting_voltage;Solar harvesting voltage;0;number;R;FLOAT;3;V;0,001;0;24;all;Solar harvesting voltage
 speed;Modbus speed;0;number;R;UINT24;0;bps;1;0;16777215;all;Modbus communication speed in bps
@@ -233,25 +238,25 @@ state;State;false;boolean;R;BOOL;;;;;;all;State measurement value
 stop_bit;Modbus stop bits;0;number;R;UINT8;0;;1;1;2;all;Number of stop bits in Modbus frame
 temperature;Temperature;0;number;R;FLOAT;2;Cel;0,01;0;55;others;Temperature in degrees Celsius
 Temperature;Temperature;0;number;R;FLOAT;2;Cel;0,01;0;55;all;Temperature in degrees Celsius
-temperature_1;Temperature sensor 1;0;number;R;FLOAT;2;Cel;0,01;0;55;others;Temperature from sensor 1
-temperature_2;Temperature sensor 2;0;number;R;FLOAT;2;Cel;0,01;0;55;others;Temperature from sensor 2
 Temperature;Temperature;0;number;R;FLOAT;2;Cel;0,01;-20;80;hygrotempo-remote;Temperature in degrees Celsius
-temperature_1;Temperature sensor 1;0;number;R;FLOAT;2;Cel;0,01;-20;80;hygrotempo-remote;Temperature from sensor 1
-temperature_2;Temperature sensor 2;0;number;R;FLOAT;2;Cel;0,01;-20;80;hygrotempo-remote;Temperature from sensor 2
 Temperature;Temperature;0;number;R;FLOAT;2;Cel;0,01;-25;55;tempo-outdoor;Temperature in degrees Celsius
-temperature_1;Temperature sensor 1;0;number;R;FLOAT;2;Cel;0,01;-25;55;tempo-outdoor;Temperature from sensor 1
-temperature_2;Temperature sensor 2;0;number;R;FLOAT;2;Cel;0,01;-25;55;tempo-outdoor;Temperature from sensor 2
 Temperature;Temperature;0;number;R;FLOAT;2;Cel;0,01;-40;110;remote-temp;Temperature in degrees Celsius
-temperature_1;Temperature sensor 1;0;number;R;FLOAT;2;Cel;0,01;-40;110;remote-temp;Temperature from sensor 1
-temperature_2;Temperature sensor 2;0;number;R;FLOAT;2;Cel;0,01;-40;110;remote-temp;Temperature from sensor 2
 Temperature;Temperature;0;number;R;FLOAT;2;Cel;0,01;-20;55;atmo;Temperature in degrees Celsius
+temperature_1;Temperature sensor 1;0;number;R;FLOAT;2;Cel;0,01;0;55;others;Temperature from sensor 1
+temperature_1;Temperature sensor 1;0;number;R;FLOAT;2;Cel;0,01;-20;80;hygrotempo-remote;Temperature from sensor 1
+temperature_1;Temperature sensor 1;0;number;R;FLOAT;2;Cel;0,01;-25;55;tempo-outdoor;Temperature from sensor 1
+temperature_1;Temperature sensor 1;0;number;R;FLOAT;2;Cel;0,01;-40;110;remote-temp;Temperature from sensor 1
 temperature_1;Temperature sensor 1;0;number;R;FLOAT;2;Cel;0,01;-20;55;atmo;Temperature from sensor 1
+temperature_2;Temperature sensor 2;0;number;R;FLOAT;2;Cel;0,01;0;55;others;Temperature from sensor 2
+temperature_2;Temperature sensor 2;0;number;R;FLOAT;2;Cel;0,01;-20;80;hygrotempo-remote;Temperature from sensor 2
+temperature_2;Temperature sensor 2;0;number;R;FLOAT;2;Cel;0,01;-25;55;tempo-outdoor;Temperature from sensor 2
+temperature_2;Temperature sensor 2;0;number;R;FLOAT;2;Cel;0,01;-40;110;remote-temp;Temperature from sensor 2
 temperature_2;Temperature sensor 2;0;number;R;FLOAT;2;Cel;0,01;-20;55;atmo;Temperature from sensor 2
 tic_harvesting_voltage;TIC harvesting voltage;0;number;R;FLOAT;3;V;0,001;0;65,535;all;TIC harvesting voltage
 violation_detection;Violation detection;false;boolean;R;BOOL;;;;;;all;Violation detection state
 Vpeak;Peak voltage;0;number;R;FLOAT;1;V;0,1;0;300;all;Peak voltage
-Vpeak_min;Min peak voltage;0;number;R;FLOAT;1;V;0,1;0;300;all;Min peak voltage
 Vpeak_max;Max peak voltage;0;number;R;FLOAT;1;V;0,1;0;300;all;Max peak voltage
+Vpeak_min;Min peak voltage;0;number;R;FLOAT;1;V;0,1;0;300;all;Min peak voltage
 Vrms;RMS voltage;0;number;R;FLOAT;1;V;0,1;0;300;all;RMS voltage
 Vrms_a;RMS voltage phase A;0;number;R;FLOAT;1;V;0,1;0;600;all;RMS voltage on phase A
 Vrms_b;RMS voltage phase B;0;number;R;FLOAT;1;V;0,1;0;600;all;RMS voltage on phase B
