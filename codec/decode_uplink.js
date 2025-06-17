@@ -147,8 +147,14 @@ function addUnitsToData(data, units = {}) {
  * @returns {Object} - The decoded data with potential warnings or errors.
  */
 function watteco_decodeUplink(input, batch_parameters, endpoint_parameters, units, TIC_Decode=null) {
-    // Accepts string or byte array
-    input.bytes = Buffer.from(input.bytes, "hex"); // Note: If hex string, becomes a bytes array
+    if (typeof input.bytes === 'string') {
+        const hexString = input.bytes.replace(/[^0-9A-Fa-f]/g, '');
+        const bytes = [];
+        for (let i = 0; i < hexString.length; i += 2) {
+            bytes.push(parseInt(hexString.substr(i, 2), 16));
+        }
+        input.bytes = bytes;
+    }
 
     // Avoid non valid recvTime. Saw on multitech mPowerEdge Conduit AP, firmware 7.0.0
     if (! input.recvTime) {
