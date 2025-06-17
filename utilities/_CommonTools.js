@@ -260,16 +260,16 @@ function generateDeviceDriverInfoMarkdown(baseDirectory, outputFile) {
             .sort();
 
         let markdown = "## Available WATTECO LoRaWAN TS013 compliant decoders:\n\n";
-        markdown += "*(This `markdown` script is automatically generated. Please do not modify it.)*"
+        markdown += "*(This `markdown` script is automatically generated. Please do not modify it.)*\n\n";
 
         // Iterate over each device directory
         for (const deviceDir of deviceDirectories) {
             const devicePath = path.join(baseDirectory, deviceDir);
             try {
-
                 // Define paths for device-specific files
                 const variablesFile = path.join(devicePath, "ClustersVariables.json");
                 const packageFile = path.join(devicePath, "package.json");
+                const unitsFile = path.join(devicePath, "units.auto.js");
 
                 // Check if required files exist
                 if (!fs.existsSync(variablesFile) || !fs.existsSync(packageFile)) {
@@ -280,6 +280,17 @@ function generateDeviceDriverInfoMarkdown(baseDirectory, outputFile) {
                 // Load device-specific data
                 const variables = JSON.parse(fs.readFileSync(variablesFile, 'utf8'));
                 const packageData = JSON.parse(fs.readFileSync(packageFile, 'utf8'));
+
+                // Load units if available
+                let units = {};
+                if (fs.existsSync(unitsFile)) {
+                    try {
+                        delete require.cache[require.resolve(unitsFile)];
+                        units = require(unitsFile);
+                    } catch (error) {
+                        console.warn(`Warning: Could not load units file for ${deviceDir}: ${error.message}`);
+                    }
+                }
 
                 const deviceName = deviceDir.toUpperCase();
                 const npmName = packageData.name || "Unknown Device";
@@ -301,14 +312,24 @@ function generateDeviceDriverInfoMarkdown(baseDirectory, outputFile) {
                     return a.name.localeCompare(b.name);
                 });
 
-                // Generate Markdown for the device [Click here to visit OpenAI](https://www.openai.com)
+                // Generate Markdown for the device
                 markdown += `<details>\n<summary>${deviceName} [${deviceVersion}]</summary>\n\n`;
                 markdown += `  [NPM: ${npmName}](https://www.npmjs.com/package/${npmName})\n`;
 
                 sortedClusters.forEach(cluster => {
                     const clusterVariables = variables.find(v => v.cid === cluster.cid)?.variables || [];
-                    const variablesList = clusterVariables.length > 0 ? clusterVariables.join(', ') : "Aucune variable disponible";
-                    markdown += `- **${cluster.name} (CID: ${cluster.cid})** : ${variablesList}\n`;
+                    
+                    if (clusterVariables.length > 0) {
+                        // Format each variable with its unit if available
+                        const formattedVariables = clusterVariables.map(varName => {
+                            const unit = units[varName];
+                            return unit ? `${varName} (${unit})` : varName;
+                        });
+                        
+                        markdown += `- **${cluster.name} (CID: ${cluster.cid})** : ${formattedVariables.join(', ')}\n`;
+                    } else {
+                        markdown += `- **${cluster.name} (CID: ${cluster.cid})** : Aucune variable disponible\n`;
+                    }
                 });
 
                 markdown += "\n</details>\n\n";
