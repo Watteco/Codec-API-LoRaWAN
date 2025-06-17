@@ -1,5 +1,5 @@
 {
-  "description": "Watteco hygrotemp'o v1.1.4",
+  "description": "Watteco clim'o v1.1.4",
   "properties": {
     "sendHexFrame": {
       "type": "string",
@@ -66,9 +66,6 @@
     "OTA_app_EUI": {
       "type": "string"
     },
-    "violation_detection": {
-      "type": "bool"
-    },
     "temperature": {
       "type": "float",
       "unit": "Cel"
@@ -82,5 +79,5 @@
       "unit": "V"
     }
   },
-  "decoder": "hygrotempo-decoder.js"
+  "decoder": "climo-decoder.js"
 }

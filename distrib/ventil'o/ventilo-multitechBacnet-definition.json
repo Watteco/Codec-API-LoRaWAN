@@ -1,5 +1,5 @@
 {
-  "description": "Watteco hygrotemp'o v1.1.4",
+  "description": "Watteco ventil'o v1.1.4",
   "properties": {
     "sendHexFrame": {
       "type": "string",
@@ -44,7 +44,11 @@
     "application_name": {
       "type": "string"
     },
-    "disposable_battery_voltage": {
+    "main_or_external_voltage": {
+      "type": "float",
+      "unit": "V"
+    },
+    "solar_harvesting_voltage": {
       "type": "float",
       "unit": "V"
     },
@@ -66,21 +70,36 @@
     "OTA_app_EUI": {
       "type": "string"
     },
-    "violation_detection": {
+    "index": {
+      "type": "uint32"
+    },
+    "pin_state": {
       "type": "bool"
     },
     "temperature": {
       "type": "float",
       "unit": "Cel"
     },
-    "humidity": {
-      "type": "float",
-      "unit": "%RH"
+    "differential_pressure": {
+      "type": "int16",
+      "unit": "Pa"
+    },
+    "mean_differential_pressure_since_last_report": {
+      "type": "int16",
+      "unit": "Pa"
+    },
+    "minimal_differential_pressure_since_last_report": {
+      "type": "int16",
+      "unit": "Pa"
+    },
+    "maximal_differential_pressure_since_last_report": {
+      "type": "int16",
+      "unit": "Pa"
     },
     "battery_voltage": {
       "type": "float",
       "unit": "V"
     }
   },
-  "decoder": "hygrotempo-decoder.js"
+  "decoder": "ventilo-decoder.js"
 }

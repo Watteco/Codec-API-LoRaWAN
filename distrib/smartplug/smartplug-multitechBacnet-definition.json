@@ -1,5 +1,5 @@
 {
-  "description": "Watteco hygrotemp'o v1.1.4",
+  "description": "Watteco smartplug v1.1.4",
   "properties": {
     "sendHexFrame": {
       "type": "string",
@@ -44,7 +44,7 @@
     "application_name": {
       "type": "string"
     },
-    "disposable_battery_voltage": {
+    "main_or_external_voltage": {
       "type": "float",
       "unit": "V"
     },
@@ -66,21 +66,78 @@
     "OTA_app_EUI": {
       "type": "string"
     },
-    "violation_detection": {
-      "type": "bool"
+    "output": {
+      "type": "string"
     },
-    "temperature": {
+    "active_energy": {
+      "type": "int32",
+      "unit": "Wh"
+    },
+    "reactive_energy": {
+      "type": "int32",
+      "unit": "VArh"
+    },
+    "nb_samples": {
+      "type": "uint16"
+    },
+    "active_power": {
+      "type": "int16",
+      "unit": "W"
+    },
+    "reactive_power": {
+      "type": "int16",
+      "unit": "VAr"
+    },
+    "frequency": {
       "type": "float",
-      "unit": "Cel"
+      "unit": "Hz"
     },
-    "humidity": {
+    "frequency_min": {
       "type": "float",
-      "unit": "%RH"
+      "unit": "Hz"
     },
-    "battery_voltage": {
+    "frequency_max": {
+      "type": "float",
+      "unit": "Hz"
+    },
+    "Vrms": {
       "type": "float",
       "unit": "V"
+    },
+    "Vrms_min": {
+      "type": "float",
+      "unit": "V"
+    },
+    "Vrms_max": {
+      "type": "float",
+      "unit": "V"
+    },
+    "Vpeak": {
+      "type": "float",
+      "unit": "V"
+    },
+    "Vpeak_min": {
+      "type": "float",
+      "unit": "V"
+    },
+    "Vpeak_max": {
+      "type": "float",
+      "unit": "V"
+    },
+    "over_voltage": {
+      "type": "uint16"
+    },
+    "sag_voltage": {
+      "type": "uint16"
+    },
+    "ActiveEnergy": {
+      "type": "int32",
+      "unit": "Wh"
+    },
+    "sendOnOffState": {
+      "type": "uint8",
+      "downlink": true
     }
   },
-  "decoder": "hygrotempo-decoder.js"
+  "decoder": "smartplug-decoder.js"
 }

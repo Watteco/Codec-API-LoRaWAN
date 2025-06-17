@@ -1,5 +1,5 @@
 {
-  "description": "Watteco hygrotemp'o v1.1.4",
+  "description": "Watteco monit'o v1.1.4",
   "properties": {
     "sendHexFrame": {
       "type": "string",
@@ -66,21 +66,22 @@
     "OTA_app_EUI": {
       "type": "string"
     },
-    "violation_detection": {
-      "type": "bool"
-    },
-    "temperature": {
+    "0-100_mV": {
       "type": "float",
-      "unit": "Cel"
+      "unit": "mV"
     },
-    "humidity": {
+    "0-70_V": {
       "type": "float",
-      "unit": "%RH"
+      "unit": "V"
     },
     "battery_voltage": {
       "type": "float",
       "unit": "V"
+    },
+    "external_level": {
+      "type": "float",
+      "unit": "V"
     }
   },
-  "decoder": "hygrotempo-decoder.js"
+  "decoder": "monito-decoder.js"
 }

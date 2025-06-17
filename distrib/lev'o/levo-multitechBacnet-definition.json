@@ -1,5 +1,5 @@
 {
-  "description": "Watteco hygrotemp'o v1.1.4",
+  "description": "Watteco lev'o v1.1.4",
   "properties": {
     "sendHexFrame": {
       "type": "string",
@@ -66,21 +66,22 @@
     "OTA_app_EUI": {
       "type": "string"
     },
-    "violation_detection": {
-      "type": "bool"
-    },
-    "temperature": {
+    "4-20_mA": {
       "type": "float",
-      "unit": "Cel"
+      "unit": "mA"
     },
-    "humidity": {
+    "0-10_V": {
       "type": "float",
-      "unit": "%RH"
+      "unit": "V"
     },
     "battery_voltage": {
       "type": "float",
       "unit": "V"
+    },
+    "external_power_voltage": {
+      "type": "float",
+      "unit": "V"
     }
   },
-  "decoder": "hygrotempo-decoder.js"
+  "decoder": "levo-decoder.js"
 }

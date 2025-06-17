@@ -1,5 +1,5 @@
 {
-  "description": "Watteco hygrotemp'o v1.1.4",
+  "description": "Watteco vaqa'o lite v1.1.4",
   "properties": {
     "sendHexFrame": {
       "type": "string",
@@ -69,18 +69,40 @@
     "violation_detection": {
       "type": "bool"
     },
-    "temperature": {
+    "illuminance": {
+      "type": "uint16",
+      "unit": "lx"
+    },
+    "temperature_1": {
       "type": "float",
       "unit": "Cel"
     },
-    "humidity": {
+    "temperature_2": {
+      "type": "float",
+      "unit": "Cel"
+    },
+    "pressure": {
+      "type": "int32",
+      "unit": "hPa"
+    },
+    "humidity_1": {
       "type": "float",
       "unit": "%RH"
     },
-    "battery_voltage": {
+    "humidity_2": {
       "type": "float",
-      "unit": "V"
+      "unit": "%RH"
+    },
+    "occupancy": {
+      "type": "bool"
+    },
+    "IAQ": {
+      "type": "uint16"
+    },
+    "CO2": {
+      "type": "uint16",
+      "unit": "ppm"
     }
   },
-  "decoder": "hygrotempo-decoder.js"
+  "decoder": "vaqao_lite-decoder.js"
 }

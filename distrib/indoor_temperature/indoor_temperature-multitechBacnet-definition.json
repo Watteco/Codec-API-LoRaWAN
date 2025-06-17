@@ -1,5 +1,5 @@
 {
-  "description": "Watteco hygrotemp'o v1.1.4",
+  "description": "Watteco indoor temperature v1.1.4",
   "properties": {
     "sendHexFrame": {
       "type": "string",
@@ -66,21 +66,18 @@
     "OTA_app_EUI": {
       "type": "string"
     },
-    "violation_detection": {
-      "type": "bool"
-    },
     "temperature": {
       "type": "float",
       "unit": "Cel"
     },
-    "humidity": {
+    "Temperature": {
       "type": "float",
-      "unit": "%RH"
+      "unit": "Cel"
     },
-    "battery_voltage": {
+    "BatteryVoltage": {
       "type": "float",
       "unit": "V"
     }
   },
-  "decoder": "hygrotempo-decoder.js"
+  "decoder": "indoor_temperature-decoder.js"
 }

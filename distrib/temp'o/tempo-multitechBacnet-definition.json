@@ -1,5 +1,5 @@
 {
-  "description": "Watteco hygrotemp'o v1.1.4",
+  "description": "Watteco temp'o v1.1.4",
   "properties": {
     "sendHexFrame": {
       "type": "string",
@@ -66,21 +66,10 @@
     "OTA_app_EUI": {
       "type": "string"
     },
-    "violation_detection": {
-      "type": "bool"
-    },
     "temperature": {
       "type": "float",
       "unit": "Cel"
-    },
-    "humidity": {
-      "type": "float",
-      "unit": "%RH"
-    },
-    "battery_voltage": {
-      "type": "float",
-      "unit": "V"
     }
   },
-  "decoder": "hygrotempo-decoder.js"
+  "decoder": "tempo-decoder.js"
 }

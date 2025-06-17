@@ -1,5 +1,5 @@
 {
-  "description": "Watteco hygrotemp'o v1.1.4",
+  "description": "Watteco inclin'o v1.1.4",
   "properties": {
     "sendHexFrame": {
       "type": "string",
@@ -66,21 +66,21 @@
     "OTA_app_EUI": {
       "type": "string"
     },
-    "violation_detection": {
+    "angle": {
+      "type": "int16",
+      "unit": "deg"
+    },
+    "occupancy": {
       "type": "bool"
     },
-    "temperature": {
-      "type": "float",
-      "unit": "Cel"
+    "ACCmg": {
+      "type": "uint16",
+      "unit": "mg"
     },
-    "humidity": {
-      "type": "float",
-      "unit": "%RH"
-    },
-    "battery_voltage": {
-      "type": "float",
-      "unit": "V"
+    "Deg": {
+      "type": "int16",
+      "unit": "deg"
     }
   },
-  "decoder": "hygrotempo-decoder.js"
+  "decoder": "inclino-decoder.js"
 }

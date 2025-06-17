@@ -1,5 +1,5 @@
 {
-  "description": "Watteco hygrotemp'o v1.1.4",
+  "description": "Watteco press'o v1.1.4",
   "properties": {
     "sendHexFrame": {
       "type": "string",
@@ -44,6 +44,10 @@
     "application_name": {
       "type": "string"
     },
+    "main_or_external_voltage": {
+      "type": "float",
+      "unit": "V"
+    },
     "disposable_battery_voltage": {
       "type": "float",
       "unit": "V"
@@ -66,21 +70,45 @@
     "OTA_app_EUI": {
       "type": "string"
     },
-    "violation_detection": {
+    "4-20_mA": {
+      "type": "float",
+      "unit": "mA"
+    },
+    "0-10_V": {
+      "type": "float",
+      "unit": "V"
+    },
+    "index": {
+      "type": "uint32"
+    },
+    "pin_state": {
       "type": "bool"
     },
-    "temperature": {
-      "type": "float",
-      "unit": "Cel"
+    "polarity": {
+      "type": "string"
     },
-    "humidity": {
-      "type": "float",
-      "unit": "%RH"
+    "edge_selection": {
+      "type": "string"
+    },
+    "debounce_period": {
+      "type": "uint8",
+      "unit": "ms"
+    },
+    "poll_period": {
+      "type": "uint16",
+      "unit": "ms"
+    },
+    "force_notify": {
+      "type": "bool"
     },
     "battery_voltage": {
       "type": "float",
       "unit": "V"
+    },
+    "external_power_voltage": {
+      "type": "float",
+      "unit": "V"
     }
   },
-  "decoder": "hygrotempo-decoder.js"
+  "decoder": "presso-decoder.js"
 }

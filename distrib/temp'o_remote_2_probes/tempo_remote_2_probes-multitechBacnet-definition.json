@@ -1,5 +1,5 @@
 {
-  "description": "Watteco hygrotemp'o v1.1.4",
+  "description": "Watteco temp'o remote 2 probes v1.1.4",
   "properties": {
     "sendHexFrame": {
       "type": "string",
@@ -66,21 +66,18 @@
     "OTA_app_EUI": {
       "type": "string"
     },
-    "violation_detection": {
-      "type": "bool"
-    },
-    "temperature": {
+    "temperature_1": {
       "type": "float",
       "unit": "Cel"
     },
-    "humidity": {
+    "temperature_2": {
       "type": "float",
-      "unit": "%RH"
+      "unit": "Cel"
     },
     "battery_voltage": {
       "type": "float",
       "unit": "V"
     }
   },
-  "decoder": "hygrotempo-decoder.js"
+  "decoder": "tempo_remote_2_probes-decoder.js"
 }

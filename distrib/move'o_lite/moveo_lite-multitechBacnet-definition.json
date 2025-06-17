@@ -1,5 +1,5 @@
 {
-  "description": "Watteco hygrotemp'o v1.1.4",
+  "description": "Watteco move'o lite v1.1.4",
   "properties": {
     "sendHexFrame": {
       "type": "string",
@@ -66,21 +66,29 @@
     "OTA_app_EUI": {
       "type": "string"
     },
-    "violation_detection": {
-      "type": "bool"
+    "illuminance": {
+      "type": "uint16",
+      "unit": "lx"
     },
     "temperature": {
       "type": "float",
       "unit": "Cel"
     },
+    "pressure": {
+      "type": "int32",
+      "unit": "hPa"
+    },
     "humidity": {
       "type": "float",
       "unit": "%RH"
     },
-    "battery_voltage": {
-      "type": "float",
-      "unit": "V"
+    "occupancy": {
+      "type": "bool"
+    },
+    "luminosity": {
+      "type": "uint16",
+      "unit": "lx"
     }
   },
-  "decoder": "hygrotempo-decoder.js"
+  "decoder": "moveo_lite-decoder.js"
 }

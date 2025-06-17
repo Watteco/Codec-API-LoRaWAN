@@ -1,5 +1,5 @@
 {
-  "description": "Watteco hygrotemp'o v1.1.4",
+  "description": "Watteco TH v1.1.4",
   "properties": {
     "sendHexFrame": {
       "type": "string",
@@ -66,8 +66,8 @@
     "OTA_app_EUI": {
       "type": "string"
     },
-    "violation_detection": {
-      "type": "bool"
+    "index": {
+      "type": "uint32"
     },
     "temperature": {
       "type": "float",
@@ -82,5 +82,5 @@
       "unit": "V"
     }
   },
-  "decoder": "hygrotempo-decoder.js"
+  "decoder": "th-decoder.js"
 }

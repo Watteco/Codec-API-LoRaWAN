@@ -1,5 +1,5 @@
 {
-  "description": "Watteco hygrotemp'o v1.1.4",
+  "description": "Watteco atm'o v1.1.4",
   "properties": {
     "sendHexFrame": {
       "type": "string",
@@ -66,12 +66,42 @@
     "OTA_app_EUI": {
       "type": "string"
     },
-    "violation_detection": {
+    "index_1": {
+      "type": "uint32"
+    },
+    "index_2": {
+      "type": "uint32"
+    },
+    "pin_state_1": {
+      "type": "bool"
+    },
+    "pin_state_2": {
+      "type": "bool"
+    },
+    "polarity": {
+      "type": "string"
+    },
+    "edge_selection": {
+      "type": "string"
+    },
+    "debounce_period": {
+      "type": "uint8",
+      "unit": "ms"
+    },
+    "poll_period": {
+      "type": "uint16",
+      "unit": "ms"
+    },
+    "force_notify": {
       "type": "bool"
     },
     "temperature": {
       "type": "float",
       "unit": "Cel"
+    },
+    "pressure": {
+      "type": "int32",
+      "unit": "hPa"
     },
     "humidity": {
       "type": "float",
@@ -82,5 +112,5 @@
       "unit": "V"
     }
   },
-  "decoder": "hygrotempo-decoder.js"
+  "decoder": "atmo-decoder.js"
 }

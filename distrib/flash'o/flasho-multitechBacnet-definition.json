@@ -1,5 +1,5 @@
 {
-  "description": "Watteco hygrotemp'o v1.1.4",
+  "description": "Watteco flash'o v1.1.4",
   "properties": {
     "sendHexFrame": {
       "type": "string",
@@ -66,21 +66,33 @@
     "OTA_app_EUI": {
       "type": "string"
     },
-    "violation_detection": {
+    "index": {
+      "type": "uint32"
+    },
+    "pin_state": {
       "type": "bool"
     },
-    "temperature": {
-      "type": "float",
-      "unit": "Cel"
+    "polarity": {
+      "type": "string"
     },
-    "humidity": {
-      "type": "float",
-      "unit": "%RH"
+    "edge_selection": {
+      "type": "string"
+    },
+    "debounce_period": {
+      "type": "uint8",
+      "unit": "ms"
+    },
+    "poll_period": {
+      "type": "uint16",
+      "unit": "ms"
+    },
+    "force_notify": {
+      "type": "bool"
     },
     "battery_voltage": {
       "type": "float",
       "unit": "V"
     }
   },
-  "decoder": "hygrotempo-decoder.js"
+  "decoder": "flasho-decoder.js"
 }

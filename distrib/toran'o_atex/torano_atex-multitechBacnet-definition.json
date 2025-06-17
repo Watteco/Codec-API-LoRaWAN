@@ -1,5 +1,5 @@
 {
-  "description": "Watteco hygrotemp'o v1.1.4",
+  "description": "Watteco toran'o atex v1.1.4",
   "properties": {
     "sendHexFrame": {
       "type": "string",
@@ -66,21 +66,51 @@
     "OTA_app_EUI": {
       "type": "string"
     },
-    "violation_detection": {
+    "4-20_mA": {
+      "type": "float",
+      "unit": "mA"
+    },
+    "0-5_V_1": {
+      "type": "float",
+      "unit": "V"
+    },
+    "0-5_V_2": {
+      "type": "float",
+      "unit": "V"
+    },
+    "ratiometric_0-5_V_1": {
+      "type": "float",
+      "unit": "V"
+    },
+    "ratiometric_0-5_V_2": {
+      "type": "float",
+      "unit": "V"
+    },
+    "index_1": {
+      "type": "uint32"
+    },
+    "index_2": {
+      "type": "uint32"
+    },
+    "index_3": {
+      "type": "uint32"
+    },
+    "pin_state_1": {
       "type": "bool"
     },
-    "temperature": {
-      "type": "float",
-      "unit": "Cel"
+    "pin_state_2": {
+      "type": "bool"
     },
-    "humidity": {
-      "type": "float",
-      "unit": "%RH"
+    "pin_state_3": {
+      "type": "bool"
+    },
+    "": {
+      "type": "float"
     },
     "battery_voltage": {
       "type": "float",
       "unit": "V"
     }
   },
-  "decoder": "hygrotempo-decoder.js"
+  "decoder": "torano_atex-decoder.js"
 }

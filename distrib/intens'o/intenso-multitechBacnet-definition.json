@@ -1,5 +1,5 @@
 {
-  "description": "Watteco hygrotemp'o v1.1.4",
+  "description": "Watteco intens'o v1.1.4",
   "properties": {
     "sendHexFrame": {
       "type": "string",
@@ -66,21 +66,14 @@
     "OTA_app_EUI": {
       "type": "string"
     },
-    "violation_detection": {
-      "type": "bool"
-    },
-    "temperature": {
+    "Irms": {
       "type": "float",
-      "unit": "Cel"
-    },
-    "humidity": {
-      "type": "float",
-      "unit": "%RH"
+      "unit": "A"
     },
     "battery_voltage": {
       "type": "float",
       "unit": "V"
     }
   },
-  "decoder": "hygrotempo-decoder.js"
+  "decoder": "intenso-decoder.js"
 }

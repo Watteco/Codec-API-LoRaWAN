@@ -1,5 +1,5 @@
 {
-  "description": "Watteco hygrotemp'o v1.1.4",
+  "description": "Watteco hygrotemp'o_remote v1.1.4",
   "properties": {
     "sendHexFrame": {
       "type": "string",
@@ -82,5 +82,5 @@
       "unit": "V"
     }
   },
-  "decoder": "hygrotempo-decoder.js"
+  "decoder": "hygrotempo_remote-decoder.js"
 }

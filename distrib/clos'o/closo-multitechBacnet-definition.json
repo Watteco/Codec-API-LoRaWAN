@@ -1,5 +1,5 @@
 {
-  "description": "Watteco hygrotemp'o v1.1.4",
+  "description": "Watteco clos'o v1.1.4",
   "properties": {
     "sendHexFrame": {
       "type": "string",
@@ -66,21 +66,32 @@
     "OTA_app_EUI": {
       "type": "string"
     },
+    "index": {
+      "type": "uint32"
+    },
     "violation_detection": {
       "type": "bool"
     },
-    "temperature": {
-      "type": "float",
-      "unit": "Cel"
+    "open": {
+      "type": "bool"
     },
-    "humidity": {
-      "type": "float",
-      "unit": "%RH"
+    "polarity": {
+      "type": "string"
     },
-    "battery_voltage": {
-      "type": "float",
-      "unit": "V"
+    "edge_selection": {
+      "type": "string"
+    },
+    "debounce_period": {
+      "type": "uint8",
+      "unit": "ms"
+    },
+    "poll_period": {
+      "type": "uint16",
+      "unit": "ms"
+    },
+    "force_notify": {
+      "type": "bool"
     }
   },
-  "decoder": "hygrotempo-decoder.js"
+  "decoder": "closo-decoder.js"
 }
