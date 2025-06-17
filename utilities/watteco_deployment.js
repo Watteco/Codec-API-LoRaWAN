@@ -52,6 +52,16 @@ async function copyAndDeployFiles(watteco_path, distrib_path, devices) {
     
         fs.copyFileSync(`${watteco_path}/devices/${device}/uplink.schema.json`, `${distribDevicePath}/uplink.schema.json`);
 
+        // Copy the multitech definition file if it exists
+        const multitechFileName = `${device.replace(/'/g, "")}-multitechBacnet-definition.json`;
+        const sourcePath = `${watteco_path}/devices/${device}/${multitechFileName}`;
+        if (fs.existsSync(sourcePath)) {
+          fs.copyFileSync(sourcePath, `${distribDevicePath}/${multitechFileName}`);
+          console.log(`  - Copied multitech definition file: ${multitechFileName}`);
+        } else {
+          console.log(`  - No multitech definition file found for ${device}`);
+        }
+
       } catch (err) {
         console.error(`Error processing device ${device}: ${err.message}`);
         process.exit(1); // Exit the script immediately on error
