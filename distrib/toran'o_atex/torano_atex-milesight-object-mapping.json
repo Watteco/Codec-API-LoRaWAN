@@ -1,0 +1,76 @@
+{
+    "object": [
+        {
+            "id": "data.disposable_battery_voltage",
+            "name": "Disposable battery voltage",
+            "value": "",
+            "unit": "V",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "FLOAT",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 5,
+            "bacnet_unit_type": "UNITS_VOLTS"
+        },
+        {
+            "id": "data.4-20_mA",
+            "name": "4-20mA sensor value",
+            "value": "",
+            "unit": "mA",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "FLOAT",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 2,
+            "bacnet_unit_type": "UNITS_MILLIAMPERES"
+        },
+        {
+            "id": "data.0-5_V_1",
+            "name": "0-5V sensor 1 value",
+            "value": "",
+            "unit": "V",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "FLOAT",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 5,
+            "bacnet_unit_type": "UNITS_VOLTS"
+        },
+        {
+            "id": "data.0-5_V_2",
+            "name": "0-5V sensor 2 value",
+            "value": "",
+            "unit": "V",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "FLOAT",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 5,
+            "bacnet_unit_type": "UNITS_VOLTS"
+        },
+        {
+            "id": "data.ratiometric_0-5_V_1",
+            "name": "Ratiometric 0-5V sensor 1 value",
+            "value": "",
+            "unit": "V",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "FLOAT",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 5,
+            "bacnet_unit_type": "UNITS_VOLTS"
+        },
+        {
+            "id": "data.ratiometric_0-5_V_2",
+            "name": "Ratiometric 0-5V sensor 2 value",
+            "value": "",
+            "unit": "V",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "FLOAT",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 5,
+            "bacnet_unit_type": "UNITS_VOLTS"
+        }
+    ]
+}

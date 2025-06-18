@@ -1,0 +1,172 @@
+{
+    "object": [
+        {
+            "id": "data.main_or_external_voltage",
+            "name": "Main or external voltage",
+            "value": "",
+            "unit": "V",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "FLOAT",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 5,
+            "bacnet_unit_type": "UNITS_VOLTS"
+        },
+        {
+            "id": "data.active_energy",
+            "name": "Active energy",
+            "value": "",
+            "unit": "Wh",
+            "access_mode": "R",
+            "data_type": "BOOLEAN",
+            "value_type": "BOOLEAN",
+            "bacnet_type": "binary_value_object",
+            "bacnet_unit_type_id": 18,
+            "bacnet_unit_type": "UNITS_WATT_HOURS"
+        },
+        {
+            "id": "data.reactive_energy",
+            "name": "Reactive energy",
+            "value": "",
+            "unit": "VArh",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "INT32",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 242,
+            "bacnet_unit_type": "UNITS_VOLT_AMPERE_HOURS_REACTIVE"
+        },
+        {
+            "id": "data.active_power",
+            "name": "Active power",
+            "value": "",
+            "unit": "W",
+            "access_mode": "R",
+            "data_type": "BOOLEAN",
+            "value_type": "BOOLEAN",
+            "bacnet_type": "binary_value_object",
+            "bacnet_unit_type_id": 47,
+            "bacnet_unit_type": "UNITS_WATTS"
+        },
+        {
+            "id": "data.reactive_power",
+            "name": "Reactive power",
+            "value": "",
+            "unit": "VAr",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "INT32",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 11,
+            "bacnet_unit_type": "UNITS_VOLT_AMPERES_REACTIVE"
+        },
+        {
+            "id": "data.frequency",
+            "name": "Frequency",
+            "value": "",
+            "unit": "Hz",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "FLOAT",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 27,
+            "bacnet_unit_type": "UNITS_HERTZ"
+        },
+        {
+            "id": "data.frequency_min",
+            "name": "Minimum frequency",
+            "value": "",
+            "unit": "Hz",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "FLOAT",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 27,
+            "bacnet_unit_type": "UNITS_HERTZ"
+        },
+        {
+            "id": "data.frequency_max",
+            "name": "Maximum frequency",
+            "value": "",
+            "unit": "Hz",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "FLOAT",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 27,
+            "bacnet_unit_type": "UNITS_HERTZ"
+        },
+        {
+            "id": "data.Vrms",
+            "name": "RMS voltage",
+            "value": "",
+            "unit": "V",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "FLOAT",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 5,
+            "bacnet_unit_type": "UNITS_VOLTS"
+        },
+        {
+            "id": "data.Vrms_min",
+            "name": "Minimum RMS voltage",
+            "value": "",
+            "unit": "V",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "FLOAT",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 5,
+            "bacnet_unit_type": "UNITS_VOLTS"
+        },
+        {
+            "id": "data.Vrms_max",
+            "name": "Maximum RMS voltage",
+            "value": "",
+            "unit": "V",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "FLOAT",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 5,
+            "bacnet_unit_type": "UNITS_VOLTS"
+        },
+        {
+            "id": "data.Vpeak",
+            "name": "Peak voltage",
+            "value": "",
+            "unit": "V",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "FLOAT",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 5,
+            "bacnet_unit_type": "UNITS_VOLTS"
+        },
+        {
+            "id": "data.Vpeak_min",
+            "name": "Min peak voltage",
+            "value": "",
+            "unit": "V",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "FLOAT",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 5,
+            "bacnet_unit_type": "UNITS_VOLTS"
+        },
+        {
+            "id": "data.Vpeak_max",
+            "name": "Max peak voltage",
+            "value": "",
+            "unit": "V",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "FLOAT",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 5,
+            "bacnet_unit_type": "UNITS_VOLTS"
+        }
+    ]
+}

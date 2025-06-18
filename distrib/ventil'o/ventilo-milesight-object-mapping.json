@@ -1,0 +1,52 @@
+{
+    "object": [
+        {
+            "id": "data.main_or_external_voltage",
+            "name": "Main or external voltage",
+            "value": "",
+            "unit": "V",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "FLOAT",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 5,
+            "bacnet_unit_type": "UNITS_VOLTS"
+        },
+        {
+            "id": "data.solar_harvesting_voltage",
+            "name": "Solar harvesting voltage",
+            "value": "",
+            "unit": "V",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "FLOAT",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 5,
+            "bacnet_unit_type": "UNITS_VOLTS"
+        },
+        {
+            "id": "data.temperature",
+            "name": "Temperature",
+            "value": "",
+            "unit": "Cel",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "FLOAT",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 62,
+            "bacnet_unit_type": "UNITS_DEGREES_CELSIUS"
+        },
+        {
+            "id": "data.differential_pressure",
+            "name": "Differential pressure",
+            "value": "",
+            "unit": "Pa",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "FLOAT",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 53,
+            "bacnet_unit_type": "UNITS_PASCALS"
+        }
+    ]
+}
