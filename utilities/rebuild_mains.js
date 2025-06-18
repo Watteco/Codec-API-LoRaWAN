@@ -167,6 +167,22 @@ for (let i in devices) {
         tools.generateMultitechBacnetDefinition(devicePath);
     }
     
+    // Define a list of devices to skip for MilesightBacnet mapping generation
+    const skipMilesightDevices = ["tics'o"];
+
+    // Check if this device should skip MilesightBacnet mapping generation
+    const shouldSkipMilesight = skipMilesightDevices.some(skipDevice => 
+        sensorName.toLowerCase() === skipDevice.toLowerCase() || 
+        sensorName.replace(/['"]/g, '') === skipDevice.replace(/['"]/g, '')
+    );
+
+    if (shouldSkipMilesight) {
+        console.log(`Skipping MilesightBacnet mapping for ${sensorName} - using existing manual mapping file`);
+    } else {
+        // Generate MilesightBacnet mapping
+        tools.generateMilesightBacnetMapping(devicePath);
+    }
+    
     tools.buildAndTranspile(devicePath);
 
     // Force name (npm: watteco-<device with _ replacing space and '>) or description for sensors (activate when needed)

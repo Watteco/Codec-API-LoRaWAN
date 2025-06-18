@@ -6,7 +6,7 @@
  *      node wattec_deployments.js <watteco_path>
  *
  *  - Run with a filter to process specific devices (use a regex pattern):
- *      node watteco_deployments.js <watteco_path> ["flash'o|intens'o|vaqa'o"]
+ *      node wattec_deployments.js <watteco_path> ["flash'o|intens'o|vaqa'o"]
  *
  * Parameters:
  *  - watteco_path: Path to the Watteco directory. (watteco_path/distrib is used as target)
@@ -60,6 +60,16 @@ async function copyAndDeployFiles(watteco_path, distrib_path, devices) {
           console.log(`  - Copied multitech definition file: ${multitechFileName}`);
         } else {
           console.log(`  - No multitech definition file found for ${device}`);
+        }
+
+        // Copy the milesight object mapping file if it exists
+        const milesightFileName = `${device.replace(/'/g, "")}-milesight-object-mapping.json`;
+        const milesightSourcePath = `${watteco_path}/devices/${device}/${milesightFileName}`;
+        if (fs.existsSync(milesightSourcePath)) {
+          fs.copyFileSync(milesightSourcePath, `${distribDevicePath}/${milesightFileName}`);
+          console.log(`  - Copied milesight object mapping file: ${milesightFileName}`);
+        } else {
+          console.log(`  - No milesight object mapping file found for ${device}`);
         }
 
       } catch (err) {

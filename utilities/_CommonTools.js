@@ -884,6 +884,239 @@ function generateAllMultitechBacnetDefinitions(pattern = null) {
     return results;
 }
 
+/**
+ * Generates a milesight-object-mapping.json file for a specific device based on
+ * the device's ClustersVariables.json, units.auto.js, and BACnet unit mappings
+ * 
+ * @param {string} devicePath - Path to the device directory
+ * @param {string} bacnetMappingPath - Path to the BACnet mapping CSV file
+ * @param {string} bacnetUnitMappingPath - Path to the BACnet unit mapping JSON file
+ * @returns {boolean} - True if file was generated successfully, false otherwise
+ */
+function generateMilesightBacnetMapping(devicePath, bacnetMappingPath = null, bacnetUnitMappingPath = null) {
+    try {
+        const deviceName = path.basename(devicePath);
+        console.log(`Generating milesight-object-mapping.json for ${deviceName}...`);
+        
+        // Default paths if not provided
+        if (!bacnetMappingPath) {
+            bacnetMappingPath = path.join(path.dirname(devicePath), '..', 'watteco-bacnet-mapping.csv');
+        }
+        
+        if (!bacnetUnitMappingPath) {
+            bacnetUnitMappingPath = path.join(path.dirname(devicePath), '..', 'bacnet-unit-mappings.json');
+        }
+        
+        // Check if files exist
+        const jsFilePath = path.join(devicePath, `${deviceName}.js`);
+        const clustersVarsPath = path.join(devicePath, 'ClustersVariables.json');
+        const unitsPath = path.join(devicePath, 'units.auto.js');
+        
+        if (!fs.existsSync(jsFilePath) || !fs.existsSync(clustersVarsPath) || !fs.existsSync(unitsPath)) {
+            console.error(`Error: Required files not found for ${deviceName}`);
+            return false;
+        }
+        
+        if (!fs.existsSync(bacnetMappingPath)) {
+            console.error(`Error: BACnet mapping file not found at ${bacnetMappingPath}`);
+            return false;
+        }
+        
+        if (!fs.existsSync(bacnetUnitMappingPath)) {
+            console.error(`Error: BACnet unit mapping file not found at ${bacnetUnitMappingPath}`);
+            return false;
+        }
+        
+        // Load necessary files
+        const clustersVarsContent = fs.readFileSync(clustersVarsPath, 'utf8');
+        const clustersVars = JSON.parse(clustersVarsContent);
+        delete require.cache[require.resolve(unitsPath)];
+        const units = require(unitsPath);
+        const bacnetUnitMappings = JSON.parse(fs.readFileSync(bacnetUnitMappingPath, 'utf8'));
+        
+        // Parse BACnet mapping CSV to get variable descriptions
+        const bacnetMappingContent = fs.readFileSync(bacnetMappingPath, 'utf8');
+        const bacnetDescriptions = {};
+        
+        bacnetMappingContent.split('\n')
+            .filter(line => !line.startsWith('//') && !line.startsWith('##') && line.trim() !== '')
+            .forEach(line => {
+                const columns = line.split(';');
+                if (columns.length >= 8) {
+                    const id = columns[0].trim();
+                    const name = columns[1].trim();
+                    bacnetDescriptions[id] = name;
+                }
+            });
+        
+        // Collect all variables from ClustersVariables.json
+        let allVariables = new Set();
+        
+        // Check if the file follows format 1 (array of objects with variables array)
+        if (Array.isArray(clustersVars)) {
+            for (const cluster of clustersVars) {
+                if (cluster.variables && Array.isArray(cluster.variables)) {
+                    for (const variable of cluster.variables) {
+                        allVariables.add(variable);
+                    }
+                }
+            }
+        } 
+        // Check if the file follows format 2 (object with clusters array)
+        else if (clustersVars.clusters && Array.isArray(clustersVars.clusters)) {
+            for (const cluster of clustersVars.clusters) {
+                if (cluster.variables && Array.isArray(cluster.variables)) {
+                    for (const variable of cluster.variables) {
+                        allVariables.add(variable);
+                    }
+                }
+            }
+        }
+        
+        // Generate object mappings
+        const objectMappings = {
+            object: []
+        };
+        
+        allVariables.forEach(varName => {
+            if (units[varName]) {
+                const unitSymbol = units[varName];
+                const bacnetUnitInfo = bacnetUnitMappings.find(mapping => mapping.symbol === unitSymbol);
+                
+                if (bacnetUnitInfo) {
+                    const objectMapping = {
+                        id: `data.${varName}`,
+                        name: bacnetDescriptions[varName] || varName,
+                        value: "",
+                        unit: unitSymbol,
+                        access_mode: "R",
+                        data_type: determineDataType(varName),
+                        value_type: determineValueType(varName),
+                        bacnet_type: "analog_value_object",
+                        bacnet_unit_type_id: bacnetUnitInfo.id,
+                        bacnet_unit_type: bacnetUnitInfo.milesight_type
+                    };
+                    
+                    // For boolean values, use binary_value_object
+                    if (objectMapping.data_type === "BOOLEAN") {
+                        objectMapping.bacnet_type = "binary_value_object";
+                    }
+                    
+                    objectMappings.object.push(objectMapping);
+                }
+            }
+        });
+        
+        // Write the file
+        const outputPath = path.join(devicePath, `${deviceName.replace(/'/g, '')}-milesight-object-mapping.json`);
+        fs.writeFileSync(outputPath, JSON.stringify(objectMappings, null, 4), 'utf8');
+        console.log(`Generated milesight-object-mapping.json for ${deviceName} with ${objectMappings.object.length} objects`);
+        
+        return true;
+        
+    } catch (error) {
+        console.error(`Error generating milesight-object-mapping.json: ${error.message}`);
+        return false;
+    }
+    
+    // Helper function to determine data type based on variable name
+    function determineDataType(varName) {
+        // Boolean values (typical boolean variables in your system)
+        if (/^(occupancy|violation_detection|status|on_off|enabled|active)/.test(varName)) {
+            return "BOOLEAN";
+        }
+        return "NUMBER";
+    }
+    
+    // Helper function to determine value type based on variable name
+    function determineValueType(varName) {
+        if (determineDataType(varName) === "BOOLEAN") {
+            return "BOOLEAN";
+        }
+        
+        // Temperature, humidity, voltage and other float values
+        if (/^(temperature|humidity|voltage|battery|disposable_battery_voltage|pressure|.*_voltage)/.test(varName)) {
+            return "FLOAT";
+        }
+        
+        // Counters and indexes are typically unsigned integers
+        if (/^(index|counter|count|pulses)/.test(varName)) {
+            return "UINT32";
+        }
+        
+        // Check for metrics that are typically integers
+        if (/^(CO2|illuminance|IAQ)/.test(varName)) {
+            return "UINT16";
+        }
+        
+        // Energy values (could be positive or negative)
+        if (/^(energy|active_energy|reactive_energy)/.test(varName)) {
+            return "INT32";
+        }
+        
+        // Power values (could be positive or negative)
+        if (/^(power|active_power|reactive_power)/.test(varName)) {
+            return "INT32";
+        }
+        
+        // Default to FLOAT for other values
+        return "FLOAT";
+    }
+}
+
+/**
+ * Generates Milesight BACnet mapping files for all devices or a filtered subset
+ * 
+ * @param {string} [pattern] - Optional regex pattern to filter devices
+ * @param {string} [bacnetMappingPath] - Optional custom path to the BACnet mapping file
+ * @param {string} [bacnetUnitMappingPath] - Optional custom path to the BACnet unit mapping file
+ * @returns {Object} - Results with success and failure counts
+ */
+function generateAllMilesightBacnetMappings(pattern = null, bacnetMappingPath = null, bacnetUnitMappingPath = null) {
+    const { devices } = getDevices(pattern);
+    
+    const results = {
+        success: 0,
+        failure: 0,
+        skipped: 0,
+        total: devices.length
+    };
+    
+    // Define a list of devices to skip (special cases)
+    const skipDevices = ["tics'o"];
+    
+    for (const device of devices) {
+        const devicePath = path.join(__dirname, '../devices', device);
+        
+        // Check if this device should be skipped
+        const shouldSkip = skipDevices.some(skipDevice => 
+            device.toLowerCase() === skipDevice.toLowerCase() || 
+            device.replace(/['"]/g, '') === skipDevice.replace(/['"]/g, '')
+        );
+        
+        if (shouldSkip) {
+            console.log(`Skipping Milesight BACnet mapping for ${device} - using existing manual mapping file`);
+            results.skipped++;
+            continue;
+        }
+        
+        const success = generateMilesightBacnetMapping(devicePath, bacnetMappingPath, bacnetUnitMappingPath);
+        if (success) {
+            results.success++;
+        } else {
+            results.failure++;
+        }
+    }
+    
+    console.log(`Milesight BACnet mapping generation complete:`);
+    console.log(`  - Success: ${results.success}`);
+    console.log(`  - Failed: ${results.failure}`);
+    console.log(`  - Skipped: ${results.skipped}`);
+    console.log(`  - Total: ${results.total}`);
+    
+    return results;
+}
+
 // Export the function as a module
 module.exports = { 
     buildAndTranspile,
@@ -893,5 +1126,7 @@ module.exports = {
     generateDeviceUnitsAutoFile,
     generateAllDeviceUnitsAutoFiles,
     generateMultitechBacnetDefinition,
-    generateAllMultitechBacnetDefinitions
+    generateAllMultitechBacnetDefinitions,
+    generateMilesightBacnetMapping,
+    generateAllMilesightBacnetMappings
 };
