@@ -1,0 +1,76 @@
+{
+    "object": [
+        {
+            "id": "data.disposable_battery_voltage",
+            "name": "Disposable battery voltage",
+            "value": "",
+            "unit": "V",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "FLOAT",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 5,
+            "bacnet_unit_type": "UNITS_VOLTS"
+        },
+        {
+            "id": "data.debounce_period",
+            "name": "Debounce period",
+            "value": "",
+            "unit": "ms",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "FLOAT",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 159,
+            "bacnet_unit_type": "UNITS_MILLISECONDS"
+        },
+        {
+            "id": "data.poll_period",
+            "name": "Polling period",
+            "value": "",
+            "unit": "ms",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "FLOAT",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 159,
+            "bacnet_unit_type": "UNITS_MILLISECONDS"
+        },
+        {
+            "id": "data.temperature",
+            "name": "Temperature",
+            "value": "",
+            "unit": "Cel",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "FLOAT",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 62,
+            "bacnet_unit_type": "UNITS_DEGREES_CELSIUS"
+        },
+        {
+            "id": "data.pressure",
+            "name": "Atmospheric pressure",
+            "value": "",
+            "unit": "hPa",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "FLOAT",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 133,
+            "bacnet_unit_type": "UNITS_HECTOPASCALS"
+        },
+        {
+            "id": "data.humidity",
+            "name": "Relative humidity",
+            "value": "",
+            "unit": "%RH",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "FLOAT",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 29,
+            "bacnet_unit_type": "UNITS_PERCENT_RELATIVE_HUMIDITY"
+        }
+    ]
+}
