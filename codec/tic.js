@@ -845,10 +845,10 @@ function TIC_Decode(clustID,AttributeID,BytesAfterSize)
         if (AttributeID & 0x00FF == 0)	{
             profil = ICE_General;
             data["_TICFrameType"]="ICE Generale";
-        } else if (AttributeID & 0x00FF == 1)	{
+        } else if ((AttributeID & 0x00FF) == 1)	{
             profil = ICE_p;
             data["_TICFrameType"]="ICE Periode P";
-        } else if (AttributeID & 0x0001 == 2)	{
+        } else if ((AttributeID & 0x0001) == 2)	{
             profil = ICE_p1;
             data["_TICFrameType"]="ICE Periode P moins 1";
         } else {
