@@ -37,7 +37,7 @@
             "bacnet_unit_type": "UNITS_MILLISECONDS"
         },
         {
-            "id": "commands.sendHexFrame",
+            "id": "data.sendHexFrame",
             "name": "Send custom Hex Frame",
             "value": "",
             "unit": "",
@@ -49,7 +49,7 @@
             "bacnet_unit_type": "UNITS_NO_UNITS"
         },
         {
-            "id": "commands.sendConfirmedMode",
+            "id": "data.sendConfirmedMode",
             "name": "Send Confirmed Mode",
             "value": "",
             "unit": "",
@@ -61,7 +61,7 @@
             "bacnet_unit_type": "UNITS_NO_UNITS"
         },
         {
-            "id": "commands.sendReboot",
+            "id": "data.sendReboot",
             "name": "Send Reboot command",
             "value": "",
             "unit": "",
@@ -73,7 +73,7 @@
             "bacnet_unit_type": "UNITS_NO_UNITS"
         },
         {
-            "id": "commands.sendFactoryReset",
+            "id": "data.sendFactoryReset",
             "name": "Send Factory Reset command",
             "value": "",
             "unit": "",
@@ -85,7 +85,7 @@
             "bacnet_unit_type": "UNITS_NO_UNITS"
         },
         {
-            "id": "commands.sendLoraRetries",
+            "id": "data.sendLoraRetries",
             "name": "Send LoRa Retries",
             "value": "",
             "unit": "",
@@ -97,7 +97,7 @@
             "bacnet_unit_type": "UNITS_NO_UNITS"
         },
         {
-            "id": "commands.sendLoraRejoin",
+            "id": "data.sendLoraRejoin",
             "name": "Send LoRa Rejoin command",
             "value": "",
             "unit": "min",
