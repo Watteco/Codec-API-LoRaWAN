@@ -438,6 +438,122 @@
     }
   },
   {
+    "type": "uplink",
+    "description": "uplink standard report containing ICEp data | payload:110a00530001412c0000000000007ad90106190200001306190a30050f67974ca1ed37bd430000000000008550a55280e5000000",
+    "input": {
+      "bytes": "110a00530001412c0000000000007ad90106190200001306190a30050f67974ca1ed37bd430000000000008550a55280e5000000",
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": {
+        "samples": [
+          {
+            "variable": "_TICFrameType",
+            "value": "ICE Periode P",
+            "date": "2023-07-19T07:51:25.508306410Z"
+          },
+          {
+            "variable": "_Descriptor",
+            "value": {
+              "Bytes": "0000000000007AD9",
+              "Indexes": [
+                0,
+                3,
+                4,
+                6,
+                7,
+                9,
+                11,
+                12,
+                13,
+                14
+              ]
+            },
+            "date": "2023-07-19T07:51:25.508306410Z"
+          },
+          {
+            "variable": "DEBUTp",
+            "value": "01/06/25 02:00:00",
+            "date": "2023-07-19T07:51:25.508306410Z"
+          },
+          {
+            "variable": "DATEEAp",
+            "value": "19/06/25 10:48:05",
+            "date": "2023-07-19T07:51:25.508306410Z"
+          },
+          {
+            "variable": "EApP",
+            "value": 1009559,
+            "date": "2023-07-19T07:51:25.508306410Z"
+          },
+          {
+            "variable": "EApHCE",
+            "value": 5022189,
+            "date": "2023-07-19T07:51:25.508306410Z"
+          },
+          {
+            "variable": "EApHCH",
+            "value": 3652931,
+            "date": "2023-07-19T07:51:25.508306410Z"
+          },
+          {
+            "variable": "EApHCD",
+            "value": 0,
+            "date": "2023-07-19T07:51:25.508306410Z"
+          },
+          {
+            "variable": "EApJA",
+            "value": 0,
+            "date": "2023-07-19T07:51:25.508306410Z"
+          },
+          {
+            "variable": "EApHPE",
+            "value": 8736933,
+            "date": "2023-07-19T07:51:25.508306410Z"
+          },
+          {
+            "variable": "EApHPH",
+            "value": 5406949,
+            "date": "2023-07-19T07:51:25.508306410Z"
+          },
+          {
+            "variable": "EApHPD",
+            "value": 0,
+            "date": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "_TICFrameType": "ICE Periode P",
+        "_Descriptor": {
+          "Bytes": "0000000000007AD9",
+          "Indexes": [
+            0,
+            3,
+            4,
+            6,
+            7,
+            9,
+            11,
+            12,
+            13,
+            14
+          ]
+        },
+        "DEBUTp": "01/06/25 02:00:00",
+        "DATEEAp": "19/06/25 10:48:05",
+        "EApP": 1009559,
+        "EApHCE": 5022189,
+        "EApHCH": 3652931,
+        "EApHCD": 0,
+        "EApJA": 0,
+        "EApHPE": 8736933,
+        "EApHPH": 5406949,
+        "EApHPD": 0
+      },
+      "warnings": []
+    }
+  },
+  {
     "type": "downlink-encode",
     "description": "Send a custom hex frame (here: read firmware version)",
     "input": {
