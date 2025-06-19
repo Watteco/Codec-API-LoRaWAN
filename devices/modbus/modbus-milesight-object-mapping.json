@@ -23,6 +23,78 @@
             "bacnet_type": "analog_value_object",
             "bacnet_unit_type_id": 5,
             "bacnet_unit_type": "UNITS_VOLTS"
+        },
+        {
+            "id": "commands.sendHexFrame",
+            "name": "Send custom Hex Frame",
+            "value": "",
+            "unit": "",
+            "access_mode": "W",
+            "data_type": "STRING",
+            "value_type": "STRING",
+            "bacnet_type": "characterstring_value_object",
+            "bacnet_unit_type_id": 95,
+            "bacnet_unit_type": "UNITS_NO_UNITS"
+        },
+        {
+            "id": "commands.sendConfirmedMode",
+            "name": "Send Confirmed Mode",
+            "value": "",
+            "unit": "",
+            "access_mode": "W",
+            "data_type": "NUMBER",
+            "value_type": "UINT8",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 95,
+            "bacnet_unit_type": "UNITS_NO_UNITS"
+        },
+        {
+            "id": "commands.sendReboot",
+            "name": "Send Reboot command",
+            "value": "",
+            "unit": "",
+            "access_mode": "W",
+            "data_type": "BOOLEAN",
+            "value_type": "BOOLEAN",
+            "bacnet_type": "binary_value_object",
+            "bacnet_unit_type_id": 95,
+            "bacnet_unit_type": "UNITS_NO_UNITS"
+        },
+        {
+            "id": "commands.sendFactoryReset",
+            "name": "Send Factory Reset command",
+            "value": "",
+            "unit": "",
+            "access_mode": "W",
+            "data_type": "BOOLEAN",
+            "value_type": "BOOLEAN",
+            "bacnet_type": "binary_value_object",
+            "bacnet_unit_type_id": 95,
+            "bacnet_unit_type": "UNITS_NO_UNITS"
+        },
+        {
+            "id": "commands.sendLoraRetries",
+            "name": "Send LoRa Retries",
+            "value": "",
+            "unit": "",
+            "access_mode": "W",
+            "data_type": "NUMBER",
+            "value_type": "UINT8",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 95,
+            "bacnet_unit_type": "UNITS_NO_UNITS"
+        },
+        {
+            "id": "commands.sendLoraRejoin",
+            "name": "Send LoRa Rejoin command",
+            "value": "",
+            "unit": "min",
+            "access_mode": "W",
+            "data_type": "NUMBER",
+            "value_type": "UINT16",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 72,
+            "bacnet_unit_type": "UNITS_MINUTES"
         }
     ]
 }
