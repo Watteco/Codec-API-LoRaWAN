@@ -912,7 +912,7 @@ function generateMilesightBacnetMapping(devicePath, bacnetMappingPath = null, ba
         const clustersVarsPath = path.join(devicePath, 'ClustersVariables.json');
         const unitsPath = path.join(devicePath, 'units.auto.js');
         
-        if (!fs.existsSync(jsFilePath) || !fs.existsSync(clustersVarsPath) || !fs.existsSync(unitsPath)) {
+        if (!fs.existsSync(jsFilePath) || !fs.existsSync(clustersVarsPath)) {
             console.error(`Error: Required files not found for ${deviceName}`);
             return false;
         }
@@ -930,8 +930,11 @@ function generateMilesightBacnetMapping(devicePath, bacnetMappingPath = null, ba
         // Load necessary files
         const clustersVarsContent = fs.readFileSync(clustersVarsPath, 'utf8');
         const clustersVars = JSON.parse(clustersVarsContent);
-        delete require.cache[require.resolve(unitsPath)];
-        const units = require(unitsPath);
+        let units = {};
+        if (fs.existsSync(unitsPath)) {
+            delete require.cache[require.resolve(unitsPath)];
+            units = require(unitsPath);
+        }
         const bacnetUnitMappings = JSON.parse(fs.readFileSync(bacnetUnitMappingPath, 'utf8'));
         
         // Parse BACnet mapping CSV to get variable descriptions
@@ -973,11 +976,43 @@ function generateMilesightBacnetMapping(devicePath, bacnetMappingPath = null, ba
             }
         }
         
+        // Extract downlink commands from the device's JS file
+        const jsFileContent = fs.readFileSync(jsFilePath, 'utf8');
+        
+        // Find the dlFrames object
+        const dlFramesRegex = /const\s+dlFrames\s*=\s*{([^}]*)}/s;
+        const dlFramesMatch = jsFileContent.match(dlFramesRegex);
+        
+        const downlinkCommands = new Set();
+        if (dlFramesMatch && dlFramesMatch[1]) {
+            const dlFramesContent = dlFramesMatch[1];
+            
+            // Parse each downlink entry
+            const dlEntryRegex = /(\w+)\s*:\s*"[^"]*<(\w+):(\w+)>"/g;
+            let match;
+            
+            while ((match = dlEntryRegex.exec(dlFramesContent)) !== null) {
+                const cmdName = match[1];
+                downlinkCommands.add(cmdName);
+            }
+        }
+        
+        // Add standard downlink commands
+        const standardDownlinks = [
+            "sendHexFrame", "sendConfirmedMode", "sendReboot", 
+            "sendFactoryReset", "sendLoraRetries", "sendLoraRejoin"
+        ];
+        
+        for (const cmd of standardDownlinks) {
+            downlinkCommands.add(cmd);
+        }
+        
         // Generate object mappings
         const objectMappings = {
             object: []
         };
         
+        // Add regular variables
         allVariables.forEach(varName => {
             if (units[varName]) {
                 const unitSymbol = units[varName];
@@ -1007,10 +1042,87 @@ function generateMilesightBacnetMapping(devicePath, bacnetMappingPath = null, ba
             }
         });
         
+        // Add downlink commands
+        downlinkCommands.forEach(cmdName => {
+            // Determine command data type based on name or pattern
+            let dataType = "NUMBER";
+            let valueType = "FLOAT";
+            let bacnetType = "analog_value_object";
+            
+            if (cmdName === "sendReboot" || cmdName === "sendFactoryReset") {
+                dataType = "BOOLEAN";
+                valueType = "BOOLEAN";
+                bacnetType = "binary_value_object";
+            } else if (cmdName === "sendHexFrame") {
+                dataType = "STRING";
+                valueType = "STRING";
+                bacnetType = "characterstring_value_object";
+            } else if (cmdName === "sendConfirmedMode" || cmdName === "sendLoraRetries") {
+                valueType = "UINT8";
+            } else if (cmdName === "sendLoraRejoin") {
+                valueType = "UINT16";
+            } else if (cmdName.startsWith("send") && cmdName.endsWith("Bool")) {
+                dataType = "BOOLEAN";
+                valueType = "BOOLEAN";
+                bacnetType = "binary_value_object";
+            } else if (cmdName.includes("U8") || cmdName.includes("u8")) {
+                valueType = "UINT8";
+            } else if (cmdName.includes("U16") || cmdName.includes("u16")) {
+                valueType = "UINT16";
+            } else if (cmdName.includes("U32") || cmdName.includes("u32")) {
+                valueType = "UINT32";
+            } else if (cmdName.includes("S8") || cmdName.includes("s8")) {
+                valueType = "INT8";
+            } else if (cmdName.includes("S16") || cmdName.includes("s16")) {
+                valueType = "INT16";
+            } else if (cmdName.includes("S32") || cmdName.includes("s32")) {
+                valueType = "INT32";
+            }
+            
+            // Determine unit from BACnet mapping if available
+            let unitSymbol = "";
+            let bacnetUnitTypeId = 95; // Default to NO_UNITS
+            let bacnetUnitType = "UNITS_NO_UNITS";
+            
+            if (cmdName === "sendLoraRejoin") {
+                unitSymbol = "min";
+                const unitMapping = bacnetUnitMappings.find(mapping => mapping.symbol === unitSymbol);
+                if (unitMapping) {
+                    bacnetUnitTypeId = unitMapping.id;
+                    bacnetUnitType = unitMapping.milesight_type;
+                }
+            } else {
+                // For commands without a specific unit, find the NO_UNITS entry
+                const noUnitMapping = bacnetUnitMappings.find(mapping => 
+                    mapping.symbol === "" && mapping.milesight_type === "UNITS_NO_UNITS");
+                
+                if (noUnitMapping) {
+                    bacnetUnitTypeId = noUnitMapping.id;
+                    bacnetUnitType = noUnitMapping.milesight_type;
+                }
+            }
+            
+            // Create the command mapping
+            const commandMapping = {
+                id: `commands.${cmdName}`,
+                name: bacnetDescriptions[cmdName] || cmdName,
+                value: "",
+                unit: unitSymbol,
+                access_mode: "W",
+                data_type: dataType,
+                value_type: valueType,
+                bacnet_type: bacnetType,
+                bacnet_unit_type_id: bacnetUnitTypeId,
+                bacnet_unit_type: bacnetUnitType
+            };
+            
+            objectMappings.object.push(commandMapping);
+        });
+        
         // Write the file
         const outputPath = path.join(devicePath, `${deviceName.replace(/'/g, '')}-milesight-object-mapping.json`);
         fs.writeFileSync(outputPath, JSON.stringify(objectMappings, null, 4), 'utf8');
-        console.log(`Generated milesight-object-mapping.json for ${deviceName} with ${objectMappings.object.length} objects`);
+        console.log(`Generated milesight-object-mapping.json for ${deviceName} with ${objectMappings.object.length} objects (${allVariables.size} variables, ${downlinkCommands.size} commands)`);
         
         return true;
         
