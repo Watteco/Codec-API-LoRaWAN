@@ -38,13 +38,15 @@ The `output` without errors is like this:
                 {
                     "variable": "temperature",
                     "value": 29.53,
-                    "date": "2023-07-19T07:51:31.598957793Z"
+                    "date": "2023-07-19T07:51:31.598957793Z",
+                    "unit": "Cel"
                 }
             ]
+            // To ease output usage in some infrastructures, LAST sample of each variable is duplicated directly 
+            // under data as a "<variable>" : "<value"> object
+            "temperature": 29.53,
+            "temperature_unit": "Cel"
         },
-        // To ease output usage in some infrastructures, LAST sample of each variable is duplicated directly 
-        // under data as a "<variable>" : "<value"> object
-        "temperature": 29.53  
         warning:[]
     }
 ```
@@ -224,13 +226,15 @@ La sortie `output` sans erreurs ressemble à ceci :
                 {
                     "variable": "temperature",
                     "value": 29.53,
-                    "date": "2023-07-19T07:51:31.598957793Z"
+                    "date": "2023-07-19T07:51:31.598957793Z",
+                    "unit": "Cel"
                 }
             ]
+            // Pour faciliter l'utilisation de la sortie dans certaines infrastructures, le DERNIER échantillon de chaque variable est dupliqué 
+            // directement sous data en tant qu'objet "<variable>" : "<valeur>"
+            "temperature": 29.53,
+            "temperature_unit": "Cel"
         },
-        // Pour faciliter l'utilisation de la sortie dans certaines infrastructures, le DERNIER échantillon de chaque variable est dupliqué 
-        // directement sous data en tant qu'objet "<variable>" : "<valeur>"
-        "temperature": 29.53  
         warning:[]
     }
 ```
