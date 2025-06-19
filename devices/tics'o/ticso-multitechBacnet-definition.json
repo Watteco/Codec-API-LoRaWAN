@@ -95,7 +95,7 @@
     },
     "EA": {
       "type": "uint32",
-      "units": "A"
+      "units": "Wh"
     },
     "ERP": {
       "type": "uint32"
@@ -113,98 +113,114 @@
     },
     "PA1": {
       "type": "uint16",
-      "units": "A"
+      "units": "kW"
     },
     "PA2": {
       "type": "uint16",
-      "units": "A"
+      "units": "kW"
     },
     "PA3": {
       "type": "uint16",
-      "units": "A"
+      "units": "kW"
     },
     "PA4": {
       "type": "uint16",
-      "units": "A"
+      "units": "kW"
     },
     "PA5": {
       "type": "uint16",
-      "units": "A"
+      "units": "kW"
     },
     "PA6": {
       "type": "uint16",
-      "units": "A"
+      "units": "kW"
     },
     "KDC": {
-      "type": "uint8"
+      "type": "uint8",
+      "units": "%"
     },
     "KDCD": {
-      "type": "uint8"
+      "type": "uint8",
+      "units": "%"
     },
     "TGPHI": {
       "type": "float"
     },
     "PSP": {
-      "type": "uint16"
+      "type": "uint16",
+      "units": "kW"
     },
     "PSPM": {
-      "type": "uint16"
+      "type": "uint16",
+      "units": "kW"
     },
     "PSHPH": {
-      "type": "uint16"
+      "type": "uint16",
+      "units": "kW"
     },
     "PSHPD": {
-      "type": "uint16"
+      "type": "uint16",
+      "units": "kW"
     },
     "PSHCH": {
-      "type": "uint16"
+      "type": "uint16",
+      "units": "kW"
     },
     "PSHCD": {
-      "type": "uint16"
+      "type": "uint16",
+      "units": "kW"
     },
     "PSHPE": {
-      "type": "uint16"
+      "type": "uint16",
+      "units": "kW"
     },
     "PSHCE": {
-      "type": "uint16"
+      "type": "uint16",
+      "units": "kW"
     },
     "PSJA": {
       "type": "uint16",
-      "units": "A"
+      "units": "kW"
     },
     "PSHH": {
-      "type": "uint16"
+      "type": "uint16",
+      "units": "kW"
     },
     "PSHD": {
-      "type": "uint16"
+      "type": "uint16",
+      "units": "kW"
     },
     "PSHM": {
-      "type": "uint16"
+      "type": "uint16",
+      "units": "kW"
     },
     "PSDSM": {
-      "type": "uint16"
+      "type": "uint16",
+      "units": "kW"
     },
     "PSSCM": {
-      "type": "uint16"
+      "type": "uint16",
+      "units": "kW"
     },
     "PA1MN": {
       "type": "uint16",
-      "units": "A"
+      "units": "kW"
     },
     "PA10MN": {
       "type": "uint16",
-      "units": "A"
+      "units": "kW"
     },
     "PREA1MN": {
       "type": "int16",
-      "units": "A"
+      "units": "kvar"
     },
     "PREA10MN": {
       "type": "int16",
-      "units": "A"
+      "units": "kvar"
     },
     "U10MN": {
-      "type": "uint16"
+      "type": "uint16",
+      "units": "V"
     },
     "CAFp": {
       "type": "uint16"
@@ -213,43 +229,56 @@
       "type": "uint32"
     },
     "EApPM": {
-      "type": "uint32"
+      "type": "uint32",
+      "units": "kWh"
     },
     "EApHCE": {
-      "type": "uint32"
+      "type": "uint32",
+      "units": "kWh"
     },
     "EApHCH": {
-      "type": "uint32"
+      "type": "uint32",
+      "units": "kWh"
     },
     "EApHH": {
-      "type": "uint32"
+      "type": "uint32",
+      "units": "kWh"
     },
     "EApHCD": {
-      "type": "uint32"
+      "type": "uint32",
+      "units": "kWh"
     },
     "EApHD": {
-      "type": "uint32"
+      "type": "uint32",
+      "units": "kWh"
     },
     "EApJA": {
-      "type": "uint32"
+      "type": "uint32",
+      "units": "kWh"
     },
     "EApHPE": {
-      "type": "uint32"
+      "type": "uint32",
+      "units": "kWh"
     },
     "EApHPH": {
-      "type": "uint32"
+      "type": "uint32",
+      "units": "kWh"
     },
     "EApHPD": {
-      "type": "uint32"
+      "type": "uint32",
+      "units": "kWh"
     },
     "EApSCM": {
-      "type": "uint32"
+      "type": "uint32",
+      "units": "kWh"
     },
     "EApHM": {
-      "type": "uint32"
+      "type": "uint32",
+      "units": "kWh"
     },
     "EApDSM": {
-      "type": "uint32"
+      "type": "uint32",
+      "units": "kWh"
     },
     "ERPpP": {
       "type": "uint32"
@@ -342,43 +371,56 @@
       "type": "uint32"
     },
     "EAp1PM": {
-      "type": "uint32"
+      "type": "uint32",
+      "units": "kWh"
     },
     "EAp1HCE": {
-      "type": "uint32"
+      "type": "uint32",
+      "units": "kWh"
     },
     "EAp1HCH": {
-      "type": "uint32"
+      "type": "uint32",
+      "units": "kWh"
     },
     "EAp1HH": {
-      "type": "uint32"
+      "type": "uint32",
+      "units": "kWh"
     },
     "EAp1HCD": {
-      "type": "uint32"
+      "type": "uint32",
+      "units": "kWh"
     },
     "EAp1HD": {
-      "type": "uint32"
+      "type": "uint32",
+      "units": "kWh"
     },
     "EAp1JA": {
-      "type": "uint32"
+      "type": "uint32",
+      "units": "kWh"
     },
     "EAp1HPE": {
-      "type": "uint32"
+      "type": "uint32",
+      "units": "kWh"
     },
     "EAp1HPH": {
-      "type": "uint32"
+      "type": "uint32",
+      "units": "kWh"
     },
     "EAp1HPD": {
-      "type": "uint32"
+      "type": "uint32",
+      "units": "kWh"
     },
     "EAp1SCM": {
-      "type": "uint32"
+      "type": "uint32",
+      "units": "kWh"
     },
     "EAp1HM": {
-      "type": "uint32"
+      "type": "uint32",
+      "units": "kWh"
     },
     "EAp1DSM": {
-      "type": "uint32"
+      "type": "uint32",
+      "units": "kWh"
     },
     "ERPp1P": {
       "type": "uint32"
@@ -489,7 +531,7 @@
     },
     "BASE": {
       "type": "uint32",
-      "units": "A"
+      "units": "Wh"
     },
     "HCHC": {
       "type": "uint32",
@@ -591,7 +633,7 @@
     },
     "PAPP": {
       "type": "uint32",
-      "units": "A"
+      "units": "VA"
     },
     "HHPHC": {
       "type": "char",
@@ -878,7 +920,8 @@
       "type": "string"
     },
     "EA_s": {
-      "type": "uint32"
+      "type": "uint32",
+      "units": "Wh"
     },
     "ER+_s": {
       "type": "uint32"
@@ -887,10 +930,12 @@
       "type": "uint32"
     },
     "EAPP_s": {
-      "type": "uint32"
+      "type": "uint32",
+      "units": "VAh"
     },
     "EA_i": {
-      "type": "uint32"
+      "type": "uint32",
+      "units": "Wh"
     },
     "ER+_i": {
       "type": "uint32"
@@ -899,7 +944,8 @@
       "type": "uint32"
     },
     "EAPP_i": {
-      "type": "uint32"
+      "type": "uint32",
+      "units": "VAh"
     },
     "PTCOUR1": {
       "type": "string"
@@ -917,46 +963,60 @@
       "type": "string"
     },
     "PA1_s": {
-      "type": "uint16"
+      "type": "uint16",
+      "units": "kW"
     },
     "PA1_i": {
-      "type": "uint16"
+      "type": "uint16",
+      "units": "kW"
     },
     "PA2_s": {
-      "type": "uint16"
+      "type": "uint16",
+      "units": "kW"
     },
     "PA2_i": {
-      "type": "uint16"
+      "type": "uint16",
+      "units": "kW"
     },
     "PA3_s": {
-      "type": "uint16"
+      "type": "uint16",
+      "units": "kW"
     },
     "PA3_i": {
-      "type": "uint16"
+      "type": "uint16",
+      "units": "kW"
     },
     "PA4_s": {
-      "type": "uint16"
+      "type": "uint16",
+      "units": "kW"
     },
     "PA4_i": {
-      "type": "uint16"
+      "type": "uint16",
+      "units": "kW"
     },
     "PA5_s": {
-      "type": "uint16"
+      "type": "uint16",
+      "units": "kW"
     },
     "PA5_i": {
-      "type": "uint16"
+      "type": "uint16",
+      "units": "kW"
     },
     "PA6_s": {
-      "type": "uint16"
+      "type": "uint16",
+      "units": "kW"
     },
     "PA6_i": {
-      "type": "uint16"
+      "type": "uint16",
+      "units": "kW"
     },
     "EAP_s": {
-      "type": "uint32"
+      "type": "uint32",
+      "units": "kWh"
     },
     "EAP_i": {
-      "type": "uint32"
+      "type": "uint32",
+      "units": "kWh"
     },
     "ER+P_s": {
       "type": "uint32"
@@ -971,10 +1031,12 @@
       "type": "uint32"
     },
     "EaP-1_s": {
-      "type": "uint32"
+      "type": "uint32",
+      "units": "kWh"
     },
     "EaP-1_i": {
-      "type": "uint32"
+      "type": "uint32",
+      "units": "kWh"
     },
     "ER+P-1_s": {
       "type": "uint32"
@@ -1016,10 +1078,12 @@
       "type": "string"
     },
     "EaP_s2": {
-      "type": "uint32"
+      "type": "uint32",
+      "units": "kWh"
     },
     "EaP-1_s2": {
-      "type": "uint32"
+      "type": "uint32",
+      "units": "kWh"
     },
     "_DDMES1_": {
       "type": "uint32"

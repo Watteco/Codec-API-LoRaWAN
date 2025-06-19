@@ -316,13 +316,13 @@
             "id": "data.EA",
             "name": "EA",
             "value": "",
-            "unit": "A",
+            "unit": "Wh",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 3,
-            "bacnet_unit_type": "UNITS_AMPERES"
+            "bacnet_unit_type_id": 18,
+            "bacnet_unit_type": "UNITS_WATT_HOURS"
         },
         {
             "id": "data.ERP",
@@ -376,97 +376,97 @@
             "id": "data.PA1",
             "name": "PA1",
             "value": "",
-            "unit": "A",
+            "unit": "kW",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT16",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 3,
-            "bacnet_unit_type": "UNITS_AMPERES"
+            "bacnet_unit_type_id": 48,
+            "bacnet_unit_type": "UNITS_KILOWATTS"
         },
         {
             "id": "data.PA2",
             "name": "PA2",
             "value": "",
-            "unit": "A",
+            "unit": "kW",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT16",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 3,
-            "bacnet_unit_type": "UNITS_AMPERES"
+            "bacnet_unit_type_id": 48,
+            "bacnet_unit_type": "UNITS_KILOWATTS"
         },
         {
             "id": "data.PA3",
             "name": "PA3",
             "value": "",
-            "unit": "A",
+            "unit": "kW",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT16",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 3,
-            "bacnet_unit_type": "UNITS_AMPERES"
+            "bacnet_unit_type_id": 48,
+            "bacnet_unit_type": "UNITS_KILOWATTS"
         },
         {
             "id": "data.PA4",
             "name": "PA4",
             "value": "",
-            "unit": "A",
+            "unit": "kW",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT16",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 3,
-            "bacnet_unit_type": "UNITS_AMPERES"
+            "bacnet_unit_type_id": 48,
+            "bacnet_unit_type": "UNITS_KILOWATTS"
         },
         {
             "id": "data.PA5",
             "name": "PA5",
             "value": "",
-            "unit": "A",
+            "unit": "kW",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT16",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 3,
-            "bacnet_unit_type": "UNITS_AMPERES"
+            "bacnet_unit_type_id": 48,
+            "bacnet_unit_type": "UNITS_KILOWATTS"
         },
         {
             "id": "data.PA6",
             "name": "PA6",
             "value": "",
-            "unit": "A",
+            "unit": "kW",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT16",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 3,
-            "bacnet_unit_type": "UNITS_AMPERES"
+            "bacnet_unit_type_id": 48,
+            "bacnet_unit_type": "UNITS_KILOWATTS"
         },
         {
             "id": "data.KDC",
             "name": "KDC",
             "value": "",
-            "unit": "",
+            "unit": "%",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT8",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 15,
+            "bacnet_unit_type": "UNITS_POWER_FACTOR"
         },
         {
             "id": "data.KDCD",
             "name": "KDCD",
             "value": "",
-            "unit": "",
+            "unit": "%",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT8",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 15,
+            "bacnet_unit_type": "UNITS_POWER_FACTOR"
         },
         {
             "id": "data.TGPHI",
@@ -484,229 +484,229 @@
             "id": "data.PSP",
             "name": "PSP",
             "value": "",
-            "unit": "",
+            "unit": "kW",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT16",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 48,
+            "bacnet_unit_type": "UNITS_KILOWATTS"
         },
         {
             "id": "data.PSPM",
             "name": "PSPM",
             "value": "",
-            "unit": "",
+            "unit": "kW",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT16",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 48,
+            "bacnet_unit_type": "UNITS_KILOWATTS"
         },
         {
             "id": "data.PSHPH",
             "name": "PSHPH",
             "value": "",
-            "unit": "",
+            "unit": "kW",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT16",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 48,
+            "bacnet_unit_type": "UNITS_KILOWATTS"
         },
         {
             "id": "data.PSHPD",
             "name": "PSHPD",
             "value": "",
-            "unit": "",
+            "unit": "kW",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT16",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 48,
+            "bacnet_unit_type": "UNITS_KILOWATTS"
         },
         {
             "id": "data.PSHCH",
             "name": "PSHCH",
             "value": "",
-            "unit": "",
+            "unit": "kW",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT16",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 48,
+            "bacnet_unit_type": "UNITS_KILOWATTS"
         },
         {
             "id": "data.PSHCD",
             "name": "PSHCD",
             "value": "",
-            "unit": "",
+            "unit": "kW",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT16",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 48,
+            "bacnet_unit_type": "UNITS_KILOWATTS"
         },
         {
             "id": "data.PSHPE",
             "name": "PSHPE",
             "value": "",
-            "unit": "",
+            "unit": "kW",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT16",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 48,
+            "bacnet_unit_type": "UNITS_KILOWATTS"
         },
         {
             "id": "data.PSHCE",
             "name": "PSHCE",
             "value": "",
-            "unit": "",
+            "unit": "kW",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT16",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 48,
+            "bacnet_unit_type": "UNITS_KILOWATTS"
         },
         {
             "id": "data.PSJA",
             "name": "PSJA",
             "value": "",
-            "unit": "A",
+            "unit": "kW",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT16",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 3,
-            "bacnet_unit_type": "UNITS_AMPERES"
+            "bacnet_unit_type_id": 48,
+            "bacnet_unit_type": "UNITS_KILOWATTS"
         },
         {
             "id": "data.PSHH",
             "name": "PSHH",
             "value": "",
-            "unit": "",
+            "unit": "kW",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT16",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 48,
+            "bacnet_unit_type": "UNITS_KILOWATTS"
         },
         {
             "id": "data.PSHD",
             "name": "PSHD",
             "value": "",
-            "unit": "",
+            "unit": "kW",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT16",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 48,
+            "bacnet_unit_type": "UNITS_KILOWATTS"
         },
         {
             "id": "data.PSHM",
             "name": "PSHM",
             "value": "",
-            "unit": "",
+            "unit": "kW",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT16",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 48,
+            "bacnet_unit_type": "UNITS_KILOWATTS"
         },
         {
             "id": "data.PSDSM",
             "name": "PSDSM",
             "value": "",
-            "unit": "",
+            "unit": "kW",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT16",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 48,
+            "bacnet_unit_type": "UNITS_KILOWATTS"
         },
         {
             "id": "data.PSSCM",
             "name": "PSSCM",
             "value": "",
-            "unit": "",
+            "unit": "kW",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT16",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 48,
+            "bacnet_unit_type": "UNITS_KILOWATTS"
         },
         {
             "id": "data.PA1MN",
             "name": "PA1MN",
             "value": "",
-            "unit": "A",
+            "unit": "kW",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT16",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 3,
-            "bacnet_unit_type": "UNITS_AMPERES"
+            "bacnet_unit_type_id": 48,
+            "bacnet_unit_type": "UNITS_KILOWATTS"
         },
         {
             "id": "data.PA10MN",
             "name": "PA10MN",
             "value": "",
-            "unit": "A",
+            "unit": "kW",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT16",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 3,
-            "bacnet_unit_type": "UNITS_AMPERES"
+            "bacnet_unit_type_id": 48,
+            "bacnet_unit_type": "UNITS_KILOWATTS"
         },
         {
             "id": "data.PREA1MN",
             "name": "PREA1MN",
             "value": "",
-            "unit": "A",
+            "unit": "kvar",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "INT16",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 3,
-            "bacnet_unit_type": "UNITS_AMPERES"
+            "bacnet_unit_type_id": 112,
+            "bacnet_unit_type": "UNITS_KILOVOLT_AMPERES_REACTIVE"
         },
         {
             "id": "data.PREA10MN",
             "name": "PREA10MN",
             "value": "",
-            "unit": "A",
+            "unit": "kvar",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "INT16",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 3,
-            "bacnet_unit_type": "UNITS_AMPERES"
+            "bacnet_unit_type_id": 112,
+            "bacnet_unit_type": "UNITS_KILOVOLT_AMPERES_REACTIVE"
         },
         {
             "id": "data.U10MN",
             "name": "U10MN",
             "value": "",
-            "unit": "",
+            "unit": "V",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT16",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 5,
+            "bacnet_unit_type": "UNITS_VOLTS"
         },
         {
             "id": "data.CAFp",
@@ -736,157 +736,157 @@
             "id": "data.EApPM",
             "name": "EApPM",
             "value": "",
-            "unit": "",
+            "unit": "kWh",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 19,
+            "bacnet_unit_type": "UNITS_KILOWATT_HOURS"
         },
         {
             "id": "data.EApHCE",
             "name": "EApHCE",
             "value": "",
-            "unit": "",
+            "unit": "kWh",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 19,
+            "bacnet_unit_type": "UNITS_KILOWATT_HOURS"
         },
         {
             "id": "data.EApHCH",
             "name": "EApHCH",
             "value": "",
-            "unit": "",
+            "unit": "kWh",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 19,
+            "bacnet_unit_type": "UNITS_KILOWATT_HOURS"
         },
         {
             "id": "data.EApHH",
             "name": "EApHH",
             "value": "",
-            "unit": "",
+            "unit": "kWh",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 19,
+            "bacnet_unit_type": "UNITS_KILOWATT_HOURS"
         },
         {
             "id": "data.EApHCD",
             "name": "EApHCD",
             "value": "",
-            "unit": "",
+            "unit": "kWh",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 19,
+            "bacnet_unit_type": "UNITS_KILOWATT_HOURS"
         },
         {
             "id": "data.EApHD",
             "name": "EApHD",
             "value": "",
-            "unit": "",
+            "unit": "kWh",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 19,
+            "bacnet_unit_type": "UNITS_KILOWATT_HOURS"
         },
         {
             "id": "data.EApJA",
             "name": "EApJA",
             "value": "",
-            "unit": "",
+            "unit": "kWh",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 19,
+            "bacnet_unit_type": "UNITS_KILOWATT_HOURS"
         },
         {
             "id": "data.EApHPE",
             "name": "EApHPE",
             "value": "",
-            "unit": "",
+            "unit": "kWh",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 19,
+            "bacnet_unit_type": "UNITS_KILOWATT_HOURS"
         },
         {
             "id": "data.EApHPH",
             "name": "EApHPH",
             "value": "",
-            "unit": "",
+            "unit": "kWh",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 19,
+            "bacnet_unit_type": "UNITS_KILOWATT_HOURS"
         },
         {
             "id": "data.EApHPD",
             "name": "EApHPD",
             "value": "",
-            "unit": "",
+            "unit": "kWh",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 19,
+            "bacnet_unit_type": "UNITS_KILOWATT_HOURS"
         },
         {
             "id": "data.EApSCM",
             "name": "EApSCM",
             "value": "",
-            "unit": "",
+            "unit": "kWh",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 19,
+            "bacnet_unit_type": "UNITS_KILOWATT_HOURS"
         },
         {
             "id": "data.EApHM",
             "name": "EApHM",
             "value": "",
-            "unit": "",
+            "unit": "kWh",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 19,
+            "bacnet_unit_type": "UNITS_KILOWATT_HOURS"
         },
         {
             "id": "data.EApDSM",
             "name": "EApDSM",
             "value": "",
-            "unit": "",
+            "unit": "kWh",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 19,
+            "bacnet_unit_type": "UNITS_KILOWATT_HOURS"
         },
         {
             "id": "data.ERPpP",
@@ -1252,157 +1252,157 @@
             "id": "data.EAp1PM",
             "name": "EAp1PM",
             "value": "",
-            "unit": "",
+            "unit": "kWh",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 19,
+            "bacnet_unit_type": "UNITS_KILOWATT_HOURS"
         },
         {
             "id": "data.EAp1HCE",
             "name": "EAp1HCE",
             "value": "",
-            "unit": "",
+            "unit": "kWh",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 19,
+            "bacnet_unit_type": "UNITS_KILOWATT_HOURS"
         },
         {
             "id": "data.EAp1HCH",
             "name": "EAp1HCH",
             "value": "",
-            "unit": "",
+            "unit": "kWh",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 19,
+            "bacnet_unit_type": "UNITS_KILOWATT_HOURS"
         },
         {
             "id": "data.EAp1HH",
             "name": "EAp1HH",
             "value": "",
-            "unit": "",
+            "unit": "kWh",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 19,
+            "bacnet_unit_type": "UNITS_KILOWATT_HOURS"
         },
         {
             "id": "data.EAp1HCD",
             "name": "EAp1HCD",
             "value": "",
-            "unit": "",
+            "unit": "kWh",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 19,
+            "bacnet_unit_type": "UNITS_KILOWATT_HOURS"
         },
         {
             "id": "data.EAp1HD",
             "name": "EAp1HD",
             "value": "",
-            "unit": "",
+            "unit": "kWh",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 19,
+            "bacnet_unit_type": "UNITS_KILOWATT_HOURS"
         },
         {
             "id": "data.EAp1JA",
             "name": "EAp1JA",
             "value": "",
-            "unit": "",
+            "unit": "kWh",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 19,
+            "bacnet_unit_type": "UNITS_KILOWATT_HOURS"
         },
         {
             "id": "data.EAp1HPE",
             "name": "EAp1HPE",
             "value": "",
-            "unit": "",
+            "unit": "kWh",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 19,
+            "bacnet_unit_type": "UNITS_KILOWATT_HOURS"
         },
         {
             "id": "data.EAp1HPH",
             "name": "EAp1HPH",
             "value": "",
-            "unit": "",
+            "unit": "kWh",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 19,
+            "bacnet_unit_type": "UNITS_KILOWATT_HOURS"
         },
         {
             "id": "data.EAp1HPD",
             "name": "EAp1HPD",
             "value": "",
-            "unit": "",
+            "unit": "kWh",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 19,
+            "bacnet_unit_type": "UNITS_KILOWATT_HOURS"
         },
         {
             "id": "data.EAp1SCM",
             "name": "EAp1SCM",
             "value": "",
-            "unit": "",
+            "unit": "kWh",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 19,
+            "bacnet_unit_type": "UNITS_KILOWATT_HOURS"
         },
         {
             "id": "data.EAp1HM",
             "name": "EAp1HM",
             "value": "",
-            "unit": "",
+            "unit": "kWh",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 19,
+            "bacnet_unit_type": "UNITS_KILOWATT_HOURS"
         },
         {
             "id": "data.EAp1DSM",
             "name": "EAp1DSM",
             "value": "",
-            "unit": "",
+            "unit": "kWh",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 19,
+            "bacnet_unit_type": "UNITS_KILOWATT_HOURS"
         },
         {
             "id": "data.ERPp1P",
@@ -1816,13 +1816,13 @@
             "id": "data.BASE",
             "name": "BASE",
             "value": "",
-            "unit": "A",
+            "unit": "Wh",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 3,
-            "bacnet_unit_type": "UNITS_AMPERES"
+            "bacnet_unit_type_id": 18,
+            "bacnet_unit_type": "UNITS_WATT_HOURS"
         },
         {
             "id": "data.HCHC",
@@ -2128,13 +2128,13 @@
             "id": "data.PAPP",
             "name": "PAPP",
             "value": "",
-            "unit": "A",
+            "unit": "VA",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 3,
-            "bacnet_unit_type": "UNITS_AMPERES"
+            "bacnet_unit_type_id": 8,
+            "bacnet_unit_type": "UNITS_VOLT_AMPERES"
         },
         {
             "id": "data.HHPHC",
@@ -3016,13 +3016,13 @@
             "id": "data.EA_s",
             "name": "EA s",
             "value": "",
-            "unit": "",
+            "unit": "Wh",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 18,
+            "bacnet_unit_type": "UNITS_WATT_HOURS"
         },
         {
             "id": "data.ER+_s",
@@ -3052,25 +3052,25 @@
             "id": "data.EAPP_s",
             "name": "EAPP s",
             "value": "",
-            "unit": "",
+            "unit": "VAh",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 239,
+            "bacnet_unit_type": "UNITS_VOLT_AMPERE_HOURS"
         },
         {
             "id": "data.EA_i",
             "name": "EA i",
             "value": "",
-            "unit": "",
+            "unit": "Wh",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 18,
+            "bacnet_unit_type": "UNITS_WATT_HOURS"
         },
         {
             "id": "data.ER+_i",
@@ -3100,13 +3100,13 @@
             "id": "data.EAPP_i",
             "name": "EAPP i",
             "value": "",
-            "unit": "",
+            "unit": "VAh",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 239,
+            "bacnet_unit_type": "UNITS_VOLT_AMPERE_HOURS"
         },
         {
             "id": "data.PTCOUR1",
@@ -3172,169 +3172,169 @@
             "id": "data.PA1_s",
             "name": "PA1 s",
             "value": "",
-            "unit": "",
+            "unit": "kW",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT16",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 48,
+            "bacnet_unit_type": "UNITS_KILOWATTS"
         },
         {
             "id": "data.PA1_i",
             "name": "PA1 i",
             "value": "",
-            "unit": "",
+            "unit": "kW",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT16",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 48,
+            "bacnet_unit_type": "UNITS_KILOWATTS"
         },
         {
             "id": "data.PA2_s",
             "name": "PA2 s",
             "value": "",
-            "unit": "",
+            "unit": "kW",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT16",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 48,
+            "bacnet_unit_type": "UNITS_KILOWATTS"
         },
         {
             "id": "data.PA2_i",
             "name": "PA2 i",
             "value": "",
-            "unit": "",
+            "unit": "kW",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT16",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 48,
+            "bacnet_unit_type": "UNITS_KILOWATTS"
         },
         {
             "id": "data.PA3_s",
             "name": "PA3 s",
             "value": "",
-            "unit": "",
+            "unit": "kW",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT16",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 48,
+            "bacnet_unit_type": "UNITS_KILOWATTS"
         },
         {
             "id": "data.PA3_i",
             "name": "PA3 i",
             "value": "",
-            "unit": "",
+            "unit": "kW",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT16",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 48,
+            "bacnet_unit_type": "UNITS_KILOWATTS"
         },
         {
             "id": "data.PA4_s",
             "name": "PA4 s",
             "value": "",
-            "unit": "",
+            "unit": "kW",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT16",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 48,
+            "bacnet_unit_type": "UNITS_KILOWATTS"
         },
         {
             "id": "data.PA4_i",
             "name": "PA4 i",
             "value": "",
-            "unit": "",
+            "unit": "kW",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT16",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 48,
+            "bacnet_unit_type": "UNITS_KILOWATTS"
         },
         {
             "id": "data.PA5_s",
             "name": "PA5 s",
             "value": "",
-            "unit": "",
+            "unit": "kW",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT16",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 48,
+            "bacnet_unit_type": "UNITS_KILOWATTS"
         },
         {
             "id": "data.PA5_i",
             "name": "PA5 i",
             "value": "",
-            "unit": "",
+            "unit": "kW",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT16",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 48,
+            "bacnet_unit_type": "UNITS_KILOWATTS"
         },
         {
             "id": "data.PA6_s",
             "name": "PA6 s",
             "value": "",
-            "unit": "",
+            "unit": "kW",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT16",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 48,
+            "bacnet_unit_type": "UNITS_KILOWATTS"
         },
         {
             "id": "data.PA6_i",
             "name": "PA6 i",
             "value": "",
-            "unit": "",
+            "unit": "kW",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT16",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 48,
+            "bacnet_unit_type": "UNITS_KILOWATTS"
         },
         {
             "id": "data.EAP_s",
             "name": "EAP s",
             "value": "",
-            "unit": "",
+            "unit": "kWh",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 19,
+            "bacnet_unit_type": "UNITS_KILOWATT_HOURS"
         },
         {
             "id": "data.EAP_i",
             "name": "EAP i",
             "value": "",
-            "unit": "",
+            "unit": "kWh",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 19,
+            "bacnet_unit_type": "UNITS_KILOWATT_HOURS"
         },
         {
             "id": "data.ER+P_s",
@@ -3388,25 +3388,25 @@
             "id": "data.EaP-1_s",
             "name": "EaP-1 s",
             "value": "",
-            "unit": "",
+            "unit": "kWh",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 19,
+            "bacnet_unit_type": "UNITS_KILOWATT_HOURS"
         },
         {
             "id": "data.EaP-1_i",
             "name": "EaP-1 i",
             "value": "",
-            "unit": "",
+            "unit": "kWh",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 19,
+            "bacnet_unit_type": "UNITS_KILOWATT_HOURS"
         },
         {
             "id": "data.ER+P-1_s",
@@ -3568,25 +3568,25 @@
             "id": "data.EaP_s2",
             "name": "EaP s2",
             "value": "",
-            "unit": "",
+            "unit": "kWh",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 19,
+            "bacnet_unit_type": "UNITS_KILOWATT_HOURS"
         },
         {
             "id": "data.EaP-1_s2",
             "name": "EaP-1 s2",
             "value": "",
-            "unit": "",
+            "unit": "kWh",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
+            "bacnet_unit_type_id": 19,
+            "bacnet_unit_type": "UNITS_KILOWATT_HOURS"
         },
         {
             "id": "data._DDMES1_",
