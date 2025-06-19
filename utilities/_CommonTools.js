@@ -1104,7 +1104,7 @@ function generateMilesightBacnetMapping(devicePath, bacnetMappingPath = null, ba
             
             // Create the command mapping
             const commandMapping = {
-                id: `commands.${cmdName}`,
+                id: `data.${cmdName}`,
                 name: bacnetDescriptions[cmdName] || cmdName,
                 value: "",
                 unit: unitSymbol,
