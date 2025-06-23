@@ -1,6 +1,18 @@
 # English
 [→ Français](#français)
 
+## Table of Contents
+- [Usage](#usage)
+- [Customizing Output](#customizing-output)
+  - [Custom Batch Parameters](#custom-batch-parameters)
+  - [Custom Units](#custom-units)
+  - [Endpoint Correspondences](#endpoint-correspondences)
+- [Installing Codecs via NPM](#installing-codecs-via-npm)
+- [Using the Watteco codec API](#using-the-watteco-codec-api)
+  - [With NodeRED >1.3.0, connected to the internet](#with-nodered-130-connected-to-the-internet)
+  - [With NodeRED <1.3.0, or any version not connected to the internet](#with-nodered-130-or-any-version-not-connected-to-the-internet)
+  - [With Chirpstack](#using-the-watteco-codec-api-with-chirpstack)
+
 The drivers are provided as `main.js` files, with one file per sensor type. Each driver, regardless of the sensor, offers a simple API that complies with the  
 [TSO13-1.0.0 Payload Codec API](https://resources.lora-alliance.org/technical-specifications/ts013-1-0-0-payload-codec-api) specifications.
 
@@ -72,7 +84,98 @@ The `output` with errors is like this:
 
 As the try/catch method is used, error contains the first error encountered and cut the processing.  
 
-## Npm
+## Customizing Output
+
+You can customize the codec output by providing optional parameters to the `decodeUplink` function:
+
+```javascript
+output = driver.decodeUplink(input, optBatchParams, optEndpointCorresponder, optUnits)
+```
+
+### Custom Batch Parameters
+
+You can customize the batch parameter configuration to change how variables are interpreted and named:
+
+```javascript
+// IMPORTANT: First, paste the entire main.js file content here, at the beginning of your script
+// ... (large compressed driver code from main.js) ...
+
+function Decode(fPort, bytes) {
+  var _input = {
+      "bytes": bytes,
+      "fPort": fPort,
+      "recvTime": new Date().toISOString()
+  };
+  
+  // IMPORTANT: Define the optBatchParams variable locally inside the Decode function
+  var optBatchParams = [
+    4, // Number of parameters
+    [
+      { taglbl: 0, resol: 1, sampletype: 10, lblname: "In1" }, // Custom label name
+      { taglbl: 1, resol: 1, sampletype: 10, lblname: "In2" },
+      { taglbl: 2, resol: 1, sampletype: 10, lblname: "In3" },
+      { taglbl: 3, resol: 1, sampletype: 10, lblname: "In4" },
+      { taglbl: 4, resol: 1, sampletype: 10, lblname: "In5" },
+      { taglbl: 5, resol: 1, sampletype: 10, lblname: "In6" }
+    ]
+  ];
+
+  return driver.decodeUplink(_input, optBatchParams);
+}
+```
+
+### Custom Units
+
+You can override the default units for variables:
+
+```javascript
+// IMPORTANT: First, paste the entire main.js file content here, at the beginning of your script
+// ... (large compressed driver code from main.js) ...
+
+function Decode(fPort, bytes) {
+  var _input = {
+      "bytes": bytes,
+      "fPort": fPort,
+      "recvTime": new Date().toISOString()
+  };
+  
+  // IMPORTANT: Define the optUnits variable locally inside the Decode function
+  var optUnits = {
+    "disposable_battery_voltage": "Volts",
+    "temperature": "Celsius",
+    "humidity": "Humidity percentage",
+    "battery_voltage": "Volts"
+  };
+  
+  return driver.decodeUplink(_input, null, null, optUnits);
+}
+```
+
+### Endpoint Correspondences
+
+You can map endpoints to specific variable names:
+
+```javascript
+// IMPORTANT: First, paste the entire main.js file content here, at the beginning of your script
+// ... (large compressed driver code from main.js) ...
+
+function Decode(fPort, bytes) {
+  var _input = {
+      "bytes": bytes,
+      "fPort": fPort,
+      "recvTime": new Date().toISOString()
+  };
+  
+  // IMPORTANT: Define the optEndpointCorresponder variable locally inside the Decode function
+  var optEndpointCorresponder = {
+    pin_state: ["violation_detection"]
+  };
+  
+  return driver.decodeUplink(_input, null, optEndpointCorresponder);
+}
+```
+
+## Installing Codecs via NPM
 
 If you wish to get the device via npm, you need to do this:
 
@@ -85,7 +188,9 @@ Our current modules can be listed :
 - From [the list of published drivers on the npm website](https://www.npmjs.com/~watteco)
 
 
-## Using the Watteco codec API with NodeRED (>`1.3.0`)
+## Using the Watteco codec API
+### Using the Watteco codec API with NodeRED
+#### With NodeRED >`1.3.0`, connected to the internet
 [→ Français](#utilisation-de-lapi-codec-watteco-avec-nodered-130)
 
 The first step is to set-up a Javascript node to import the module you need via npm.  
@@ -136,8 +241,9 @@ return msg;
 You can download this [NodeRED example (exported in JSON)](/sources_readme/VaqaoDecodingExampleNpmEn.json). It decodes a base64 Vaqa'o batch frame. Once downloaded, you can directly import it to NodeRED via the `Import` button in the right menu.
 
 
-## Using the Watteco codec API with NodeRED (<`1.3.0`)
-[→ Français](#utilisation-de-lapi-codec-watteco-avec-nodered-130-1)
+### Using the Watteco codec API with NodeRED 
+#### With NodeRED <`1.3.0`, or any version not connected to the internet
+[→ Français](#avec-nodered-130-ou-toute-version-non-connectée-à-internet)
 
 On these former nodered version of NodeRED, `npm` is not available. Then, the first step is to import manually the codec into a Javascript node.  
 You'll find all the codecs, by sensor, [here](https://github.com/Watteco/Codec-API-LoRaWAN/tree/main/distrib).  
@@ -168,13 +274,15 @@ Choose your sensor, then copy the content of the corresponding `main.js` file th
 *In recent codec ( >= v1.1.0) the exports is conditionally done according to you JS env capability. Change is not necessary.*
 
 ```javascript
-var driver ....../* Big copied line containing the driver */.......
+// IMPORTANT: First, paste the entire main.js file content here, at the beginning of your script
+// ... (large compressed driver code from main.js) ...
+
 function Decode (fPort, bytes)
 {
-  _input = {
+  var _input = {
     "bytes": bytes,
     "fPort": fPort,
-    "recvTime": "2024-01-16T09:11:00.000Z" // time is in ISO 8601 format (could be calcultaed according to current Date())
+    "recvTime": new Date().toISOString() // time is in ISO 8601 format
   }
   return driver.decodeUplink(_input);
 }
@@ -186,13 +294,24 @@ Your Chirpstack installation is now able to decode your sensor's frames.
 # Français
 [→ English](#english)
 
+## Table des matières
+- [Utilisation](#utilisation)
+- [Personnalisation de la sortie](#personnalisation-de-la-sortie)
+  - [Paramètres Batch personnalisés](#paramètres-batch-personnalisés)
+  - [Unités personnalisées](#unités-personnalisées)
+  - [Correspondances des points terminaux](#correspondances-des-points-terminaux)
+- [Installation des codecs via NPM](#installation-des-codecs-via-npm)
+- [Utilisation de l'API codec Watteco](#utilisation-de-lapi-codec-watteco)
+  - [Avec NodeRED >1.3.0, connecté à internet](#avec-nodered-130-connecté-à-internet)
+  - [Avec NodeRED <1.3.0, ou toute version non connectée à internet](#avec-nodered-130-ou-toute-version-non-connectée-à-internet)
+  - [Utilisation de l'API codec Watteco avec Chirpstack](#utilisation-de-lapi-codec-watteco-avec-chirpstack)
+
 Les drivers sont fournis sous forme de fichiers `main.js`, un fichier par type de capteur.  
 Chaque driver, quel que soit le capteur, offre une API simple conforme aux spécifications de la  
 [TSO13-1.0.0 Payload Codec API](https://resources.lora-alliance.org/technical-specifications/ts013-1-0-0-payload-codec-api).
 
 Vous pouvez consulter la [liste des drivers](DRIVERS.md)  
 mise à disposition par Watteco, qui inclut également les "variables" pouvant être retournées par chaque driver.
-
 
 ## Utilisation
 
@@ -260,7 +379,98 @@ La sortie `output` en cas d'erreurs est comme ceci :
 
 Comme la méthode try/catch est utilisée, `error` contient la première erreur rencontrée et interrompt le traitement.  
 
-## Npm
+## Personnalisation de la sortie
+
+Vous pouvez personnaliser la sortie du codec en fournissant des paramètres optionnels à la fonction `decodeUplink` :
+
+```javascript
+output = driver.decodeUplink(input, optBatchParams, optEndpointCorresponder, optUnits)
+```
+
+### Paramètres Batch personnalisés
+
+Vous pouvez personnaliser la configuration des paramètres batch pour modifier l'interprétation et le nommage des variables :
+
+```javascript
+// IMPORTANT : D'abord, collez tout le contenu du fichier main.js ici, au début de votre script
+// ... (code du driver compressé issu de main.js) ...
+
+function Decode(fPort, bytes) {
+  var _input = {
+      "bytes": bytes,
+      "fPort": fPort,
+      "recvTime": new Date().toISOString()
+  };
+  
+  // IMPORTANT : Définissez la variable optBatchParams localement à l'intérieur de la fonction Decode
+  var optBatchParams = [
+    4, // Nombre de paramètres
+    [
+      { taglbl: 0, resol: 1, sampletype: 10, lblname: "In1" }, // Nom d'étiquette personnalisé
+      { taglbl: 1, resol: 1, sampletype: 10, lblname: "In2" },
+      { taglbl: 2, resol: 1, sampletype: 10, lblname: "In3" },
+      { taglbl: 3, resol: 1, sampletype: 10, lblname: "In4" },
+      { taglbl: 4, resol: 1, sampletype: 10, lblname: "In5" },
+      { taglbl: 5, resol: 1, sampletype: 10, lblname: "In6" }
+    ]
+  ];
+
+  return driver.decodeUplink(_input, optBatchParams);
+}
+```
+
+### Unités personnalisées
+
+Vous pouvez remplacer les unités par défaut des variables :
+
+```javascript
+// IMPORTANT : D'abord, collez tout le contenu du fichier main.js ici, au début de votre script
+// ... (code du driver compressé issu de main.js) ...
+
+function Decode(fPort, bytes) {
+  var _input = {
+      "bytes": bytes,
+      "fPort": fPort,
+      "recvTime": new Date().toISOString()
+  };
+  
+  // IMPORTANT : Définissez la variable optUnits localement à l'intérieur de la fonction Decode
+  var optUnits = {
+    "disposable_battery_voltage": "Volts",
+    "temperature": "Celsius",
+    "humidity": "Pourcents d'Humidité",
+    "battery_voltage": "Volts"
+  };
+  
+  return driver.decodeUplink(_input, null, null, optUnits);
+}
+```
+
+### Correspondances des points terminaux
+
+Vous pouvez mapper des points terminaux à des noms de variables spécifiques :
+
+```javascript
+// IMPORTANT : D'abord, collez tout le contenu du fichier main.js ici, au début de votre script
+// ... (code du driver compressé issu de main.js) ...
+
+function Decode(fPort, bytes) {
+  var _input = {
+      "bytes": bytes,
+      "fPort": fPort,
+      "recvTime": new Date().toISOString()
+  };
+  
+  // IMPORTANT : Définissez la variable optEndpointCorresponder localement à l'intérieur de la fonction Decode
+  var optEndpointCorresponder = {
+    pin_state: ["violation_detection"]
+  };
+  
+  return driver.decodeUplink(_input, null, optEndpointCorresponder);
+}
+```
+
+## Installation des codecs via NPM
 
 Si vous souhaitez obtenir le module via npm, vous devez exécuter :
 
@@ -272,8 +482,10 @@ Nos modules actuels sont listés :
 - Depuis le dépôt Watteco [drivers du répertoire 'distrib'](DRIVERS.md)
 - Depuis [la liste des drivers publiés sur le site npm](https://www.npmjs.com/~watteco)
 
-## Utilisation de l'API codec Watteco avec NodeRED (>`1.3.0`)
-[→ English](#using-the-watteco-codec-api-with-nodered-130)
+## Utilisation de l'API codec Watteco
+### Utilisation de l'API codec Watteco avec NodeRED
+#### Avec NodeRED >`1.3.0`, connecté à internet
+[→ English](#with-nodered-130-connected-to-the-internet)
 
 La première étape consiste à configurer un nœud JavaScript pour importer le module nécessaire via npm.  
 Vous trouverez la liste des modules [ci-dessus](#npm).  
@@ -299,8 +511,9 @@ Il décode une trame batch Vaqa'o encodée en base64.
 Une fois téléchargé, vous pouvez l'importer directement dans NodeRED via le bouton `Importer` du menu de droite.
 
 
-## Utilisation de l'API codec Watteco avec NodeRED (<`1.3.0`)
-[→ English](#using-the-watteco-codec-api-with-nodered-130-1)
+### Utilisation de l'API codec Watteco avec NodeRED
+#### Avec NodeRED <`1.3.0`, ou toute version non connectée à internet
+[→ English](#with-nodered-130-or-any-version-not-connected-to-the-internet)
 
 Dans ces anciennes versions de NodeRED, `npm` n'est pas disponible.  
 La première étape consiste donc à importer manuellement le codec dans un nœud JavaScript.  
@@ -334,13 +547,15 @@ Choisissez votre capteur, puis copiez le contenu du fichier `main.js` correspond
 *Dans les codecs récents (>= v1.1.0), l'exportation est conditionnellement réalisée selon votre environnement JS. Cette modification n'est donc pas nécessaire.*
 
 ```javascript
-var driver ....../* BGrande ligne contenant le driver */.......
+// IMPORTANT : D'abord, collez tout le contenu du fichier main.js ici, au début de votre script
+// ... (code du driver compressé issu de main.js) ...
+
 function Decode (fPort, bytes)
 {
-  _input = {
+  var _input = {
     "bytes": bytes,
     "fPort": fPort,
-    "recvTime": "2024-01-16T09:11:00.000Z" // L'heure est au format ISO 8601 (peut être calculée en fonction de la date actuelle)
+    "recvTime": new Date().toISOString() // L'heure est au format ISO 8601
   }
   return driver.decodeUplink(_input);
 }
