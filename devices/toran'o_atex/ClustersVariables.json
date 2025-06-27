@@ -4,5 +4,5 @@
 	{ "cid": "0x8004", "variables": ["message_type", "nb_retry", "automatic_association", "data_rate", "ABP_dev_address", "OTA_app_EUI"] },
 	{ "cid": "0x000C", "variables": ["4-20_mA", "0-5_V_1", "0-5_V_2", "ratiometric_0-5_V_1", "ratiometric_0-5_V_2"] },
 	{ "cid": "0x000F", "variables": ["index_1", "index_2", "index_3", "pin_state_1", "pin_state_2", "pin_state_3"] },
-	{ "cid": "0x8005", "variables": ["pin_state_1", "pin_state_2", "pin_state_3", ""] }
+	{ "cid": "0x8005", "variables": ["pin_state_1", "pin_state_2", "pin_state_3"] }
 ]
