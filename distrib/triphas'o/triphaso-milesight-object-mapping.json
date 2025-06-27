@@ -1,25 +1,13 @@
 {
     "object": [
         {
-            "id": "data.main_or_external_voltage",
-            "name": "Main or external voltage",
-            "value": "",
-            "unit": "V",
-            "access_mode": "R",
-            "data_type": "NUMBER",
-            "value_type": "FLOAT",
-            "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 5,
-            "bacnet_unit_type": "UNITS_VOLTS"
-        },
-        {
             "id": "data.positive_active_energy_a",
             "name": "Positive active energy phase A",
             "value": "",
             "unit": "Wh",
             "access_mode": "R",
             "data_type": "NUMBER",
-            "value_type": "FLOAT",
+            "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
             "bacnet_unit_type_id": 18,
             "bacnet_unit_type": "UNITS_WATT_HOURS"
@@ -31,7 +19,7 @@
             "unit": "Wh",
             "access_mode": "R",
             "data_type": "NUMBER",
-            "value_type": "FLOAT",
+            "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
             "bacnet_unit_type_id": 18,
             "bacnet_unit_type": "UNITS_WATT_HOURS"
@@ -43,7 +31,7 @@
             "unit": "Wh",
             "access_mode": "R",
             "data_type": "NUMBER",
-            "value_type": "FLOAT",
+            "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
             "bacnet_unit_type_id": 18,
             "bacnet_unit_type": "UNITS_WATT_HOURS"
@@ -55,7 +43,7 @@
             "unit": "Wh",
             "access_mode": "R",
             "data_type": "NUMBER",
-            "value_type": "FLOAT",
+            "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
             "bacnet_unit_type_id": 18,
             "bacnet_unit_type": "UNITS_WATT_HOURS"
@@ -67,7 +55,7 @@
             "unit": "Wh",
             "access_mode": "R",
             "data_type": "NUMBER",
-            "value_type": "FLOAT",
+            "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
             "bacnet_unit_type_id": 18,
             "bacnet_unit_type": "UNITS_WATT_HOURS"
@@ -79,7 +67,7 @@
             "unit": "Wh",
             "access_mode": "R",
             "data_type": "NUMBER",
-            "value_type": "FLOAT",
+            "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
             "bacnet_unit_type_id": 18,
             "bacnet_unit_type": "UNITS_WATT_HOURS"
@@ -91,7 +79,7 @@
             "unit": "Wh",
             "access_mode": "R",
             "data_type": "NUMBER",
-            "value_type": "FLOAT",
+            "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
             "bacnet_unit_type_id": 18,
             "bacnet_unit_type": "UNITS_WATT_HOURS"
@@ -103,7 +91,7 @@
             "unit": "Wh",
             "access_mode": "R",
             "data_type": "NUMBER",
-            "value_type": "FLOAT",
+            "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
             "bacnet_unit_type_id": 18,
             "bacnet_unit_type": "UNITS_WATT_HOURS"
@@ -115,7 +103,7 @@
             "unit": "VArh",
             "access_mode": "R",
             "data_type": "NUMBER",
-            "value_type": "FLOAT",
+            "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
             "bacnet_unit_type_id": 242,
             "bacnet_unit_type": "UNITS_VOLT_AMPERE_HOURS_REACTIVE"
@@ -127,7 +115,7 @@
             "unit": "VArh",
             "access_mode": "R",
             "data_type": "NUMBER",
-            "value_type": "FLOAT",
+            "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
             "bacnet_unit_type_id": 242,
             "bacnet_unit_type": "UNITS_VOLT_AMPERE_HOURS_REACTIVE"
@@ -139,7 +127,7 @@
             "unit": "VArh",
             "access_mode": "R",
             "data_type": "NUMBER",
-            "value_type": "FLOAT",
+            "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
             "bacnet_unit_type_id": 242,
             "bacnet_unit_type": "UNITS_VOLT_AMPERE_HOURS_REACTIVE"
@@ -151,7 +139,7 @@
             "unit": "VArh",
             "access_mode": "R",
             "data_type": "NUMBER",
-            "value_type": "FLOAT",
+            "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
             "bacnet_unit_type_id": 242,
             "bacnet_unit_type": "UNITS_VOLT_AMPERE_HOURS_REACTIVE"
@@ -163,7 +151,7 @@
             "unit": "VArh",
             "access_mode": "R",
             "data_type": "NUMBER",
-            "value_type": "FLOAT",
+            "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
             "bacnet_unit_type_id": 242,
             "bacnet_unit_type": "UNITS_VOLT_AMPERE_HOURS_REACTIVE"
@@ -175,7 +163,7 @@
             "unit": "VArh",
             "access_mode": "R",
             "data_type": "NUMBER",
-            "value_type": "FLOAT",
+            "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
             "bacnet_unit_type_id": 242,
             "bacnet_unit_type": "UNITS_VOLT_AMPERE_HOURS_REACTIVE"
@@ -187,7 +175,7 @@
             "unit": "VArh",
             "access_mode": "R",
             "data_type": "NUMBER",
-            "value_type": "FLOAT",
+            "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
             "bacnet_unit_type_id": 242,
             "bacnet_unit_type": "UNITS_VOLT_AMPERE_HOURS_REACTIVE"
@@ -199,7 +187,7 @@
             "unit": "VArh",
             "access_mode": "R",
             "data_type": "NUMBER",
-            "value_type": "FLOAT",
+            "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
             "bacnet_unit_type_id": 242,
             "bacnet_unit_type": "UNITS_VOLT_AMPERE_HOURS_REACTIVE"
@@ -211,7 +199,7 @@
             "unit": "W",
             "access_mode": "R",
             "data_type": "NUMBER",
-            "value_type": "FLOAT",
+            "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
             "bacnet_unit_type_id": 47,
             "bacnet_unit_type": "UNITS_WATTS"
@@ -223,7 +211,7 @@
             "unit": "W",
             "access_mode": "R",
             "data_type": "NUMBER",
-            "value_type": "FLOAT",
+            "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
             "bacnet_unit_type_id": 47,
             "bacnet_unit_type": "UNITS_WATTS"
@@ -235,7 +223,7 @@
             "unit": "W",
             "access_mode": "R",
             "data_type": "NUMBER",
-            "value_type": "FLOAT",
+            "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
             "bacnet_unit_type_id": 47,
             "bacnet_unit_type": "UNITS_WATTS"
@@ -247,7 +235,7 @@
             "unit": "W",
             "access_mode": "R",
             "data_type": "NUMBER",
-            "value_type": "FLOAT",
+            "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
             "bacnet_unit_type_id": 47,
             "bacnet_unit_type": "UNITS_WATTS"
@@ -259,7 +247,7 @@
             "unit": "W",
             "access_mode": "R",
             "data_type": "NUMBER",
-            "value_type": "FLOAT",
+            "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
             "bacnet_unit_type_id": 47,
             "bacnet_unit_type": "UNITS_WATTS"
@@ -271,7 +259,7 @@
             "unit": "W",
             "access_mode": "R",
             "data_type": "NUMBER",
-            "value_type": "FLOAT",
+            "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
             "bacnet_unit_type_id": 47,
             "bacnet_unit_type": "UNITS_WATTS"
@@ -283,7 +271,7 @@
             "unit": "W",
             "access_mode": "R",
             "data_type": "NUMBER",
-            "value_type": "FLOAT",
+            "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
             "bacnet_unit_type_id": 47,
             "bacnet_unit_type": "UNITS_WATTS"
@@ -295,7 +283,7 @@
             "unit": "W",
             "access_mode": "R",
             "data_type": "NUMBER",
-            "value_type": "FLOAT",
+            "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
             "bacnet_unit_type_id": 47,
             "bacnet_unit_type": "UNITS_WATTS"
@@ -307,7 +295,7 @@
             "unit": "VAr",
             "access_mode": "R",
             "data_type": "NUMBER",
-            "value_type": "FLOAT",
+            "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
             "bacnet_unit_type_id": 11,
             "bacnet_unit_type": "UNITS_VOLT_AMPERES_REACTIVE"
@@ -319,7 +307,7 @@
             "unit": "VAr",
             "access_mode": "R",
             "data_type": "NUMBER",
-            "value_type": "FLOAT",
+            "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
             "bacnet_unit_type_id": 11,
             "bacnet_unit_type": "UNITS_VOLT_AMPERES_REACTIVE"
@@ -331,7 +319,7 @@
             "unit": "VAr",
             "access_mode": "R",
             "data_type": "NUMBER",
-            "value_type": "FLOAT",
+            "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
             "bacnet_unit_type_id": 11,
             "bacnet_unit_type": "UNITS_VOLT_AMPERES_REACTIVE"
@@ -343,7 +331,7 @@
             "unit": "VAr",
             "access_mode": "R",
             "data_type": "NUMBER",
-            "value_type": "FLOAT",
+            "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
             "bacnet_unit_type_id": 11,
             "bacnet_unit_type": "UNITS_VOLT_AMPERES_REACTIVE"
@@ -355,7 +343,7 @@
             "unit": "VAr",
             "access_mode": "R",
             "data_type": "NUMBER",
-            "value_type": "FLOAT",
+            "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
             "bacnet_unit_type_id": 11,
             "bacnet_unit_type": "UNITS_VOLT_AMPERES_REACTIVE"
@@ -367,7 +355,7 @@
             "unit": "VAr",
             "access_mode": "R",
             "data_type": "NUMBER",
-            "value_type": "FLOAT",
+            "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
             "bacnet_unit_type_id": 11,
             "bacnet_unit_type": "UNITS_VOLT_AMPERES_REACTIVE"
@@ -379,7 +367,7 @@
             "unit": "VAr",
             "access_mode": "R",
             "data_type": "NUMBER",
-            "value_type": "FLOAT",
+            "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
             "bacnet_unit_type_id": 11,
             "bacnet_unit_type": "UNITS_VOLT_AMPERES_REACTIVE"
@@ -391,7 +379,7 @@
             "unit": "VAr",
             "access_mode": "R",
             "data_type": "NUMBER",
-            "value_type": "FLOAT",
+            "value_type": "UINT32",
             "bacnet_type": "analog_value_object",
             "bacnet_unit_type_id": 11,
             "bacnet_unit_type": "UNITS_VOLT_AMPERES_REACTIVE"
@@ -475,7 +463,7 @@
             "unit": "deg",
             "access_mode": "R",
             "data_type": "NUMBER",
-            "value_type": "FLOAT",
+            "value_type": "INT16",
             "bacnet_type": "analog_value_object",
             "bacnet_unit_type_id": 14,
             "bacnet_unit_type": "UNITS_DEGREES_PHASE"
@@ -487,7 +475,7 @@
             "unit": "deg",
             "access_mode": "R",
             "data_type": "NUMBER",
-            "value_type": "FLOAT",
+            "value_type": "INT16",
             "bacnet_type": "analog_value_object",
             "bacnet_unit_type_id": 14,
             "bacnet_unit_type": "UNITS_DEGREES_PHASE"
@@ -499,10 +487,190 @@
             "unit": "deg",
             "access_mode": "R",
             "data_type": "NUMBER",
-            "value_type": "FLOAT",
+            "value_type": "INT16",
             "bacnet_type": "analog_value_object",
             "bacnet_unit_type_id": 14,
             "bacnet_unit_type": "UNITS_DEGREES_PHASE"
+        },
+        {
+            "id": "data.kernel",
+            "name": "Kernel version",
+            "value": "",
+            "unit": "",
+            "access_mode": "R",
+            "data_type": "STRING",
+            "value_type": "STRING",
+            "bacnet_type": "characterstring_value_object",
+            "bacnet_unit_type_id": 95,
+            "bacnet_unit_type": "UNITS_NO_UNITS"
+        },
+        {
+            "id": "data.manufacturer",
+            "name": "Manufacturer name",
+            "value": "",
+            "unit": "",
+            "access_mode": "R",
+            "data_type": "STRING",
+            "value_type": "STRING",
+            "bacnet_type": "characterstring_value_object",
+            "bacnet_unit_type_id": 95,
+            "bacnet_unit_type": "UNITS_NO_UNITS"
+        },
+        {
+            "id": "data.model",
+            "name": "Device model",
+            "value": "",
+            "unit": "",
+            "access_mode": "R",
+            "data_type": "STRING",
+            "value_type": "STRING",
+            "bacnet_type": "characterstring_value_object",
+            "bacnet_unit_type_id": 95,
+            "bacnet_unit_type": "UNITS_NO_UNITS"
+        },
+        {
+            "id": "data.date",
+            "name": "Manufacturing date",
+            "value": "",
+            "unit": "",
+            "access_mode": "R",
+            "data_type": "STRING",
+            "value_type": "STRING",
+            "bacnet_type": "characterstring_value_object",
+            "bacnet_unit_type_id": 95,
+            "bacnet_unit_type": "UNITS_NO_UNITS"
+        },
+        {
+            "id": "data.position",
+            "name": "Device position",
+            "value": "",
+            "unit": "",
+            "access_mode": "R",
+            "data_type": "STRING",
+            "value_type": "STRING",
+            "bacnet_type": "characterstring_value_object",
+            "bacnet_unit_type_id": 95,
+            "bacnet_unit_type": "UNITS_NO_UNITS"
+        },
+        {
+            "id": "data.application_name",
+            "name": "Application name",
+            "value": "",
+            "unit": "",
+            "access_mode": "R",
+            "data_type": "STRING",
+            "value_type": "STRING",
+            "bacnet_type": "characterstring_value_object",
+            "bacnet_unit_type_id": 95,
+            "bacnet_unit_type": "UNITS_NO_UNITS"
+        },
+        {
+            "id": "data.main_or_external_voltage",
+            "name": "Main or external voltage",
+            "value": "",
+            "unit": "V",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "FLOAT",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 5,
+            "bacnet_unit_type": "UNITS_VOLTS"
+        },
+        {
+            "id": "data.message_type",
+            "name": "Message type",
+            "value": "",
+            "unit": "",
+            "access_mode": "R",
+            "data_type": "STRING",
+            "value_type": "STRING",
+            "bacnet_type": "characterstring_value_object",
+            "bacnet_unit_type_id": 95,
+            "bacnet_unit_type": "UNITS_NO_UNITS"
+        },
+        {
+            "id": "data.nb_retry",
+            "name": "Number of retries",
+            "value": "",
+            "unit": "",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "UINT8",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 95,
+            "bacnet_unit_type": "UNITS_NO_UNITS"
+        },
+        {
+            "id": "data.automatic_association",
+            "name": "LoRaWAN automatic association",
+            "value": "",
+            "unit": "",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "FLOAT",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 95,
+            "bacnet_unit_type": "UNITS_NO_UNITS"
+        },
+        {
+            "id": "data.data_rate",
+            "name": "LoRaWAN data rate",
+            "value": "",
+            "unit": "",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "UINT8",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 95,
+            "bacnet_unit_type": "UNITS_NO_UNITS"
+        },
+        {
+            "id": "data.ABP_dev_address",
+            "name": "ABP device address",
+            "value": "",
+            "unit": "",
+            "access_mode": "R",
+            "data_type": "STRING",
+            "value_type": "STRING",
+            "bacnet_type": "characterstring_value_object",
+            "bacnet_unit_type_id": 95,
+            "bacnet_unit_type": "UNITS_NO_UNITS"
+        },
+        {
+            "id": "data.OTA_app_EUI",
+            "name": "OTA application EUI",
+            "value": "",
+            "unit": "",
+            "access_mode": "R",
+            "data_type": "STRING",
+            "value_type": "STRING",
+            "bacnet_type": "characterstring_value_object",
+            "bacnet_unit_type_id": 95,
+            "bacnet_unit_type": "UNITS_NO_UNITS"
+        },
+        {
+            "id": "data.output",
+            "name": "Output state",
+            "value": "",
+            "unit": "",
+            "access_mode": "R",
+            "data_type": "STRING",
+            "value_type": "STRING",
+            "bacnet_type": "characterstring_value_object",
+            "bacnet_unit_type_id": 95,
+            "bacnet_unit_type": "UNITS_NO_UNITS"
+        },
+        {
+            "id": "data.index",
+            "name": "Pulse counter index",
+            "value": "",
+            "unit": "",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "UINT32",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 95,
+            "bacnet_unit_type": "UNITS_NO_UNITS"
         },
         {
             "id": "data.active_energy_a",
