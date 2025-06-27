@@ -193,7 +193,7 @@
 - **configuration (CID: 0x0050)** : disposable_battery_voltage (V)
 - **lorawan (CID: 0x8004)** : message_type, nb_retry, automatic_association, data_rate, ABP_dev_address, OTA_app_EUI
 - **binary input (CID: 0x000F)** : index_1, index_2, index_3, pin_state_1, pin_state_2, pin_state_3, polarity, edge_selection, debounce_period (ms), poll_period (ms), force_notify
-- **multi binary inputs (CID: 0x8005)** : pin_state_1, pin_state_2, pin_state_3, 
+- **multi binary inputs (CID: 0x8005)** : pin_state_1, pin_state_2, pin_state_3
 
 </details>
 
@@ -205,7 +205,7 @@
 - **configuration (CID: 0x0050)** : disposable_battery_voltage (V)
 - **lorawan (CID: 0x8004)** : message_type, nb_retry, automatic_association, data_rate, ABP_dev_address, OTA_app_EUI
 - **binary input (CID: 0x000F)** : index_1, index_2, index_3, pin_state_1, pin_state_2, pin_state_3, polarity, edge_selection, debounce_period (ms), poll_period (ms), force_notify
-- **multi binary inputs (CID: 0x8005)** : pin_state_1, pin_state_2, pin_state_3, 
+- **multi binary inputs (CID: 0x8005)** : pin_state_1, pin_state_2, pin_state_3
 
 </details>
 
@@ -315,7 +315,7 @@
 - **lorawan (CID: 0x8004)** : message_type, nb_retry, automatic_association, data_rate, ABP_dev_address, OTA_app_EUI
 - **analog input (CID: 0x000C)** : 4-20_mA (mA), 0-5_V_1 (V), 0-5_V_2 (V), ratiometric_0-5_V_1 (V), ratiometric_0-5_V_2 (V)
 - **binary input (CID: 0x000F)** : index_1, index_2, index_3, pin_state_1, pin_state_2, pin_state_3
-- **multi binary inputs (CID: 0x8005)** : pin_state_1, pin_state_2, pin_state_3, 
+- **multi binary inputs (CID: 0x8005)** : pin_state_1, pin_state_2, pin_state_3
 
 </details>
 
