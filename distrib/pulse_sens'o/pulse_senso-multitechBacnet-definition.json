@@ -101,9 +101,6 @@
     "force_notify": {
       "type": "bool"
     },
-    "": {
-      "type": "float"
-    },
     "battery_voltage": {
       "type": "float",
       "units": "V"
