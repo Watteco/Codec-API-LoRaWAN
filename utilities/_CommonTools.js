@@ -928,6 +928,7 @@ function generateMilesightBacnetMapping(devicePath, bacnetMappingPath = null, ba
         }
         
         // Load necessary files
+        const jsFileContent = fs.readFileSync(jsFilePath, 'utf8');
         const clustersVarsContent = fs.readFileSync(clustersVarsPath, 'utf8');
         const clustersVars = JSON.parse(clustersVarsContent);
         let units = {};
@@ -937,9 +938,10 @@ function generateMilesightBacnetMapping(devicePath, bacnetMappingPath = null, ba
         }
         const bacnetUnitMappings = JSON.parse(fs.readFileSync(bacnetUnitMappingPath, 'utf8'));
         
-        // Parse BACnet mapping CSV to get variable descriptions
+        // Parse BACnet mapping CSV to get variable descriptions and types
         const bacnetMappingContent = fs.readFileSync(bacnetMappingPath, 'utf8');
         const bacnetDescriptions = {};
+        const bacnetMap = {}; // Define bacnetMap here for use in determineDataType
         
         bacnetMappingContent.split('\n')
             .filter(line => !line.startsWith('//') && !line.startsWith('##') && line.trim() !== '')
@@ -948,37 +950,67 @@ function generateMilesightBacnetMapping(devicePath, bacnetMappingPath = null, ba
                 if (columns.length >= 8) {
                     const id = columns[0].trim();
                     const name = columns[1].trim();
+                    const type = columns[5].trim(); // BACnet value_type (BOOL, FLOAT, etc.)
+                    
                     bacnetDescriptions[id] = name;
+                    
+                    // Store type info for use in determineDataType
+                    bacnetMap[id] = {
+                        type: type || ""
+                    };
                 }
             });
         
-        // Collect all variables from ClustersVariables.json
-        let allVariables = new Set();
+        // Collect all variables from multiple sources
+        const allVariables = new Set();
         
-        // Check if the file follows format 1 (array of objects with variables array)
+        // 1. Extract lblnames from batch_param
+        const batchParamRegex = /batch_param\s*=\s*\[[^[]*\[\s*([^\]]*)\]\s*\]/s;
+        const batchParamMatch = jsFileContent.match(batchParamRegex);
+        if (batchParamMatch && batchParamMatch[1]) {
+            const entriesText = batchParamMatch[1];
+            const lblnameRegex = /lblname\s*:\s*["']([^"']+)["']/g;
+            let match;
+            while ((match = lblnameRegex.exec(entriesText)) !== null) {
+                allVariables.add(match[1]);
+            }
+        }
+        
+        // 2. Extract variables from endpointCorresponder
+        const endpointCorresponderRegex = /endpointCorresponder\s*=\s*{([^}]*)}/s;
+        const endpointCorresponderMatch = jsFileContent.match(endpointCorresponderRegex);
+        if (endpointCorresponderMatch && endpointCorresponderMatch[1]) {
+            const entriesText = endpointCorresponderMatch[1];
+            const valuesRegex = /:\s*\[\s*([^\]]+)\s*\]/g;
+            let match;
+            while ((match = valuesRegex.exec(entriesText)) !== null) {
+                const values = match[1].split(',').map(v => 
+                    v.trim().replace(/["']/g, '')
+                ).filter(v => v !== "NA");
+                values.forEach(v => allVariables.add(v));
+            }
+        }
+        
+        // 3. Add variables from ClustersVariables.json
         if (Array.isArray(clustersVars)) {
             for (const cluster of clustersVars) {
                 if (cluster.variables && Array.isArray(cluster.variables)) {
                     for (const variable of cluster.variables) {
-                        allVariables.add(variable);
+                        if (variable) allVariables.add(variable);
                     }
                 }
             }
-        } 
-        // Check if the file follows format 2 (object with clusters array)
-        else if (clustersVars.clusters && Array.isArray(clustersVars.clusters)) {
+        } else if (clustersVars.clusters && Array.isArray(clustersVars.clusters)) {
             for (const cluster of clustersVars.clusters) {
                 if (cluster.variables && Array.isArray(cluster.variables)) {
                     for (const variable of cluster.variables) {
-                        allVariables.add(variable);
+                        if (variable) allVariables.add(variable);
                     }
                 }
             }
         }
         
         // Extract downlink commands from the device's JS file
-        const jsFileContent = fs.readFileSync(jsFilePath, 'utf8');
-        
         // Find the dlFrames object
         const dlFramesRegex = /const\s+dlFrames\s*=\s*{([^}]*)}/s;
         const dlFramesMatch = jsFileContent.match(dlFramesRegex);
@@ -1012,38 +1044,129 @@ function generateMilesightBacnetMapping(devicePath, bacnetMappingPath = null, ba
             object: []
         };
         
-        // Add regular variables
-        allVariables.forEach(varName => {
-            if (units[varName]) {
-                const unitSymbol = units[varName];
-                const bacnetUnitInfo = bacnetUnitMappings.find(mapping => mapping.symbol === unitSymbol);
-                
-                if (bacnetUnitInfo) {
-                    const objectMapping = {
-                        id: `data.${varName}`,
-                        name: bacnetDescriptions[varName] || varName,
-                        value: "",
-                        unit: unitSymbol,
-                        access_mode: "R",
-                        data_type: determineDataType(varName),
-                        value_type: determineValueType(varName),
-                        bacnet_type: "analog_value_object",
-                        bacnet_unit_type_id: bacnetUnitInfo.id,
-                        bacnet_unit_type: bacnetUnitInfo.milesight_type
-                    };
-                    
-                    // For boolean values, use binary_value_object
-                    if (objectMapping.data_type === "BOOLEAN") {
-                        objectMapping.bacnet_type = "binary_value_object";
-                    }
-                    
-                    objectMappings.object.push(objectMapping);
+        // Helper function to determine data type based on variable name
+        function determineDataType(varName) {
+            // Check if the variable exists in BACnet mappings and use its type
+            if (bacnetMap[varName] && bacnetMap[varName].type) {
+                const bacnetType = bacnetMap[varName].type.toUpperCase();
+                if (bacnetType === "BOOL" || bacnetType === "BOOLEAN") {
+                    return "BOOLEAN";
+                } else if (bacnetType === "STRING") {
+                    return "STRING";
                 }
             }
+            
+            // Boolean patterns
+            if (/^(occupancy|violation_detection|status|on_off|enabled|active|pin_state|state)/.test(varName)) {
+                return "BOOLEAN";
+            }
+            
+            // String patterns
+            if (/^(kernel|manufacturer|model|date|position|application_name|message_type|ABP_dev_address|OTA_app_EUI)$/.test(varName)) {
+                return "STRING";
+            }
+            
+            return "NUMBER";
+        }
+        
+        // Helper function to determine value type based on variable name
+        function determineValueType(varName) {
+            if (determineDataType(varName) === "BOOLEAN") {
+                return "BOOLEAN";
+            } else if (determineDataType(varName) === "STRING") {
+                return "STRING";
+            }
+            
+            // Check if the variable exists in BACnet mappings and use its type
+            if (bacnetMap[varName] && bacnetMap[varName].type) {
+                const bacnetType = bacnetMap[varName].type.toUpperCase();
+                if (bacnetType === "UINT8") return "UINT8";
+                if (bacnetType === "UINT16") return "UINT16";
+                if (bacnetType === "UINT32") return "UINT32";
+                if (bacnetType === "INT8") return "INT8";
+                if (bacnetType === "INT16") return "INT16";
+                if (bacnetType === "INT32") return "INT32";
+                if (bacnetType === "FLOAT") return "FLOAT";
+            }
+            
+            // Temperature, humidity, voltage and other float values
+            if (/^(temperature|humidity|voltage|battery|disposable_battery_voltage|pressure|.*_voltage)/.test(varName)) {
+                return "FLOAT";
+            }
+            
+            // Counters and indexes are typically unsigned integers
+            if (/^(index|counter|count|pulses)/.test(varName)) {
+                return "UINT32";
+            }
+            
+            // Check for metrics that are typically integers
+            if (/^(CO2|illuminance|IAQ)/.test(varName)) {
+                return "UINT16";
+            }
+            
+            // Energy values (could be positive or negative)
+            if (/^(energy|active_energy|reactive_energy)/.test(varName)) {
+                return "INT32";
+            }
+            
+            // Power values (could be positive or negative)
+            if (/^(power|active_power|reactive_power)/.test(varName)) {
+                return "INT32";
+            }
+            
+            // Default to FLOAT for other values
+            return "FLOAT";
+        }
+        
+        // Add regular variables
+        allVariables.forEach(varName => {
+            // Skip empty variables
+            if (!varName || varName === "") return;
+            
+            const unitSymbol = units[varName] || "";
+            const bacnetUnitInfo = unitSymbol ? 
+                bacnetUnitMappings.find(mapping => mapping.symbol === unitSymbol) : 
+                bacnetUnitMappings.find(mapping => mapping.symbol === "" && mapping.milesight_type === "UNITS_NO_UNITS");
+            
+            let bacnetUnitTypeId = 95; // Default to NO_UNITS
+            let bacnetUnitType = "UNITS_NO_UNITS";
+            
+            if (bacnetUnitInfo) {
+                bacnetUnitTypeId = bacnetUnitInfo.id;
+                bacnetUnitType = bacnetUnitInfo.milesight_type;
+            }
+            
+            const dataType = determineDataType(varName);
+            const valueType = determineValueType(varName);
+            
+            let bacnetType = "analog_value_object";
+            if (dataType === "BOOLEAN") {
+                bacnetType = "binary_value_object";
+            } else if (dataType === "STRING") {
+                bacnetType = "characterstring_value_object";
+            }
+            
+            const objectMapping = {
+                id: `data.${varName}`,
+                name: bacnetDescriptions[varName] || varName,
+                value: "",
+                unit: unitSymbol,
+                access_mode: "R",
+                data_type: dataType,
+                value_type: valueType,
+                bacnet_type: bacnetType,
+                bacnet_unit_type_id: bacnetUnitTypeId,
+                bacnet_unit_type: bacnetUnitType
+            };
+            
+            objectMappings.object.push(objectMapping);
         });
         
         // Add downlink commands
         downlinkCommands.forEach(cmdName => {
+            // Skip empty commands
+            if (!cmdName || cmdName === "") return;
+            
             // Determine command data type based on name or pattern
             let dataType = "NUMBER";
             let valueType = "FLOAT";
