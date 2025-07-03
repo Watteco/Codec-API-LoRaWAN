@@ -22,7 +22,14 @@ function watteco_encodeDownlink(config, input) {
     dlFrames.sendFactoryReset = "1150005007";
     dlFrames.sendLoraRetries = "11058004000120<U8:sendLoraRetries>";
     dlFrames.sendLoraRejoin = "1150800400<U16:sendLoraRejoin>"; //minutes
-    const commandKey = Object.keys(input.data).find(key => dlFrames[key]);
+
+    let commandKey = null;
+    for (const key in input.data) {
+      if (dlFrames[key]) {
+        commandKey = key;
+        break;
+      }
+    }
     
     if (!commandKey) {
       output.errors = ["Unknown command. No matching command found in downlink frames"];
@@ -108,26 +115,41 @@ function watteco_encodeDownlink(config, input) {
         hexValue = value ? '01' : '00';
       } else if (typeof value === 'number') {
         if (!typeInfo) {
-          hexValue = value.toString(16).padStart(2, '0');
+          hexValue = value.toString(16);
+          if (hexValue.length % 2 !== 0) {
+            hexValue = '0' + hexValue; // Ajoute un zéro si la longueur est impaire
+          }
         } else if (typeInfo === 'U8') {
           if (value < 0 || value > 255) {
             output.warnings.push(`Value ${value} out of range for U8, truncating`);
           }
-          hexValue = (value & 0xFF).toString(16).padStart(2, '0');
+          hexValue = (value & 0xFF).toString(16);
+          while (hexValue.length < 2) {
+            hexValue = '0' + hexValue;
+          }
         } else if (typeInfo === 'U16') {
           if (value < 0 || value > 65535) {
             output.warnings.push(`Value ${value} out of range for U16, truncating`);
           }
-          hexValue = (value & 0xFFFF).toString(16).padStart(4, '0');
+          hexValue = (value & 0xFFFF).toString(16);
+          while (hexValue.length < 4) {
+            hexValue = '0' + hexValue;
+          }
         } else if (typeInfo === 'U32') {
           if (value < 0) {
             output.warnings.push(`Negative value ${value} for unsigned type U32, converting to 0`);
             value = 0;
           }
-          hexValue = Math.min(value, 0xFFFFFFFF).toString(16).padStart(8, '0');
+          hexValue = Math.min(value, 0xFFFFFFFF).toString(16);
+          while (hexValue.length < 8) {
+            hexValue = '0' + hexValue;
+          }
         } else {
           output.warnings.push(`Unknown type ${typeInfo}, using default encoding`);
-          hexValue = value.toString(16).padStart(2, '0');
+          hexValue = value.toString(16);
+          if (hexValue.length % 2 !== 0) {
+            hexValue = '0' + hexValue;
+          }
         }
       } else {
         output.errors = [`Unsupported type for parameter ${placeholder}: ${typeof value}`];
