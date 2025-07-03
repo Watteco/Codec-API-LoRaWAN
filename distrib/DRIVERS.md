@@ -3,7 +3,7 @@
 *(This `markdown` script is automatically generated. Please do not modify it.)*
 
 <details>
-<summary>ATM'O [1.1.4]</summary>
+<summary>ATM'O [1.1.5]</summary>
 
   [NPM: watteco-atm_o](https://www.npmjs.com/package/watteco-atm_o)
 - **basic (CID: 0x0000)** : kernel, manufacturer, model, date, position, application_name
@@ -17,7 +17,7 @@
 </details>
 
 <details>
-<summary>CLIM'O [1.1.4]</summary>
+<summary>CLIM'O [1.1.5]</summary>
 
   [NPM: watteco-clim_o](https://www.npmjs.com/package/watteco-clim_o)
 - **basic (CID: 0x0000)** : kernel, manufacturer, model, date, position, application_name
@@ -29,7 +29,7 @@
 </details>
 
 <details>
-<summary>CLOS'O [1.1.4]</summary>
+<summary>CLOS'O [1.1.5]</summary>
 
   [NPM: watteco-clos_o](https://www.npmjs.com/package/watteco-clos_o)
 - **basic (CID: 0x0000)** : kernel, manufacturer, model, date, position, application_name
@@ -40,7 +40,7 @@
 </details>
 
 <details>
-<summary>FLASH'O [1.1.4]</summary>
+<summary>FLASH'O [1.1.5]</summary>
 
   [NPM: watteco-flash_o](https://www.npmjs.com/package/watteco-flash_o)
 - **basic (CID: 0x0000)** : kernel, manufacturer, model, date, position, application_name
@@ -51,7 +51,7 @@
 </details>
 
 <details>
-<summary>HYGROTEMP'O [1.1.4]</summary>
+<summary>HYGROTEMP'O [1.1.5]</summary>
 
   [NPM: watteco-hygrotemp_o](https://www.npmjs.com/package/watteco-hygrotemp_o)
 - **basic (CID: 0x0000)** : kernel, manufacturer, model, date, position, application_name
@@ -64,7 +64,7 @@
 </details>
 
 <details>
-<summary>HYGROTEMP'O_REMOTE [1.1.4]</summary>
+<summary>HYGROTEMP'O_REMOTE [1.1.5]</summary>
 
   [NPM: watteco-hygrotemp_o_remote](https://www.npmjs.com/package/watteco-hygrotemp_o_remote)
 - **basic (CID: 0x0000)** : kernel, manufacturer, model, date, position, application_name
@@ -77,7 +77,7 @@
 </details>
 
 <details>
-<summary>IN'O [1.1.4]</summary>
+<summary>IN'O [1.1.5]</summary>
 
   [NPM: watteco-in_o](https://www.npmjs.com/package/watteco-in_o)
 - **basic (CID: 0x0000)** : kernel, manufacturer, model, date, position, application_name
@@ -90,7 +90,7 @@
 </details>
 
 <details>
-<summary>INCLIN'O [1.1.4]</summary>
+<summary>INCLIN'O [1.1.5]</summary>
 
   [NPM: watteco-inclin_o](https://www.npmjs.com/package/watteco-inclin_o)
 - **basic (CID: 0x0000)** : kernel, manufacturer, model, date, position, application_name
@@ -102,7 +102,7 @@
 </details>
 
 <details>
-<summary>INDOOR_TEMPERATURE [1.1.4]</summary>
+<summary>INDOOR_TEMPERATURE [1.1.5]</summary>
 
   [NPM: watteco-indoor_temperature](https://www.npmjs.com/package/watteco-indoor_temperature)
 - **basic (CID: 0x0000)** : kernel, manufacturer, model, date, position, application_name
@@ -113,7 +113,7 @@
 </details>
 
 <details>
-<summary>INTENS'O [1.1.4]</summary>
+<summary>INTENS'O [1.1.5]</summary>
 
   [NPM: watteco-intens_o](https://www.npmjs.com/package/watteco-intens_o)
 - **basic (CID: 0x0000)** : kernel, manufacturer, model, date, position, application_name
@@ -124,7 +124,7 @@
 </details>
 
 <details>
-<summary>LEV'O [1.1.4]</summary>
+<summary>LEV'O [1.1.5]</summary>
 
   [NPM: watteco-lev_o](https://www.npmjs.com/package/watteco-lev_o)
 - **basic (CID: 0x0000)** : kernel, manufacturer, model, date, position, application_name
@@ -135,7 +135,7 @@
 </details>
 
 <details>
-<summary>MODBUS [1.1.5]</summary>
+<summary>MODBUS [1.1.6]</summary>
 
   [NPM: watteco-modbus](https://www.npmjs.com/package/watteco-modbus)
 - **basic (CID: 0x0000)** : kernel, manufacturer, model, date, position, application_name
@@ -148,7 +148,7 @@
 </details>
 
 <details>
-<summary>MONIT'O [1.1.4]</summary>
+<summary>MONIT'O [1.1.5]</summary>
 
   [NPM: watteco-monit_o](https://www.npmjs.com/package/watteco-monit_o)
 - **basic (CID: 0x0000)** : kernel, manufacturer, model, date, position, application_name
@@ -159,7 +159,7 @@
 </details>
 
 <details>
-<summary>MOVE'O_LITE [1.1.4]</summary>
+<summary>MOVE'O_LITE [1.1.5]</summary>
 
   [NPM: watteco-move_o_lite](https://www.npmjs.com/package/watteco-move_o_lite)
 - **basic (CID: 0x0000)** : kernel, manufacturer, model, date, position, application_name
@@ -174,7 +174,7 @@
 </details>
 
 <details>
-<summary>PRESS'O [1.1.4]</summary>
+<summary>PRESS'O [1.1.5]</summary>
 
   [NPM: watteco-press_o](https://www.npmjs.com/package/watteco-press_o)
 - **basic (CID: 0x0000)** : kernel, manufacturer, model, date, position, application_name
@@ -186,7 +186,7 @@
 </details>
 
 <details>
-<summary>PULSE_SENS'O [1.1.4]</summary>
+<summary>PULSE_SENS'O [1.1.5]</summary>
 
   [NPM: watteco-pulse_sens_o](https://www.npmjs.com/package/watteco-pulse_sens_o)
 - **basic (CID: 0x0000)** : kernel, manufacturer, model, date, position, application_name
@@ -198,7 +198,7 @@
 </details>
 
 <details>
-<summary>PULSE_SENS'O_ATEX [1.1.4]</summary>
+<summary>PULSE_SENS'O_ATEX [1.1.5]</summary>
 
   [NPM: watteco-pulse_sens_o_atex](https://www.npmjs.com/package/watteco-pulse_sens_o_atex)
 - **basic (CID: 0x0000)** : kernel, manufacturer, model, date, position, application_name
@@ -210,7 +210,7 @@
 </details>
 
 <details>
-<summary>SMARTPILOT_WIRE [1.1.5]</summary>
+<summary>SMARTPILOT_WIRE [1.1.6]</summary>
 
   [NPM: watteco-smartpilot_wire](https://www.npmjs.com/package/watteco-smartpilot_wire)
 - **basic (CID: 0x0000)** : kernel, manufacturer, model, date, position, application_name
@@ -221,7 +221,7 @@
 </details>
 
 <details>
-<summary>SMARTPLUG [1.1.4]</summary>
+<summary>SMARTPLUG [1.1.5]</summary>
 
   [NPM: watteco-smartplug](https://www.npmjs.com/package/watteco-smartplug)
 - **basic (CID: 0x0000)** : kernel, manufacturer, model, date, position, application_name
@@ -234,7 +234,7 @@
 </details>
 
 <details>
-<summary>TEMP'O [1.1.4]</summary>
+<summary>TEMP'O [1.1.5]</summary>
 
   [NPM: watteco-temp_o](https://www.npmjs.com/package/watteco-temp_o)
 - **basic (CID: 0x0000)** : kernel, manufacturer, model, date, position, application_name
@@ -245,7 +245,7 @@
 </details>
 
 <details>
-<summary>TEMP'O_OUTDOOR [1.1.4]</summary>
+<summary>TEMP'O_OUTDOOR [1.1.5]</summary>
 
   [NPM: watteco-temp_o_outdoor](https://www.npmjs.com/package/watteco-temp_o_outdoor)
 - **basic (CID: 0x0000)** : kernel, manufacturer, model, date, position, application_name
@@ -256,7 +256,7 @@
 </details>
 
 <details>
-<summary>TEMP'O_REMOTE_1_PROBE [1.1.4]</summary>
+<summary>TEMP'O_REMOTE_1_PROBE [1.1.5]</summary>
 
   [NPM: watteco-temp_o_remote_1_probe](https://www.npmjs.com/package/watteco-temp_o_remote_1_probe)
 - **basic (CID: 0x0000)** : kernel, manufacturer, model, date, position, application_name
@@ -267,7 +267,7 @@
 </details>
 
 <details>
-<summary>TEMP'O_REMOTE_2_PROBES [1.1.4]</summary>
+<summary>TEMP'O_REMOTE_2_PROBES [1.1.5]</summary>
 
   [NPM: watteco-temp_o_remote_2_probes](https://www.npmjs.com/package/watteco-temp_o_remote_2_probes)
 - **basic (CID: 0x0000)** : kernel, manufacturer, model, date, position, application_name
@@ -278,7 +278,7 @@
 </details>
 
 <details>
-<summary>TH [1.1.4]</summary>
+<summary>TH [1.1.5]</summary>
 
   [NPM: watteco-th](https://www.npmjs.com/package/watteco-th)
 - **basic (CID: 0x0000)** : kernel, manufacturer, model, date, position, application_name
@@ -291,7 +291,7 @@
 </details>
 
 <details>
-<summary>TICS'O [1.1.5]</summary>
+<summary>TICS'O [1.1.6]</summary>
 
   [NPM: watteco-tics_o](https://www.npmjs.com/package/watteco-tics_o)
 - **basic (CID: 0x0000)** : kernel, manufacturer, model, date, position, application_name
@@ -307,7 +307,7 @@
 </details>
 
 <details>
-<summary>TORAN'O_ATEX [1.1.4]</summary>
+<summary>TORAN'O_ATEX [1.1.5]</summary>
 
   [NPM: watteco-toran_o_atex](https://www.npmjs.com/package/watteco-toran_o_atex)
 - **basic (CID: 0x0000)** : kernel, manufacturer, model, date, position, application_name
@@ -320,7 +320,7 @@
 </details>
 
 <details>
-<summary>TRIPHAS'O [1.1.4]</summary>
+<summary>TRIPHAS'O [1.1.5]</summary>
 
   [NPM: watteco-triphas_o](https://www.npmjs.com/package/watteco-triphas_o)
 - **basic (CID: 0x0000)** : kernel, manufacturer, model, date, position, application_name
@@ -336,7 +336,7 @@
 </details>
 
 <details>
-<summary>VAQA'O_LITE [1.1.4]</summary>
+<summary>VAQA'O_LITE [1.1.5]</summary>
 
   [NPM: watteco-vaqa_o_lite](https://www.npmjs.com/package/watteco-vaqa_o_lite)
 - **basic (CID: 0x0000)** : kernel, manufacturer, model, date, position, application_name
@@ -353,7 +353,7 @@
 </details>
 
 <details>
-<summary>VENTIL'O [1.1.4]</summary>
+<summary>VENTIL'O [1.1.5]</summary>
 
   [NPM: watteco-ventil_o](https://www.npmjs.com/package/watteco-ventil_o)
 - **basic (CID: 0x0000)** : kernel, manufacturer, model, date, position, application_name
