@@ -1,5 +1,5 @@
 {
-  "description": "Watteco clim'o v1.1.4",
+  "description": "Watteco clim'o v1.1.6",
   "properties": {
     "sendHexFrame": {
       "type": "string",

@@ -1,6 +1,6 @@
 {
   "name": "lev'o",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "main": "main.js",
   "description": "Driver for lev'o sensor",
   "codecId": "0021",

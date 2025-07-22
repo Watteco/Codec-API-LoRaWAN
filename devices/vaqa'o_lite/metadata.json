@@ -1,6 +1,6 @@
 {
   "name": "vaqa'o lite",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "main": "main.js",
   "description": "Driver for vaqa'o lite sensor",
   "codecId": "0013",
