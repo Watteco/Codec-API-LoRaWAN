@@ -540,7 +540,7 @@ function generateAllDeviceUnitsAutoFiles(pattern = null, bacnetMappingPath = nul
  * @param {string} bacnetMappingPath - Path to the BACnet mapping CSV file
  * @returns {boolean} - True if file was generated successfully, false otherwise
  */
-function generateMultitechBacnetDefinition(devicePath, bacnetMappingPath = null) {
+function generateMultitechBacnetDefinition(devicePath, bacnetMappingPath = null, version = null) {
     try {
         const deviceName = path.basename(devicePath);
         console.log(`Generating multitechBacnet definition for ${deviceName}...`);

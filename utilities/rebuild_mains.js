@@ -146,10 +146,18 @@ for (let i in devices) {
     sensorName = devices[i];
     console.log(`Building ${sensorName} ...`);    
     
-    let devicePath = path.join(__dirname, `../devices/${sensorName}`)
+    let devicePath = path.join(__dirname, `../devices/${sensorName}`);
     
     // Generate units.auto.js file for the device
     tools.generateDeviceUnitsAutoFile(devicePath);
+
+    // Update version in package.json and metadata.json if versionOrTypeParam is provided
+    updateVersionAndSyncMetadata(devicePath, versionOrTypeParam);
+
+    // Get the updated version from package.json
+    const packageJsonPath = path.join(devicePath, 'package.json');
+    const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
+    const updatedVersion = packageJson.version;
     
     // Define a list of devices to skip for MultitechBacnet definition generation
     const skipMultitechDevices = ["tics'o"];
@@ -164,7 +172,7 @@ for (let i in devices) {
         console.log(`Skipping MultitechBacnet definition for ${sensorName} - using existing manual definition file`);
     } else {
         // Generate MultitechBacnet definition
-        tools.generateMultitechBacnetDefinition(devicePath);
+        tools.generateMultitechBacnetDefinition(devicePath, null, updatedVersion);
     }
     
     // Define a list of devices to skip for MilesightBacnet mapping generation
@@ -188,7 +196,4 @@ for (let i in devices) {
     // Force name (npm: watteco-<device with _ replacing space and '>) or description for sensors (activate when needed)
     npmSensorName = `watteco-${sensorName.replace(/ /g, '_').replace(/'/g, '_')}`;
     tools.updateJSON_name_description(`${devicePath}/package.json`, npmSensorName, `Driver for ${sensorName} sensor`);
-
-    // Update version in package.json and metadata.json if versionOrTypeParam is provided
-    updateVersionAndSyncMetadata(devicePath, versionOrTypeParam);
 }
