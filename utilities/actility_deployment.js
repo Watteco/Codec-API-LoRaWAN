@@ -91,7 +91,7 @@ async function copyAndDeployFiles(watteco_path, actility_path, devices, actility
 
   try {
     // Copy common codec files ["standard.js", batch.js,convert_tools.js, tic.js, decode_uplink.js]
-    const filesToCopy = ["standard.js", "batch.js", "convert_tools.js", "tic.js", "decode_uplink.js"];
+    const filesToCopy = ["standard.js", "batch.js", "convert_tools.js", "tic.js", "decode_uplink.js", "encode_downlink.js"];
     const sourceDir = `${watteco_path}/codec`;
     const destDir = `${actility_path}/vendors/watteco/codec_${currentVersionMajorMinor}`;
     console.log(`Coping files from '${sourceDir}' to '${destDir}'`);
