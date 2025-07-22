@@ -169,6 +169,7 @@
     },
     "output": {
       "data": {
+        "batch_counter": 2,
         "samples": [
           {
             "variable": "temperature_1",
@@ -245,6 +246,7 @@
     },
     "output": {
       "data": {
+        "batch_counter": 6,
         "samples": [
           {
             "variable": "occupancy",

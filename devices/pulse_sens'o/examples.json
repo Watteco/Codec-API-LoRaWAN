@@ -191,6 +191,7 @@
     },
     "output": {
       "data": {
+        "batch_counter": 3,
         "samples": [
           {
             "variable": "index_1",

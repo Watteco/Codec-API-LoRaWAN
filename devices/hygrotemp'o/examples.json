@@ -237,6 +237,7 @@
     },
     "output": {
       "data": {
+        "batch_counter": 1,
         "samples": [
           {
             "variable": "temperature",
