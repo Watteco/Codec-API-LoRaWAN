@@ -193,6 +193,7 @@
     },
     "output": {
       "data": {
+        "batch_counter": 2,
         "samples": [
           {
             "variable": "pressure",

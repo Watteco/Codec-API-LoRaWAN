@@ -125,6 +125,7 @@
     },
     "output": {
       "data": {
+        "batch_counter": 0,
         "samples": [
           {
             "variable": "0-100_mV",
