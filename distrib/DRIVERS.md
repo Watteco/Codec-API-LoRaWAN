@@ -3,6 +3,17 @@
 *(This `markdown` script is automatically generated. Please do not modify it.)*
 
 <details>
+<summary>ALT'O [1.1.0]</summary>
+
+  [NPM: watteco-alt_o](https://www.npmjs.com/package/watteco-alt_o)
+- **basic (CID: 0x0000)** : kernel, manufacturer, model, date, position, application_name
+- **configuration (CID: 0x0050)** : disposable_battery_voltage (V)
+- **lorawan (CID: 0x8004)** : message_type, nb_retry, automatic_association, data_rate, ABP_dev_address, OTA_app_EUI
+- **analog input (CID: 0x000C)** : Deg (deg)
+
+</details>
+
+<details>
 <summary>ATM'O [1.1.6]</summary>
 
   [NPM: watteco-atm_o](https://www.npmjs.com/package/watteco-atm_o)
@@ -90,13 +101,13 @@
 </details>
 
 <details>
-<summary>INCLIN'O [1.1.6]</summary>
+<summary>INCLIN'O [1.1.7]</summary>
 
   [NPM: watteco-inclin_o](https://www.npmjs.com/package/watteco-inclin_o)
 - **basic (CID: 0x0000)** : kernel, manufacturer, model, date, position, application_name
 - **configuration (CID: 0x0050)** : disposable_battery_voltage (V)
 - **lorawan (CID: 0x8004)** : message_type, nb_retry, automatic_association, data_rate, ABP_dev_address, OTA_app_EUI
-- **analog input (CID: 0x000C)** : angle (deg)
+- **analog input (CID: 0x000C)** : Deg (deg)
 - **occupancy (CID: 0x0406)** : occupancy
 
 </details>

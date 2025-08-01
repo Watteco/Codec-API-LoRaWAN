@@ -21,20 +21,8 @@
             "data_type": "NUMBER",
             "value_type": "INT16",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 14,
-            "bacnet_unit_type": "UNITS_DEGREES_PHASE"
-        },
-        {
-            "id": "data.angle",
-            "name": "Phase angle",
-            "value": "",
-            "unit": "deg",
-            "access_mode": "R",
-            "data_type": "NUMBER",
-            "value_type": "INT16",
-            "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 14,
-            "bacnet_unit_type": "UNITS_DEGREES_PHASE"
+            "bacnet_unit_type_id": 90,
+            "bacnet_unit_type": "UNITS_DEGREES_ANGULAR"
         },
         {
             "id": "data.kernel",
