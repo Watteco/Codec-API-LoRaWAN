@@ -1,0 +1,94 @@
+{
+  "description": "Watteco alt'o v1.1.0",
+  "properties": {
+    "sendHexFrame": {
+      "type": "string",
+      "downlink": true
+    },
+    "sendConfirmedMode": {
+      "type": "uint8",
+      "downlink": true
+    },
+    "sendReboot": {
+      "type": "bool",
+      "downlink": true
+    },
+    "sendFactoryReset": {
+      "type": "bool",
+      "downlink": true
+    },
+    "sendLoraRetries": {
+      "type": "uint8",
+      "downlink": true
+    },
+    "sendLoraRejoin": {
+      "type": "uint16",
+      "downlink": true,
+      "units": "min"
+    },
+    "kernel": {
+      "type": "string"
+    },
+    "manufacturer": {
+      "type": "string"
+    },
+    "model": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string"
+    },
+    "position": {
+      "type": "string"
+    },
+    "application_name": {
+      "type": "string"
+    },
+    "disposable_battery_voltage": {
+      "type": "float",
+      "units": "V"
+    },
+    "message_type": {
+      "type": "string"
+    },
+    "nb_retry": {
+      "type": "uint8"
+    },
+    "automatic_association": {
+      "type": "float"
+    },
+    "data_rate": {
+      "type": "uint8"
+    },
+    "ABP_dev_address": {
+      "type": "string"
+    },
+    "OTA_app_EUI": {
+      "type": "string"
+    },
+    "Deg": {
+      "type": "int16",
+      "units": "deg"
+    },
+    "acc_mg": {
+      "type": "float"
+    },
+    "ACCmg": {
+      "type": "uint16",
+      "units": "mg"
+    },
+    "distance": {
+      "type": "float",
+      "units": "m"
+    },
+    "battery_voltage": {
+      "type": "float",
+      "units": "V"
+    },
+    "acc_temperature": {
+      "type": "float",
+      "units": "Cel"
+    }
+  },
+  "decoder": "alto-decoder.js"
+}

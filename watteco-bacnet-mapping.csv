@@ -18,6 +18,7 @@ id;name;value;type;access_mode;value_type;precision;units;cov_increment;min_valu
 0-70_V;0-70V sensor value;0;number;R;FLOAT;2;V;0,01;0;70;all;0-70V voltage sensor value
 4-20_mA;4-20mA sensor value;0;number;R;FLOAT;2;mA;0,01;4;20;all;4-20mA current loop sensor value
 ABP_dev_address;ABP device address;"""""";string;R;STRING;;;;;;all;ABP device address
+acc_temperature;Accelerometer temperature;0;number;R;FLOAT;2;Cel;0,01;-40;85;all;Accelerometer temperature in Celsius
 ACCmg;Acceleration in mg;0;number;R;UINT16;0;mg;1;0;65535;all;Acceleration value in millig
 active_energy;Active energy;0;number;R;INT32;0;Wh;1;-8388608;8388607;all;Active energy in watt-hours
 active_energy_a;Active energy phase A;0;number;R;INT32;0;Wh;1;-2147483648;2147483647;all;Active energy on phase A
@@ -48,6 +49,7 @@ debounce_period;Debounce period;0;number;R;UINT8;0;ms;1;0;65535;all;Debounce per
 Deg;Deg;0;number;R;INT16;0;deg;1;0;359;all;Deg measurement value
 differential_pressure;Differential pressure;0;number;R;INT16;0;Pa;1;-2500;2500;all;Differential pressure in Pascal
 disposable_battery_voltage;Disposable battery voltage;0;number;R;FLOAT;3;V;0,001;0;6;all;Disposable battery voltage
+distance;Distance;0;number;R;FLOAT;2;m;0,01;0;30;all;Distance measurement in meters
 edge_selection;Edge detection configuration;"""""";string;R;STRING;;;;;;all;Edge detection configuration
 external_level;External Level;0;number;R;FLOAT;3;V;0,001;;;all;External Level measurement value
 external_power_voltage;External Power Voltage;0;number;R;FLOAT;3;V;0,001;0;24;all;External Power Voltage measurement value
@@ -78,6 +80,7 @@ Irms_b;RMS current phase B;0;number;R;FLOAT;1;A;0,1;0;4000;all;RMS current on ph
 Irms_c;RMS current phase C;0;number;R;FLOAT;1;A;0,1;0;4000;all;RMS current on phase C
 kernel;Kernel version;"""""";string;R;STRING;;;;;;all;Device kernel version
 luminosity;Luminosity;0;number;R;UINT16;0;lx;1;0;65535;all;Luminosity measurement value
+magnitude;Magnitude;0;number;R;FLOAT;1;;1;0;10000;all;Magnitude measurement
 main_or_external_voltage;Main or external voltage;0;number;R;FLOAT;3;V;0,001;0;24;all;Main or external power supply voltage
 manufacturer;Manufacturer name;"""""";string;R;STRING;;;;;;all;Device manufacturer
 maximal_differential_pressure_since_last_report;Maximal Differential Pressure Since Last Report;0;number;R;INT16;0;Pa;1;-2500;2500;all;Maximal Differential Pressure Since Last Report measurement value
