@@ -7,9 +7,8 @@
 
 let units = {
     "disposable_battery_voltage": "V",
-    "angle": "deg",
-    "ACCmg": "mg",
-    "Deg": "deg"
+    "Deg": "deg",
+    "ACCmg": "mg"
 }
 
 module.exports = units;

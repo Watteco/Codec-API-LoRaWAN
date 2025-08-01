@@ -66,7 +66,7 @@
     "OTA_app_EUI": {
       "type": "string"
     },
-    "angle": {
+    "Deg": {
       "type": "int16",
       "units": "deg"
     },
@@ -76,10 +76,6 @@
     "ACCmg": {
       "type": "uint16",
       "units": "mg"
-    },
-    "Deg": {
-      "type": "int16",
-      "units": "deg"
     }
   },
   "decoder": "inclino-decoder.js"

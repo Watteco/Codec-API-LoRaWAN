@@ -13,7 +13,7 @@
     { "id": 11, "symbol": "VAr", "milesight_type": "UNITS_VOLT_AMPERES_REACTIVE" },
     { "id": 12, "symbol": "kVAr", "milesight_type": "UNITS_KILOVOLT_AMPERES_REACTIVE" },
     { "id": 13, "symbol": "MVAr", "milesight_type": "UNITS_MEGAVOLT_AMPERES_REACTIVE" },
-    { "id": 14, "symbol": "deg", "milesight_type": "UNITS_DEGREES_PHASE" },
+    { "id": 14, "symbol": "Phi", "milesight_type": "UNITS_DEGREES_PHASE" },
     { "id": 15, "symbol": "%", "milesight_type": "UNITS_POWER_FACTOR" },
     { "id": 16, "symbol": "J", "milesight_type": "UNITS_JOULES" },
     { "id": 17, "symbol": "kJ", "milesight_type": "UNITS_KILOJOULES" },
