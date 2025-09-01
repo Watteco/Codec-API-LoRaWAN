@@ -302,7 +302,7 @@
 </details>
 
 <details>
-<summary>TICS'O [1.1.7]</summary>
+<summary>TICS'O [1.1.8]</summary>
 
   [NPM: watteco-tics_o](https://www.npmjs.com/package/watteco-tics_o)
 - **basic (CID: 0x0000)** : kernel, manufacturer, model, date, position, application_name

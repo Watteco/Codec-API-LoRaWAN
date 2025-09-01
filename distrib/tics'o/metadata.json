@@ -1,6 +1,6 @@
 {
   "name": "tics'o",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "main": "main.js",
   "description": "Driver for tics'o sensor",
   "codecId": "0020",
