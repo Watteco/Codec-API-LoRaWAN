@@ -28,41 +28,6 @@ const fs = require('fs').promises; // Use promises API for fs
 const path = require('path'); 
 const tools = require("./_CommonTools.js");
 
-function syncMetadataToPackage(directoryPath) {
-  const metadataJsonPath = path.join(directoryPath, 'metadata.json');
-  const packageJsonPath = path.join(directoryPath, 'package.json');
-
-  // Check if package.json exists
-  if (!fs1.existsSync(packageJsonPath)) {
-    console.error(`File not found: ${packageJsonPath}`);
-    return;
-  }
-
-  // Check if metadata.json exists
-  if (!fs1.existsSync(metadataJsonPath)) {
-    console.error(`File not found: ${metadataJsonPath}`);
-    return;
-  }
-  // Read package.json and metadata.json files
-  const packageJson = JSON.parse(fs1.readFileSync(packageJsonPath, 'utf8'));
-  const metadataJson = JSON.parse(fs1.readFileSync(metadataJsonPath, 'utf8'));
-
-  // Get the current version from package.json
-  let currentVersion = metadataJson.version || '0.0.0';
-  let currentName = metadataJson.name || packageJson.name || 'unknown';
-  let currentDescription = metadataJson.description || packageJson.description || '';
-
-  // Synchronize the version in package.json if necessary
-  if ((packageJson.version !== currentVersion) || (currentName !== packageJson.name) || (currentDescription !== packageJson.description)) {
-    packageJson.name = currentName;
-    packageJson.version = currentVersion;
-    packageJson.description = currentDescription;
-    fs1.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2), 'utf8');
-    console.log(`Version & name synchronized in package.json to: ${currentVersion}`);
-  }
-}
-
-
 async function updateRequireDecodeUplinkFile(filePath, currentVersionMajorMinor) {
   // Ensure the file exists before attempting to read it
   try {
@@ -102,6 +67,12 @@ async function copyAndDeployFiles(watteco_path, actility_path, devices, actility
         //console.log(`Copied: ${file}`);
     });
 
+    // --- Ajout : copie du fichier watteco-bacnet-mapping.csv ---
+    const mappingSource = path.join(watteco_path, 'watteco-bacnet-mapping.csv');
+    const mappingDest = path.join(actility_path, 'vendors', 'watteco', 'watteco-bacnet-mapping.csv');
+    await fs.copyFile(mappingSource, mappingDest);
+    // --- Fin ajout ---
+
     // Copy and process device-specific files sequentially
     for (let i in devices) {
       const device = devices[i];
@@ -131,9 +102,6 @@ async function copyAndDeployFiles(watteco_path, actility_path, devices, actility
         // await fs.copyFile(`${watteco_path}/devices/${device}/package-lock.json`, `${actilityDevicePath}/package-lock.json`);
       
         //await fs.copyFile(`${watteco_path}/devices/${device}/webpack.config.js`, `${actilityDevicePath}/webpack.config.js`);
-        
-        // Only sync metata version description and name to package version and name in actility directory
-        syncMetadataToPackage(actilityDevicePath);
 
       } catch (err) {
         console.error(`Error processing device ${device}: ${err.message}`);
