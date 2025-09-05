@@ -1,6 +1,6 @@
 {
   "name": "watteco-toran_o_atex",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "Driver for toran'o_atex sensor",
   "main": "main.js",
   "scripts": {

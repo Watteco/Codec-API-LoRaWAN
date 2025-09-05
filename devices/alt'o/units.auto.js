@@ -7,7 +7,7 @@
 
 let units = {
     "disposable_battery_voltage": "V",
-    "Deg": "deg",
+    "Tilt": "deg",
     "ACCmg": "mg",
     "distance": "m",
     "battery_voltage": "V",

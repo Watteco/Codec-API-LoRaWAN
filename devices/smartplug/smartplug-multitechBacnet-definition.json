@@ -1,5 +1,5 @@
 {
-  "description": "Watteco smartplug v1.1.6",
+  "description": "Watteco smartplug v1.1.7",
   "properties": {
     "sendHexFrame": {
       "type": "string",

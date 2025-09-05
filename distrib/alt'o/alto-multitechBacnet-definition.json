@@ -1,5 +1,5 @@
 {
-  "description": "Watteco alt'o v1.1.0",
+  "description": "Watteco alt'o v1.1.1",
   "properties": {
     "sendHexFrame": {
       "type": "string",
@@ -66,12 +66,9 @@
     "OTA_app_EUI": {
       "type": "string"
     },
-    "Deg": {
+    "Tilt": {
       "type": "int16",
       "units": "deg"
-    },
-    "acc_mg": {
-      "type": "float"
     },
     "ACCmg": {
       "type": "uint16",

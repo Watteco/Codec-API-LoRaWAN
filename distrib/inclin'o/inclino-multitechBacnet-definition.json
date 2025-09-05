@@ -1,5 +1,5 @@
 {
-  "description": "Watteco inclin'o v1.1.7",
+  "description": "Watteco inclin'o v1.1.8",
   "properties": {
     "sendHexFrame": {
       "type": "string",
@@ -66,7 +66,7 @@
     "OTA_app_EUI": {
       "type": "string"
     },
-    "Deg": {
+    "Tilt": {
       "type": "int16",
       "units": "deg"
     },

@@ -13,8 +13,8 @@
             "bacnet_unit_type": "UNITS_MILLIGRAMS"
         },
         {
-            "id": "data.Deg",
-            "name": "Deg",
+            "id": "data.Tilt",
+            "name": "Tilt",
             "value": "",
             "unit": "deg",
             "access_mode": "R",
@@ -134,7 +134,7 @@
         },
         {
             "id": "data.automatic_association",
-            "name": "LoRaWAN automatic association",
+            "name": "automatic_association",
             "value": "",
             "unit": "",
             "access_mode": "R",

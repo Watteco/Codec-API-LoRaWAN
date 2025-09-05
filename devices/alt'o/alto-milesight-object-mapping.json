@@ -13,8 +13,8 @@
             "bacnet_unit_type": "UNITS_MILLIGRAMS"
         },
         {
-            "id": "data.Deg",
-            "name": "Deg",
+            "id": "data.Tilt",
+            "name": "Tilt",
             "value": "",
             "unit": "deg",
             "access_mode": "R",
@@ -38,7 +38,7 @@
         },
         {
             "id": "data.magnitude",
-            "name": "Magnitude",
+            "name": "magnitude",
             "value": "",
             "unit": "",
             "access_mode": "R",
@@ -182,7 +182,7 @@
         },
         {
             "id": "data.automatic_association",
-            "name": "LoRaWAN automatic association",
+            "name": "automatic_association",
             "value": "",
             "unit": "",
             "access_mode": "R",
@@ -225,18 +225,6 @@
             "data_type": "STRING",
             "value_type": "STRING",
             "bacnet_type": "characterstring_value_object",
-            "bacnet_unit_type_id": 95,
-            "bacnet_unit_type": "UNITS_NO_UNITS"
-        },
-        {
-            "id": "data.acc_mg",
-            "name": "acc_mg",
-            "value": "",
-            "unit": "",
-            "access_mode": "R",
-            "data_type": "NUMBER",
-            "value_type": "FLOAT",
-            "bacnet_type": "analog_value_object",
             "bacnet_unit_type_id": 95,
             "bacnet_unit_type": "UNITS_NO_UNITS"
         },

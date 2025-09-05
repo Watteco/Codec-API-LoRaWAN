@@ -75,7 +75,6 @@ id;name;value;type;access_mode;value_type;precision;units;cov_increment;min_valu
 ABP_dev_address;ABP device address;"""""";string;R;STRING;;;;;;lorawan;ABP device address
 acc_temperature;Accelerometer temperature;0;number;R;FLOAT;2;Cel;0,01;-40;85;alto;Accelerometer temperature in Celsius
 ACCmg;Acceleration in mg;0;number;R;UINT16;0;mg;1;0;65535;alto;Acceleration value in milli-g
-acc-mg;Acceleration in mg;0;number;R;UINT16;0;mg;1;0;65535;alto;Acceleration value in milli-g
 active_energy;Active energy;0;number;R;INT32;0;Wh;1;-8388608;8388607;simple-metering-like;Active energy in watt-hours
 active_energy_a;Active energy phase A;0;number;R;INT32;0;Wh;1;-2147483648;2147483647;energy-and-power-multi-metering;Active energy on phase A
 active_energy_abc;Total active energy;0;number;R;INT32;0;Wh;1;-2147483648;2147483647;energy-and-power-multi-metering;Total active energy across all phases
@@ -101,7 +100,7 @@ data_bit;Modbus data bits;0;number;R;UINT8;0;;1;7;8;serial-interface;Number of d
 data_rate;LoRaWAN data rate;0;number;R;UINT8;0;;1;0;7;lorawan;LoRaWAN data rate (DR0-DR7)
 date;Manufacturing date;"""""";string;R;STRING;;;;;;basic;Device manufacturing date
 debounce_period;Debounce period;0;number;R;UINT8;0;ms;1;0;65535;binary-input;Debounce period in milliseconds
-Deg;Deg;0;number;R;INT16;0;deg;1;0;359;alto, inclino;Deg measurement value
+Tilt;Tilt;0;number;R;INT16;0;deg;1;0;359;alto, inclino;Tilt measurement value
 differential_pressure;Differential pressure;0;number;R;INT16;0;Pa;1;-2500;2500;differential-pressure;Differential pressure in Pascal
 disposable_battery_voltage;Disposable battery voltage;0;number;R;FLOAT;3;V;0,001;0;6;configuration;Disposable battery voltage
 distance;Distance;0;number;R;FLOAT;2;m;0,01;0;30;alto;Distance measurement in meters

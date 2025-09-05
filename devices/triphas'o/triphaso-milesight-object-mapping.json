@@ -465,8 +465,8 @@
             "data_type": "NUMBER",
             "value_type": "INT16",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 14,
-            "bacnet_unit_type": "UNITS_DEGREES_PHASE"
+            "bacnet_unit_type_id": 90,
+            "bacnet_unit_type": "UNITS_DEGREES_ANGULAR"
         },
         {
             "id": "data.angle_b",
@@ -477,8 +477,8 @@
             "data_type": "NUMBER",
             "value_type": "INT16",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 14,
-            "bacnet_unit_type": "UNITS_DEGREES_PHASE"
+            "bacnet_unit_type_id": 90,
+            "bacnet_unit_type": "UNITS_DEGREES_ANGULAR"
         },
         {
             "id": "data.angle_c",
@@ -489,8 +489,8 @@
             "data_type": "NUMBER",
             "value_type": "INT16",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 14,
-            "bacnet_unit_type": "UNITS_DEGREES_PHASE"
+            "bacnet_unit_type_id": 90,
+            "bacnet_unit_type": "UNITS_DEGREES_ANGULAR"
         },
         {
             "id": "data.kernel",
@@ -602,7 +602,7 @@
         },
         {
             "id": "data.automatic_association",
-            "name": "LoRaWAN automatic association",
+            "name": "automatic_association",
             "value": "",
             "unit": "",
             "access_mode": "R",

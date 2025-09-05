@@ -206,7 +206,7 @@
         },
         {
             "id": "data.automatic_association",
-            "name": "LoRaWAN automatic association",
+            "name": "automatic_association",
             "value": "",
             "unit": "",
             "access_mode": "R",

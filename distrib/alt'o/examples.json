@@ -11,14 +11,14 @@
       "data": {
         "samples": [
           {
-            "variable": "Deg",
+            "variable": "Tilt",
             "value": 13,
             "date": "2023-07-19T07:51:25.508306410Z",
             "unit": "deg"
           }
         ],
-        "Deg": 13,
-        "Deg_unit": "deg"
+        "Tilt": 13,
+        "Tilt_unit": "deg"
       },
       "warnings": []
     }
@@ -104,7 +104,7 @@
         "batch_counter": 3,
         "samples": [
           {
-            "variable": "Deg",
+            "variable": "Tilt",
             "value": 0,
             "date": "2023-07-19T07:46:42.508Z",
             "unit": "deg"
@@ -145,11 +145,11 @@
             "unit": "Cel"
           }
         ],
-        "Deg": 0,
+        "Tilt": 0,
         "distance": 2.3440001010894775,
         "magnitude": 7556,
         "acc_temperature": 36.005,
-        "Deg_unit": "deg",
+        "Tilt_unit": "deg",
         "distance_unit": "m",
         "acc_temperature_unit": "Cel"
       },
