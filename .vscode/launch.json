@@ -4,12 +4,44 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Debug debug_in.js with arguments",
+            "name": "Clim'o: Debug debug_in.js with arguments",
             "program": "${workspaceFolder}/utilities/debug_in.js",
             "args": [
                 "clim'o",
                 "125",
                 "118a0402000029010ea0b008fc000001b10834000001b207d0000001",
+                "2024-12-27T18:35:54.000Z"
+            ],
+            "console": "integratedTerminal",
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Press'o: Debug debug_in.js with arguments",
+            "program": "${workspaceFolder}/utilities/debug_in.js",
+            "args": [
+                "press'o",
+                "125",
+                "110a000c00553941500000",
+                "2024-12-27T18:35:54.000Z"
+            ],
+            "console": "integratedTerminal",
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Tics'o: Debug debug_in.js with arguments",
+            "program": "${workspaceFolder}/utilities/debug_in.js",
+            "args": [
+                "tics'o",
+                "125",
+                "110a00530000410c00000800000000003f147ae1",
                 "2024-12-27T18:35:54.000Z"
             ],
             "console": "integratedTerminal",
