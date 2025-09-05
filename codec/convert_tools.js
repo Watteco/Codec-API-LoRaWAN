@@ -17,9 +17,8 @@ function UintToInt(Uint, Size) {
     return Uint;
 }
 
-function Bytes2Float32(bytes_in,Starti1=0) {
-    let bytes = (bytes_in[Starti1] << 24) | (bytes_in[Starti1 + 1] << 16) | (bytes_in[Starti1 + 2] << 8) | (bytes_in[Starti1 + 3]);
-    const sign = (bytes & 0x80000000) ? -1 : 1;
+function Bytes2Float32(bytes) {
+    const sign = (((bytes >>> 0) >> 24) & (0x00000080)) ? -1 : 1;
     let exp = ((bytes >> 23) & 0xFF) - 127;
     let signi = (bytes & ~(-1 << 23));
     if (exp === 128) return sign * ((signi) ? Number.NaN : Number.POSITIVE_INFINITY);

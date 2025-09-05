@@ -184,7 +184,8 @@ function TIC_Decode(clustID,AttributeID,BytesAfterSize)
         return {x, i}
     }
     function TYPE_U32(b,i)     { const x = BytesToInt64(b,i,"U32"); i+=4; return { x , i} }
-    function TYPE_FLOAT(b,i)   { x = Bytes2Float32(b,i); i+=4; return { x , i} }
+    function TYPE_FLOAT(b,i)   { x = Bytes2Float32(b[i]*256*256*256 + b[i+1]*256*256 + b[i+2]*256 + b[i+3]); i+=4; return { x , i} }
+    
     function TYPE_DMYhms(b,i)  { return TICParseDMYhms(b,i); }
     function TYPE_tsDMYhms(b,i){ return TICParseTimeStamp(b,i); };
     /* Not used

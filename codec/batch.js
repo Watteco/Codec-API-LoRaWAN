@@ -284,7 +284,7 @@ function getMeasure(buffer, sampletype) {
     return sampletype === ST_FL ? bytes2Float32(v) : v
 }
 function bytes2Float32(bytes) {
-    let sign = bytes & 0x80000000 ? -1 : 1,
+    let sign = (((bytes >>> 0) >> 24) & (0x00000080)) ? -1 : 1,
         exponent = ((bytes >> 23) & 0xff) - 127,
         significand = bytes & ~(-1 << 23)
     if (exponent === 128) return sign * (significand ? Number.NaN : Number.POSITIVE_INFINITY)
