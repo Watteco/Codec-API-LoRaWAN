@@ -3,31 +3,32 @@ version;max_downlink_commands;;;;;;;;;;;
 1.0;5;;;;;;;;;;;
 ##models;;;;;;;;;;;
 name;selectors;;;;;;;;;;;
-all;{mId: atmo}, {mId: closo}, {mId: flasho}, {mId: ino}, {mId: inclino}, {mId: indoor-temp}, {mId: intenso}, {mId: levo}, {mId: modbus}, {mId: monito}, {mId: moveo}, {mId: tempo-outdoor}, {mId: smartpilot-wire}, {mId: presso}, {mId: pulse-senso}, {mId: pulse-senso-atex}, {mId: temp-remte-1-prb}, {mId: temp-remte-2-prb}, {mId: smart-plug}, {mId: th}, {mId: tempo}, {mId: hygrotempo}, {mId: hygrotemp-remote}, {mId: climo}, {mId: ticso}, {mId: torano-atex}, {mId: triphaso}, {mId: vaqao-lite}, {mId: ventilo};;;;;;;;;;;
+all;{mId: atmo}, {mId: alto}, {mId: closo}, {mId: flasho}, {mId: ino}, {mId: inclino}, {mId: indoor-temp}, {mId: intenso}, {mId: levo}, {mId: modbus}, {mId: monito}, {mId: moveo}, {mId: moveo-lite}, {mId: tempo-outdoor}, {mId: smartpilot-wire}, {mId: presso}, {mId: pulse-senso}, {mId: pulse-senso-atex}, {mId: temp-remte-1-prb}, {mId: temp-remte-2-prb}, {mId: smartplug}, {mId: th}, {mId: tempo}, {mId: hygrotempo}, {mId: hygrotemp-remote}, {mId: climo}, {mId: ticso}, {mId: torano-atex}, {mId: triphaso}, {mId: vaqao-lite}, {mId: vaqao-lt}, {mId: vaqao-multi-lite}, {mId: vaqao-plus-lite}, {mId: vaqao-plus}, {mId: vaqao}, {mId: ventilo};;;;;;;;;;;
 analog-input;{mId: inclino}, {mId: intenso}, {mId: levo}, {mId: monito}, {mId: presso}, {mId: torano-atex};;;;;;;;;;;
-basic;{mId: atmo}, {mId: closo}, {mId: flasho}, {mId: ino}, {mId: inclino}, {mId: indoor-temp}, {mId: intenso}, {mId: levo}, {mId: modbus}, {mId: monito}, {mId: moveo}, {mId: tempo-outdoor}, {mId: smartpilot-wire}, {mId: presso}, {mId: pulse-senso}, {mId: pulse-senso-atex}, {mId: temp-remte-1-prb}, {mId: temp-remte-2-prb}, {mId: smart-plug}, {mId: th}, {mId: tempo}, {mId: hygrotempo}, {mId: hygrotemp-remote}, {mId: climo}, {mId: ticso}, {mId: torano-atex}, {mId: triphaso}, {mId: vaqao-lite}, {mId: ventilo};;;;;;;;;;;
-binary-input;{mId: atmo}, {mId: closo}, {mId: flasho}, {mId: ino}, {mId: presso}, {mId: pulse-senso}, {mId: pulse-senso-atex}, {mId: th}, {mId: tempo}, {mId: hygrotempo}, {mId: hygrotemp-remote}, {mId: torano-atex}, {mId: triphaso}, {mId: vaqao-lite}, {mId: ventilo};;;;;;;;;;;
-concentration;{mId: vaqao-lite};;;;;;;;;;;
-configuration;{mId: atmo}, {mId: closo}, {mId: flasho}, {mId: ino}, {mId: inclino}, {mId: indoor-temp}, {mId: intenso}, {mId: levo}, {mId: modbus}, {mId: monito}, {mId: moveo}, {mId: tempo-outdoor}, {mId: smartpilot-wire}, {mId: presso}, {mId: pulse-senso}, {mId: pulse-senso-atex}, {mId: temp-remte-1-prb}, {mId: temp-remte-2-prb}, {mId: smart-plug}, {mId: th}, {mId: tempo}, {mId: hygrotempo}, {mId: hygrotemp-remote}, {mId: climo}, {mId: ticso}, {mId: torano-atex}, {mId: triphaso}, {mId: vaqao-lite}, {mId: ventilo};;;;;;;;;;;
+basic;{mId: atmo}, {mId: alto}, {mId: closo}, {mId: flasho}, {mId: ino}, {mId: inclino}, {mId: indoor-temp}, {mId: intenso}, {mId: levo}, {mId: modbus}, {mId: monito}, {mId: moveo}, {mId: tempo-outdoor}, {mId: smartpilot-wire}, {mId: presso}, {mId: pulse-senso}, {mId: pulse-senso-atex}, {mId: temp-remte-1-prb}, {mId: temp-remte-2-prb}, {mId: smartplug}, {mId: th}, {mId: tempo}, {mId: hygrotempo}, {mId: hygrotemp-remote}, {mId: climo}, {mId: ticso}, {mId: torano-atex}, {mId: triphaso}, {mId: vaqao-lite}, {mId: vaqao-lt}, {mId: vaqao-multi-lite}, {mId: vaqao-plus-lite}, {mId: vaqao-plus}, {mId: vaqao};;;;;;;;;;;
+binary-input;{mId: atmo}, {mId: closo}, {mId: flasho}, {mId: ino}, {mId: presso}, {mId: pulse-senso}, {mId: pulse-senso-atex}, {mId: th}, {mId: tempo}, {mId: hygrotempo}, {mId: hygrotemp-remote}, {mId: torano-atex}, {mId: triphaso}, {mId: vaqao-lite}, {mId: vaqao-lt}, {mId: vaqao-multi-lite}, {mId: vaqao-plus-lite}, {mId: vaqao-plus}, {mId: vaqao}, {mId: moveo-lite};;;;;;;;;;;
+concentration;{mId: vaqao-lite}, {mId: vaqao-lt}, {mId: vaqao-multi-lite}, {mId: vaqao-plus-lite}, {mId: vaqao-plus}, {mId: vaqao};;;;;;;;;;;
+configuration;{mId: atmo}, {mId: alto}, {mId: closo}, {mId: flasho}, {mId: ino}, {mId: inclino}, {mId: indoor-temp}, {mId: intenso}, {mId: levo}, {mId: modbus}, {mId: monito}, {mId: moveo}, {mId: moveo-lite}, {mId: tempo-outdoor}, {mId: smartpilot-wire}, {mId: presso}, {mId: pulse-senso}, {mId: pulse-senso-atex}, {mId: temp-remte-1-prb}, {mId: temp-remte-2-prb}, {mId: smartplug}, {mId: th}, {mId: tempo}, {mId: hygrotempo}, {mId: hygrotemp-remote}, {mId: climo}, {mId: ticso}, {mId: torano-atex}, {mId: triphaso}, {mId: vaqao-lite}, {mId: vaqao-lt}, {mId: vaqao-multi-lite}, {mId: vaqao-plus-lite}, {mId: vaqao-plus}, {mId: vaqao};;;;;;;;;;;
 differential-pressure;{mId: ventilo};;;;;;;;;;;
 energy-and-power-metering;{mId: triphaso};;;;;;;;;;;
 energy-and-power-multi-metering;{mId: triphaso};;;;;;;;;;;
-illuminance;{mId: moveo};;;;;;;;;;;
-lorawan;{mId: atmo}, {mId: closo}, {mId: flasho}, {mId: ino}, {mId: inclino}, {mId: indoor-temp}, {mId: intenso}, {mId: levo}, {mId: modbus}, {mId: monito}, {mId: moveo}, {mId: tempo-outdoor}, {mId: smartpilot-wire}, {mId: presso}, {mId: pulse-senso}, {mId: pulse-senso-atex}, {mId: temp-remte-1-prb}, {mId: temp-remte-2-prb}, {mId: smart-plug}, {mId: th}, {mId: tempo}, {mId: hygrotempo}, {mId: hygrotemp-remote}, {mId: climo}, {mId: ticso}, {mId: torano-atex}, {mId: triphaso}, {mId: vaqao-lite}, {mId: ventilo};;;;;;;;;;;
+illuminance;{mId: moveo}, {mId: moveo-lite}, {mId: vaqao-plus-lite}, {mId: vaqao-plus}, {mId: vaqao};;;;;;;;;;;
+lorawan;{mId: atmo}, {mId: alto}, {mId: closo}, {mId: flasho}, {mId: ino}, {mId: inclino}, {mId: indoor-temp}, {mId: intenso}, {mId: levo}, {mId: modbus}, {mId: monito}, {mId: moveo}, {mId: moveo-lite}, {mId: tempo-outdoor}, {mId: smartpilot-wire}, {mId: presso}, {mId: pulse-senso}, {mId: pulse-senso-atex}, {mId: temp-remte-1-prb}, {mId: temp-remte-2-prb}, {mId: smartplug}, {mId: th}, {mId: tempo}, {mId: hygrotempo}, {mId: hygrotemp-remote}, {mId: climo}, {mId: ticso}, {mId: torano-atex}, {mId: triphaso}, {mId: vaqao-lite}, {mId: vaqao-lt}, {mId: vaqao-multi-lite}, {mId: vaqao-plus-lite}, {mId: vaqao-plus}, {mId: vaqao}, {mId: ventilo};;;;;;;;;;;
 multi-master/slave-answers;{mId: modbus};;;;;;;;;;;
 multi-state-output;{mId: smartpilot-wire};;;;;;;;;;;
-occupancy;{mId: inclino}, {mId: moveo};;;;;;;;;;;
-ON/OFF;{mId: ino}, {mId: smart-plug}, {mId: triphaso};;;;;;;;;;;
-power-quality;{mId: smart-plug};;;;;;;;;;;
-pressure;{mId: atmo}, {mId: moveo};;;;;;;;;;;
-relative-humidity;{mId: atmo}, {mId: moveo}, {mId: th}, {mId: hygrotempo}, {mId: hygrotemp-remote}, {mId: climo}, {mId: vaqao-lite};;;;;;;;;;;
+occupancy;{mId: inclino}, {mId: moveo}, {mId: moveo-lite}, {mId: vaqao-plus-lite}, {mId: vaqao-plus}, {mId: vaqao};;;;;;;;;;;
+ON/OFF;{mId: ino}, {mId: smartplug}, {mId: triphaso};;;;;;;;;;;
+power-quality;{mId: smartplug};;;;;;;;;;;
+pressure;{mId: atmo}, {mId: moveo}, {mId: vaqao-multi-lite}, {mId: vaqao-plus-lite}, {mId: vaqao-plus}, {mId: vaqao};;;;;;;;;;;
+relative-humidity;{mId: atmo}, {mId: moveo}, {mId: moveo-lite}, {mId: th}, {mId: hygrotempo}, {mId: hygrotemp-remote}, {mId: climo}, {mId: vaqao-lite}, {mId: vaqao-lt}, {mId: vaqao-multi-lite}, {mId: vaqao-plus-lite}, {mId: vaqao-plus}, {mId: vaqao};;;;;;;;;;;
 serial-interface;{mId: modbus};;;;;;;;;;;
 serial-master/slave-protocol;{mId: modbus};;;;;;;;;;;
-simple-metering-like;{mId: smart-plug}, {mId: ticso};;;;;;;;;;;
-temperature;{mId: atmo}, {mId: indoor-temp}, {mId: moveo}, {mId: temp-remte-1-prb}, {mId: temp-remte-2-prb}, {mId: th}, {mId: tempo}, {mId: hygrotempo}, {mId: hygrotemp-remote}, {mId: climo}, {mId: ventilo}, {mId: vaqao-lite};;;;;;;;;;;
-temperature-others;{mId: indoor-temp}, {mId: moveo}, {mId: tempo-outdoor}, {mId: th}, {mId: tempo}, {mId: hygrotempo}, {mId: climo}, {mId: ventilo}, {mId: vaqao-lite};;;;;;;;;;;
+simple-metering-like;{mId: smartplug}, {mId: ticso};;;;;;;;;;;
+temperature;{mId: atmo}, {mId: indoor-temp}, {mId: moveo}, {mId: moveo-lite}, {mId: temp-remte-1-prb}, {mId: temp-remte-2-prb}, {mId: th}, {mId: tempo}, {mId: hygrotempo}, {mId: hygrotemp-remote}, {mId: climo}, {mId: ventilo}, {mId: vaqao-lite}, {mId: vaqao-lt}, {mId: vaqao-multi-lite}, {mId: vaqao-plus-lite}, {mId: vaqao-plus}, {mId: vaqao};;;;;;;;;;;
+temperature-others;{mId: indoor-temp}, {mId: moveo}, {mId: moveo-lite}, {mId: tempo-outdoor}, {mId: th}, {mId: tempo}, {mId: hygrotempo}, {mId: climo}, {mId: ventilo}, {mId: vaqao-lite}, {mId: vaqao-lt}, {mId: vaqao-multi-lite}, {mId: vaqao-plus-lite}, {mId: vaqao-plus}, {mId: vaqao};;;;;;;;;;;
 voltage-and-current-metering;{mId: triphaso};;;;;;;;;;;
 atmo;{mId: atmo};;;;;;;;;;;
+alto;{mId: alto};;;;;;;;;;;
 closo;{mId: closo};;;;;;;;;;;
 climo;{mId: climo};;;;;;;;;;;
 flasho;{mId: flasho};;;;;;;;;;;
@@ -41,11 +42,12 @@ levo;{mId: levo};;;;;;;;;;;
 modbus;{mId: modbus};;;;;;;;;;;
 monito;{mId: monito};;;;;;;;;;;
 moveo;{mId: moveo};;;;;;;;;;;
+moveo-lite;{mId: moveo-lite};;;;;;;;;;;
 presso;{mId: presso};;;;;;;;;;;
 pulse-senso;{mId: pulse-senso};;;;;;;;;;;
 pulse-senso-atex;{mId: pulse-senso-atex};;;;;;;;;;;
 remote-temp;{mId: temp-remte-1-prb}, {mId: temp-remte-2-prb};;;;;;;;;;;
-smart-plug;{mId: smart-plug};;;;;;;;;;;
+smart-plug;{mId: smartplug};;;;;;;;;;;
 smartpilot-wire;{mId: smartpilot-wire};;;;;;;;;;;
 temp-remte-1-prb;{mId: temp-remte-1-prb};;;;;;;;;;;
 temp-remte-2-prb;{mId: temp-remte-2-prb};;;;;;;;;;;
@@ -56,6 +58,11 @@ ticso;{mId: ticso};;;;;;;;;;;
 torano-atex;{mId: torano-atex};;;;;;;;;;;
 triphaso;{mId: triphaso};;;;;;;;;;;
 vaqao-lite;{mId: vaqao-lite};;;;;;;;;;;
+vaqao-lt;{mId: vaqao-lt};;;;;;;;;;;
+vaqao-multi-lite;{mId: vaqao-multi-lite};;;;;;;;;;;
+vaqao-plus-lite;{mId: vaqao-plus-lite};;;;;;;;;;;
+vaqao-plus;{mId: vaqao-plus};;;;;;;;;;;
+vaqao;{mId: vaqao};;;;;;;;;;;
 ventilo;{mId: ventilo};;;;;;;;;;;
 ##objects;;;;;;;;;;;;
 id;name;value;type;access_mode;value_type;precision;units;cov_increment;min_value;max_value;models;description
@@ -68,6 +75,7 @@ id;name;value;type;access_mode;value_type;precision;units;cov_increment;min_valu
 ABP_dev_address;ABP device address;"""""";string;R;STRING;;;;;;lorawan;ABP device address
 acc_temperature;Accelerometer temperature;0;number;R;FLOAT;2;Cel;0,01;-40;85;alto;Accelerometer temperature in Celsius
 ACCmg;Acceleration in mg;0;number;R;UINT16;0;mg;1;0;65535;alto;Acceleration value in milli-g
+acc-mg;Acceleration in mg;0;number;R;UINT16;0;mg;1;0;65535;alto;Acceleration value in milli-g
 active_energy;Active energy;0;number;R;INT32;0;Wh;1;-8388608;8388607;simple-metering-like;Active energy in watt-hours
 active_energy_a;Active energy phase A;0;number;R;INT32;0;Wh;1;-2147483648;2147483647;energy-and-power-multi-metering;Active energy on phase A
 active_energy_abc;Total active energy;0;number;R;INT32;0;Wh;1;-2147483648;2147483647;energy-and-power-multi-metering;Total active energy across all phases
@@ -85,7 +93,6 @@ angle_a;Phase angle A;0;number;R;INT16;0;deg;1;0;359;voltage-and-current-meterin
 angle_b;Phase angle B;0;number;R;INT16;0;deg;1;0;359;voltage-and-current-metering;Phase angle on phase B
 angle_c;Phase angle C;0;number;R;INT16;0;deg;1;0;359;voltage-and-current-metering;Phase angle on phase C
 application_name;Application name;"""""";string;R;STRING;;;;;;basic;Name of the application running on the device
-automatic_association;LoRaWAN automatic association;0;object;R;OBJECT;;;;;;lorawan;LoRaWAN automatic association parameters
 battery_voltage;Battery voltage;0;number;R;FLOAT;3;V;0,001;0;6;configuration;Device battery voltage
 BatteryVoltage;BatteryVoltage;0;number;R;FLOAT;3;V;0,001;0;6;configuration;Device battery voltage
 CO2;CO2 concentration;0;number;R;UINT16;0;ppm;1;0;5000;concentration;CO2 concentration in ppm
