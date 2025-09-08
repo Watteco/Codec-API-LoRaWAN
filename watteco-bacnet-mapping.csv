@@ -280,8 +280,8 @@ sendFactoryReset;Send Factory Reset command;false;boolean;W;BOOL;;;;;;configurat
 sendHexFrame;Send custom Hex Frame;"""""";string;W;STRING;;;;;;all;Send a custom hex frame (with optional specific port)
 sendLoraRejoin;Send LoRa Rejoin command;0;number;W;UINT16;0;min;1;0;65535;lorawan;Send LoRa Rejoin command with set interval
 sendLoraRetries;Send LoRa Retries;0;number;W;UINT8;0;;1;1;7;lorawan;Set the amount of LoRa retries
-sendMSOMode;Send MSO Mode;0;number;W;UINT8;0;;1;0;5;smartpilot_wire;Set Multi State Output mode
-sendMSORelay;Send MSO Relay State;0;number;W;UINT8;0;;1;0;1;smartpilot_wire;Set Multi State Relay state
+sendMSOMode;Send MSO Mode;0;number;W;UINT8;0;;1;0;5;smartpilot-wire;Set Multi State Output mode
+sendMSORelay;Send MSO Relay State;0;number;W;UINT8;0;;1;0;1;smartpilot-wire;Set Multi State Relay state
 sendOnOffState;Set on/off state;0;number;W;UINT8;0;;1;0;2;smartplug;0 = On, 1 = Off, 2 = Toggle
 sendOnOffStateEP1;Set on/off state for endpoint 1;0;number;W;UINT8;0;;1;0;2;ino;0 = On, 1 = Off, 2 = Toggle
 sendOnOffStateEP2;Set on/off state for endpoint 2;0;number;W;UINT8;0;;1;0;2;ino;0 = On, 1 = Off, 2 = Toggle
