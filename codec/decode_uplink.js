@@ -157,10 +157,8 @@ function watteco_decodeUplink(input, batch_parameters, endpoint_parameters, unit
         input.bytes = bytes;
     }
 
-    // Avoid non valid recvTime. Saw on multitech mPowerEdge Conduit AP, firmware 7.0.0
-    if (! input.recvTime) {
-        input.recvTime = (new Date()).toISOString();
-    }
+    // Normalize recvTime coming from different integrations (string, protobuf, nested objects...) into ISO string
+    input.recvTime = normalizeRecvTime(input.recvTime);
     let date = input.recvTime;
     
     try {
@@ -206,4 +204,65 @@ function watteco_decodeUplink(input, batch_parameters, endpoint_parameters, unit
  */
 module.exports = {
     watteco_decodeUplink: watteco_decodeUplink,
+}
+
+/**
+ * Normalize various recvTime formats into an ISO string.
+ * Accepts: ISO string, number (ms or seconds), { seconds, nanos } (protobuf), nested objects
+ * Falls back to current time when input is not parseable.
+ * @param {*} rt
+ * @returns {string} ISO timestamp
+ */
+function normalizeRecvTime(rt) {
+    try {
+        if (!rt) return (new Date()).toISOString();
+        if (typeof rt === 'string') {
+            const d = new Date(rt);
+            if (!isNaN(d.getTime())) return d.toISOString();
+            // maybe it's numeric string
+            const n = Number(rt);
+            if (!isNaN(n)) return new Date(n).toISOString();
+        }
+        if (typeof rt === 'number') {
+            // try to detect seconds vs ms (seconds are ~1e9)
+            if (rt < 1e12) return new Date(rt * 1000).toISOString();
+            return new Date(rt).toISOString();
+        }
+        if (typeof rt === 'object') {
+            // common protobuf Timestamp shape: { seconds: <number|string>, nanos: <number> }
+            if (rt.seconds !== undefined) {
+                const secs = Number(rt.seconds);
+                const nanos = Number(rt.nanos || rt.nanoseconds || 0);
+                if (!isNaN(secs)) return new Date(secs * 1000 + Math.floor(nanos / 1e6)).toISOString();
+            }
+
+            // Some integrations may wrap values under empty-string keys or nested objects.
+            // Try to find a numeric field named 'int64' or 'seconds' anywhere shallowly.
+            for (const k of Object.keys(rt)) {
+                const v = rt[k];
+                if (typeof v === 'object' && v !== null) {
+                    if (v.int64 !== undefined && !isNaN(Number(v.int64))) {
+                        // assume seconds
+                        return new Date(Number(v.int64) * 1000).toISOString();
+                    }
+                    if (v.string && typeof v.string === 'string') {
+                        const d = new Date(v.string);
+                        if (!isNaN(d.getTime())) return d.toISOString();
+                    }
+                    if (v.seconds !== undefined) {
+                        const secs = Number(v.seconds);
+                        const nanos = Number(v.nanos || 0);
+                        if (!isNaN(secs)) return new Date(secs * 1000 + Math.floor(nanos / 1e6)).toISOString();
+                    }
+                }
+            }
+
+            // Try Date constructor on the object (worst-case)
+            const d2 = new Date(rt);
+            if (!isNaN(d2.getTime())) return d2.toISOString();
+        }
+    } catch (e) {
+        // fall through to default
+    }
+    return (new Date()).toISOString();
 }
