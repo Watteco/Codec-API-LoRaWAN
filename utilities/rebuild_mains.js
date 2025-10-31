@@ -193,6 +193,42 @@ for (let i in devices) {
     
     tools.buildAndTranspile(devicePath);
 
+  // Prepend sensor name as a comment to the generated main bundle so
+  // it's easier to identify which minified file belongs to which device.
+  try {
+    // Read the device webpack config to get the output filename
+    const webpackConfigPath = path.join(devicePath, 'webpack.config.js');
+    if (fs.existsSync(webpackConfigPath)) {
+      // Require the config without cache to reflect any local changes
+      delete require.cache[require.resolve(webpackConfigPath)];
+      const webpackConfig = require(webpackConfigPath);
+      let outPath = webpackConfig.output && webpackConfig.output.path ? webpackConfig.output.path : devicePath;
+      let outFilename = webpackConfig.output && webpackConfig.output.filename ? webpackConfig.output.filename : `${sensorName}.js`;
+
+      // Make paths absolute
+      if (!path.isAbsolute(outPath)) outPath = path.resolve(devicePath, outPath);
+
+      const bundlePath = path.join(outPath, outFilename);
+
+      if (fs.existsSync(bundlePath)) {
+        const comment = `/*${sensorName}*/`;
+        const content = fs.readFileSync(bundlePath, 'utf8');
+
+        // Avoid double-prepending if comment already present
+        if (!content.startsWith(comment)) {
+          fs.writeFileSync(bundlePath, comment + content, 'utf8');
+          console.log(`Prefixed bundle with sensor name: ${bundlePath}`);
+        } else {
+          // already present
+        }
+      } else {
+        console.warn(`Bundle not found to prefix for ${sensorName}: ${bundlePath}`);
+      }
+    }
+  } catch (err) {
+    console.error(`Error while prefixing bundle for ${sensorName}: ${err.message}`);
+  }
+
     // Force name (npm: watteco-<device with _ replacing space and '>) or description for sensors (activate when needed)
     npmSensorName = `watteco-${sensorName.replace(/ /g, '_').replace(/'/g, '_')}`;
     tools.updateJSON_name_description(`${devicePath}/package.json`, npmSensorName, `Driver for ${sensorName} sensor`);
