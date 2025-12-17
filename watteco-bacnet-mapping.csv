@@ -70,7 +70,7 @@ id;name;value;type;access_mode;value_type;precision;units;cov_increment;min_valu
 0-100_mV;0-100mV sensor value;0;number;R;FLOAT;2;mV;0,01;0;100;monito;0-100mV voltage sensor value
 0-5_V_1;0-5V sensor 1 value;0;number;R;FLOAT;2;V;0,01;0;5;torano-atex;0-5V voltage sensor 1 value
 0-5_V_2;0-5V sensor 2 value;0;number;R;FLOAT;2;V;0,01;0;5;torano-atex;0-5V voltage sensor 2 value
-0-70_V;0-70V sensor value;0;number;R;FLOAT;2;V;0,01;0;70;monito;0-70V voltage sensor value
+0-70_V;0-70V sensor value;0;number;R;FLOAT;2;mV;0,01;0;70;monito;0-70V voltage sensor value
 4-20_mA;4-20mA sensor value;0;number;R;FLOAT;2;mA;0,01;4;20;levo, presso, torano-atex;4-20mA current loop sensor value
 ABP_dev_address;ABP device address;"""""";string;R;STRING;;;;;;lorawan;ABP device address
 acc_temperature;Accelerometer temperature;0;number;R;FLOAT;2;Cel;0,01;-40;85;alto;Accelerometer temperature in Celsius

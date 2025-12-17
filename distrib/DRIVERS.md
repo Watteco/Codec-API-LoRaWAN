@@ -159,13 +159,13 @@
 </details>
 
 <details>
-<summary>MONIT'O [1.1.7]</summary>
+<summary>MONIT'O [1.1.8]</summary>
 
   [NPM: watteco-monit_o](https://www.npmjs.com/package/watteco-monit_o)
 - **basic (CID: 0x0000)** : kernel, manufacturer, model, date, position, application_name
 - **configuration (CID: 0x0050)** : disposable_battery_voltage (V)
 - **lorawan (CID: 0x8004)** : message_type, nb_retry, automatic_association, data_rate, ABP_dev_address, OTA_app_EUI
-- **analog input (CID: 0x000C)** : 0-100_mV (mV), 0-70_V (V)
+- **analog input (CID: 0x000C)** : 0-100_mV (mV), 0-70_V (mV)
 
 </details>
 

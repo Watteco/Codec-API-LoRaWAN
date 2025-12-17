@@ -16,13 +16,13 @@
             "id": "data.0-70_V",
             "name": "0-70V sensor value",
             "value": "",
-            "unit": "V",
+            "unit": "mV",
             "access_mode": "R",
             "data_type": "NUMBER",
             "value_type": "FLOAT",
             "bacnet_type": "analog_value_object",
-            "bacnet_unit_type_id": 5,
-            "bacnet_unit_type": "UNITS_VOLTS"
+            "bacnet_unit_type_id": 124,
+            "bacnet_unit_type": "UNITS_MILLIVOLTS"
         },
         {
             "id": "data.battery_voltage",

@@ -5,7 +5,7 @@
     "input": {
       "bytes": "310a000c00553941500000",
       "fPort": 125,
-      "recvTime": "2023-07-19T07:51:25.508306410Z"
+      "recvTime": "2023-07-19T07:51:25.508Z"
     },
     "output": {
       "data": {
@@ -13,12 +13,12 @@
           {
             "variable": "0-70_V",
             "value": 13,
-            "date": "2023-07-19T07:51:25.508306410Z",
-            "unit": "V"
+            "date": "2023-07-19T07:51:25.508Z",
+            "unit": "mV"
           }
         ],
         "0-70_V": 13,
-        "0-70_V_unit": "V"
+        "0-70_V_unit": "mV"
       },
       "warnings": []
     }
@@ -29,7 +29,7 @@
     "input": {
       "bytes": "110a000c00553941500000",
       "fPort": 125,
-      "recvTime": "2023-07-19T07:51:25.508306410Z"
+      "recvTime": "2023-07-19T07:51:25.508Z"
     },
     "output": {
       "data": {
@@ -37,7 +37,7 @@
           {
             "variable": "0-100_mV",
             "value": 13,
-            "date": "2023-07-19T07:51:25.508306410Z",
+            "date": "2023-07-19T07:51:25.508Z",
             "unit": "mV"
           }
         ],
@@ -53,7 +53,7 @@
     "input": {
       "bytes": "110100000002000d0305020015e2",
       "fPort": 125,
-      "recvTime": "2023-07-19T07:51:25.508306410Z"
+      "recvTime": "2023-07-19T07:51:25.508Z"
     },
     "output": {
       "data": {
@@ -61,7 +61,7 @@
           {
             "variable": "firmware",
             "value": "3.5.2.5602",
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508Z"
           }
         ],
         "firmware": "3.5.2.5602"
@@ -75,7 +75,7 @@
     "input": {
       "bytes": "110a00500006410503040e6804",
       "fPort": 125,
-      "recvTime": "2023-07-19T07:51:25.508306410Z"
+      "recvTime": "2023-07-19T07:51:25.508Z"
     },
     "output": {
       "data": {
@@ -83,7 +83,7 @@
           {
             "variable": "disposable_battery_voltage",
             "value": 3.688,
-            "date": "2023-07-19T07:51:25.508306410Z",
+            "date": "2023-07-19T07:51:25.508Z",
             "unit": "V"
           }
         ],
@@ -99,7 +99,7 @@
     "input": {
       "bytes": "110180040000000800",
       "fPort": 125,
-      "recvTime": "2023-07-19T07:51:25.508306410Z"
+      "recvTime": "2023-07-19T07:51:25.508Z"
     },
     "output": {
       "data": {
@@ -107,7 +107,7 @@
           {
             "variable": "message_type",
             "value": "unconfirmed",
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508Z"
           }
         ],
         "message_type": "unconfirmed"
@@ -121,7 +121,7 @@
     "input": {
       "bytes": "3620000000230708ec7dd60b3db20f4204005800",
       "fPort": 125,
-      "recvTime": "2023-07-19T07:51:25.508306410Z"
+      "recvTime": "2023-07-19T07:51:25.508Z"
     },
     "output": {
       "data": {
@@ -137,7 +137,7 @@
             "variable": "0-70_V",
             "value": 17,
             "date": "2023-07-19T07:51:24.508Z",
-            "unit": "V"
+            "unit": "mV"
           },
           {
             "variable": "battery_voltage",
@@ -150,7 +150,7 @@
         "0-70_V": 17,
         "battery_voltage": 3.6,
         "0-100_mV_unit": "mV",
-        "0-70_V_unit": "V",
+        "0-70_V_unit": "mV",
         "battery_voltage_unit": "V"
       },
       "warnings": []

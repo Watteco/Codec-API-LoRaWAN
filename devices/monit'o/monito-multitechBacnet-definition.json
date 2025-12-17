@@ -1,5 +1,5 @@
 {
-  "description": "Watteco monit'o v1.1.7",
+  "description": "Watteco monit'o v1.1.8",
   "properties": {
     "sendHexFrame": {
       "type": "string",
@@ -72,7 +72,7 @@
     },
     "0-70_V": {
       "type": "float",
-      "units": "V"
+      "units": "mV"
     },
     "battery_voltage": {
       "type": "float",

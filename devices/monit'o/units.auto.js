@@ -8,7 +8,7 @@
 let units = {
     "disposable_battery_voltage": "V",
     "0-100_mV": "mV",
-    "0-70_V": "V",
+    "0-70_V": "mV",
     "battery_voltage": "V",
     "external_level": "V"
 }
