@@ -26,7 +26,7 @@ const deasync = require("deasync"); // To force sync execution of Webpack
  * @example
  * buildAndTranspile("/path/to/project");
  */
-function buildAndTranspile(projectDir) {
+function buildAndTranspile(projectDir, options = {}) {
 
     // WEBPACK original sources ==> main.js
     //-------------------------------------
@@ -37,6 +37,17 @@ function buildAndTranspile(projectDir) {
     }
 
     const webpackConfig = require(webpackConfigPath);
+
+    // If requested, disable webpack-level minification so output stays unminified
+    // This is useful for debugging or size checks: set optimization.minimize = false
+    if (options && options.noWebpackMinify) {
+        // prefer explicit disable of minimization
+        webpackConfig.mode = webpackConfig.mode || 'development';
+        webpackConfig.optimization = webpackConfig.optimization || {};
+        webpackConfig.optimization.minimize = false;
+        // also ensure any minimizer plugins are not present (best-effort)
+        if (webpackConfig.optimization.minimizer) webpackConfig.optimization.minimizer = [];
+    }
 
     // Ensure output.path is absolute
     if (!path.isAbsolute(webpackConfig.output.path)) {
@@ -137,30 +148,54 @@ function buildAndTranspile(projectDir) {
         throw new Error(`Error: File ${es5OutputPath} is empty, cannot minify.`);
     }
 
-    // Minify in a synchronous way
-    let minifiedResult;
-    isDone = false;
 
-    // TODO: More compact mangling could be done ... (look at result still some plaintext functions that ar not needed in plaintext)
-    terser.minify(es5Code, { compress: true, mangle: true }).then(result => {
-        minifiedResult = result;
-        isDone = true;
-    }).catch(error => {
-        throw new Error(`Terser minification failed: ${error}`);
-    });
+    // If options.noterser is true, skip minification and keep the Babel output as-is.
+    if (options && options.noterser) {
+        console.log("Skipping Terser minification (noterser flag set).\n");
+        console.log(`==> ${es5OutputPath}\n`);
+    } else {
+        // Select terser options depending on `options.multiline` flag.
+        // By default we use the older compact behavior (compress:true, mangle:true, braces only)
+        // If options.multiline === true we enable multiline formatting with max line length.
+        const terserOptionsCompact = { compress: true, mangle: true, format: { braces: true } };
+        const terserOptionsMultiline = {
+            ecma: 5,
+            compress: {
+                // keep compression but avoid some aggressive transforms
+                sequences: false
+            },
+            mangle: true,
+            format: {
+                braces: true,
+                semicolons: true,
+                max_line_len: 120
+            }
+        };
 
-    deasync.loopWhile(() => !isDone);
+        const chosenTerserOptions = options && options.multiline ? terserOptionsMultiline : terserOptionsCompact;
 
-    // Ensure minified output is valid
-    if (!minifiedResult || !minifiedResult.code) {
-        throw new Error(`Error: Terser returned empty minified code.`);
+        let minifiedResult;
+        isDone = false;
+
+        // TODO: More compact mangling could be done ... (look at result still some plaintext functions that ar not needed in plaintext)
+        terser.minify(es5Code, chosenTerserOptions).then(result => {
+            minifiedResult = result;
+            isDone = true;
+        }).catch(error => {
+            throw new Error(`Terser minification failed: ${error}`);
+        });
+
+        deasync.loopWhile(() => !isDone);
+
+        if (!minifiedResult || !minifiedResult.code) {
+            throw new Error(`Error: Terser returned empty minified code.`);
+        }
+
+        fs.writeFileSync(es5OutputPath, minifiedResult.code, "utf8");
+
+        console.log("Done.");
+        console.log(`==> ${es5OutputPath}\n`);
     }
-
-    // Write back the minified code synchronously
-    fs.writeFileSync(es5OutputPath, minifiedResult.code, "utf8");
-
-    console.log("Done.");
-    console.log(`==> ${es5OutputPath}\n`);
 
 }
 
@@ -951,12 +986,21 @@ function generateMilesightBacnetMapping(devicePath, bacnetMappingPath = null, ba
                     const id = columns[0].trim();
                     const name = columns[1].trim();
                     const type = columns[5].trim(); // BACnet value_type (BOOL, FLOAT, etc.)
+                    const rawMaxStr = columns[13].trim();
+                    let maxStringLength = null;
+                    if (rawMaxStr !== "") {
+                        const parsed = parseInt(rawMaxStr, 10);
+                        if (!isNaN(parsed)) {
+                            maxStringLength = parsed;
+                        }
+                    }
                     
                     bacnetDescriptions[id] = name;
                     
-                    // Store type info for use in determineDataType
+                    // Store type and optional max_string_length for use later
                     bacnetMap[id] = {
-                        type: type || ""
+                        type: type || "",
+                        max_string_length: maxStringLength
                     };
                 }
             });
@@ -1050,20 +1094,20 @@ function generateMilesightBacnetMapping(devicePath, bacnetMappingPath = null, ba
             if (bacnetMap[varName] && bacnetMap[varName].type) {
                 const bacnetType = bacnetMap[varName].type.toUpperCase();
                 if (bacnetType === "BOOL" || bacnetType === "BOOLEAN") {
-                    return "BOOLEAN";
+                    return "BOOL";
                 } else if (bacnetType === "STRING") {
-                    return "STRING";
+                    return "TEXT";
                 }
             }
             
             // Boolean patterns
             if (/^(occupancy|violation_detection|status|on_off|enabled|active|pin_state|state)/.test(varName)) {
-                return "BOOLEAN";
+                return "BOOL";
             }
             
             // String patterns
             if (/^(kernel|manufacturer|model|date|position|application_name|message_type|ABP_dev_address|OTA_app_EUI)$/.test(varName)) {
-                return "STRING";
+                return "TEXT";
             }
             
             return "NUMBER";
@@ -1071,9 +1115,9 @@ function generateMilesightBacnetMapping(devicePath, bacnetMappingPath = null, ba
         
         // Helper function to determine value type based on variable name
         function determineValueType(varName) {
-            if (determineDataType(varName) === "BOOLEAN") {
+            if (determineDataType(varName) === "BOOL") {
                 return "BOOLEAN";
-            } else if (determineDataType(varName) === "STRING") {
+            } else if (determineDataType(varName) === "TEXT") {
                 return "STRING";
             }
             
@@ -1140,10 +1184,10 @@ function generateMilesightBacnetMapping(devicePath, bacnetMappingPath = null, ba
             const valueType = determineValueType(varName);
             
             let bacnetType = "analog_value_object";
-            if (dataType === "BOOLEAN") {
+            if (dataType === "BOOL") {
                 bacnetType = "binary_value_object";
-            } else if (dataType === "STRING") {
-                bacnetType = "characterstring_value_object";
+            } else if (dataType === "TEXT") {
+                bacnetType = "character_string_value_object";
             }
             
             const objectMapping = {
@@ -1159,6 +1203,18 @@ function generateMilesightBacnetMapping(devicePath, bacnetMappingPath = null, ba
                 bacnet_unit_type: bacnetUnitType
             };
             
+            const varMaxLen = bacnetMap[varName] && bacnetMap[varName].max_string_length;
+            if ((dataType === "TEXT" || valueType === "STRING") && typeof varMaxLen === "number") {
+                objectMapping.max_length = varMaxLen;
+            }
+
+            if (dataType === "BOOL" || valueType === "BOOLEAN") {
+                objectMapping.values = [
+                    { value: 0, name: "false" },
+                    { value: 1, name: "true" }
+                ];
+            }
+            
             objectMappings.object.push(objectMapping);
         });
         
@@ -1167,39 +1223,41 @@ function generateMilesightBacnetMapping(devicePath, bacnetMappingPath = null, ba
             // Skip empty commands
             if (!cmdName || cmdName === "") return;
             
-            // Determine command data type based on name or pattern
-            let dataType = "NUMBER";
-            let valueType = "FLOAT";
-            let bacnetType = "analog_value_object";
-            
-            if (cmdName === "sendReboot" || cmdName === "sendFactoryReset") {
-                dataType = "BOOLEAN";
-                valueType = "BOOLEAN";
-                bacnetType = "binary_value_object";
-            } else if (cmdName === "sendHexFrame") {
-                dataType = "STRING";
-                valueType = "STRING";
-                bacnetType = "characterstring_value_object";
-            } else if (cmdName === "sendConfirmedMode" || cmdName === "sendLoraRetries") {
-                valueType = "UINT8";
-            } else if (cmdName === "sendLoraRejoin") {
-                valueType = "UINT16";
-            } else if (cmdName.startsWith("send") && cmdName.endsWith("Bool")) {
-                dataType = "BOOLEAN";
-                valueType = "BOOLEAN";
-                bacnetType = "binary_value_object";
-            } else if (cmdName.includes("U8") || cmdName.includes("u8")) {
-                valueType = "UINT8";
-            } else if (cmdName.includes("U16") || cmdName.includes("u16")) {
-                valueType = "UINT16";
-            } else if (cmdName.includes("U32") || cmdName.includes("u32")) {
-                valueType = "UINT32";
-            } else if (cmdName.includes("S8") || cmdName.includes("s8")) {
-                valueType = "INT8";
-            } else if (cmdName.includes("S16") || cmdName.includes("s16")) {
-                valueType = "INT16";
-            } else if (cmdName.includes("S32") || cmdName.includes("s32")) {
-                valueType = "INT32";
+            // Determine command data/value type using bacnetMap and helpers
+            // Default to using the existing helpers which inspect variable names
+            let dataType = determineDataType(cmdName);
+            let valueType = determineValueType(cmdName);
+            let bacnetType = (dataType === "BOOL" || dataType === "BOOLEAN") ? "binary_value_object" :
+                             (dataType === "TEXT" || valueType === "STRING") ? "character_string_value_object" :
+                             "analog_value_object";
+
+            // No hardcoded special cases here: prefer BACnet mapping (CSV) and
+            // the determine* helpers. Any special command types should be
+            // declared in `watteco-bacnet-mapping.csv` so they are authoritative.
+
+            // If bacnetMap contains an explicit type for this command, prefer it
+            if (bacnetMap[cmdName] && bacnetMap[cmdName].type) {
+                const bType = bacnetMap[cmdName].type.toUpperCase();
+                // map BACnet types to valueType used by milesight mapping
+                const mapBacnetToValue = {
+                    'UINT8': 'UINT8', 'UINT16': 'UINT16', 'UINT32': 'UINT32',
+                    'INT8': 'INT8', 'INT16': 'INT16', 'INT32': 'INT32',
+                    'FLOAT': 'FLOAT', 'STRING': 'STRING', 'CHAR': 'STRING',
+                    'BOOL': 'BOOLEAN', 'BOOLEAN': 'BOOLEAN'
+                };
+
+                if (mapBacnetToValue[bType]) {
+                    valueType = mapBacnetToValue[bType];
+                }
+
+                // set dataType and bacnetType accordingly
+                if (valueType === 'STRING') dataType = 'TEXT';
+                else if (valueType === 'BOOLEAN') dataType = 'BOOL';
+                else dataType = 'NUMBER';
+
+                if (dataType === 'BOOL') bacnetType = 'binary_value_object';
+                else if (dataType === 'TEXT') bacnetType = 'character_string_value_object';
+                else bacnetType = 'analog_value_object';
             }
             
             // Determine unit from BACnet mapping if available
@@ -1238,6 +1296,18 @@ function generateMilesightBacnetMapping(devicePath, bacnetMappingPath = null, ba
                 bacnet_unit_type_id: bacnetUnitTypeId,
                 bacnet_unit_type: bacnetUnitType
             };
+
+            const cmdMaxLen = bacnetMap[cmdName] && bacnetMap[cmdName].max_string_length;
+            if ((dataType === "TEXT" || valueType === "STRING") && typeof cmdMaxLen === "number") {
+                commandMapping.max_length = cmdMaxLen;
+            }
+
+            if (dataType === "BOOL" || valueType === "BOOLEAN") {
+                commandMapping.values = [
+                    { value: 0, name: "false" },
+                    { value: 1, name: "true" }
+                ];
+            }
             
             objectMappings.object.push(commandMapping);
         });

@@ -120,6 +120,11 @@ const args = process.argv.slice(2);
 // Initialize variables
 let filter = '';
 let versionOrTypeParam = '';
+let generateLite = false;
+let multilineFlag = false;
+let noterserFlag = false;
+let noMinifyFlag = false;
+let bacnetOnlyFlag = false;
 
 // Parse the arguments
 
@@ -128,6 +133,19 @@ for (let i = 0; i < args.length; i++) {
     if (args[i] === '-v' || args[i] === '--version') {
       versionOrTypeParam = args[i + 1] || ''; // If a version argument follows, use it
       i++; // Skip the next argument (the version value)
+    } else if (args[i] === '--lite' || args[i] === '--generate-lite') {
+      generateLite = true;
+    } else if (args[i] === '--multiline') {
+      multilineFlag = true;
+    } else if (args[i] === '--noterser') {
+      noterserFlag = true;
+    } else if (args[i] === '--bacnetOnly' || args[i] === '--bacnet-only' || args[i] === '-bacnetOnly') {
+      // When set, only regenerate BACnet-related files (units/multitech/milesight)
+      // and skip the webpack/bundling steps (no main rebuild).
+      bacnetOnlyFlag = true;
+    } else if (args[i] === '--no-minify' || args[i] === '--no-minimise') {
+      // disable all minification (webpack + terser)
+      noMinifyFlag = true;
     } else {
       filter = args[i]; // The filter regex pattern (if given)
     }
@@ -143,55 +161,140 @@ if (devices.length === 0) process.exit(0);
 
 // Execute commands for each filtered device
 for (let i in devices) {
-    sensorName = devices[i];
-    console.log(`Building ${sensorName} ...`);    
-    
-    let devicePath = path.join(__dirname, `../devices/${sensorName}`);
-    
-    // Generate units.auto.js file for the device
-    tools.generateDeviceUnitsAutoFile(devicePath);
+  sensorName = devices[i];
+  console.log(`Building ${sensorName} ...`);    
+  
+  let devicePath = path.join(__dirname, `../devices/${sensorName}`);
+  
+  // Generate units.auto.js file for the device
+  tools.generateDeviceUnitsAutoFile(devicePath);
 
-    // Update version in package.json and metadata.json if versionOrTypeParam is provided
-    updateVersionAndSyncMetadata(devicePath, versionOrTypeParam);
+  // Update version in package.json and metadata.json if versionOrTypeParam is provided
+  updateVersionAndSyncMetadata(devicePath, versionOrTypeParam);
 
-    // Get the updated version from package.json
-    const packageJsonPath = path.join(devicePath, 'package.json');
-    const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
-    const updatedVersion = packageJson.version;
+  // Get the updated version from package.json
+  const packageJsonPath = path.join(devicePath, 'package.json');
+  const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
+  const updatedVersion = packageJson.version;
+  
+  // Define a list of devices to skip for MultitechBacnet definition generation
+  const skipMultitechDevices = ["tics'o"];
+  
+  // Check if this device should skip MultitechBacnet definition generation
+  const shouldSkipMultitech = skipMultitechDevices.some(skipDevice => 
+      sensorName.toLowerCase() === skipDevice.toLowerCase() || 
+      sensorName.replace(/['"]/g, '') === skipDevice.replace(/['"]/g, '')
+  );
+  
+  if (shouldSkipMultitech) {
+      console.log(`Skipping MultitechBacnet definition for ${sensorName} - using existing manual definition file`);
+  } else {
+      // Generate MultitechBacnet definition
+      tools.generateMultitechBacnetDefinition(devicePath, null, updatedVersion);
+  }
+  
+  // Define a list of devices to skip for MilesightBacnet mapping generation
+  const skipMilesightDevices = ["tics'o"];
+
+  // Check if this device should skip MilesightBacnet mapping generation
+  const shouldSkipMilesight = skipMilesightDevices.some(skipDevice => 
+      sensorName.toLowerCase() === skipDevice.toLowerCase() || 
+      sensorName.replace(/['"]/g, '') === skipDevice.replace(/['"]/g, '')
+  );
+
+  if (shouldSkipMilesight) {
+      console.log(`Skipping MilesightBacnet mapping for ${sensorName} - using existing manual mapping file`);
+  } else {
+      // Generate MilesightBacnet mapping
+      tools.generateMilesightBacnetMapping(devicePath);
+  }
     
-    // Define a list of devices to skip for MultitechBacnet definition generation
-    const skipMultitechDevices = ["tics'o"];
-    
-    // Check if this device should skip MultitechBacnet definition generation
-    const shouldSkipMultitech = skipMultitechDevices.some(skipDevice => 
-        sensorName.toLowerCase() === skipDevice.toLowerCase() || 
-        sensorName.replace(/['"]/g, '') === skipDevice.replace(/['"]/g, '')
-    );
-    
-    if (shouldSkipMultitech) {
-        console.log(`Skipping MultitechBacnet definition for ${sensorName} - using existing manual definition file`);
-    } else {
-        // Generate MultitechBacnet definition
-        tools.generateMultitechBacnetDefinition(devicePath, null, updatedVersion);
+    // If --bacnet-only is enabled, skip bundling/building main output.
+  if (bacnetOnlyFlag) {
+    console.log(`--bacnet-only set: skipping main rebuild for ${sensorName} (BACnet files regenerated only).`);
+    continue;
+  }
+
+    // Optionally generate a "lite" standard.js for this device before building.
+    // Toggle with --lite or --generate-lite when invoking this script.
+  if (generateLite) {
+      const clustersFile = path.join(devicePath, 'ClustersVariables.json');
+      if (fs.existsSync(clustersFile)) {
+        try {
+          console.log(`Generating lite standard (AST) for ${sensorName}...`);
+          const astScript = path.join(__dirname, 'extract_ast.js');
+          const outLite = path.join(devicePath, 'standard.lite.js');
+          // extract_ast.js usage: node utilities/extract_ast.js <clustersJsonPath> [outFile]
+          const cmd = `node "${astScript}" "${clustersFile}" "${outLite}"`;
+          execSync(cmd, { stdio: 'inherit' });
+        } catch (err) {
+          console.warn(`Lite generation failed for ${sensorName}: ${err && err.message ? err.message : err}`);
+        }
+      } else {
+        console.log(`No ClustersVariables.json for ${sensorName}, skipping lite generation.`);
+      }
     }
-    
-    // Define a list of devices to skip for MilesightBacnet mapping generation
-    const skipMilesightDevices = ["tics'o"];
-
-    // Check if this device should skip MilesightBacnet mapping generation
-    const shouldSkipMilesight = skipMilesightDevices.some(skipDevice => 
-        sensorName.toLowerCase() === skipDevice.toLowerCase() || 
-        sensorName.replace(/['"]/g, '') === skipDevice.replace(/['"]/g, '')
-    );
-
-    if (shouldSkipMilesight) {
-        console.log(`Skipping MilesightBacnet mapping for ${sensorName} - using existing manual mapping file`);
+    // If generateLite is requested and a lite file was created for this device,
+    // temporarily override the global codec/standard.js with the lite file so the
+    // device bundle includes the smaller decoder. We backup the original and restore it after the build.
+    if (generateLite) {
+      const outLite = path.join(devicePath, 'standard.lite.js');
+      const globalStandard = path.join(__dirname, '../codec/standard.js');
+      const backupStandard = globalStandard + `.backup-for-${sensorName}`;
+      if (fs.existsSync(outLite)) {
+        try {
+          // Backup global standard.js
+          if (fs.existsSync(globalStandard)) {
+            fs.copyFileSync(globalStandard, backupStandard);
+          }
+          // Copy lite to global location.
+          // The AST extractor emits a file with requires rewritten for placement under devices/<device>/,
+          // e.g. require("../../codec/convert_tools.js"). When we temporarily place the lite file under
+          // codec/standard.js we must revert those paths to the original local require ("./convert_tools.js").
+          try {
+            let content = fs.readFileSync(outLite, 'utf8');
+            // Replace ../../codec/convert_tools.js -> ./convert_tools.js (handles single/double quotes)
+            content = content.replace(/require\(["']\.\.\/\.\.\/codec\/convert_tools\.js["']\)/g, "require('./convert_tools.js')");
+            content = content.replace(/require\(["']\.\.\/\.\.\/codec\/convert_tools\.js["']\)/g, "require(\'./convert_tools.js\')");
+            content = content.replace(/require\(["']\.\.\/codec\/convert_tools\.js["']\)/g, "require('./convert_tools.js')");
+            content = content.replace(/require\(["']\.\.\/codec\/convert_tools\.js["']\)/g, "require(\'./convert_tools.js\')");
+            // As a final fallback, replace any ../../codec/convert_tools.js occurrences
+            content = content.replace(/\.\.\/\.\.\/codec\/convert_tools\.js/g, './convert_tools.js');
+            content = content.replace(/\.\.\/codec\/convert_tools\.js/g, './convert_tools.js');
+            fs.writeFileSync(globalStandard, content, 'utf8');
+            console.log(`Temporarily replaced codec/standard.js with ${outLite} for ${sensorName} (paths adjusted)`);
+          } catch (err) {
+            // Fallback to direct copy if something goes wrong with text replacement
+            fs.copyFileSync(outLite, globalStandard);
+            console.log(`Temporarily replaced codec/standard.js with ${outLite} for ${sensorName} (direct copy)`);
+          }
+          // Build while override is in place
+          tools.buildAndTranspile(devicePath, { multiline: multilineFlag, noterser: (noterserFlag || noMinifyFlag), noWebpackMinify: noMinifyFlag });
+        } catch (err) {
+          console.error(`Build failed for ${sensorName} with lite override: ${err && err.message ? err.message : err}`);
+        } finally {
+          // Restore original global standard.js
+          try {
+            if (fs.existsSync(backupStandard)) {
+              fs.copyFileSync(backupStandard, globalStandard);
+              fs.unlinkSync(backupStandard);
+              console.log(`Restored original codec/standard.js after building ${sensorName}`);
+            } else {
+              // No backup: remove the temporary global standard if we created it
+              // (this is unlikely but safe)
+              // do nothing
+            }
+          } catch (restoreErr) {
+            console.error(`Failed to restore original codec/standard.js: ${restoreErr && restoreErr.message ? restoreErr.message : restoreErr}`);
+          }
+        }
+      } else {
+  // No lite file: just build normally
+  tools.buildAndTranspile(devicePath, { multiline: multilineFlag, noterser: (noterserFlag || noMinifyFlag), noWebpackMinify: noMinifyFlag });
+      }
     } else {
-        // Generate MilesightBacnet mapping
-        tools.generateMilesightBacnetMapping(devicePath);
+  tools.buildAndTranspile(devicePath, { multiline: multilineFlag, noterser: (noterserFlag || noMinifyFlag), noWebpackMinify: noMinifyFlag });
     }
-    
-    tools.buildAndTranspile(devicePath);
 
   // Prepend sensor name as a comment to the generated main bundle so
   // it's easier to identify which minified file belongs to which device.
@@ -211,7 +314,7 @@ for (let i in devices) {
       const bundlePath = path.join(outPath, outFilename);
 
       if (fs.existsSync(bundlePath)) {
-        const comment = `/*${sensorName}*/`;
+        const comment = `/*${sensorName} v${updatedVersion}*/`;
         const content = fs.readFileSync(bundlePath, 'utf8');
 
         // Avoid double-prepending if comment already present
