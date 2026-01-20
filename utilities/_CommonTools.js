@@ -36,13 +36,15 @@ function buildAndTranspile(projectDir, options = {}) {
         throw new Error(`Error: webpack.config.js not found in ${projectDir}`);
     }
 
+    // Ensure we don't reuse a cached config between devices/runs
+    delete require.cache[require.resolve(webpackConfigPath)];
     const webpackConfig = require(webpackConfigPath);
 
     // If requested, disable webpack-level minification so output stays unminified
     // This is useful for debugging or size checks: set optimization.minimize = false
     if (options && options.noWebpackMinify) {
         // prefer explicit disable of minimization
-        webpackConfig.mode = webpackConfig.mode || 'development';
+        webpackConfig.mode = webpackConfig.mode || "development";
         webpackConfig.optimization = webpackConfig.optimization || {};
         webpackConfig.optimization.minimize = false;
         // also ensure any minimizer plugins are not present (best-effort)
@@ -54,9 +56,18 @@ function buildAndTranspile(projectDir, options = {}) {
         webpackConfig.output.path = path.resolve(projectDir, webpackConfig.output.path);
     }
 
-    // Ensure entry is absolute
-    if (!path.isAbsolute(webpackConfig.entry)) {
-        webpackConfig.entry = path.resolve(projectDir, webpackConfig.entry);
+    // Ensure entry is absolute (handle both string and object entry)
+    if (typeof webpackConfig.entry === "string") {
+        if (!path.isAbsolute(webpackConfig.entry)) {
+            webpackConfig.entry = path.resolve(projectDir, webpackConfig.entry);
+        }
+    } else if (typeof webpackConfig.entry === "object" && webpackConfig.entry !== null) {
+        for (const k of Object.keys(webpackConfig.entry)) {
+            const v = webpackConfig.entry[k];
+            if (typeof v === "string" && !path.isAbsolute(v)) {
+                webpackConfig.entry[k] = path.resolve(projectDir, v);
+            }
+        }
     }
 
     const outputFilename = webpackConfig.output?.filename;
@@ -81,7 +92,7 @@ function buildAndTranspile(projectDir, options = {}) {
     let webpackError = null;
 
     compiler.run((err, stats) => {
-        if (err || stats.hasErrors()) {
+        if (err || (stats && stats.hasErrors && stats.hasErrors())) {
             webpackError = err || new Error(stats.toString({ errors: true }));
         }
         isDone = true;
@@ -98,28 +109,29 @@ function buildAndTranspile(projectDir, options = {}) {
     if (!fs.existsSync(outputPath)) {
         throw new Error(`Error: Webpack output file not found: ${outputPath}`);
     }
-    
-    // ADD conditionnal driver export  ==> main.js
+
+    // ADD conditional driver export  ==> main.js
     //--------------------------------------------
-    // Add driver exports that is executed "conditionnaly" if current JS environment allows it
-    let conditional_exports = `if (typeof exports !== "undefined" && typeof module !== "undefined" && module.exports) { exports.driver = driver; }`;
-    //let conditional_exports   = `if (typeof module !== "undefined" && module.exports) { module.exports = { driver: { watteco_decodeUplink: watteco_decodeUplink  } }; }`;
+    // Add driver exports executed conditionally if current JS environment allows it
+    const conditional_exports =
+        `if (typeof exports !== "undefined" && typeof module !== "undefined" && module.exports) { exports.driver = driver; }`;
+
     try {
-        fs.appendFileSync(outputPath, conditional_exports, "utf8");
-        // console.log(`Successfully appended conditional exports to ${filePath}`);
+        // ensure safe separation from the bundle end
+        fs.appendFileSync(outputPath, "\n;\n" + conditional_exports + "\n", "utf8");
     } catch (err) {
         throw new Error(`Error appending conditional exports to ${outputPath}: ${err.message}`);
     }
 
-    // TRANSPILE (babel) to ES5 main.js to main.es5.js
-    //------------------------------------------------
+    // TRANSPILE (babel) to ES5
+    //-------------------------
     const code = fs.readFileSync(outputPath, "utf8");
     
     process.stdout.write("Transpiling to ES5... ");
 
     const result = babel.transformSync(code, {
         //presets: [["@babel/preset-env", { targets: "ie 11",useBuiltIns: "usage",corejs: 3}]],
-        presets: [["@babel/preset-env", { targets: "ie 11"}]],
+        presets: [["@babel/preset-env", { targets: "ie 11" }]],
         plugins: ["@babel/plugin-transform-object-assign"],
     });
 
@@ -127,13 +139,22 @@ function buildAndTranspile(projectDir, options = {}) {
         throw new Error("Babel transpilation failed.");
     }
 
-    fs.writeFileSync(es5OutputPath, result.code, "utf8");
+    // Pre-terser "SafeTB" fix (this is where that _Object$keys pattern usually appears)
+    let es5CodeToWrite = result.code;
+    if (options && options.terserSafeTB) {
+        es5CodeToWrite = fixBabelObjectKeysForLoops(es5CodeToWrite);
+        // Also rewrite any remaining forbidden for(var...) init patterns at ES5 stage
+        const rewrittenPre = rewriteForVarInitsTB(es5CodeToWrite);
+        es5CodeToWrite = rewrittenPre.code;
+        console.log(`SafeTB(pre-terser): rewrote ${rewrittenPre.rewrites} for-loop init(s)`);
+        // Ensure valid JS
+        new Function(es5CodeToWrite);
+    }
 
-    // console.log(`Transpiled to ES5: ${es5OutputPath}`);
+    fs.writeFileSync(es5OutputPath, es5CodeToWrite, "utf8");
 
-  
-    // TERSER Minify main.es5.js
-    //---------------------------
+    // TERSER Minify ES5 output
+    //-------------------------
     process.stdout.write("Running Terser minification... ");
 
     // Read the file safely
@@ -153,50 +174,344 @@ function buildAndTranspile(projectDir, options = {}) {
     if (options && options.noterser) {
         console.log("Skipping Terser minification (noterser flag set).\n");
         console.log(`==> ${es5OutputPath}\n`);
-    } else {
-        // Select terser options depending on `options.multiline` flag.
-        // By default we use the older compact behavior (compress:true, mangle:true, braces only)
-        // If options.multiline === true we enable multiline formatting with max line length.
-        const terserOptionsCompact = { compress: true, mangle: true, format: { braces: true } };
-        const terserOptionsMultiline = {
-            ecma: 5,
-            compress: {
-                // keep compression but avoid some aggressive transforms
-                sequences: false
-            },
-            mangle: true,
-            format: {
-                braces: true,
-                semicolons: true,
-                max_line_len: 120
-            }
-        };
-
-        const chosenTerserOptions = options && options.multiline ? terserOptionsMultiline : terserOptionsCompact;
-
-        let minifiedResult;
-        isDone = false;
-
-        // TODO: More compact mangling could be done ... (look at result still some plaintext functions that ar not needed in plaintext)
-        terser.minify(es5Code, chosenTerserOptions).then(result => {
-            minifiedResult = result;
-            isDone = true;
-        }).catch(error => {
-            throw new Error(`Terser minification failed: ${error}`);
-        });
-
-        deasync.loopWhile(() => !isDone);
-
-        if (!minifiedResult || !minifiedResult.code) {
-            throw new Error(`Error: Terser returned empty minified code.`);
-        }
-
-        fs.writeFileSync(es5OutputPath, minifiedResult.code, "utf8");
-
-        console.log("Done.");
-        console.log(`==> ${es5OutputPath}\n`);
+        return;
     }
 
+    // ===== Terser option presets =====
+    const terserOptionsCompact = {
+        ecma: 5,
+        compress: true,
+        mangle: true,
+        format: { braces: true },
+    };
+
+    const terserOptionsMultiline = {
+        ecma: 5,
+        compress: {
+            passes: 1,
+            sequences: false,
+            reduce_vars: false,
+            collapse_vars: false,
+            join_vars: false,
+            hoist_vars: false,
+            hoist_funs: false,
+            inline: false,
+        },
+        mangle: true,
+        format: {
+            braces: true,
+            semicolons: true,
+            max_line_len: 120,
+        },
+    };
+
+    // TB-safe minify: keep compression but avoid transforms that reintroduce forbidden for(...) inits
+    const terserOptionsSafeTB = {
+        ecma: 5,
+        compress: {
+            passes: 1,
+            sequences: false,
+            reduce_vars: false,
+            collapse_vars: false,
+            join_vars: false,
+            inline: false,
+            hoist_vars: false,
+            hoist_funs: false,
+            loops: false, // be conservative with loop transforms
+            dead_code: true,
+            unused: true,
+            conditionals: true,
+            booleans: true,
+            comparisons: true,
+            evaluate: true,
+            if_return: true,
+        },
+        mangle: true,
+        format: {
+            braces: true,
+            semicolons: true,
+            max_line_len: 120,
+        },
+    };
+
+    const chosenTerserOptions =
+        (options && options.terserSafeTB) ? terserOptionsSafeTB
+            : (options && options.multiline) ? terserOptionsMultiline
+                : terserOptionsCompact;
+
+    let minifiedResult;
+    isDone = false;
+
+    terser.minify(es5Code, chosenTerserOptions).then(r => {
+        minifiedResult = r;
+        isDone = true;
+    }).catch(error => {
+        throw new Error(`Terser minification failed: ${error}`);
+    });
+
+    deasync.loopWhile(() => !isDone);
+
+    if (!minifiedResult || !minifiedResult.code) {
+        throw new Error("Error: Terser returned empty minified code.");
+    }
+
+    if (options && options.terserSafeTB) {
+        // Post-terser rewrite as a safety net
+        const rewritten = rewriteForVarInitsTB(minifiedResult.code);
+        minifiedResult.code = rewritten.code;
+        console.log(`SafeTB(post-terser): rewrote ${rewritten.rewrites} for-loop init(s)`);
+
+        // Sanity checks (cheap and deterministic)
+        if (hasTopLevelCommaInForInit(minifiedResult.code)) {
+            throw new Error("SafeTB: remaining multi-var for-loop detected");
+        }
+        if (/(^|[;{}])\s*var\s+\w+\s+in\s+/.test(minifiedResult.code)) {
+            throw new Error("SafeTB: corrupted for-in detected");
+        }
+        if (/for\s*\(\s*var\s+/.test(minifiedResult.code)) {
+            throw new Error("SafeTB: found `for(var ...)` which TB may reject");
+        }
+
+        // Remove any leading "use strict" directive to avoid runtime issues in ThingsBoard
+        try {
+            minifiedResult.code = minifiedResult.code.replace(/^\s*(["'])use strict\1;?\s*/, "");
+        } catch (e) {
+            // If replacement fails for any reason, surface a clear error
+            throw new Error("SafeTB: failed to remove 'use strict' directive: " + String(e));
+        }
+
+        // Append the ThingsBoard-friendly helper + wrapper to the end of the code
+        const _safeTBAppend = `
+\nfunction HexStrToBytes(InHexStr) {
+    if (typeof InHexStr === 'string') {
+        var hexString = InHexStr.replace(/[^0-9A-Fa-f]/g, '');
+        var bytes = [];
+        for (var i = 0; i < hexString.length; i += 2) {
+            bytes.push(parseInt(hexString.substr(i, 2), 16));
+        }
+        InHexStr = bytes;
+    }
+    return InHexStr;
+}
+
+try {
+    msg = msg || {}; metadata = metadata || {};
+    var tsDate = new Date(parseInt(metadata.ts))
+    var ISODate = tsDate.toISOString()
+    var input = { bytes: HexStrToBytes(msg.data), fPort: 125, recvTime: ISODate };
+    var endpoint_parameters = metadata.endpoint_parameters || metadata.endpointCorresponder || null;
+    var TIC_Decode = metadata.TIC_Decode || null;
+    var decoded = driver.decodeUplink(input);
+    msg.decoded_standard = decoded;
+    return { msg: msg, metadata: metadata, msgType: msgType };
+} catch (err) {
+    metadata = metadata || {}; metadata.__standard_error = err && err.message ? err.message : String(err);
+    return { msg: msg || {}, metadata: metadata, msgType: msgType };
+}
+`;
+
+        minifiedResult.code += _safeTBAppend;
+
+        // Validate output parses as JS (after modifications)
+        new Function(minifiedResult.code);
+    }
+
+    fs.writeFileSync(es5OutputPath, minifiedResult.code, "utf8");
+
+    console.log("Done.");
+    console.log(`==> ${es5OutputPath}\n`);
+}
+
+/**
+ * Split by commas at top-level only (not inside (), [], {}, or strings).
+ */
+function splitTopLevelCommas(s) {
+    const out = [];
+    let start = 0;
+    let depthParen = 0, depthBrack = 0, depthBrace = 0;
+    let inStr = null;
+    let esc = false;
+
+    for (let i = 0; i < s.length; i++) {
+        const ch = s[i];
+
+        if (inStr) {
+            if (esc) { esc = false; continue; }
+            if (ch === "\\") { esc = true; continue; }
+            if (ch === inStr) { inStr = null; continue; }
+            continue;
+        }
+
+        if (ch === "'" || ch === '"' || ch === "`") { inStr = ch; continue; }
+
+        if (ch === "(") depthParen++;
+        else if (ch === ")") depthParen = Math.max(0, depthParen - 1);
+        else if (ch === "[") depthBrack++;
+        else if (ch === "]") depthBrack = Math.max(0, depthBrack - 1);
+        else if (ch === "{") depthBrace++;
+        else if (ch === "}") depthBrace = Math.max(0, depthBrace - 1);
+
+        if (ch === "," && depthParen === 0 && depthBrack === 0 && depthBrace === 0) {
+            out.push(s.slice(start, i).trim());
+            start = i + 1;
+        }
+    }
+    out.push(s.slice(start).trim());
+    return out.filter(Boolean);
+}
+
+/**
+ * Targeted pre-terser fix for Babel-generated pattern:
+ * for (var i = 0, keys = Object.keys(obj); i < keys.length; i++) { ... }
+ * -> var keys = Object.keys(obj); for (var i = 0; i < keys.length; i++) { ... }
+ */
+function fixBabelObjectKeysForLoops(code) {
+    return code.replace(
+        /for\s*\(\s*var\s+([A-Za-z_$][\w$]*)\s*=\s*0\s*,\s*([A-Za-z_$][\w$]*)\s*=\s*Object\.keys\s*\(\s*([^)]+?)\s*\)\s*;\s*\1\s*<\s*\2\.length\s*;\s*\1\+\+\s*\)\s*\{/g,
+        (m, idxVar, keysVar, objExpr) => {
+            return `var ${keysVar}=Object.keys(${objExpr});for(var ${idxVar}=0;${idxVar}<${keysVar}.length;${idxVar}++){`;
+        }
+    );
+}
+
+/**
+ * Rewrite "for(var ...)" init clauses into ThingsBoard-friendly ES5.
+ * TB rules we enforce:
+ *  - no multi-var init inside for(init;test;update)
+ *  - no non-trivial single-var init inside for(init;test;update) (keep only x=0 or x=1)
+ *  - do not touch for-in / for-of
+ */
+function rewriteForVarInitsTB(code) {
+    let out = "";
+    let i = 0;
+    let rewrites = 0;
+
+    while (i < code.length) {
+        const idx = code.indexOf("for", i);
+        if (idx === -1) { out += code.slice(i); break; }
+
+        out += code.slice(i, idx);
+        i = idx;
+
+        if (code.slice(i, i + 3) !== "for") { out += code[i++]; continue; }
+
+        let j = i + 3;
+        while (j < code.length && /\s/.test(code[j])) j++;
+        if (code[j] !== "(") { out += code[i++]; continue; }
+
+        const startParen = j;
+        j++;
+
+        let depth = 1;
+        let inStr = null;
+        let esc = false;
+        let inRegex = false;
+
+        for (; j < code.length; j++) {
+        const ch = code[j];
+
+        if (inStr) {
+            if (esc) { esc = false; continue; }
+            if (ch === "\\") { esc = true; continue; }
+            if (ch === inStr) { inStr = null; continue; }
+            continue;
+        }
+
+        if (inRegex) {
+            if (esc) { esc = false; continue; }
+            if (ch === "\\") { esc = true; continue; }
+            if (ch === "/") { inRegex = false; continue; }
+            continue;
+        }
+
+        if (ch === "'" || ch === '"' || ch === "`") { inStr = ch; continue; }
+
+        // basic regex literal heuristic
+        if (ch === "/") {
+            const prev = code[j - 1];
+            if (prev === "(" || prev === "," || prev === "=") {
+            inRegex = true;
+            continue;
+            }
+        }
+
+        if (ch === "(") depth++;
+        else if (ch === ")") {
+            depth--;
+            if (depth === 0) break;
+        }
+        }
+
+        if (j >= code.length) { out += code.slice(i); break; }
+
+        const inside = code.slice(startParen + 1, j);
+        const afterParen = j + 1;
+
+        const trimmed = inside.trim();
+
+        // Only care about "for(var ...)"
+        if (!/^var\s+/.test(trimmed)) {
+            out += code.slice(i, afterParen);
+            i = afterParen;
+            continue;
+        }
+
+        // --- Case 1: for(var x in y) / for(var x of y) ---
+        // If it contains no ';' it's almost certainly in/of.
+        if (trimmed.indexOf(";") === -1) {
+        // Match: var <id> in/of <rest>
+        const m = trimmed.match(/^var\s+([A-Za-z_$][\w$]*)\s+(in|of)\s+(.+)$/);
+        if (!m) {
+            out += code.slice(i, afterParen);
+            i = afterParen;
+            continue;
+        }
+        const v = m[1];
+        const kw = m[2];
+        const rhs = m[3];
+
+        out += `var ${v};for(${v} ${kw} ${rhs})`;
+        rewrites++;
+        i = afterParen;
+        continue;
+        }
+
+        // --- Case 2: classical for(var ...; ...; ...) ---
+        const parts = trimmed.split(";");
+        if (parts.length !== 3) {
+        out += code.slice(i, afterParen);
+        i = afterParen;
+        continue;
+        }
+
+        const initRaw = parts[0].trim().replace(/^var\s+/, "");
+        const test = parts[1].trim();
+        const update = parts[2].trim();
+
+        // Split declarations (top-level commas only)
+        const decls = splitTopLevelCommas(initRaw);
+
+        // Always move ALL var decls outside (TB seems to hate any `var` in for())
+        // for(var a=...,b=...; test; update) -> var a=...,b=...; for(;test;update)
+        out += `var ${decls.join(",")};for(;${test};${update})`;
+        rewrites++;
+        i = afterParen;
+        continue;
+    }
+
+    return { code: out, rewrites };
+}
+
+function hasTopLevelCommaInForInit(code) {
+    // Limited check: catches classical `for(var a=...,b=...;...;...){` in most minified outputs.
+    const re = /for\s*\(\s*var\s+([^;]*?)\s*;\s*[^;]*?\s*;\s*[^)]*?\)\s*\{/g;
+    let m;
+    while ((m = re.exec(code)) !== null) {
+        const init = m[1];
+        const decls = splitTopLevelCommas(init);
+        if (decls.length > 1) return true;
+    }
+    return false;
 }
 
 /**

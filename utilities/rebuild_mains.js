@@ -123,8 +123,10 @@ let versionOrTypeParam = '';
 let generateLite = false;
 let multilineFlag = false;
 let noterserFlag = false;
+let terserSafeTBFlag = false;
 let noMinifyFlag = false;
 let bacnetOnlyFlag = false;
+let alsoThingsboardFlag = false;
 
 // Parse the arguments
 
@@ -139,6 +141,11 @@ for (let i = 0; i < args.length; i++) {
       multilineFlag = true;
     } else if (args[i] === '--noterser') {
       noterserFlag = true;
+    } else if (args[i] === '--thingsboard') {
+      terserSafeTBFlag = true;
+    } else if (args[i] === '--also-thingsboard') {
+      // When set, also produce an additional bundle named <sensor>-thingsboard.js
+      alsoThingsboardFlag = true;
     } else if (args[i] === '--bacnetOnly' || args[i] === '--bacnet-only' || args[i] === '-bacnetOnly') {
       // When set, only regenerate BACnet-related files (units/multitech/milesight)
       // and skip the webpack/bundling steps (no main rebuild).
@@ -269,7 +276,7 @@ for (let i in devices) {
             console.log(`Temporarily replaced codec/standard.js with ${outLite} for ${sensorName} (direct copy)`);
           }
           // Build while override is in place
-          tools.buildAndTranspile(devicePath, { multiline: multilineFlag, noterser: (noterserFlag || noMinifyFlag), noWebpackMinify: noMinifyFlag });
+          tools.buildAndTranspile(devicePath, { multiline: multilineFlag, noterser: (noterserFlag || noMinifyFlag), noWebpackMinify: noMinifyFlag, terserSafeTB: terserSafeTBFlag });
         } catch (err) {
           console.error(`Build failed for ${sensorName} with lite override: ${err && err.message ? err.message : err}`);
         } finally {
@@ -290,10 +297,10 @@ for (let i in devices) {
         }
       } else {
   // No lite file: just build normally
-  tools.buildAndTranspile(devicePath, { multiline: multilineFlag, noterser: (noterserFlag || noMinifyFlag), noWebpackMinify: noMinifyFlag });
+  tools.buildAndTranspile(devicePath, { multiline: multilineFlag, noterser: (noterserFlag || noMinifyFlag), noWebpackMinify: noMinifyFlag, terserSafeTB: terserSafeTBFlag });
       }
     } else {
-  tools.buildAndTranspile(devicePath, { multiline: multilineFlag, noterser: (noterserFlag || noMinifyFlag), noWebpackMinify: noMinifyFlag });
+  tools.buildAndTranspile(devicePath, { multiline: multilineFlag, noterser: (noterserFlag || noMinifyFlag), noWebpackMinify: noMinifyFlag, terserSafeTB: terserSafeTBFlag });
     }
 
   // Prepend sensor name as a comment to the generated main bundle so
@@ -335,4 +342,50 @@ for (let i in devices) {
     // Force name (npm: watteco-<device with _ replacing space and '>) or description for sensors (activate when needed)
     npmSensorName = `watteco-${sensorName.replace(/ /g, '_').replace(/'/g, '_')}`;
     tools.updateJSON_name_description(`${devicePath}/package.json`, npmSensorName, `Driver for ${sensorName} sensor`);
+
+    // Optionally generate an additional ThingsBoard-safe bundle.
+    if (alsoThingsboardFlag) {
+      try {
+        const webpackConfigPath = path.join(devicePath, 'webpack.config.js');
+        let outPath = devicePath;
+        let outFilename = `${sensorName}.js`;
+        if (fs.existsSync(webpackConfigPath)) {
+          delete require.cache[require.resolve(webpackConfigPath)];
+          const webpackConfig = require(webpackConfigPath);
+          outPath = webpackConfig.output && webpackConfig.output.path ? webpackConfig.output.path : outPath;
+          outFilename = webpackConfig.output && webpackConfig.output.filename ? webpackConfig.output.filename : outFilename;
+
+          if (!path.isAbsolute(outPath)) outPath = path.resolve(devicePath, outPath);
+        }
+
+        const bundlePath = path.join(outPath, outFilename);
+        const backupPath = bundlePath + `.backup-for-thingsboard-${Date.now()}`;
+
+        if (fs.existsSync(bundlePath)) {
+          fs.copyFileSync(bundlePath, backupPath);
+        }
+
+        console.log(`Generating ThingsBoard variant for ${sensorName}...`);
+        // Rebuild with ThingsBoard-safe terser option enabled
+        tools.buildAndTranspile(devicePath, { multiline: multilineFlag, noterser: (noterserFlag || noMinifyFlag), noWebpackMinify: noMinifyFlag, terserSafeTB: true });
+
+        if (fs.existsSync(bundlePath)) {
+          const targetName = `main-thingsboard.js`;
+          const targetPath = path.join(outPath, targetName);
+          fs.copyFileSync(bundlePath, targetPath);
+          console.log(`Created ThingsBoard bundle: ${targetPath}`);
+        } else {
+          console.warn(`ThingsBoard build did not produce expected bundle for ${sensorName}: ${bundlePath}`);
+        }
+
+        // Restore original bundle if backup exists
+        if (fs.existsSync(backupPath)) {
+          fs.copyFileSync(backupPath, bundlePath);
+          fs.unlinkSync(backupPath);
+          console.log(`Restored original bundle for ${sensorName}`);
+        }
+      } catch (err) {
+        console.error(`Failed to generate ThingsBoard bundle for ${sensorName}: ${err && err.message ? err.message : err}`);
+      }
+    }
 }
