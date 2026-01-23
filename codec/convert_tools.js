@@ -49,8 +49,9 @@ function BytesToInt64(InBytes, Starti1, Type, LiEnd) {
         start = Starti1 ;
     }
     let tmpInt64 = 0;
-    for (let j=start; nb > 0;(j+=inc,nb--))
+    for (let j=start; nb > 0;nb--)
     {
+        j+=inc
         tmpInt64 = (tmpInt64 << 8) + InBytes[j];
     }
     if ((Signed) && (BytesNb < 8) && (InBytes[start] & 0x80))

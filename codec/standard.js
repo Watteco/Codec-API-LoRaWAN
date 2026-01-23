@@ -604,7 +604,7 @@ function decodeAlarms(
 
     function readValue(kind, size, divider) {
         if (index + size - 1 >= byteArray.length) {
-            throw new Error("Alarm decoding: Unexpected end of data while reading value.");
+            throw new Error("Alarm decoding: Unexpected end of data during reading of the value.");
         }
 
         let value = 0;
@@ -1022,14 +1022,20 @@ function Decoder(bytes, port, TIC_Decode = null) {
                                 decoded.data[`modbus_datasize_EP${epIndex}`] = bytes[i2 + 2];
                                 i2 += 3;
                             }
+
                             decoded.data[`modbus_payload_EP${epIndex}`] = "";
                             if (bytes[i2] === undefined) return decoded;
-                            for (let j = 0; j < decoded.data[`modbus_datasize_EP${epIndex}`]; j++) {
+
+                            const dataSizeKey = `modbus_datasize_EP${epIndex}`;
+                            const dataSize = decoded.data[dataSizeKey];
+
+                            for (let j = 0; j < dataSize; j++) {
                                 let temp_hex_str = bytes[i2 + j].toString(16).toUpperCase();
                                 if (temp_hex_str.length === 1) temp_hex_str = "0" + temp_hex_str;
                                 decoded.data[`modbus_payload_EP${epIndex}`] += temp_hex_str;
                             }
-                            i2 += decoded.data[`modbus_datasize_EP${epIndex}`];
+
+                            i2 += dataSize;
                         }
                         return i2;
                     }

@@ -262,7 +262,7 @@ function normalizeRecvTime(rt) {
             if (!isNaN(d2.getTime())) return d2.toISOString();
         }
     } catch (e) {
-        // fall through to default
+        return (new Date()).toISOString();
     }
     return (new Date()).toISOString();
 }

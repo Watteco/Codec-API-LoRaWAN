@@ -123,9 +123,31 @@ function buildAndTranspile(projectDir, options = {}) {
         throw new Error(`Error appending conditional exports to ${outputPath}: ${err.message}`);
     }
 
+    let injectedFail;
+
+    if (options && options.terserSafeTB) {
+        injectedFail = `
+    function __FAIL__(e){
+    var msg = (e && e.message) ? e.message : String(e);
+    if (typeof v !== "undefined") {
+        v.causesMessages && v.causesMessages.push(msg);
+        v.error = msg;
+    }
+    return null;
+    }
+    `;
+    } else {
+        injectedFail = `
+    function __FAIL__(e){
+    if (e instanceof Error) throw e;
+    throw new Error(e);
+    }
+    `;
+    }
+
     // TRANSPILE (babel) to ES5
     //-------------------------
-    const code = fs.readFileSync(outputPath, "utf8");
+    const code = injectedFail + "\n" + fs.readFileSync(outputPath, "utf8");
     
     process.stdout.write("Transpiling to ES5... ");
 
@@ -279,6 +301,11 @@ function buildAndTranspile(projectDir, options = {}) {
             // If replacement fails for any reason, surface a clear error
             throw new Error("SafeTB: failed to remove 'use strict' directive: " + String(e));
         }
+        if (options && options.terserSafeTB) {
+            minifiedResult.code = rewriteShortCircuitToIfTB(minifiedResult.code);
+            new Function(minifiedResult.code);
+        }
+
 
         // Append the ThingsBoard-friendly helper + wrapper to the end of the code
         const _safeTBAppend = `
@@ -512,6 +539,15 @@ function hasTopLevelCommaInForInit(code) {
         if (decls.length > 1) return true;
     }
     return false;
+}
+
+function rewriteShortCircuitToIfTB(code) {
+    // Matches: <cond> && <ident>(...);
+    // Keeps it conservative to avoid breaking semantics.
+    return code.replace(
+        /(^|[;{}])\s*([^;{}]+?)\s*&&\s*([A-Za-z_$][\w$]*)\s*\(([^)]*)\)\s*;/g,
+        (m, prefix, cond, fn, args) => `${prefix}if(${cond.trim()}){${fn}(${args});}`
+    );
 }
 
 /**

@@ -373,6 +373,18 @@ for (let i in devices) {
           const targetName = `main-thingsboard.js`;
           const targetPath = path.join(outPath, targetName);
           fs.copyFileSync(bundlePath, targetPath);
+
+          // Prefix the ThingsBoard bundle with sensor name + version, same as normal bundle
+          try {
+            const comment = `/*${sensorName} v${updatedVersion}*/`;
+            const tbContent = fs.readFileSync(targetPath, 'utf8');
+            if (!tbContent.startsWith(comment)) {
+              fs.writeFileSync(targetPath, comment + tbContent, 'utf8');
+            }
+          } catch (prefixErr) {
+            console.warn(`Failed to prefix ThingsBoard bundle for ${sensorName}: ${prefixErr && prefixErr.message ? prefixErr.message : prefixErr}`);
+          }
+
           console.log(`Created ThingsBoard bundle: ${targetPath}`);
         } else {
           console.warn(`ThingsBoard build did not produce expected bundle for ${sensorName}: ${bundlePath}`);
