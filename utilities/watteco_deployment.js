@@ -44,7 +44,16 @@ async function copyAndDeployFiles(watteco_path, distrib_path, devices) {
         console.log(`Processing ${device} ...`);
     
         fs.copyFileSync(`${watteco_path}/devices/${device}/main.js`, `${distribDevicePath}/main.js`);
-    
+
+        // Copy the ThingsBoard-specific main file if it exists
+        const thingsboardMain = `${watteco_path}/devices/${device}/main-thingsboard.js`;
+        if (fs.existsSync(thingsboardMain)) {
+          fs.copyFileSync(thingsboardMain, `${distribDevicePath}/main-thingsboard.js`);
+          console.log(`  - Copied ThingsBoard main file: main-thingsboard.js`);
+        } else {
+          console.log(`  - No ThingsBoard main file found for ${device}`);
+        }
+
         fs.copyFileSync(`${watteco_path}/devices/${device}/examples.json`, `${distribDevicePath}/examples.json`);
     
         fs.copyFileSync(`${watteco_path}/devices/${device}/metadata.json`, `${distribDevicePath}/metadata.json`);
