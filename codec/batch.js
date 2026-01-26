@@ -148,12 +148,12 @@ function createBuffer(byteArray) {
             if (sampleType === ST_FL && nbBits !== 32) {
                 throw new Error("Batch : Mauvais sampletype");
             }
-            let u32 = 0;
             let nbytes = Math.trunc((nbBits - 1) / 8) + 1;
             let nbitsfrombyte = nbBits % 8;
             if (nbitsfrombyte === 0 && nbytes > 0) {
                 nbitsfrombyte = 8;
             }
+            let u32 = 0;
             while (nbytes > 0) {
                 let bittoread = 0;
                 while (nbitsfrombyte > 0) {

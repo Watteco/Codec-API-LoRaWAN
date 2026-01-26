@@ -169,6 +169,16 @@ function buildAndTranspile(projectDir, options = {}) {
         const rewrittenPre = rewriteForVarInitsTB(es5CodeToWrite);
         es5CodeToWrite = rewrittenPre.code;
         console.log(`SafeTB(pre-terser): rewrote ${rewrittenPre.rewrites} for-loop init(s)`);
+
+        const rewrittenWhile = rewriteForEmptyInitEmptyUpdateToWhileTB(es5CodeToWrite);
+        es5CodeToWrite = rewrittenWhile.code;
+        console.log(`SafeTB(pre-terser): rewrote ${rewrittenWhile.rewrites} for(;test;) -> while(test)`);
+
+        const rewrittenWhile2 = rewriteForExprInitEmptyUpdateToWhileTB(es5CodeToWrite);
+        es5CodeToWrite = rewrittenWhile2.code;
+        console.log(`SafeTB(pre-terser): rewrote ${rewrittenWhile2.rewrites} for(init;test;) -> init;while(test)`);
+        new Function(es5CodeToWrite);
+
         // Ensure valid JS
         new Function(es5CodeToWrite);
     }
@@ -282,6 +292,15 @@ function buildAndTranspile(projectDir, options = {}) {
         const rewritten = rewriteForVarInitsTB(minifiedResult.code);
         minifiedResult.code = rewritten.code;
         console.log(`SafeTB(post-terser): rewrote ${rewritten.rewrites} for-loop init(s)`);
+
+        const rewrittenWhile = rewriteForEmptyInitEmptyUpdateToWhileTB(minifiedResult.code);
+        minifiedResult.code = rewrittenWhile.code;
+        console.log(`SafeTB(post-terser): rewrote ${rewrittenWhile.rewrites} for(;test;) -> while(test)`);
+        
+        const rewrittenWhile2b = rewriteForExprInitEmptyUpdateToWhileTB(minifiedResult.code);
+        minifiedResult.code = rewrittenWhile2b.code;
+        console.log(`SafeTB(post-terser): rewrote ${rewrittenWhile2b.rewrites} for(init;test;) -> init;while(test)`);
+        new Function(minifiedResult.code);
 
         // Sanity checks (cheap and deterministic)
         if (hasTopLevelCommaInForInit(minifiedResult.code)) {
@@ -548,6 +567,198 @@ function rewriteShortCircuitToIfTB(code) {
         /(^|[;{}])\s*([^;{}]+?)\s*&&\s*([A-Za-z_$][\w$]*)\s*\(([^)]*)\)\s*;/g,
         (m, prefix, cond, fn, args) => `${prefix}if(${cond.trim()}){${fn}(${args});}`
     );
+}
+
+function rewriteForEmptyInitEmptyUpdateToWhileTB(code) {
+    let out = "";
+    let i = 0;
+    let rewrites = 0;
+
+    while (i < code.length) {
+        const idx = code.indexOf("for", i);
+        if (idx === -1) { out += code.slice(i); break; }
+
+        out += code.slice(i, idx);
+        i = idx;
+
+        // must be "for"
+        if (code.slice(i, i + 3) !== "for") { out += code[i++]; continue; }
+
+        let j = i + 3;
+        while (j < code.length && /\s/.test(code[j])) j++;
+        if (code[j] !== "(") { out += code[i++]; continue; }
+
+        const startParen = j;
+        j++;
+
+        // parse until matching ')', respecting strings/regex-ish
+        let depth = 1;
+        let inStr = null;
+        let esc = false;
+        let inRegex = false;
+
+        for (; j < code.length; j++) {
+            const ch = code[j];
+
+            if (inStr) {
+                if (esc) { esc = false; continue; }
+                if (ch === "\\") { esc = true; continue; }
+                if (ch === inStr) { inStr = null; continue; }
+                continue;
+            }
+
+            if (inRegex) {
+                if (esc) { esc = false; continue; }
+                if (ch === "\\") { esc = true; continue; }
+                if (ch === "/") { inRegex = false; continue; }
+                continue;
+            }
+
+            if (ch === "'" || ch === '"' || ch === "`") { inStr = ch; continue; }
+
+            // basic regex literal heuristic
+            if (ch === "/") {
+                const prev = code[j - 1];
+                if (prev === "(" || prev === "," || prev === "=") {
+                    inRegex = true;
+                    continue;
+                }
+            }
+
+            if (ch === "(") depth++;
+            else if (ch === ")") {
+                depth--;
+                if (depth === 0) break;
+            }
+        }
+
+        if (j >= code.length) { out += code.slice(i); break; }
+
+        const inside = code.slice(startParen + 1, j);
+        const afterParen = j + 1;
+
+        // We only rewrite classic for(init;test;update) where init and update are empty
+        // i.e. "; <test> ;" OR ";;"
+        // Split by top-level ';'
+        const parts = inside.split(";");
+        if (parts.length === 3) {
+            const init = parts[0].trim();
+            const test = parts[1].trim();
+            const update = parts[2].trim();
+
+            if (init === "" && update === "") {
+                // confirm next non-space is "{"
+                let k = afterParen;
+                while (k < code.length && /\s/.test(code[k])) k++;
+                if (code[k] === "{") {
+                    rewrites++;
+                    const cond = test === "" ? "true" : test;
+                    out += `while(${cond})`;
+                    i = afterParen; // continue after ')', keep the existing "{...}"
+                    continue;
+                }
+            }
+        }
+
+        // default: keep as-is
+        out += code.slice(i, afterParen);
+        i = afterParen;
+    }
+
+    return { code: out, rewrites };
+}
+
+function rewriteForExprInitEmptyUpdateToWhileTB(code) {
+    let out = "";
+    let i = 0;
+    let rewrites = 0;
+
+    while (i < code.length) {
+        const idx = code.indexOf("for", i);
+        if (idx === -1) { out += code.slice(i); break; }
+
+        out += code.slice(i, idx);
+        i = idx;
+
+        if (code.slice(i, i + 3) !== "for") { out += code[i++]; continue; }
+
+        let j = i + 3;
+        while (j < code.length && /\s/.test(code[j])) j++;
+        if (code[j] !== "(") { out += code[i++]; continue; }
+
+        const startParen = j;
+        j++;
+
+        // scan until matching ')'
+        let depth = 1;
+        let inStr = null;
+        let esc = false;
+        let inRegex = false;
+
+        for (; j < code.length; j++) {
+            const ch = code[j];
+
+            if (inStr) {
+                if (esc) { esc = false; continue; }
+                if (ch === "\\") { esc = true; continue; }
+                if (ch === inStr) { inStr = null; continue; }
+                continue;
+            }
+
+            if (inRegex) {
+                if (esc) { esc = false; continue; }
+                if (ch === "\\") { esc = true; continue; }
+                if (ch === "/") { inRegex = false; continue; }
+                continue;
+            }
+
+            if (ch === "'" || ch === '"' || ch === "`") { inStr = ch; continue; }
+
+            if (ch === "/") {
+                const prev = code[j - 1];
+                if (prev === "(" || prev === "," || prev === "=") { inRegex = true; continue; }
+            }
+
+            if (ch === "(") depth++;
+            else if (ch === ")") {
+                depth--;
+                if (depth === 0) break;
+            }
+        }
+
+        if (j >= code.length) { out += code.slice(i); break; }
+
+        const inside = code.slice(startParen + 1, j);
+        const afterParen = j + 1;
+
+        // Must be classic for(init;test;update) (not for-in/of)
+        const parts = inside.split(";");
+        if (parts.length === 3) {
+            const init = parts[0].trim();
+            const test = parts[1].trim();
+            const update = parts[2].trim();
+
+            // We want: init != "" AND update == ""  (your case)
+            // Do NOT touch "for(var ...)" (handled elsewhere) or empty-init (handled elsewhere)
+            if (init !== "" && update === "" && !/^(var|let|const)\b/.test(init)) {
+                // next non-space char after ')' must be '{' so we keep the block
+                let k = afterParen;
+                while (k < code.length && /\s/.test(code[k])) k++;
+                if (code[k] === "{") {
+                    rewrites++;
+                    const cond = test === "" ? "true" : test;
+                    out += `${init};while(${cond})`;
+                    i = afterParen;
+                    continue;
+                }
+            }
+        }
+
+        out += code.slice(i, afterParen);
+        i = afterParen;
+    }
+
+    return { code: out, rewrites };
 }
 
 /**
