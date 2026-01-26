@@ -1,109 +1,216 @@
-/*vaqa'o_lite v1.1.7*/function _defineProperties(e,a){var t=0;for(;t<a.length;t++){var r=a[t];r.enumerable=r.enumerable||!1,
+/*vaqa'o_lite v1.1.7*/function _defineProperties(e,t){var a=0;for(;a<t.length;a++){var r=t[a];r.enumerable=r.enumerable||!1,
 r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,_toPropertyKey(r.key),r)}}
-function _createClass(e,a,t){return a&&_defineProperties(e.prototype,a),t&&_defineProperties(e,t),
-Object.defineProperty(e,"prototype",{writable:!1}),e}function _classCallCheck(e,a){if(!(e instanceof a)){
-throw new TypeError("Cannot call a class as a function")}}function _callSuper(e,a,t){return a=_getPrototypeOf(a),
-_possibleConstructorReturn(e,_isNativeReflectConstruct()?Reflect.construct(a,t||[],_getPrototypeOf(e).constructor):a.apply(e,t))
-}function _possibleConstructorReturn(e,a){if(a&&("object"==_typeof(a)||"function"==typeof a)){return a}if(void 0!==a){
+function _createClass(e,t,a){return t&&_defineProperties(e.prototype,t),a&&_defineProperties(e,a),
+Object.defineProperty(e,"prototype",{writable:!1}),e}function _classCallCheck(e,t){if(!(e instanceof t)){
+throw new TypeError("Cannot call a class as a function")}}function _callSuper(e,t,a){return t=_getPrototypeOf(t),
+_possibleConstructorReturn(e,_isNativeReflectConstruct()?Reflect.construct(t,a||[],_getPrototypeOf(e).constructor):t.apply(e,a))
+}function _possibleConstructorReturn(e,t){if(t&&("object"==_typeof(t)||"function"==typeof t)){return t}if(void 0!==t){
 throw new TypeError("Derived constructors may only return object or undefined")}return _assertThisInitialized(e)}
 function _assertThisInitialized(e){if(void 0===e){
-throw new ReferenceError("this hasn't been initialised - super() hasn't been called")}return e}function _inherits(e,a){
-if("function"!=typeof a&&null!==a){throw new TypeError("Super expression must either be null or a function")}
-e.prototype=Object.create(a&&a.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),
-Object.defineProperty(e,"prototype",{writable:!1}),a&&_setPrototypeOf(e,a)}function _wrapNativeSuper(e){
-var a="function"==typeof Map?new Map:void 0;return _wrapNativeSuper=function(e){if(null===e||!_isNativeFunction(e)){
+throw new ReferenceError("this hasn't been initialised - super() hasn't been called")}return e}function _inherits(e,t){
+if("function"!=typeof t&&null!==t){throw new TypeError("Super expression must either be null or a function")}
+e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),
+Object.defineProperty(e,"prototype",{writable:!1}),t&&_setPrototypeOf(e,t)}function _wrapNativeSuper(e){
+var t="function"==typeof Map?new Map:void 0;return _wrapNativeSuper=function(e){if(null===e||!_isNativeFunction(e)){
 return e}if("function"!=typeof e){throw new TypeError("Super expression must either be null or a function")}
-if(void 0!==a){if(a.has(e)){return a.get(e)}a.set(e,t)}function t(){
-return _construct(e,arguments,_getPrototypeOf(this).constructor)}return t.prototype=Object.create(e.prototype,{
-constructor:{value:t,enumerable:!1,writable:!0,configurable:!0}}),_setPrototypeOf(t,e)},_wrapNativeSuper(e)}
-function _construct(e,a,t){if(_isNativeReflectConstruct()){return Reflect.construct.apply(null,arguments)}var r=[null]
-;r.push.apply(r,a);var n=new(e.bind.apply(e,r));return t&&_setPrototypeOf(n,t.prototype),n}
+if(void 0!==t){if(t.has(e)){return t.get(e)}t.set(e,a)}function a(){
+return _construct(e,arguments,_getPrototypeOf(this).constructor)}return a.prototype=Object.create(e.prototype,{
+constructor:{value:a,enumerable:!1,writable:!0,configurable:!0}}),_setPrototypeOf(a,e)},_wrapNativeSuper(e)}
+function _construct(e,t,a){if(_isNativeReflectConstruct()){return Reflect.construct.apply(null,arguments)}var r=[null]
+;r.push.apply(r,t);var n=new(e.bind.apply(e,r));return a&&_setPrototypeOf(n,a.prototype),n}
 function _isNativeReflectConstruct(){try{
 var e=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],function(){}))}catch(e){}
 return(_isNativeReflectConstruct=function(){return!!e})()}function _isNativeFunction(e){try{
-return-1!==Function.toString.call(e).indexOf("[native code]")}catch(a){return"function"==typeof e}}
-function _setPrototypeOf(e,a){return _setPrototypeOf=Object.setPrototypeOf?Object.setPrototypeOf.bind():function(e,a){
-return e.__proto__=a,e},_setPrototypeOf(e,a)}function _getPrototypeOf(e){
+return-1!==Function.toString.call(e).indexOf("[native code]")}catch(t){return"function"==typeof e}}
+function _setPrototypeOf(e,t){return _setPrototypeOf=Object.setPrototypeOf?Object.setPrototypeOf.bind():function(e,t){
+return e.__proto__=t,e},_setPrototypeOf(e,t)}function _getPrototypeOf(e){
 return _getPrototypeOf=Object.setPrototypeOf?Object.getPrototypeOf.bind():function(e){
-return e.__proto__||Object.getPrototypeOf(e)},_getPrototypeOf(e)}function _typeof(e){
+return e.__proto__||Object.getPrototypeOf(e)},_getPrototypeOf(e)}function ownKeys(e,t){var a=Object.keys(e)
+;if(Object.getOwnPropertySymbols){var r=Object.getOwnPropertySymbols(e);t&&(r=r.filter(function(t){
+return Object.getOwnPropertyDescriptor(e,t).enumerable})),a.push.apply(a,r)}return a}function _objectSpread(e){var t=1
+;for(;t<arguments.length;t++){var a=null!=arguments[t]?arguments[t]:{};t%2?ownKeys(Object(a),!0).forEach(function(t){
+_defineProperty(e,t,a[t])
+}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(a)):ownKeys(Object(a)).forEach(function(t){
+Object.defineProperty(e,t,Object.getOwnPropertyDescriptor(a,t))})}return e}function _defineProperty(e,t,a){
+return(t=_toPropertyKey(t))in e?Object.defineProperty(e,t,{value:a,enumerable:!0,configurable:!0,writable:!0}):e[t]=a,e}
+function _toPropertyKey(e){var t=_toPrimitive(e,"string");return"symbol"==_typeof(t)?t:t+""}function _toPrimitive(e,t){
+if("object"!=_typeof(e)||!e){return e}var a=e[Symbol.toPrimitive];if(void 0!==a){var r=a.call(e,t||"default")
+;if("object"!=_typeof(r)){return r}throw new TypeError("@@toPrimitive must return a primitive value.")}
+return("string"===t?String:Number)(e)}function _typeof(e){
 return _typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){
 return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},_typeof(e)}
-function ownKeys(e,a){var t=Object.keys(e);if(Object.getOwnPropertySymbols){var r=Object.getOwnPropertySymbols(e)
-;a&&(r=r.filter(function(a){return Object.getOwnPropertyDescriptor(e,a).enumerable})),t.push.apply(t,r)}return t}
-function _objectSpread(e){var a=1;for(;a<arguments.length;a++){var t=null!=arguments[a]?arguments[a]:{}
-;a%2?ownKeys(Object(t),!0).forEach(function(a){_defineProperty(e,a,t[a])
-}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(t)):ownKeys(Object(t)).forEach(function(a){
-Object.defineProperty(e,a,Object.getOwnPropertyDescriptor(t,a))})}return e}function _defineProperty(e,a,t){
-return(a=_toPropertyKey(a))in e?Object.defineProperty(e,a,{value:t,enumerable:!0,configurable:!0,writable:!0}):e[a]=t,e}
-function _toPropertyKey(e){var a=_toPrimitive(e,"string");return"symbol"==_typeof(a)?a:a+""}function _toPrimitive(e,a){
-if("object"!=_typeof(e)||!e){return e}var t=e[Symbol.toPrimitive];if(void 0!==t){var r=t.call(e,a||"default")
-;if("object"!=_typeof(r)){return r}throw new TypeError("@@toPrimitive must return a primitive value.")}
-return("string"===a?String:Number)(e)}function __FAIL__(e){var a=e&&e.message?e.message:String(e)
-;if("undefined"!=typeof v){v.causesMessages&&v.causesMessages.push(a);v.error=a}return null}var driver;!function(){
-var e=[function(e,a,t){var r=t(1);var n=t(5);var i=[3,[{taglbl:0,resol:1,sampletype:4,lblname:"occupancy",divide:1},{
-taglbl:1,resol:10,sampletype:7,lblname:"temperature_1",divide:100},{taglbl:2,resol:100,sampletype:6,
-lblname:"humidity_1",divide:100},{taglbl:3,resol:10,sampletype:6,lblname:"CO2",divide:1},{taglbl:4,resol:10,
-sampletype:6,lblname:"IAQ",divide:1},{taglbl:5,resol:10,sampletype:6,lblname:"illuminance",divide:1},{taglbl:6,resol:10,
-sampletype:6,lblname:"pressure",divide:10}]];var o={temperature:["temperature_1","temperature_2"],
-humidity:["humidity_1","humidity_2"],concentration:["IAQ","CO2"],pin_state:["violation_detection"]};function s(e){
-var a=arguments.length>1&&void 0!==arguments[1]?arguments[1]:null
-;var t=arguments.length>2&&void 0!==arguments[2]?arguments[2]:null
-;var s=arguments.length>3&&void 0!==arguments[3]?arguments[3]:null;a&&(i=a);t&&(o=t)
-;s&&(n=_objectSpread(_objectSpread({},n),s));return r.watteco_decodeUplink(e,i,o,n)}a.decodeUplink=s
-;var d="undefined"!=typeof globalThis?globalThis:this;d.decodeUplink=s;var c=t(6);var l={};function u(e){
-return c.watteco_encodeDownlink({dlFrames:l},e)}a.encodeDownlink=u;var v=c.encodePayload;a.encodePayload=v
-;d.encodeDownlink=u;d.encodePayload=v},function(e,a,t){var r=t(2);var n=t(4);function i(e){
-return null==e?{}:Array.isArray(e)?{samples:e}:"object"===_typeof(e)?e:"string"==typeof e||"number"==typeof e?{value:e
-}:{}}function o(e){var a=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{};var t=i(e)
-;if(!t.samples||!Array.isArray(t.samples)){return s(t,a)}var r=t.samples;var n={};r.forEach(function(e){
-if("object"===_typeof(e)&&e.variable&&void 0!==e.value&&e.date){var t=e.variable,r=e.value,i=e.date
-;(!n[t]||new Date(i)>new Date(n[t].date))&&(n[t]={value:r,date:i});a&&a[t]&&(e.unit=a[t])}});var o={};var d;for(d in t){
-t.hasOwnProperty(d)&&(o[d]=t[d])}var c;for(c in n){n.hasOwnProperty(c)&&!o.hasOwnProperty(c)&&(o[c]=n[c].value)}
-return s(o,a)}function s(e){var a=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{}
-;if(!a||0===Object.keys(a).length){return e}var t=_objectSpread({},e);var r;for(r in a){
-void 0!==t[r]&&""!==a[r]&&(t["".concat(r,"_unit")]=a[r])}
-t.samples&&Array.isArray(t.samples)&&(t.samples=t.samples.map(function(e){
-return e.variable&&a[e.variable]&&""!==a[e.variable]?_objectSpread(_objectSpread({},e),{},{unit:a[e.variable]}):e}))
-;return t}function d(e,a,t,i){var s=arguments.length>4&&void 0!==arguments[4]?arguments[4]:null
-;if("string"==typeof e.bytes){var d=e.bytes.replace(/[^0-9A-Fa-f]/g,"");var l=[];var u=0;for(;u<d.length;u+=2){
-l.push(parseInt(d.substr(u,2),16))}e.bytes=l}e.recvTime=c(e.recvTime);var v=e.recvTime;try{
-var p=r.normalisation_standard(e,t,s);var f=p.payload;if("batch"!==p.type){return{data:o(p.data,i),warnings:p.warning}}
-var _={batch1:a[0],batch2:a[1],payload:f,date:v};try{var m=n.normalisation_batch(_);return{data:o(m,i),warnings:[]}
-}catch(e){return{errors:e.message,warnings:[]}}}catch(e){return{errors:e.message,warnings:[]}}}e.exports={
-watteco_decodeUplink:d};function c(e){try{if(!e){return(new Date).toISOString()}if("string"==typeof e){var a=new Date(e)
-;if(!isNaN(a.getTime())){return a.toISOString()}var t=Number(e);if(!isNaN(t)){return new Date(t).toISOString()}}
-if("number"==typeof e){return e<1e12?new Date(1e3*e).toISOString():new Date(e).toISOString()}if("object"===_typeof(e)){
-if(void 0!==e.seconds){var r=Number(e.seconds);var n=Number(e.nanos||e.nanoseconds||0);if(!isNaN(r)){
+function __FAIL__(e){var t=e&&e.message?e.message:String(e);if("undefined"!=typeof v){
+v.causesMessages&&v.causesMessages.push(t);v.error=t}return null}var driver;!function(){var e={174:function(e,t,a){
+var r=a(907),n=a(652);function i(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{}
+;var a=null==(r=e)?{}:Array.isArray(r)?{samples:r}:"object"==_typeof(r)?r:"string"==typeof r||"number"==typeof r?{
+value:r}:{};var r;if(!a.samples||!Array.isArray(a.samples)){return o(a,t)}var n=a.samples,i={};n.forEach(function(e){
+if("object"==_typeof(e)&&e.variable&&void 0!==e.value&&e.date){var a=e.variable,r=e.value,n=e.date
+;(!i[a]||new Date(n)>new Date(i[a].date))&&(i[a]={value:r,date:n}),t&&t[a]&&(e.unit=t[a])}});var s={};var d;for(d in a){
+a.hasOwnProperty(d)&&(s[d]=a[d])}var c;for(c in i){i.hasOwnProperty(c)&&!s.hasOwnProperty(c)&&(s[c]=i[c].value)}
+return o(s,t)}function o(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{}
+;if(!t||0===Object.keys(t).length){return e}var a=_objectSpread({},e);var r;for(r in t){
+void 0!==a[r]&&""!==t[r]&&(a["".concat(r,"_unit")]=t[r])}
+return a.samples&&Array.isArray(a.samples)&&(a.samples=a.samples.map(function(e){
+return e.variable&&t[e.variable]&&""!==t[e.variable]?_objectSpread(_objectSpread({},e),{},{unit:t[e.variable]}):e})),a}
+e.exports={watteco_decodeUplink:function(e,t,a,o){var s=arguments.length>4&&void 0!==arguments[4]?arguments[4]:null
+;if("string"==typeof e.bytes){var d=e.bytes.replace(/[^0-9A-Fa-f]/g,""),c=[];var l=0;for(;l<d.length;l+=2){
+c.push(parseInt(d.substr(l,2),16))}e.bytes=c}e.recvTime=function(e){try{if(!e){return(new Date).toISOString()}
+if("string"==typeof e){var t=new Date(e);if(!isNaN(t.getTime())){return t.toISOString()}var a=Number(e);if(!isNaN(a)){
+return new Date(a).toISOString()}}if("number"==typeof e){
+return e<1e12?new Date(1e3*e).toISOString():new Date(e).toISOString()}if("object"==_typeof(e)){if(void 0!==e.seconds){
+var r=Number(e.seconds),n=Number(e.nanos||e.nanoseconds||0);if(!isNaN(r)){
 return new Date(1e3*r+Math.floor(n/1e6)).toISOString()}}var i=Object.keys(e);var o=0;for(;o<i.length;o++){var s=i[o]
-;var d=e[s];if("object"===_typeof(d)&&null!==d){if(void 0!==d.int64&&!isNaN(Number(d.int64))){
+;var d=e[s];if("object"==_typeof(d)&&null!==d){if(void 0!==d.int64&&!isNaN(Number(d.int64))){
 return new Date(1e3*Number(d.int64)).toISOString()}if(d.string&&"string"==typeof d.string){var c=new Date(d.string)
-;if(!isNaN(c.getTime())){return c.toISOString()}}if(void 0!==d.seconds){var l=Number(d.seconds);var u=Number(d.nanos||0)
-;if(!isNaN(l)){return new Date(1e3*l+Math.floor(u/1e6)).toISOString()}}}}var v=new Date(e);if(!isNaN(v.getTime())){
-return v.toISOString()}}}catch(e){return(new Date).toISOString()}return(new Date).toISOString()}},function(e,a,t){
-var r=t(3),n=r.UintToInt,i=r.Bytes2Float32,o=r.BytesToInt64,s=r.decimalToHex,d=r.zeroPad;r.BytesToHexStr
-;var c=function(e){function a(e){var t;_classCallCheck(this,a);t=_callSuper(this,a,[e]);t.name="ValidationError"
-;return t}_inherits(a,e);return _createClass(a)}(_wrapNativeSuper(Error));var l={16:{name:"boolean",size:1},8:{
-name:"general8",size:1},9:{name:"general16",size:2},10:{name:"general24",size:3},11:{name:"general32",size:4},24:{
-name:"bitmap8",size:1},25:{name:"bitmap16",size:2},32:{name:"uint8",size:1},33:{name:"uint16",size:2},34:{name:"uint24",
-size:3},35:{name:"uint32",size:4},40:{name:"int8",size:1},41:{name:"int16",size:2},42:{name:"int24",size:3},43:{
-name:"int32",size:4},48:{name:"enum8",size:1},66:{name:"char string",size:1},65:{name:"bytes string",size:1},67:{
-name:"long bytes string",size:2},76:{name:"structured ordered sequence",size:2},57:{name:"single",size:4}};var u={
-32778:{0:{0:{divider:1,function_type:"int",name:"positive_active_energy",size:4},1:{divider:1,function_type:"int",
-name:"negative_active_energy",size:4},2:{divider:1,function_type:"int",name:"positive_reactive_energy",size:4},3:{
-divider:1,function_type:"int",name:"negative_reactive_energy",size:4},4:{divider:1,function_type:"int",
-name:"positive_active_power",size:4},5:{divider:1,function_type:"int",name:"negative_active_power",size:4},6:{divider:1,
-function_type:"int",name:"positive_reactive_power",size:4},7:{divider:1,function_type:"int",
-name:"negative_reactive_power",size:4}}},32784:{0:{0:{divider:1,function_type:"int",name:"active_energy_a",size:4},1:{
-divider:1,function_type:"int",name:"reactive_energy_a",size:4},2:{divider:1,function_type:"int",name:"active_energy_b",
-size:4},3:{divider:1,function_type:"int",name:"reactive_energy_b",size:4},4:{divider:1,function_type:"int",
-name:"active_energy_c",size:4},5:{divider:1,function_type:"int",name:"reactive_energy_c",size:4},6:{divider:1,
-function_type:"int",name:"active_energy_abc",size:4},7:{divider:1,function_type:"int",name:"reactive_energy_abc",size:4}
-},1:{0:{divider:1,function_type:"int",name:"active_power_a",size:4},1:{divider:1,function_type:"int",
-name:"reactive_power_a",size:4},2:{divider:1,function_type:"int",name:"active_power_b",size:4},3:{divider:1,
-function_type:"int",name:"reactive_power_b",size:4},4:{divider:1,function_type:"int",name:"active_power_c",size:4},5:{
-divider:1,function_type:"int",name:"reactive_power_c",size:4},6:{divider:1,function_type:"int",name:"active_power_abc",
-size:4},7:{divider:1,function_type:"int",name:"reactive_power_abc",size:4}}},32779:{0:{0:{divider:10,
-function_type:"int",name:"Vrms",size:2},1:{divider:10,function_type:"int",name:"Irms",size:2},2:{divider:1,
+;if(!isNaN(c.getTime())){return c.toISOString()}}if(void 0!==d.seconds){var l=Number(d.seconds),u=Number(d.nanos||0)
+;if(!isNaN(l)){return new Date(1e3*l+Math.floor(u/1e6)).toISOString()}}}}var p=new Date(e);if(!isNaN(p.getTime())){
+return p.toISOString()}}}catch(e){return(new Date).toISOString()}return(new Date).toISOString()}(e.recvTime)
+;var u=e.recvTime;try{var p=r.normalisation_standard(e,a,s),_=p.payload;if("batch"!==p.type){return{data:i(p.data,o),
+warnings:p.warning}}var f={batch1:t[0],batch2:t[1],payload:_,date:u};try{return{data:i(n.normalisation_batch(f),o),
+warnings:[]}}catch(e){return{errors:e.message,warnings:[]}}}catch(e){return{errors:e.message,warnings:[]}}}}},
+410:function(e){e.exports={disposable_battery_voltage:"V",illuminance:"lx",temperature_1:"Cel",temperature_2:"Cel",
+pressure:"hPa",humidity_1:"%RH",humidity_2:"%RH",CO2:"ppm"}},652:function(e){var t=[];t[0]=0,t[1]=1,t[2]=4,t[3]=4,
+t[4]=8,t[5]=8,t[6]=16,t[7]=16,t[8]=24,t[9]=24,t[10]=32,t[11]=32,t[12]=32;var a=[[{sz:2,lbl:0},{sz:2,lbl:1},{sz:2,lbl:3
+},{sz:3,lbl:5},{sz:4,lbl:9},{sz:5,lbl:17},{sz:6,lbl:33},{sz:7,lbl:65},{sz:8,lbl:129},{sz:10,lbl:512},{sz:11,lbl:1026},{
+sz:11,lbl:1027},{sz:11,lbl:1028},{sz:11,lbl:1029},{sz:11,lbl:1030},{sz:11,lbl:1031}],[{sz:7,lbl:111},{sz:5,lbl:26},{
+sz:4,lbl:12},{sz:3,lbl:3},{sz:3,lbl:7},{sz:2,lbl:2},{sz:2,lbl:0},{sz:3,lbl:2},{sz:6,lbl:54},{sz:9,lbl:443},{sz:9,lbl:441
+},{sz:10,lbl:885},{sz:10,lbl:884},{sz:10,lbl:880},{sz:11,lbl:1763},{sz:11,lbl:1762}],[{sz:4,lbl:9},{sz:3,lbl:5},{sz:2,
+lbl:0},{sz:2,lbl:1},{sz:2,lbl:3},{sz:5,lbl:17},{sz:6,lbl:33},{sz:7,lbl:65},{sz:8,lbl:129},{sz:10,lbl:512},{sz:11,
+lbl:1026},{sz:11,lbl:1027},{sz:11,lbl:1028},{sz:11,lbl:1029},{sz:11,lbl:1030},{sz:11,lbl:1031}]];function r(e,t,a,r){
+return{uncompressSamples:[{data_relative_timestamp:r,data:{value:s(e,t),label:a}}],codingType:0,codingTable:0,
+resolution:null}}function n(e,t){var a=0;for(;a<e.length;a++){if(e[a].taglbl===t.lbl){return a}}
+throw new Error("Batch : Cannot find i1 in argList")}function i(e,t){if(t){var a=e.getNextBifromHi(1);return o(e,t,a)}
+return e.getNextSample(10)}function o(e,t,a){return a>14?e.getNextSample(10):a>0?function(e,t,a){
+return e.getNextSample(10,a)+t+Math.pow(2,a)-1}(e,t,a):t}function s(e,t){var a=e.getNextSample(t)
+;return 12===t?function(e){var t=e>>>0>>24&128?-1:1,a=(e>>23&255)-127,r=8388607&e;if(128===a){
+return t*(r?Number.NaN:Number.POSITIVE_INFINITY)}if(-127===a){if(0===r){return 0*t}a=-126,r/=1<<22}else{
+r=(r|1<<23)/(1<<23)}return t*r*Math.pow(2,a)}(a):a}function d(e,t,a,r,n){var i=e.getNextSample(6,n)
+;return 0===a?function(e,t,a,r){return e>=Math.pow(2,r-1)?e*t+a:(e+1-Math.pow(2,r))*t+a
+}(i,r,t,n):1===a?(i+Math.pow(2,n)-1)*r+t:t-(i+(Math.pow(2,n)-1))*r}Math.trunc=Math.trunc||function(e){
+return isNaN(e)?NaN:e>0?Math.floor(e):Math.ceil(e)},e.exports={normalisation_batch:function(e){
+var s=e.date,c=function(e,s,c,l){var u=function(){var e=[],t=0;while(t<16){e.push({codingType:0,codingTable:0,
+resolution:null,uncompressSamples:[]}),t+=1}return{batch_counter:0,batch_relative_timestamp:0,series:e}
+}(),p=function(e){function r(e,t,a){var r=t,n=a-1;if(8*e.length<r+a){
+throw new Error("Batch : Verify that dest buf is large enough")}var i=0,o=0;while(a>0){e[r>>3]&1<<(7&r)&&(o|=1<<n-i),
+a--,i++,r++}return o}return{i1:0,byteArray:e,getNextSample:function(e,a){var r=a||t[e],n=this.i1;if(this.i1+=r,
+12===e&&32!==r){throw new Error("Batch : Mauvais sampletype")}var i=Math.trunc((r-1)/8)+1,o=r%8;0===o&&i>0&&(o=8)
+;var s=0;while(i>0){var d=0;while(o>0){var c=n>>3;this.byteArray[c]&1<<(7&n)&&(s|=1<<8*(i-1)+d),o--,d++,n+=1}i--,o=8}
+if((3==e||5==e||7==e||9==e)&&s&1<<r-1){var l=r}for(;l<32;l++){s|=1<<l,r++}return s},getNextBifromHi:function(e){var t=2
+;for(;t<12;t++){var n=r(this.byteArray,this.i1,t);var i=0;for(;i<a[e].length;i++){if(a[e][i].sz==t&&n==a[e][i].lbl){
+return this.i1+=t,i}}}throw new Error("Bi not found in HUFF table")}}}(function(e){var t=[];while(e.length>=2){
+t.push(parseInt(e.substring(0,2),16)),e=e.substring(2,e.length)}return t}(c)),_=function(e){var t=e.toString(2)
+;while(t.length<8){t="0"+t}return{isCommonTimestamp:parseInt(t[t.length-2],2),hasSample:!parseInt(t[t.length-3],2),
+batch_req:parseInt(t[t.length-4],2),nb_of_type_measure:parseInt(t.substring(0,4),2)}}(p.getNextSample(4))
+;u.batch_counter=p.getNextSample(4,3),p.getNextSample(4,1);var f=function(e,t,a,o,s){var d=0,c=0;var l=0
+;for(;l<o.nb_of_type_measure;l++){var u={size:s,lbl:t.getNextSample(4,s)},p=n(a,u);0===l&&(c=p),d=i(t,d),
+e.series[p]=r(t,a[p].sampletype,u.lbl,d),o.hasSample&&(e.series[p].codingType=t.getNextSample(4,2),
+e.series[p].codingTable=t.getNextSample(4,2))}return{last_timestamp:d,i1_of_the_first_sample:c}
+}(u,p,s,_,e),v=f.last_timestamp,m=f.i1_of_the_first_sample;return _.hasSample&&(v=function(e,t,a,r,i,s,c){
+return s.isCommonTimestamp?function(e,t,a,r,i,o){var s=t.getNextSample(4,8),c={},l=function(e,t,a,r){
+var n=[],i=0,o=t.getNextSample(4,2);var s=0;for(;s<a;s++){var d=t.getNextBifromHi(o);if(d<=14){if(0===s){
+n.push(e.series[r].uncompressSamples[0].data_relative_timestamp)}else{var c=n[s-1]
+;d>0?n.push(t.getNextSample(10,d)+c+Math.pow(2,d)-1):n.push(c)}}else{n.push(t.getNextSample(10))}i=n[s]}return{
+timestampCommon:n,lastTimestamp:i}}(e,t,s,a),u=l.timestampCommon,p=l.lastTimestamp;var _=0
+;for(;_<i.nb_of_type_measure;_++){var f=1;c.lbl=t.getNextSample(4,o);var v=n(r,c);var m=0;for(;m<s;m++){
+if(t.getNextSample(4,1)){var g=t.getNextBifromHi(e.series[v].codingTable),y={data_relative_timestamp:0,data:{}}
+;if(g<=14){var h=e.series[v].uncompressSamples[e.series[v].uncompressSamples.length-1].data.value;if(g>0){
+y.data.value=d(t,h,e.series[v].codingType,r[v].resol,g)}else{if(f){f=0;continue}y.data.value=h}}else{
+y.data.value=t.getNextSample(r[v].sampletype)}y.data_relative_timestamp=u[m],e.series[v].uncompressSamples.push(y)}}}
+return p}(e,t,a,r,s,c):function(e,t,a,r,i,s){var c={};var l=0;for(;l<i.nb_of_type_measure;l++){
+c.lbl=t.getNextSample(4,s);var u=n(a,c),p=t.getNextSample(4,8);if(p){var _=t.getNextSample(4,2);var f=0;for(;f<p;f++){
+var v=e.series[u].uncompressSamples[e.series[u].uncompressSamples.length-1].data_relative_timestamp,m={
+data_relative_timestamp:0,data:{}},g=t.getNextBifromHi(_);if(m.data_relative_timestamp=o(t,v,g),
+m.data_relative_timestamp>r&&(r=m.data_relative_timestamp),g=t.getNextBifromHi(e.series[u].codingTable),g<=14){
+var y=e.series[u].uncompressSamples[e.series[u].uncompressSamples.length-1].data.value
+;m.data.value=g>0?d(t,y,e.series[u].codingType,a[u].resol,g):y}else{m.data.value=t.getNextSample(a[u].sampletype)}
+e.series[u].uncompressSamples.push(m)}}}return r}(e,t,r,i,s,c)}(u,p,m,s,v,_,e)),u.batch_relative_timestamp=i(p,v),
+function(e,t,a){var r={batch_counter:e.batch_counter,batch_relative_timestamp:e.batch_relative_timestamp}
+;return a&&(r.batch_absolute_timestamp=a),r.dataset=e.series.reduce(function(r,n,i){
+return r.concat(n.uncompressSamples.map(function(r){var n={data_relative_timestamp:r.data_relative_timestamp,data:{
+value:t[i].divide?r.data.value/t[i].divide:r.data.value,label:t[i].taglbl}};var o,s,d
+;return t[i].lblname&&(n.data.label_name=t[i].lblname),a&&(n.data_absolute_timestamp=(o=a,s=e.batch_relative_timestamp,
+d=r.data_relative_timestamp,new Date(new Date(o).getTime()-1e3*(s-d)).toISOString())),n}))},[]),r}(u,s,l)
+}(e.batch1,e.batch2,e.payload,s),l=[];var u=0;for(;u<c.dataset.length;u++){var p=c.dataset[u],_={
+variable:p.data.label_name,value:p.data.value,date:p.data_absolute_timestamp};l.push(_)}return{
+batch_counter:c.batch_counter,samples:l}}}},758:function(e,t,a){var r=a(174),n=a(410),i=[3,[{taglbl:0,resol:1,
+sampletype:4,lblname:"occupancy",divide:1},{taglbl:1,resol:10,sampletype:7,lblname:"temperature_1",divide:100},{
+taglbl:2,resol:100,sampletype:6,lblname:"humidity_1",divide:100},{taglbl:3,resol:10,sampletype:6,lblname:"CO2",divide:1
+},{taglbl:4,resol:10,sampletype:6,lblname:"IAQ",divide:1},{taglbl:5,resol:10,sampletype:6,lblname:"illuminance",divide:1
+},{taglbl:6,resol:10,sampletype:6,lblname:"pressure",divide:10}]],o={temperature:["temperature_1","temperature_2"],
+humidity:["humidity_1","humidity_2"],concentration:["IAQ","CO2"],pin_state:["violation_detection"]};function s(e){
+var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:null
+;var a=arguments.length>2&&void 0!==arguments[2]?arguments[2]:null
+;var s=arguments.length>3&&void 0!==arguments[3]?arguments[3]:null;return t&&(i=t),a&&(o=a),
+s&&(n=_objectSpread(_objectSpread({},n),s)),r.watteco_decodeUplink(e,i,o,n)}t.decodeUplink=s
+;var d="undefined"!=typeof globalThis?globalThis:this;d.decodeUplink=s;var c=a(871);var l={};function u(e){
+return c.watteco_encodeDownlink({dlFrames:l},e)}t.encodeDownlink=u;var p=c.encodePayload;t.encodePayload=p,
+d.encodeDownlink=u,d.encodePayload=p},839:function(e){e.exports={UintToInt:function(e,t){if(t<1||t>4){
+throw new Error("Unsupported Size")}
+return 1===t&&(128&e)>0?e-=256:2===t&&(32768&e)>0?e-=65536:3===t&&(8388608&e)>0?e-=16777216:4===t&&(2147483648&e)>0&&(e-=4294967296),
+e},Bytes2Float32:function(e){var t=e>>>0>>24&128?-1:1;var a=(e>>23&255)-127,r=8388607&e;if(128===a){
+return t*(r?Number.NaN:Number.POSITIVE_INFINITY)}if(-127===a){if(0===r){return 0}a=-126,r/=1<<23}else{
+r=(r|1<<23)/(1<<23)}return t*r*Math.pow(2,a)},BytesToInt64:function(e,t,a,r){void 0===r&&(r=!1)
+;var n="U"!=a.substr(0,1),i=parseInt(a.substr(1,2),10)/8;var o,s,d=i;r?(o=-1,s=t+i-1):(o=1,s=t);var c=0;var l=s
+;for(;d>0;d--){l+=o,c=(c<<8)+e[l]}return n&&i<8&&128&e[s]&&(c-=1<<8*i),c},decimalToHex:function(e,t){
+var a=e.toString(16).toUpperCase();t=null!=t?t:2;while(a.length<t){a="0"+a}return"0x"+a},zeroPad:function(e,t){
+var a=String(e);while(a.length<t){a="0"+a}return a},BytesToHexStr:function(e){var t="";var a=0;for(;a<e.length;a++){
+var r=e[a].toString(16).toUpperCase();1===r.length&&(r="0"+r),t+=r}return t}}},871:function(e){e.exports={
+watteco_encodeDownlink:function(e,t){var a={fPort:125,bytes:[],warnings:[]}
+;if(!t||!t.data||0===Object.keys(t.data).length){return a.errors=["Invalid or empty data object"],a}try{
+var r=e&&e.dlFrames?e.dlFrames:{}
+;r.sendHexFrame="<sendHexFrame>",r.sendConfirmedMode="11058004000008<U8:sendConfirmedMode>",r.sendReboot="1150005000",
+r.sendFactoryReset="1150005007",r.sendLoraRetries="11058004000120<U8:sendLoraRetries>",
+r.sendLoraRejoin="1150800400<U16:sendLoraRejoin>";var n=null;var i;for(i in t.data){if(r[i]){n=i;break}}if(!n){
+return a.errors=["Unknown command. No matching command found in downlink frames"],a}if("sendHexFrame"===n){
+var o=t.data.sendHexFrame;if("string"!=typeof o){return a.errors=["sendHexFrame must be a string"],a}
+if(o.includes(":")){var s=o.split(":");if(2!==s.length){
+return a.errors=["Invalid sendHexFrame format. Use 'hexdata:port' format"],a}o=s[0];var d=parseInt(s[1],10)
+;if(isNaN(d)||d<1||d>223){return a.errors=["Port number must be between 1 and 223"],a}a.fPort=d}
+if(!/^[0-9A-Fa-f]+$/.test(o)){return a.errors=["sendHexFrame must be a valid hexadecimal string"],a}
+if("string"!=typeof o||!/^[0-9A-Fa-f]+$/.test(o)){return a.errors=["sendHexFrame must be a valid hexadecimal string"],a}
+o.length%2!=0&&a.warnings.push("Odd number of hex characters in sendHexFrame");var c=0
+;for(;c<o.length&&!(c+1>=o.length);c+=2){var l=parseInt(o.substr(c,2),16);a.bytes.push(l)}return a}var u=r[n]
+;var p=/<([^:>]+)?:?([^>]+)>/g;var _,f=[];while(null!==(_=p.exec(u))){var v=_[1]||null,m=_[2];f.push({type:v,name:m})}
+var g=0,y=f;for(;g<y.length;g++){var h=y[g];var b=h.name,z=h.type;var w=void 0,S=void 0;if(b===n){w=t.data[n]}else{
+if(void 0===t.data[b]){return a.errors=["Missing required parameter: ".concat(b)],a}w=t.data[b]}if("boolean"==typeof w){
+S=w?"01":"00"}else{if("number"!=typeof w){
+return a.errors=["Unsupported type for parameter ".concat(b,": ").concat(_typeof(w))],a}if(z){if("U8"===z){
+(w<0||w>255)&&a.warnings.push("Value ".concat(w," out of range for U8, truncating")),
+S=(255&w).toString(16);while(S.length<2){S="0"+S}}else if("U16"===z){
+(w<0||w>65535)&&a.warnings.push("Value ".concat(w," out of range for U16, truncating")),
+S=(65535&w).toString(16);while(S.length<4){S="0"+S}}else if("U32"===z){
+w<0&&(a.warnings.push("Negative value ".concat(w," for unsigned type U32, converting to 0")),w=0),
+S=Math.min(w,4294967295).toString(16);while(S.length<8){S="0"+S}}else{
+a.warnings.push("Unknown type ".concat(z,", using default encoding")),S=w.toString(16),S.length%2!=0&&(S="0"+S)}}else{
+S=w.toString(16),S.length%2!=0&&(S="0"+S)}}u=u.replace(z?"<".concat(z,":").concat(b,">"):"<".concat(b,">"),S)}var x=0
+;for(;x<u.length;x+=2){if(x+1>=u.length){a.warnings.push("Odd number of hex characters in template");break}
+var N=parseInt(u.substr(x,2),16);if(isNaN(N)){
+throw new Error("Invalid hex character in template at position ".concat(x))}a.bytes.push(N)}}catch(e){
+return a.errors=["Encoding error: ".concat(e.message)],a}return a},encodePayload:function(){return arguments[0]}}},
+907:function(e,t,a){var r=a(839),n=r.UintToInt,i=r.Bytes2Float32,o=r.BytesToInt64,s=r.decimalToHex,d=r.zeroPad
+;r.BytesToHexStr;var c=function(e){function t(e){var a;_classCallCheck(this,t);a=_callSuper(this,t,[e]),
+a.name="ValidationError";return a}_inherits(t,e);return _createClass(t)}(_wrapNativeSuper(Error));var l={16:{
+name:"boolean",size:1},8:{name:"general8",size:1},9:{name:"general16",size:2},10:{name:"general24",size:3},11:{
+name:"general32",size:4},24:{name:"bitmap8",size:1},25:{name:"bitmap16",size:2},32:{name:"uint8",size:1},33:{
+name:"uint16",size:2},34:{name:"uint24",size:3},35:{name:"uint32",size:4},40:{name:"int8",size:1},41:{name:"int16",
+size:2},42:{name:"int24",size:3},43:{name:"int32",size:4},48:{name:"enum8",size:1},66:{name:"char string",size:1},65:{
+name:"bytes string",size:1},67:{name:"long bytes string",size:2},76:{name:"structured ordered sequence",size:2},57:{
+name:"single",size:4}},u={32778:{0:{0:{divider:1,function_type:"int",name:"positive_active_energy",size:4},1:{divider:1,
+function_type:"int",name:"negative_active_energy",size:4},2:{divider:1,function_type:"int",
+name:"positive_reactive_energy",size:4},3:{divider:1,function_type:"int",name:"negative_reactive_energy",size:4},4:{
+divider:1,function_type:"int",name:"positive_active_power",size:4},5:{divider:1,function_type:"int",
+name:"negative_active_power",size:4},6:{divider:1,function_type:"int",name:"positive_reactive_power",size:4},7:{
+divider:1,function_type:"int",name:"negative_reactive_power",size:4}}},32784:{0:{0:{divider:1,function_type:"int",
+name:"active_energy_a",size:4},1:{divider:1,function_type:"int",name:"reactive_energy_a",size:4},2:{divider:1,
+function_type:"int",name:"active_energy_b",size:4},3:{divider:1,function_type:"int",name:"reactive_energy_b",size:4},4:{
+divider:1,function_type:"int",name:"active_energy_c",size:4},5:{divider:1,function_type:"int",name:"reactive_energy_c",
+size:4},6:{divider:1,function_type:"int",name:"active_energy_abc",size:4},7:{divider:1,function_type:"int",
+name:"reactive_energy_abc",size:4}},1:{0:{divider:1,function_type:"int",name:"active_power_a",size:4},1:{divider:1,
+function_type:"int",name:"reactive_power_a",size:4},2:{divider:1,function_type:"int",name:"active_power_b",size:4},3:{
+divider:1,function_type:"int",name:"reactive_power_b",size:4},4:{divider:1,function_type:"int",name:"active_power_c",
+size:4},5:{divider:1,function_type:"int",name:"reactive_power_c",size:4},6:{divider:1,function_type:"int",
+name:"active_power_abc",size:4},7:{divider:1,function_type:"int",name:"reactive_power_abc",size:4}}},32779:{0:{0:{
+divider:10,function_type:"int",name:"Vrms",size:2},1:{divider:10,function_type:"int",name:"Irms",size:2},2:{divider:1,
 function_type:"int",name:"angle",size:2}}},32781:{0:{0:{divider:10,function_type:"int",name:"Vrms_a",size:2},1:{
 divider:10,function_type:"int",name:"Irms_a",size:2},2:{divider:1,function_type:"int",name:"angle_a",size:2},3:{
 divider:10,function_type:"int",name:"Vrms_b",size:2},4:{divider:10,function_type:"int",name:"Irms_b",size:2},5:{
@@ -124,327 +231,215 @@ divider:1,function_type:"none",name:"pin_state_6",size:1},6:{divider:1,function_
 name:"power_modes",size:2},1:{divider:1e3,function_type:"none",name:"current_power_source",size:2},2:{divider:1e3,
 function_type:"none",name:"constant_power",size:2},3:{divider:1e3,function_type:"none",name:"rechargeable_battery",
 size:2},4:{divider:1e3,function_type:"none",name:"disposable_battery",size:2},5:{divider:1e3,function_type:"none",
-name:"solar_harvesting",size:2},6:{divider:1e3,function_type:"none",name:"TIC_harvesting",size:2}}}};function v(e){
-var a="";var t=e.toString(2);a+=d(t,8);return a}function p(e,a,t){var r=0;var o=0;switch(t){case 8:case 24:case 32:
-case 40:case 48:o=1;break;case 9:case 25:case 33:case 41:o=2;break;case 10:case 26:case 34:case 42:o=3;break;case 11:
-case 27:case 35:case 43:o=4;break;case 12:o=5;break;case 13:case 37:o=6;break;case 57:
-return i(256*e[a]*256*256+256*e[a+1]*256+256*e[a+2]+e[a+3]);default:throw new Error("Unsupported number type: "+t)}
-var s=0;for(;s<o;s++){r=r<<8|e[a+s]}return t>=40&&t<=43?n(r,o):r}function f(e,a,t,r,o,s,d,c,l){var v={reportCauses:[],
-causesMessages:[]};138===e&&v.causesMessages.push("alarm triggered");var p=o;if(p>=r.length){return v}var f=!1
-;var _=3&(r[o]>>=4);if(2==_){f=!0}else if(1!=_){
-throw new Error("Alarm decoding: Unexpected cause type. (ReportParams byte = ".concat(r[o],")"))}p++;if(p>=r.length){
-v.causesMessages.push("cause:{}");return v}var m="FieldUndef !";function g(e,a,t){if(p+a-1>=r.length){
-throw new Error("Alarm decoding: Unexpected end of data during reading of the value.")}var o=0;var s=0;for(;s<a;s++){
-o=o<<8|r[p++]}if("int"===e){o=n(o,a)}else{if("float"!==e){throw new Error("Alarm decoding: Unknown type kind: "+e)}
-if(4!==a){throw new Error("Alarm decoding: Invalid float size. Only 4 bytes are supported.")}o=i(o)}return o/t}
-while(p<r.length){var h={};if(p>=r.length){throw new Error("Alarm decoding: Unexpected end of data before reading CSD.")
-}var y=r[p++];h.criterionIndex=7&y;var b=y>>3&3;h.mode=1===b?"delta":2===b?"threshold":"unused";h.hasFallen=!!(32&y)
-;h.hasExceeded=!!(64&y);h.isAlarm=!!(128&y)
-;var z=h.hasExceeded&&h.hasFallen?"exceed&fall":h.hasExceeded?"exceed":h.hasFallen?"fall":""
-;var w=void 0,S=void 0,x=void 0,N=void 0,O=void 0,I=void 0;var U=null;if(f){if(p>=r.length){
-throw new Error("Alarm decoding: Unexpected end of data before reading FI.")}var P=s;var T=d;var M=c;h.fieldIndex=0
-;if(null!=l&&!0===l){U=r[p++];h.fieldIndex=U;if(u[a]&&u[a][t]&&u[a][t][U]){var C=u[a][t][U];P=C.function_type||s
-;T=C.size||d;M=C.divider||c;I=C.name||m}}w=g(P,T,M);"threshold"===h.mode&&(S=g(P,T,M))}if("threshold"===h.mode&&f){
-if(p>=r.length){throw new Error("Alarm decoding: Unexpected end of data before reading Occ.")}var D=r[p++];x=D
-;if(D>0&&128&D){if(p+3>=r.length){throw new Error("Alarm decoding: Invalid OccH or OccL read.")}N=r[p++]<<8|r[p++]
-;O=r[p++]<<8|r[p++]}}v.reportCauses.push(h);var A=void 0;if(f){
-A="threshold"===h.mode?void 0!==N?"cause:{alarm:".concat(h.isAlarm,", criterion_index: ").concat(h.criterionIndex,", mode: threshold, crossing: ").concat(z,", value: ").concat(w,", gap: ").concat(S,", occurences_up: ").concat(N,", occurences_down: ").concat(O):"cause:{alarm:".concat(h.isAlarm,", criterion_index: ").concat(h.criterionIndex,", mode: threshold, crossing: ").concat(z,", value: ").concat(w,", gap: ").concat(S,", occurences: ").concat(x):"cause:{alarm:".concat(h.isAlarm,", criterion_index: ").concat(h.criterionIndex,", mode: delta, value: ").concat(w)
-;I&&(A+=", field: ".concat(I));A+="}"}else{
-A="cause:{alarm:".concat(h.isAlarm,", criterion_index: ").concat(h.criterionIndex,", mode: ").concat(h.mode)
-;"threshold"===h.mode&&(A+=", crossing: ".concat(z));A+="}"}v.causesMessages.push(A)}if(p!==r.length){
-throw new Error("Alarm decoding: Remaining unprocessed bytes detected. Expected ".concat(r.length,", but stopped at ").concat(p,"."))
-}return v}function _(e,a,t,r,n,i,o,s,d,c){if(138===e||10==e){var u=l[o];var v=d;var p=u.size;var _=u.name
-;void 0===v&&(v="single"===_?"float":"int8"===_||"int16"===_||"int32"===_?"int":"none");var m=f(e,a,t,r,i,v,p,s,c)
-;n.zclheader.alarmmsg=m.causesMessages}}function m(e,a){
-var t=arguments.length>2&&void 0!==arguments[2]?arguments[2]:null;var r={};var d=0;r.lora={};r.lora.port=a
-;var u=e.length;var f="";r.lora.payload="";var m=0;for(;m<u;m++){f=e[m].toString(16).toUpperCase()
-;1===f.length&&(f="0"+f);r.lora.payload+=f;var g=new Date;r.lora.date=g.toISOString()}if(125===a){var h=!(1&e[0])
-;if(!1===h){r.zclheader={};r.zclheader.report="standard";var y=-1;var b=-1;var z=-1
-;r.zclheader.endpoint=(224&e[0])>>5|(6&e[0])<<2;b=e[1];r.zclheader.cmdID=s(b,2);z=256*e[2]+e[3]
-;r.zclheader.clustID=s(z,4);if(10===b||138===b||1===b){d=1;r.data={};y=256*e[4]+e[5];r.zclheader.attID=s(y,4);var w=e[4]
-;var S=0;10!==b&&138!==b||(S=7);138===b&&(r.zclheader.alarm=1);if(1===b){S=8;r.zclheader.status=e[6]}
-if(83===z||84===z||85===z||86===z||87===z){if("function"!=typeof t){throw new c("TIC_Decode function not found")}
-r.data=t(z,y,e.slice(S+1))}if(0===z&&2===y){r.data.firmware="";var x=0;for(;x<3;x++){r.data.firmware+=String(e[S+x])
-;x<2&&(r.data.firmware+=".")}var N=256*e[S+3]*256+256*e[S+4]+e[S+5];r.data.firmware+="."+N.toString()}if(0===z&&3===y){
-var O=e[S];r.data.kernel="";var I=0;for(;I<O;I++){r.data.kernel+=String.fromCharCode(e[S+1+I])}}if(0===z&&4===y){
-var U=e[S];r.data.manufacturer="";var P=0;for(;P<U;P++){r.data.manufacturer+=String.fromCharCode(e[S+1+P])}}
-if(0===z&&5===y){var T=e[S];r.data.model="";var M=0;for(;M<T;M++){r.data.model+=String.fromCharCode(e[S+1+M])}}
-if(0===z&&6===y){var C=e[S];r.data.date="";var D=0;for(;D<C;D++){r.data.date+=String.fromCharCode(e[S+1+D])}}
-if(0===z&&16===y){var A=e[S];r.data.position="";var E=0;for(;E<A;E++){r.data.position+=String.fromCharCode(e[S+1+E])}}
-if(0===z&&32769===y){var j=e[S];r.data.application_name="";var k=0;for(;k<j;k++){
-r.data.application_name+=String.fromCharCode(e[S+1+k])}}if(1026===z&&0===y){var F=e[S-1]
-;r.data.temperature=n(256*e[S]+e[S+1],2)/100;var q=S+2;_(b,z,y,e,r,q,F,100,"int")}
-1026===z&&1===y&&(r.data.min_temperature=n(256*e[S]+e[S+1],2)/100)
-;1026===z&&2===y&&(r.data.max_temperature=n(256*e[S]+e[S+1],2)/100);if(1029===z&&0===y){var H=e[S-1]
-;r.data.humidity=(256*e[S]+e[S+1])/100;var V=S+2;_(b,z,y,e,r,V,H,100,"none")}
-1029===z&&1===y&&(r.data.min_humidity=(256*e[S]+e[S+1])/100)
-;1029===z&&2===y&&(r.data.max_humidity=(256*e[S]+e[S+1])/100);if(15===z&&1026===y){var R=e[S-1]
-;r.data.index=256*e[S]*256*256+256*e[S+1]*256+256*e[S+2]+e[S+3];var B=S+4;_(b,z,y,e,r,B,R,1,"none")}if(15===z&&85===y){
-var G=e[S-1];r.data.pin_state=!!e[S];var Y=S+1;_(b,z,y,e,r,Y,G,1,"none")}if(15===z&&84===y){
-0===e[S]&&(r.data.polarity="normal");1===e[S]&&(r.data.polarity="reverse")}if(15===z&&1024===y){
-0===e[S]&&(r.data.edge_selection="none");1===e[S]&&(r.data.edge_selection="falling edge")
-;2===e[S]&&(r.data.edge_selection="rising edge");3===e[S]&&(r.data.edge_selection="both edges")
-;5===e[S]&&(r.data.edge_selection="polling and falling edge")
-;6===e[S]&&(r.data.edge_selection="polling and rising edge");7===e[S]&&(r.data.edge_selection="polling and both edges")}
-15===z&&1025===y&&(r.data.debounce_period=e[S]);15===z&&1027===y&&(r.data.poll_period=e[S])
-;15===z&&1028===y&&(r.data.force_notify=e[S]);if(19===z&&85===y){var L=e[S-1];r.data.output_value=e[S];var K=S+1
-;_(b,z,y,e,r,K,L,1,"none")}if(6===z&&0===y){var X=e[S];r.data.output=1===X?"ON":"OFF"}if(32776===z&&0===y){var Z=e[S-1]
-;r.data.differential_pressure=256*e[S]+e[S+1];var Q=S+2;_(b,z,y,e,r,Q,Z,1,"none")}if(32773===z&&0===y){var W=e[S-1]
-;r.data.pin_state_1=!(1&~e[S+1]);r.data.pin_state_2=!(2&~e[S+1]);r.data.pin_state_3=!(4&~e[S+1])
-;r.data.pin_state_4=!(8&~e[S+1]);r.data.pin_state_5=!(16&~e[S+1]);r.data.pin_state_6=!(32&~e[S+1])
-;r.data.pin_state_7=!(64&~e[S+1]);r.data.pin_state_8=!(128&~e[S+1]);r.data.pin_state_9=!(1&~e[S])
-;r.data.pin_state_10=!(2&~e[S]);var $=S+2;_(b,z,y,e,r,$,W,100,"none")}
-32774===z&&0===y&&(r.data.speed=256*e[S]*256+256*e[S+1]+e[S+2]);32774===z&&1===y&&(r.data.data_bit=e[S])
-;32774===z&&2===y&&(r.data.parity=e[S]);32774===z&&3===y&&(r.data.stop_bit=e[S]);if(12===z&&85===y){var J=e[S-1]
-;r.data.analog=i(256*e[S]*256*256+256*e[S+1]*256+256*e[S+2]+e[S+3]);var ee=S+4;_(b,z,y,e,r,ee,J,1,"float")}
-if(12===z&&256===y){5===e[S+1]&&(r.data.type="ppm");255===e[S+1]&&0===e[S+3]&&(r.data.type="mA")
-;255===e[S+1]&&1===e[S+3]&&(r.data.type="mV")}12===z&&32771===y&&(r.data.power_duration=256*e[S]+e[S+1])
-;if(12===z&&32772===y){var ae={};var te=v(e[S]);var re=v(e[S+1]);var ne=2*te[0]+te[1];0===ne&&(ae.mode="idle")
-;1===ne&&(ae.mode="chock");2===ne&&(ae.mode="click");var ie=8*te[2]+4*te[3]+2*te[4]+te[5];0===ie&&(ae.frequency="idle")
-;1===ie&&(ae.frequency="1Hz");2===ie&&(ae.frequency="10Hz");3===ie&&(ae.frequency="25Hz");4===ie&&(ae.frequency="50Hz")
-;5===ie&&(ae.frequency="100Hz");6===ie&&(ae.frequency="200Hz");7===ie&&(ae.frequency="400Hz")
-;8===ie&&(ae.frequency="1620Hz");9===ie&&(ae.frequency="5376Hz");ae.range={};var oe=2*te[6]+te[7];if(0===oe){
-ae.range.precision="+/- 2g";ae.range.value=16}if(1===oe){ae.range.precision="+/- 4g";ae.range.value=32}if(2===oe){
-ae.range.precision="+/- 8g";ae.range.value=64}if(3===oe){ae.range.precision="+/- 16g";ae.range.value=128}
-var se=128*re[0]+64*re[1]+32*re[2]+16*re[3]+8*re[4]+4*re[5]+2*re[6]+re[7];ae.threshold=se*ae.range.value}
-if(32782===z&&0===y){var de=e[S-1];r.data.number=p(e,S,de);var ce=S+Math.ceil(l[de].size);_(b,z,y,e,r,ce,de,1,"none")}
-if(32775===z&&1===y){r.data.modbus_payload="";var le=e[S];var ue=0;for(;ue<le;ue++){
-f=e[S+ue+1].toString(16).toUpperCase();1===f.length&&(f="0"+f)
-;0===ue?r.data.modbus_slaveID=e[S+ue+1]:1===ue?r.data.modbus_fnctID=e[S+ue+1]:2===ue?r.data.modbus_datasize=e[S+ue+1]:r.data.modbus_payload+=f
-}}if(32777===z&&0===y){var ve=e[S+2]<<8|e[S+3];r.data.modbus_frame_series_sent=e[S+1]
-;r.data.modbus_frame_number_in_serie=(57344&ve)>>13;r.data.modbus_last_frame_of_serie=(7168&ve)>>10;var pe=0
-;for(;pe<=9;pe++){r.data["modbus_EP".concat(pe)]=!!(ve&1<<pe)}function fa(e,a,t,r,n,i){if(!0===e){if(0===t){
-n.data["modbus_slaveID_EP".concat(i)]=r[a];n.data["modbus_fnctID_EP".concat(i)]=r[a+1]
-;n.data["modbus_datasize_EP".concat(i)]=r[a+2];a+=3}n.data["modbus_payload_EP".concat(i)]="";if(void 0===r[a]){return n}
-var o="modbus_datasize_EP".concat(i);var s=n.data[o];var d=0;for(;d<s;d++){var c=r[a+d].toString(16).toUpperCase()
-;1===c.length&&(c="0"+c);n.data["modbus_payload_EP".concat(i)]+=c}a+=s}return a}var fe=S+4;var _e=0;var me=0
-;for(;me<=9;me++){fe=fa(r.data["modbus_EP".concat(me)],fe,_e,e,r,me)}}if(82===z&&0===y){
-r.data.active_energy=n(256*e[S+1]*256+256*e[S+2]+e[S+3],3);r.data.reactive_energy=n(256*e[S+4]*256+256*e[S+5]+e[S+6],3)
-;r.data.nb_samples=256*e[S+7]+e[S+8];r.data.active_power=n(256*e[S+9]+e[S+10],2)
-;r.data.reactive_power=n(256*e[S+11]+e[S+12],2)}if(32772===z&&0===y){1===e[S]&&(r.data.message_type="confirmed")
-;0===e[S]&&(r.data.message_type="unconfirmed")}32772===z&&1===y&&(r.data.nb_retry=e[S]);if(32772===z&&2===y){
-r.data.automatic_association={};r.data.automatic_association.period_in_minutes=256*e[S+1]+e[S+2]
-;r.data.automatic_association.nb_err_frames=256*e[S+3]+e[S+4]}32772===z&&3===y&&(r.data.data_rate=e[S+2])
-;if(32772===z&&4===y){r.data.ABP_dev_address="";var ge=0;for(;ge<4;ge++){r.data.ABP_dev_address+=String(e[S+1+ge])
-;ge<3&&(r.data.ABP_dev_address+=".")}}if(32772===z&&5===y){r.data.OTA_app_EUI="";var he=0;for(;he<8;he++){
-r.data.OTA_app_EUI+=String(e[S+1+he]);he<7&&(r.data.OTA_app_EUI+=".")}}if(80===z&&4===y){e[S],e[S+1];var ye={}
-;var be=e[S+2];var ze=0;for(;ze<be;ze++){var we={};we.endpoint=e[S+3+7*ze];var Se=e[S+4+7*ze];we.input_clusters=[]
-;var xe=0;for(;xe<Se;xe++){we.input_clusters[xe]=s(256*e[S+5+7*ze+2*xe]+e[S+6+7*ze+2*xe],4)}var Ne=e[S+5+7*ze+2*Se]
-;we.output_clusters=[];var Oe=0;for(;Oe<Ne;Oe++){we.output_clusters[Oe]=s(256*e[S+6+7*ze+2*Oe]+e[S+7+7*ze+2*Oe],4)}
-ye[ze]=we}r.data.configuration=ye}if(80===z&&6===y){var Ie=S+3;var Ue=e[S-1];if(!(1&~e[S+2])){
-r.data.main_or_external_voltage=(256*e[Ie]+e[Ie+1])/1e3;Ie+=2}if(!(2&~e[S+2])){
-r.data.rechargeable_battery_voltage=(256*e[Ie]+e[Ie+1])/1e3;Ie+=2}if(!(4&~e[S+2])){
-r.data.disposable_battery_voltage=(256*e[Ie]+e[Ie+1])/1e3;Ie+=2}if(!(8&~e[S+2])){
-r.data.solar_harvesting_voltage=(256*e[Ie]+e[Ie+1])/1e3;Ie+=2}if(!(16&~e[S+2])){
-r.data.tic_harvesting_voltage=(256*e[Ie]+e[Ie+1])/1e3;Ie+=2}var Pe=Ie+1;_(b,z,y,e,r,Pe,Ue,1e3,"multistate",!0)}
-if(80===z&&255===w){var Te=e[5];var Me="action "+Te.toString();r.data[Me]="";var Ce=e[S+1];var De="none";var Ae=0
-;for(;Ae<Ce;Ae++){De+=String.fromCharCode(e[S+1+Ae])}r.data[Me]=De}if(32778===z&&0===y){var Ee=S;var je=e[Ee-1]
-;r.data.positive_active_energy=n(256*e[Ee+1]*256*256+256*e[Ee+2]*256+256*e[Ee+3]+e[Ee+4],4);Ee+=4
-;r.data.negative_active_energy=n(256*e[Ee+1]*256*256+256*e[Ee+2]*256+256*e[Ee+3]+e[Ee+4],4);Ee+=4
-;r.data.positive_reactive_energy=n(256*e[Ee+1]*256*256+256*e[Ee+2]*256+256*e[Ee+3]+e[Ee+4],4);Ee+=4
-;r.data.negative_reactive_energy=n(256*e[Ee+1]*256*256+256*e[Ee+2]*256+256*e[Ee+3]+e[Ee+4],4);Ee+=4
-;r.data.positive_active_power=n(256*e[Ee+1]*256*256+256*e[Ee+2]*256+256*e[Ee+3]+e[Ee+4],4);Ee+=4
-;r.data.negative_active_power=n(256*e[Ee+1]*256*256+256*e[Ee+2]*256+256*e[Ee+3]+e[Ee+4],4);Ee+=4
-;r.data.positive_reactive_power=n(256*e[Ee+1]*256*256+256*e[Ee+2]*256+256*e[Ee+3]+e[Ee+4],4);Ee+=4
-;r.data.negative_reactive_power=n(256*e[Ee+1]*256*256+256*e[Ee+2]*256+256*e[Ee+3]+e[Ee+4],4);var ke=Ee+5
-;_(b,z,y,e,r,ke,je,1,"multistate",!0)}if(32784===z&&0===y){var Fe=e[S-1]
-;r.data.active_energy_a=n(256*e[S+1]*256*256+256*e[S+2]*256+256*e[S+3]+e[S+4])
-;r.data.reactive_energy_a=n(256*e[S+5]*256*256+256*e[S+6]*256+256*e[S+7]+e[S+8])
-;r.data.active_energy_b=n(256*e[S+9]*256*256+256*e[S+10]*256+256*e[S+11]+e[S+12])
-;r.data.reactive_energy_b=n(256*e[S+13]*256*256+256*e[S+14]*256+256*e[S+15]+e[S+16])
-;r.data.active_energy_c=n(256*e[S+17]*256*256+256*e[S+18]*256+256*e[S+19]+e[S+20])
-;r.data.reactive_energy_c=n(256*e[S+21]*256*256+256*e[S+22]*256+256*e[S+23]+e[S+24])
-;r.data.active_energy_abc=n(256*e[S+25]*256*256+256*e[S+26]*256+256*e[S+27]+e[S+28])
-;r.data.reactive_energy_abc=n(256*e[S+29]*256*256+256*e[S+30]*256+256*e[S+31]+e[S+32]);var qe=S+33
-;_(b,z,y,e,r,qe,Fe,1,"multistate",!0)}else if(32784===z&&1===y){var He=e[S-1]
-;r.data.active_power_a=n(256*e[S+1]*256*256+256*e[S+2]*256+256*e[S+3]+e[S+4])
-;r.data.reactive_power_a=n(256*e[S+5]*256*256+256*e[S+6]*256+256*e[S+7]+e[S+8])
-;r.data.active_power_b=n(256*e[S+9]*256*256+256*e[S+10]*256+256*e[S+11]+e[S+12])
-;r.data.reactive_power_b=n(256*e[S+13]*256*256+256*e[S+14]*256+256*e[S+15]+e[S+16])
-;r.data.active_power_c=n(256*e[S+17]*256*256+256*e[S+18]*256+256*e[S+19]+e[S+20])
-;r.data.reactive_power_c=n(256*e[S+21]*256*256+256*e[S+22]*256+256*e[S+23]+e[S+24])
-;r.data.active_power_abc=n(256*e[S+25]*256*256+256*e[S+26]*256+256*e[S+27]+e[S+28])
-;r.data.reactive_power_abc=n(256*e[S+29]*256*256+256*e[S+30]*256+256*e[S+31]+e[S+32]);var Ve=S+33
-;_(b,z,y,e,r,Ve,He,1,"multistate",!0)}if(32779===z&&0===y){var Re=S;var Be=e[Re-1]
-;r.data.Vrms=n(256*e[Re+1]+e[Re+2],2)/10;Re+=2;r.data.Irms=n(256*e[Re+1]+e[Re+2],2)/10;Re+=2
-;r.data.angle=n(256*e[Re+1]+e[Re+2],2);var Ge=Re+3;_(b,z,y,e,r,Ge,Be,1,"multistate",!0)}if(32781===z&&0===y){
-var Ye=e[S-1];r.data.Vrms_a=n(256*e[S+1]+e[S+2],2)/10;r.data.Irms_a=n(256*e[S+3]+e[S+4],2)/10
-;r.data.angle_a=n(256*e[S+5]+e[S+6],2);r.data.Vrms_b=n(256*e[S+7]+e[S+8],2)/10;r.data.Irms_b=n(256*e[S+9]+e[S+10],2)/10
-;r.data.angle_b=n(256*e[S+11]+e[S+12],2);r.data.Vrms_c=n(256*e[S+13]+e[S+14],2)/10
-;r.data.Irms_c=n(256*e[S+15]+e[S+16],2)/10;r.data.angle_c=n(256*e[S+17]+e[S+18],2);var Le=S+19
-;_(b,z,y,e,r,Le,Ye,1,"multistate",!0)}if(32780===z&&0===y){var Ke=e[S-1];r.data.concentration=256*e[S]+e[S+1];var Xe=S+2
-;_(b,z,y,e,r,Xe,Ke,1,"none")}32780===z&&1===y&&(r.data.analog=e[S]);32780===z&&2===y&&(r.data.analog=e[S])
-;if(1024===z&&0===y){var Ze=e[S-1];r.data.illuminance=256*e[S]+e[S+1];var Qe=S+2;_(b,z,y,e,r,Qe,Ze,1,"none")}
-if(1027===z&&0===y){var We=e[S-1];r.data.pressure=n(256*e[S]+e[S+1],2);var $e=S+2;_(b,z,y,e,r,$e,We,1,"int")}
-if(1030===z&&0===y){var Je=e[S-1];r.data.occupancy=!!e[S];var ea=S+1;_(b,z,y,e,r,ea,Je,1,"none")}if(32850===z&&0===y){
-var aa=S;r.data.frequency=(n(256*e[aa+1]+e[aa+2],2)+22232)/1e3;aa+=2
-;r.data.frequency_min=(n(256*e[aa+1]+e[aa+2],2)+22232)/1e3;aa+=2
-;r.data.frequency_max=(n(256*e[aa+1]+e[aa+2],2)+22232)/1e3;aa+=2;r.data.Vrms=n(256*e[aa+1]+e[aa+2],2)/10;aa+=2
-;r.data.Vrms_min=n(256*e[aa+1]+e[aa+2],2)/10;aa+=2;r.data.Vrms_max=n(256*e[aa+1]+e[aa+2],2)/10;aa+=2
-;r.data.Vpeak=n(256*e[aa+1]+e[aa+2],2)/10;aa+=2;r.data.Vpeak_min=n(256*e[aa+1]+e[aa+2],2)/10;aa+=2
-;r.data.Vpeak_max=n(256*e[aa+1]+e[aa+2],2)/10;aa+=2;r.data.over_voltage=n(256*e[aa+1]+e[aa+2],2);aa+=2
-;r.data.sag_voltage=n(256*e[aa+1]+e[aa+2],2);aa+=2;r.data.brownout_number=n(256*e[aa+1]+e[aa+2],2)}if(32783===z){
-var ta=S+1;if(0===y){var ra=r.data.last={};ra.NbTriggedAcq=o(e,ta,"U32");ta+=4;ra.Mean_X_G=o(e,ta,"U16")/100;ta+=2
-;ra.Max_X_G=o(e,ta,"U16")/100;ta+=2;ra.Dt_X_ms=o(e,ta,"U16");ta+=2;ra.Mean_Y_G=o(e,ta,"U16")/100;ta+=2
-;ra.Max_Y_G=o(e,ta,"U16")/100;ta+=2;ra.Dt_Y_ms=o(e,ta,"U16");ta+=2;ra.Mean_Z_G=o(e,ta,"U16")/100;ta+=2
-;ra.Max_Z_G=o(e,ta,"U16")/100;ta+=2;ra.Dt_Z_ms=o(e,ta,"U16")}else if(1===y||2===y||3===y){
-var na=1===y?"Stats_X":2===y?"Stats_Y":"Stats_Z";var ia=r.data[na]={};ia.NbAcq=o(e,ta,"U16");ta+=2
-;ia.MinMean_G=o(e,ta,"U16")/100;ta+=2;ia.MinMax_G=o(e,ta,"U16")/100;ta+=2;ia.MinDt=o(e,ta,"U16");ta+=2
-;ia.MeanMean_G=o(e,ta,"U16")/100;ta+=2;ia.MeanMax_G=o(e,ta,"U16")/100;ta+=2;ia.MeanDt=o(e,ta,"U16");ta+=2
-;ia.MaxMean_G=o(e,ta,"U16")/100;ta+=2;ia.MaxMax_G=o(e,ta,"U16")/100;ta+=2;ia.MaxDt=o(e,ta,"U16");ta+=2
-}else if(32768===y){var oa=r.data.params={};oa.WaitFreq_Hz=o(e,ta,"U16")/10;ta+=2;oa.AcqFreq_Hz=o(e,ta,"U16")/10;ta+=2
-;var sa=o(e,ta,"U16");ta+=2;32768&sa&&(sa=60*(-32769&sa));oa.NewWaitDelay_s=32768&sa?sa=60*(-32769&sa):sa
-;oa.MaxAcqDuration_ms=o(e,ta,"U16");ta+=2;oa.Threshold_X_G=o(e,ta,"U16")/100;ta+=2;oa.Threshold_Y_G=o(e,ta,"U16")/100
-;ta+=2;oa.Threshold_Z_G=o(e,ta,"U16")/100;ta+=2;oa.OverThrsh_Dt_ms=o(e,ta,"U16");ta+=2;oa.UnderThrsh_Dt_ms=o(e,ta,"U16")
-;ta+=2;oa.Range_G=o(e,ta,"U16")/100;ta+=2;oa.FilterSmoothCoef=o(e,ta,"U8");ta+=1;oa.FilterGainCoef=o(e,ta,"U8");ta+=1
-;oa=r.data.Params.working_modes={};oa.SignalEachAcq=128&e[ta]?"true":"false";oa.RstAftStdRpt_X=1&e[ta]?"true":"false"
-;oa.RstAftStdRpt_Y=2&e[ta]?"true":"false";oa.RstAftStdRpt_7=4&e[ta]?"true":"false"}}var da=Object.keys(r.data)[0]
-;if(void 0===r.data[da]){throw new c("bad payload1")}if(e.length<=7){throw new c("bad payload2")}}if(7===b){d=1
-;y=256*e[6]+e[7];r.zclheader.attID=s(y,4);r.zclheader.status=e[4];r.zclheader.report_parameters={};var ca=v(e[5])
-;r.zclheader.report_parameters.new_mode_configuration=ca[0]
-;"0"===ca[2]&&"0"===ca[3]&&(r.zclheader.report_parameters.cause_request="none")
-;"0"===ca[2]&&"1"===ca[3]&&(r.zclheader.report_parameters.cause_request="short")
-;"1"===ca[2]&&"0"===ca[3]&&(r.zclheader.report_parameters.cause_request="long")
-;"1"===ca[2]&&"1"===ca[3]&&(r.zclheader.report_parameters.cause_request="reserved")
-;r.zclheader.report_parameters.secured_if_alarm=ca[4];r.zclheader.report_parameters.secured=ca[5]
-;r.zclheader.report_parameters.no_hearde_port=ca[6];r.zclheader.report_parameters.batch=ca[7]}if(9===b){d=1
-;y=256*e[6]+e[7];r.zclheader.attID=s(y,4);r.zclheader.status=e[4];r.zclheader.report_parameters={};var la=v(e[5])
-;r.zclheader.report_parameters.new_mode_configuration=la[0]
-;"0"===la[2]&&"0"===la[3]&&(r.zclheader.report_parameters.cause_request="none")
-;"0"===la[2]&&"1"===la[3]&&(r.zclheader.report_parameters.cause_request="short")
-;"1"===la[2]&&"0"===la[3]&&(r.zclheader.report_parameters.cause_request="long")
-;"1"===la[2]&&"1"===la[3]&&(r.zclheader.report_parameters.cause_request="reserved")
-;r.zclheader.report_parameters.secured_if_alarm=la[4];r.zclheader.report_parameters.secured=la[5]
-;r.zclheader.report_parameters.no_hearde_port=la[6];r.zclheader.report_parameters.batch=la[7]
-;r.zclheader.attribut_type=e[8];r.zclheader.min={};if(128&~e[9]){r.zclheader.min.value=256*e[9]+e[10]
-;r.zclheader.min.unit="seconds"}else{r.zclheader.min.value=256*(e[9]-128)+e[10];r.zclheader.min.unit="minutes"}
-r.zclheader.max={};if(128&~e[11]){r.zclheader.max.value=256*e[11]+e[12];r.zclheader.max.unit="seconds"}else{
-r.zclheader.max.value=256*(e[11]-128)+e[12];r.zclheader.max.unit="minutes"}r.lora.payload="";if(80===z&&6===y){
-var ua=e[13];var va=ua/5;var pa=0;while(va>0){r.zclheader.modepower=e[14+5*pa];r.zclheader.powersource=e[15+5*pa]
-;r.zclheader.delta=256*e[16+5*pa]+e[17+5*pa];r.zclheader.changedpowersource=e[18+5*pa];pa++;va--}}}if(0===d){
-throw new c("bad payload3")}}else{r.batch={};r.batch.report="batch"}}return r}function g(e,a){
-var t=arguments.length>2&&void 0!==arguments[2]?arguments[2]:null;var r=[];var n=e.bytes;var i=m(n,e.fPort,t)
-;if(void 0!==i.zclheader){void 0!==i.zclheader.alarmmsg&&(r=i.zclheader.alarmmsg);if(7===n[1]){return{data:i.zclheader,
-warning:r}}if(9===n[1]){return{data:i.zclheader,warning:r}}if(1===n[1]){if(void 0===i.zclheader.data){var o=[];var s=!0
-;var d=0;while(s){var l=Object.keys(i.data)[d];if(void 0===l){s=!1;break}o.push({variable:l,value:i.data[l],
-date:e.recvTime});d++}return{data:o,type:"standard",warning:r}}return{data:{
-variable:"read reporting configuration response status",value:i.zclheader.data,date:e.recvTime},warning:r}}}
-if(void 0!==i.zclheader){if(void 0!==a){var u=i.zclheader.endpoint;var v=!0;var p=0;var f=[];var _="";while(v){
-var g=Object.keys(i.data)[p];if(void 0===g){v=!1;break}if(void 0===a[g]){f.push({variable:g,value:i.data[g],
-date:e.recvTime})}else{_=a[g][u];"NA"===_?f.push({variable:_,value:"NA",date:e.recvTime}):f.push({variable:_,
-value:i.data[g],date:e.recvTime})}p++}return{data:f,type:"standard",warning:r}}throw new c("bad decoding")}return{
-type:i.batch.report,payload:i.lora.payload}}e.exports={normalisation_standard:g}},function(e){function a(e,a){
-if(a<1||a>4){throw new Error("Unsupported Size")}
-1===a&&(128&e)>0?e-=256:2===a&&(32768&e)>0?e-=65536:3===a&&(8388608&e)>0?e-=16777216:4===a&&(2147483648&e)>0&&(e-=4294967296)
-;return e}function t(e){var a=e>>>0>>24&128?-1:1;var t=(e>>23&255)-127;var r=8388607&e;if(128===t){
-return a*(r?Number.NaN:Number.POSITIVE_INFINITY)}if(-127===t){if(0===r){return 0}t=-126;r/=1<<23}else{
-r=(r|1<<23)/(1<<23)}return a*r*Math.pow(2,t)}function r(e,a,t,r){void 0===r&&(r=!1);var n="U"!=t.substr(0,1)
-;var i=parseInt(t.substr(1,2),10)/8;var o,s;var d=i;if(r){o=-1;s=a+i-1}else{o=1;s=a}var c=0;var l=s;for(;d>0;d--){l+=o
-;c=(c<<8)+e[l]}n&&i<8&&128&e[s]&&(c-=1<<8*i);return c}function n(e,a){var t=e.toString(16).toUpperCase();a=null!=a?a:2
-;while(t.length<a){t="0"+t}return"0x"+t}function i(e,a){var t=String(e);while(t.length<a){t="0"+t}return t}
-function o(e){var a="";var t=0;for(;t<e.length;t++){var r=e[t].toString(16).toUpperCase();1===r.length&&(r="0"+r);a+=r}
-return a}e.exports={UintToInt:a,Bytes2Float32:t,BytesToInt64:r,decimalToHex:n,zeroPad:i,BytesToHexStr:o}},function(e){
-var a=0;var t=1;var r=2;var n=3;var i=4;var o=5;var s=6;var d=7;var c=8;var l=9;var u=10;var v=11;var p=12;var f=[]
-;f[a]=0;f[t]=1;f[r]=4;f[n]=4;f[i]=8;f[o]=8;f[s]=16;f[d]=16;f[c]=24;f[l]=24;f[u]=32;f[v]=32;f[p]=32;var _=14;var m=16
-;var g=[[{sz:2,lbl:0},{sz:2,lbl:1},{sz:2,lbl:3},{sz:3,lbl:5},{sz:4,lbl:9},{sz:5,lbl:17},{sz:6,lbl:33},{sz:7,lbl:65},{
-sz:8,lbl:129},{sz:10,lbl:512},{sz:11,lbl:1026},{sz:11,lbl:1027},{sz:11,lbl:1028},{sz:11,lbl:1029},{sz:11,lbl:1030},{
-sz:11,lbl:1031}],[{sz:7,lbl:111},{sz:5,lbl:26},{sz:4,lbl:12},{sz:3,lbl:3},{sz:3,lbl:7},{sz:2,lbl:2},{sz:2,lbl:0},{sz:3,
-lbl:2},{sz:6,lbl:54},{sz:9,lbl:443},{sz:9,lbl:441},{sz:10,lbl:885},{sz:10,lbl:884},{sz:10,lbl:880},{sz:11,lbl:1763},{
-sz:11,lbl:1762}],[{sz:4,lbl:9},{sz:3,lbl:5},{sz:2,lbl:0},{sz:2,lbl:1},{sz:2,lbl:3},{sz:5,lbl:17},{sz:6,lbl:33},{sz:7,
-lbl:65},{sz:8,lbl:129},{sz:10,lbl:512},{sz:11,lbl:1026},{sz:11,lbl:1027},{sz:11,lbl:1028},{sz:11,lbl:1029},{sz:11,
-lbl:1030},{sz:11,lbl:1031}]];Math.trunc=Math.trunc||function(e){return isNaN(e)?NaN:e>0?Math.floor(e):Math.ceil(e)}
-;function h(e,a,t,r){var n=y();var o=b(z(t));var s=w(o.getNextSample(i));n.batch_counter=o.getNextSample(i,3)
-;o.getNextSample(i,1);var d=S(n,o,a,s,e);var c=d.last_timestamp;var l=d.i1_of_the_first_sample
-;s.hasSample&&(c=M(n,o,l,a,c,s,e));n.batch_relative_timestamp=O(o,c);return k(n,a,r)}function y(){var e=[],a=0
-;while(a<m){e.push({codingType:0,codingTable:0,resolution:null,uncompressSamples:[]});a+=1}return{batch_counter:0,
-batch_relative_timestamp:0,series:e}}function b(e){function a(e,a,t){var r=a;var n=t-1;if(8*e.length<r+t){
-throw new Error("Batch : Verify that dest buf is large enough")}var i=0;var o=0;while(t>0){e[r>>3]&1<<(7&r)&&(o|=1<<n-i)
-;t--;i++;r++}return o}return{i1:0,byteArray:e,getNextSample:function(e,a){var t=a||f[e];var r=this.i1;this.i1+=t
-;if(e===p&&32!==t){throw new Error("Batch : Mauvais sampletype")}var i=0;var s=Math.trunc((t-1)/8)+1;var c=t%8
-;0===c&&s>0&&(c=8);while(s>0){var u=0;while(c>0){var v=r>>3;this.byteArray[v]&1<<(7&r)&&(i|=1<<8*(s-1)+u);c--;u++;r+=1}
-s--;c=8}if((e==n||e==o||e==d||e==l)&&i&1<<t-1){var _=t;for(;_<32;_++){i|=1<<_;t++}}return i},
-getNextBifromHi:function(e){var t=2;for(;t<12;t++){var r=a(this.byteArray,this.i1,t);var n=0;for(;n<g[e].length;n++){
-if(g[e][n].sz==t&&r==g[e][n].lbl){this.i1+=t;return n}}}throw new Error("Bi not found in HUFF table")}}}function z(e){
-var a=[];while(e.length>=2){a.push(parseInt(e.substring(0,2),16));e=e.substring(2,e.length)}return a}function w(e){
-var a=e.toString(2);while(a.length<8){a="0"+a}return{isCommonTimestamp:parseInt(a[a.length-2],2),
-hasSample:!parseInt(a[a.length-3],2),batch_req:parseInt(a[a.length-4],2),nb_of_type_measure:parseInt(a.substring(0,4),2)
-}}function S(e,a,t,r,n){var o=0;var s=0;var d=0;for(;d<r.nb_of_type_measure;d++){var c={size:n,lbl:a.getNextSample(i,n)}
-;var l=N(t,c);0===d&&(s=l);o=O(a,o);e.series[l]=x(a,t[l].sampletype,c.lbl,o);if(r.hasSample){
-e.series[l].codingType=a.getNextSample(i,2);e.series[l].codingTable=a.getNextSample(i,2)}}return{last_timestamp:o,
-i1_of_the_first_sample:s}}function x(e,a,t,r){return{uncompressSamples:[{data_relative_timestamp:r,data:{value:P(e,a),
-label:t}}],codingType:0,codingTable:0,resolution:null}}function N(e,a){var t=0;for(;t<e.length;t++){
-if(e[t].taglbl===a.lbl){return t}}throw new Error("Batch : Cannot find i1 in argList")}function O(e,a){if(a){
-var t=e.getNextBifromHi(1);return I(e,a,t)}return e.getNextSample(u)}function I(e,a,t){
-return t>_?e.getNextSample(u):t>0?U(e,a,t):a}function U(e,a,t){return e.getNextSample(u,t)+a+Math.pow(2,t)-1}
-function P(e,a){var t=e.getNextSample(a);return a===p?T(t):t}function T(e){
-var a=e>>>0>>24&128?-1:1,t=(e>>23&255)-127,r=8388607&e;if(128===t){return a*(r?Number.NaN:Number.POSITIVE_INFINITY)}
-if(-127===t){if(0===r){return 0*a}t=-126;r/=1<<22}else{r=(r|1<<23)/(1<<23)}return a*r*Math.pow(2,t)}
-function M(e,a,t,r,n,i,o){return i.isCommonTimestamp?C(e,a,t,r,i,o):j(e,a,r,n,i,o)}function C(e,a,t,r,n,o){
-var s=a.getNextSample(i,8);var d={};var c=D(e,a,s,t);var l=c.timestampCommon;var u=c.lastTimestamp;var v=0
-;for(;v<n.nb_of_type_measure;v++){var p=1;d.lbl=a.getNextSample(i,o);var f=N(r,d);var m=0;for(;m<s;m++){
-var g=a.getNextSample(i,1);if(g){var h=a.getNextBifromHi(e.series[f].codingTable);var y={data_relative_timestamp:0,
-data:{}};if(h<=_){var b=e.series[f].uncompressSamples[e.series[f].uncompressSamples.length-1].data.value;if(h>0){
-y.data.value=A(a,b,e.series[f].codingType,r[f].resol,h)}else{if(p){p=0;continue}y.data.value=b}}else{
-y.data.value=a.getNextSample(r[f].sampletype)}y.data_relative_timestamp=l[m];e.series[f].uncompressSamples.push(y)}}}
-return u}function D(e,a,t,r){var n=[];var o=0;var s=a.getNextSample(i,2);var d=0;for(;d<t;d++){
-var c=a.getNextBifromHi(s);if(c<=_){if(0===d){n.push(e.series[r].uncompressSamples[0].data_relative_timestamp)}else{
-var l=n[d-1];c>0?n.push(a.getNextSample(u,c)+l+Math.pow(2,c)-1):n.push(l)}}else{n.push(a.getNextSample(u))}o=n[d]}
-return{timestampCommon:n,lastTimestamp:o}}function A(e,a,t,r,n){var i=e.getNextSample(s,n)
-;return 0===t?E(i,r,a,n):1===t?(i+Math.pow(2,n)-1)*r+a:a-(i+(Math.pow(2,n)-1))*r}function E(e,a,t,r){
-return e>=Math.pow(2,r-1)?e*a+t:(e+1-Math.pow(2,r))*a+t}function j(e,a,t,r,n,o){var s={};var d=0
-;for(;d<n.nb_of_type_measure;d++){s.lbl=a.getNextSample(i,o);var c=N(t,s);var l=a.getNextSample(i,8);if(l){
-var u=a.getNextSample(i,2);var v=0;for(;v<l;v++){
-var p=e.series[c].uncompressSamples[e.series[c].uncompressSamples.length-1].data_relative_timestamp;var f={
-data_relative_timestamp:0,data:{}};var m=a.getNextBifromHi(u);f.data_relative_timestamp=I(a,p,m)
-;f.data_relative_timestamp>r&&(r=f.data_relative_timestamp);m=a.getNextBifromHi(e.series[c].codingTable);if(m<=_){
-var g=e.series[c].uncompressSamples[e.series[c].uncompressSamples.length-1].data.value
-;f.data.value=m>0?A(a,g,e.series[c].codingType,t[c].resol,m):g}else{f.data.value=a.getNextSample(t[c].sampletype)}
-e.series[c].uncompressSamples.push(f)}}}return r}function k(e,a,t){var r={batch_counter:e.batch_counter,
-batch_relative_timestamp:e.batch_relative_timestamp};t&&(r.batch_absolute_timestamp=t)
-;r.dataset=e.series.reduce(function(r,n,i){return r.concat(n.uncompressSamples.map(function(r){var n={
-data_relative_timestamp:r.data_relative_timestamp,data:{value:a[i].divide?r.data.value/a[i].divide:r.data.value,
-label:a[i].taglbl}};a[i].lblname&&(n.data.label_name=a[i].lblname)
-;t&&(n.data_absolute_timestamp=F(t,e.batch_relative_timestamp,r.data_relative_timestamp));return n}))},[]);return r}
-function F(e,a,t){return new Date(new Date(e).getTime()-1e3*(a-t)).toISOString()}function q(e){var a=e.date
-;var t=h(e.batch1,e.batch2,e.payload,a);var r=[];var n=0;for(;n<t.dataset.length;n++){var i=t.dataset[n];var o={
-variable:i.data.label_name,value:i.data.value,date:i.data_absolute_timestamp};r.push(o)}return{
-batch_counter:t.batch_counter,samples:r}}e.exports={normalisation_batch:q}},function(e){var a={
-disposable_battery_voltage:"V",illuminance:"lx",temperature_1:"Cel",temperature_2:"Cel",pressure:"hPa",humidity_1:"%RH",
-humidity_2:"%RH",CO2:"ppm"};e.exports=a},function(e){function a(){return arguments[0]}function t(e,a){var t={fPort:125,
-bytes:[],warnings:[]};if(!a||!a.data||0===Object.keys(a.data).length){t.errors=["Invalid or empty data object"];return t
-}try{var r=e&&e.dlFrames?e.dlFrames:{};r.sendHexFrame="<sendHexFrame>"
-;r.sendConfirmedMode="11058004000008<U8:sendConfirmedMode>";r.sendReboot="1150005000";r.sendFactoryReset="1150005007"
-;r.sendLoraRetries="11058004000120<U8:sendLoraRetries>";r.sendLoraRejoin="1150800400<U16:sendLoraRejoin>";var n=null
-;var i;for(i in a.data){if(r[i]){n=i;break}}if(!n){
-t.errors=["Unknown command. No matching command found in downlink frames"];return t}if("sendHexFrame"===n){
-var o=a.data.sendHexFrame;if("string"!=typeof o){t.errors=["sendHexFrame must be a string"];return t}
-if(o.includes(":")){var s=o.split(":");if(2!==s.length){
-t.errors=["Invalid sendHexFrame format. Use 'hexdata:port' format"];return t}o=s[0];var d=parseInt(s[1],10)
-;if(isNaN(d)||d<1||d>223){t.errors=["Port number must be between 1 and 223"];return t}t.fPort=d}
-if(!/^[0-9A-Fa-f]+$/.test(o)){t.errors=["sendHexFrame must be a valid hexadecimal string"];return t}
-if("string"!=typeof o||!/^[0-9A-Fa-f]+$/.test(o)){t.errors=["sendHexFrame must be a valid hexadecimal string"];return t}
-o.length%2!=0&&t.warnings.push("Odd number of hex characters in sendHexFrame");var c=0;for(;c<o.length;c+=2){
-if(c+1>=o.length){break}var l=parseInt(o.substr(c,2),16);t.bytes.push(l)}return t}var u=r[n]
-;var v=/<([^:>]+)?:?([^>]+)>/g;var p=[];var f;while(null!==(f=v.exec(u))){var _=f[1]||null;var m=f[2];p.push({type:_,
-name:m})}var g=0,h=p;for(;g<h.length;g++){var y=h[g];var b=y.name;var z=y.type;var w=void 0;if(b===n){w=a.data[n]}else{
-if(void 0===a.data[b]){t.errors=["Missing required parameter: ".concat(b)];return t}w=a.data[b]}var S=void 0
-;if("boolean"==typeof w){S=w?"01":"00"}else{if("number"!=typeof w){
-t.errors=["Unsupported type for parameter ".concat(b,": ").concat(_typeof(w))];return t}if(z){if("U8"===z){
-(w<0||w>255)&&t.warnings.push("Value ".concat(w," out of range for U8, truncating"));S=(255&w).toString(16)
-;while(S.length<2){S="0"+S}}else if("U16"===z){
-(w<0||w>65535)&&t.warnings.push("Value ".concat(w," out of range for U16, truncating"));S=(65535&w).toString(16)
-;while(S.length<4){S="0"+S}}else if("U32"===z){if(w<0){
-t.warnings.push("Negative value ".concat(w," for unsigned type U32, converting to 0"));w=0}
-S=Math.min(w,4294967295).toString(16);while(S.length<8){S="0"+S}}else{
-t.warnings.push("Unknown type ".concat(z,", using default encoding"));S=w.toString(16);S.length%2!=0&&(S="0"+S)}}else{
-S=w.toString(16);S.length%2!=0&&(S="0"+S)}}u=u.replace(z?"<".concat(z,":").concat(b,">"):"<".concat(b,">"),S)}var x=0
-;for(;x<u.length;x+=2){if(x+1>=u.length){t.warnings.push("Odd number of hex characters in template");break}
-var N=parseInt(u.substr(x,2),16);if(isNaN(N)){
-throw new Error("Invalid hex character in template at position ".concat(x))}t.bytes.push(N)}}catch(e){
-t.errors=["Encoding error: ".concat(e.message)];return t}return t}e.exports={watteco_encodeDownlink:t,encodePayload:a}}]
-;var a={};function t(r){var n=a[r];if(void 0!==n){return n.exports}var i=a[r]={exports:{}}
-;e[r].call(i.exports,i,i.exports,t);return i.exports}var r=t(0);driver=r}()
-;"undefined"!=typeof exports&&"undefined"!=typeof module&&module.exports&&(exports.driver=driver);
+name:"solar_harvesting",size:2},6:{divider:1e3,function_type:"none",name:"TIC_harvesting",size:2}}}};function p(e){
+var t="",a=e.toString(2);return t+=d(a,8),t}function _(e,t,a,r,o,s,d,c,p,_){if(138===e||10==e){
+var f=l[d],v=p,m=f.size,g=f.name;void 0===v&&(v="single"===g?"float":"int8"===g||"int16"===g||"int32"===g?"int":"none")
+;var y=function(e,t,a,r,o,s,d,c,l){var p={reportCauses:[],causesMessages:[]}
+;138===e&&p.causesMessages.push("alarm triggered");var _=o;if(_>=r.length){return p}var f=!1,v=3&(r[o]>>=4);if(2==v){
+f=!0}else if(1!=v){throw new Error("Alarm decoding: Unexpected cause type. (ReportParams byte = ".concat(r[o],")"))}
+if(_++,_>=r.length){return p.causesMessages.push("cause:{}"),p}function m(e,t,a){if(_+t-1>=r.length){
+throw new Error("Alarm decoding: Unexpected end of data during reading of the value.")}var o=0;var s=0;for(;s<t;s++){
+o=o<<8|r[_++]}if("int"===e){o=n(o,t)}else{if("float"!==e){throw new Error("Alarm decoding: Unknown type kind: "+e)}
+if(4!==t){throw new Error("Alarm decoding: Invalid float size. Only 4 bytes are supported.")}o=i(o)}return o/a}
+while(_<r.length){var g={};if(_>=r.length){throw new Error("Alarm decoding: Unexpected end of data before reading CSD.")
+}var y=r[_++];g.criterionIndex=7&y;var h=y>>3&3;g.mode=1===h?"delta":2===h?"threshold":"unused",g.hasFallen=!!(32&y),
+g.hasExceeded=!!(64&y),g.isAlarm=!!(128&y)
+;var b=void 0,z=void 0,w=void 0,S=void 0,x=void 0,N=void 0,O=void 0,I=g.hasExceeded&&g.hasFallen?"exceed&fall":g.hasExceeded?"exceed":g.hasFallen?"fall":"",U=null
+;if(f){if(_>=r.length){throw new Error("Alarm decoding: Unexpected end of data before reading FI.")}var P=s,T=d,M=c
+;if(g.fieldIndex=0,null!=l&&!0===l&&(U=r[_++],g.fieldIndex=U,u[t]&&u[t][a]&&u[t][a][U])){var C=u[t][a][U]
+;P=C.function_type||s,T=C.size||d,M=C.divider||c,N=C.name||"FieldUndef !"}b=m(P,T,M),"threshold"===g.mode&&(z=m(P,T,M))}
+if("threshold"===g.mode&&f){if(_>=r.length){
+throw new Error("Alarm decoding: Unexpected end of data before reading Occ.")}var D=r[_++];if(w=D,D>0&&128&D){
+if(_+3>=r.length){throw new Error("Alarm decoding: Invalid OccH or OccL read.")}S=r[_++]<<8|r[_++],x=r[_++]<<8|r[_++]}}
+p.reportCauses.push(g),
+f?(O="threshold"===g.mode?void 0!==S?"cause:{alarm:".concat(g.isAlarm,", criterion_index: ").concat(g.criterionIndex,", mode: threshold, crossing: ").concat(I,", value: ").concat(b,", gap: ").concat(z,", occurences_up: ").concat(S,", occurences_down: ").concat(x):"cause:{alarm:".concat(g.isAlarm,", criterion_index: ").concat(g.criterionIndex,", mode: threshold, crossing: ").concat(I,", value: ").concat(b,", gap: ").concat(z,", occurences: ").concat(w):"cause:{alarm:".concat(g.isAlarm,", criterion_index: ").concat(g.criterionIndex,", mode: delta, value: ").concat(b),
+N&&(O+=", field: ".concat(N)),
+O+="}"):(O="cause:{alarm:".concat(g.isAlarm,", criterion_index: ").concat(g.criterionIndex,", mode: ").concat(g.mode),
+"threshold"===g.mode&&(O+=", crossing: ".concat(I)),O+="}"),p.causesMessages.push(O)}if(_!==r.length){
+throw new Error("Alarm decoding: Remaining unprocessed bytes detected. Expected ".concat(r.length,", but stopped at ").concat(_,"."))
+}return p}(e,t,a,r,s,v,m,c,_);o.zclheader.alarmmsg=y.causesMessages}}e.exports={normalisation_standard:function(e,t){
+var a=arguments.length>2&&void 0!==arguments[2]?arguments[2]:null;var r=[],d=e.bytes,u=function(e,t){
+var a=arguments.length>2&&void 0!==arguments[2]?arguments[2]:null;var r={},d=0;r.lora={},r.lora.port=t
+;var u=e.length,f="";r.lora.payload="";var v=0;for(;v<u;v++){f=e[v].toString(16).toUpperCase(),1===f.length&&(f="0"+f),
+r.lora.payload+=f;var m=new Date;r.lora.date=m.toISOString()}if(125===t){if(0==!(1&e[0])){r.zclheader={},
+r.zclheader.report="standard";var g=-1,y=-1,h=-1;if(r.zclheader.endpoint=(224&e[0])>>5|(6&e[0])<<2,y=e[1],
+r.zclheader.cmdID=s(y,2),h=256*e[2]+e[3],r.zclheader.clustID=s(h,4),10===y||138===y||1===y){d=1,r.data={},
+g=256*e[4]+e[5],r.zclheader.attID=s(g,4);var b=e[4],z=0;if(10!==y&&138!==y||(z=7),138===y&&(r.zclheader.alarm=1),
+1===y&&(z=8,r.zclheader.status=e[6]),83===h||84===h||85===h||86===h||87===h){if("function"!=typeof a){
+throw new c("TIC_Decode function not found")}r.data=a(h,g,e.slice(z+1))}if(0===h&&2===g){r.data.firmware="";var w=0
+;for(;w<3;w++){r.data.firmware+=String(e[z+w]),w<2&&(r.data.firmware+=".")}var S=256*e[z+3]*256+256*e[z+4]+e[z+5]
+;r.data.firmware+="."+S.toString()}if(0===h&&3===g){var x=e[z];r.data.kernel="";var N=0;for(;N<x;N++){
+r.data.kernel+=String.fromCharCode(e[z+1+N])}}if(0===h&&4===g){var O=e[z];r.data.manufacturer="";var I=0;for(;I<O;I++){
+r.data.manufacturer+=String.fromCharCode(e[z+1+I])}}if(0===h&&5===g){var U=e[z];r.data.model="";var P=0;for(;P<U;P++){
+r.data.model+=String.fromCharCode(e[z+1+P])}}if(0===h&&6===g){var T=e[z];r.data.date="";var M=0;for(;M<T;M++){
+r.data.date+=String.fromCharCode(e[z+1+M])}}if(0===h&&16===g){var C=e[z];r.data.position="";var D=0;for(;D<C;D++){
+r.data.position+=String.fromCharCode(e[z+1+D])}}if(0===h&&32769===g){var A=e[z];r.data.application_name="";var E=0
+;for(;E<A;E++){r.data.application_name+=String.fromCharCode(e[z+1+E])}}if(1026===h&&0===g){var j=e[z-1]
+;r.data.temperature=n(256*e[z]+e[z+1],2)/100,_(y,h,g,e,r,z+2,j,100,"int")}
+if(1026===h&&1===g&&(r.data.min_temperature=n(256*e[z]+e[z+1],2)/100),
+1026===h&&2===g&&(r.data.max_temperature=n(256*e[z]+e[z+1],2)/100),1029===h&&0===g){var k=e[z-1]
+;r.data.humidity=(256*e[z]+e[z+1])/100,_(y,h,g,e,r,z+2,k,100,"none")}
+if(1029===h&&1===g&&(r.data.min_humidity=(256*e[z]+e[z+1])/100),
+1029===h&&2===g&&(r.data.max_humidity=(256*e[z]+e[z+1])/100),15===h&&1026===g){var F=e[z-1]
+;r.data.index=256*e[z]*256*256+256*e[z+1]*256+256*e[z+2]+e[z+3],_(y,h,g,e,r,z+4,F,1,"none")}if(15===h&&85===g){
+var q=e[z-1];r.data.pin_state=!!e[z],_(y,h,g,e,r,z+1,q,1,"none")}
+if(15===h&&84===g&&(0===e[z]&&(r.data.polarity="normal"),1===e[z]&&(r.data.polarity="reverse")),
+15===h&&1024===g&&(0===e[z]&&(r.data.edge_selection="none"),1===e[z]&&(r.data.edge_selection="falling edge"),
+2===e[z]&&(r.data.edge_selection="rising edge"),3===e[z]&&(r.data.edge_selection="both edges"),
+5===e[z]&&(r.data.edge_selection="polling and falling edge"),
+6===e[z]&&(r.data.edge_selection="polling and rising edge"),7===e[z]&&(r.data.edge_selection="polling and both edges")),
+15===h&&1025===g&&(r.data.debounce_period=e[z]),15===h&&1027===g&&(r.data.poll_period=e[z]),
+15===h&&1028===g&&(r.data.force_notify=e[z]),19===h&&85===g){var H=e[z-1];r.data.output_value=e[z],
+_(y,h,g,e,r,z+1,H,1,"none")}if(6===h&&0===g){var V=e[z];r.data.output=1===V?"ON":"OFF"}if(32776===h&&0===g){var R=e[z-1]
+;r.data.differential_pressure=256*e[z]+e[z+1],_(y,h,g,e,r,z+2,R,1,"none")}if(32773===h&&0===g){var B=e[z-1]
+;r.data.pin_state_1=!(1&~e[z+1]),r.data.pin_state_2=!(2&~e[z+1]),r.data.pin_state_3=!(4&~e[z+1]),
+r.data.pin_state_4=!(8&~e[z+1]),r.data.pin_state_5=!(16&~e[z+1]),r.data.pin_state_6=!(32&~e[z+1]),
+r.data.pin_state_7=!(64&~e[z+1]),r.data.pin_state_8=!(128&~e[z+1]),r.data.pin_state_9=!(1&~e[z]),
+r.data.pin_state_10=!(2&~e[z]),_(y,h,g,e,r,z+2,B,100,"none")}
+if(32774===h&&0===g&&(r.data.speed=256*e[z]*256+256*e[z+1]+e[z+2]),32774===h&&1===g&&(r.data.data_bit=e[z]),
+32774===h&&2===g&&(r.data.parity=e[z]),32774===h&&3===g&&(r.data.stop_bit=e[z]),12===h&&85===g){var G=e[z-1]
+;r.data.analog=i(256*e[z]*256*256+256*e[z+1]*256+256*e[z+2]+e[z+3]),_(y,h,g,e,r,z+4,G,1,"float")}
+if(12===h&&256===g&&(5===e[z+1]&&(r.data.type="ppm"),255===e[z+1]&&0===e[z+3]&&(r.data.type="mA"),
+255===e[z+1]&&1===e[z+3]&&(r.data.type="mV")),12===h&&32771===g&&(r.data.power_duration=256*e[z]+e[z+1]),
+12===h&&32772===g){var Y={};var L=p(e[z]),K=p(e[z+1]),X=2*L[0]+L[1];0===X&&(Y.mode="idle"),1===X&&(Y.mode="chock"),
+2===X&&(Y.mode="click");var Z=8*L[2]+4*L[3]+2*L[4]+L[5];0===Z&&(Y.frequency="idle"),1===Z&&(Y.frequency="1Hz"),
+2===Z&&(Y.frequency="10Hz"),3===Z&&(Y.frequency="25Hz"),4===Z&&(Y.frequency="50Hz"),5===Z&&(Y.frequency="100Hz"),
+6===Z&&(Y.frequency="200Hz"),7===Z&&(Y.frequency="400Hz"),8===Z&&(Y.frequency="1620Hz"),9===Z&&(Y.frequency="5376Hz"),
+Y.range={};var Q=2*L[6]+L[7];0===Q&&(Y.range.precision="+/- 2g",Y.range.value=16),1===Q&&(Y.range.precision="+/- 4g",
+Y.range.value=32),2===Q&&(Y.range.precision="+/- 8g",Y.range.value=64),3===Q&&(Y.range.precision="+/- 16g",
+Y.range.value=128);var W=128*K[0]+64*K[1]+32*K[2]+16*K[3]+8*K[4]+4*K[5]+2*K[6]+K[7];Y.threshold=W*Y.range.value}
+if(32782===h&&0===g){var $=e[z-1];r.data.number=function(e,t,a){var r=0,o=0;switch(a){case 8:case 24:case 32:case 40:
+case 48:o=1;break;case 9:case 25:case 33:case 41:o=2;break;case 10:case 26:case 34:case 42:o=3;break;case 11:case 27:
+case 35:case 43:o=4;break;case 12:o=5;break;case 13:case 37:o=6;break;case 57:
+return i(256*e[t]*256*256+256*e[t+1]*256+256*e[t+2]+e[t+3]);default:throw new Error("Unsupported number type: "+a)}
+var s=0;for(;s<o;s++){r=r<<8|e[t+s]}return a>=40&&a<=43?n(r,o):r}(e,z,$),_(y,h,g,e,r,z+Math.ceil(l[$].size),$,1,"none")}
+if(32775===h&&1===g){r.data.modbus_payload="";var J=e[z];var ee=0;for(;ee<J;ee++){
+f=e[z+ee+1].toString(16).toUpperCase(),
+1===f.length&&(f="0"+f),0===ee?r.data.modbus_slaveID=e[z+ee+1]:1===ee?r.data.modbus_fnctID=e[z+ee+1]:2===ee?r.data.modbus_datasize=e[z+ee+1]:r.data.modbus_payload+=f
+}}if(32777===h&&0===g){var te=e[z+2]<<8|e[z+3];r.data.modbus_frame_series_sent=e[z+1],
+r.data.modbus_frame_number_in_serie=(57344&te)>>13,r.data.modbus_last_frame_of_serie=(7168&te)>>10;var ae=0
+;for(;ae<=9;ae++){r.data["modbus_EP".concat(ae)]=!!(te&1<<ae)}function Ye(e,t,a,r,n,i){if(!0===e){
+if(0===a&&(n.data["modbus_slaveID_EP".concat(i)]=r[t],n.data["modbus_fnctID_EP".concat(i)]=r[t+1],
+n.data["modbus_datasize_EP".concat(i)]=r[t+2],t+=3),n.data["modbus_payload_EP".concat(i)]="",void 0===r[t]){return n}
+var o="modbus_datasize_EP".concat(i),s=n.data[o];var d=0;for(;d<s;d++){var c=r[t+d].toString(16).toUpperCase()
+;1===c.length&&(c="0"+c),n.data["modbus_payload_EP".concat(i)]+=c}t+=s}return t}var re=z+4;var ne=0;var ie=0
+;for(;ie<=9;ie++){re=Ye(r.data["modbus_EP".concat(ie)],re,ne,e,r,ie)}}
+if(82===h&&0===g&&(r.data.active_energy=n(256*e[z+1]*256+256*e[z+2]+e[z+3],3),
+r.data.reactive_energy=n(256*e[z+4]*256+256*e[z+5]+e[z+6],3),r.data.nb_samples=256*e[z+7]+e[z+8],
+r.data.active_power=n(256*e[z+9]+e[z+10],2),r.data.reactive_power=n(256*e[z+11]+e[z+12],2)),
+32772===h&&0===g&&(1===e[z]&&(r.data.message_type="confirmed"),0===e[z]&&(r.data.message_type="unconfirmed")),
+32772===h&&1===g&&(r.data.nb_retry=e[z]),32772===h&&2===g&&(r.data.automatic_association={},
+r.data.automatic_association.period_in_minutes=256*e[z+1]+e[z+2],
+r.data.automatic_association.nb_err_frames=256*e[z+3]+e[z+4]),32772===h&&3===g&&(r.data.data_rate=e[z+2]),
+32772===h&&4===g){r.data.ABP_dev_address="";var oe=0;for(;oe<4;oe++){r.data.ABP_dev_address+=String(e[z+1+oe]),
+oe<3&&(r.data.ABP_dev_address+=".")}}if(32772===h&&5===g){r.data.OTA_app_EUI="";var se=0;for(;se<8;se++){
+r.data.OTA_app_EUI+=String(e[z+1+se]),se<7&&(r.data.OTA_app_EUI+=".")}}if(80===h&&4===g){e[z],e[z+1];var de={}
+;var ce=e[z+2];var le=0;for(;le<ce;le++){var ue={};ue.endpoint=e[z+3+7*le];var pe=e[z+4+7*le];ue.input_clusters=[]
+;var _e=0;for(;_e<pe;_e++){ue.input_clusters[_e]=s(256*e[z+5+7*le+2*_e]+e[z+6+7*le+2*_e],4)}var fe=e[z+5+7*le+2*pe]
+;ue.output_clusters=[];var ve=0;for(;ve<fe;ve++){ue.output_clusters[ve]=s(256*e[z+6+7*le+2*ve]+e[z+7+7*le+2*ve],4)}
+de[le]=ue}r.data.configuration=de}if(80===h&&6===g){var me=z+3;var ge=e[z-1]
+;1&~e[z+2]||(r.data.main_or_external_voltage=(256*e[me]+e[me+1])/1e3,
+me+=2),2&~e[z+2]||(r.data.rechargeable_battery_voltage=(256*e[me]+e[me+1])/1e3,me+=2),
+4&~e[z+2]||(r.data.disposable_battery_voltage=(256*e[me]+e[me+1])/1e3,
+me+=2),8&~e[z+2]||(r.data.solar_harvesting_voltage=(256*e[me]+e[me+1])/1e3,me+=2),
+16&~e[z+2]||(r.data.tic_harvesting_voltage=(256*e[me]+e[me+1])/1e3,me+=2),_(y,h,g,e,r,me+1,ge,1e3,"multistate",!0)}
+if(80===h&&255===b){var ye="action "+e[5].toString();r.data[ye]="";var he=e[z+1];var be="none";var ze=0
+;for(;ze<he;ze++){be+=String.fromCharCode(e[z+1+ze])}r.data[ye]=be}if(32778===h&&0===g){var we=z;var Se=e[we-1]
+;r.data.positive_active_energy=n(256*e[we+1]*256*256+256*e[we+2]*256+256*e[we+3]+e[we+4],4),we+=4,
+r.data.negative_active_energy=n(256*e[we+1]*256*256+256*e[we+2]*256+256*e[we+3]+e[we+4],4),we+=4,
+r.data.positive_reactive_energy=n(256*e[we+1]*256*256+256*e[we+2]*256+256*e[we+3]+e[we+4],4),we+=4,
+r.data.negative_reactive_energy=n(256*e[we+1]*256*256+256*e[we+2]*256+256*e[we+3]+e[we+4],4),we+=4,
+r.data.positive_active_power=n(256*e[we+1]*256*256+256*e[we+2]*256+256*e[we+3]+e[we+4],4),we+=4,
+r.data.negative_active_power=n(256*e[we+1]*256*256+256*e[we+2]*256+256*e[we+3]+e[we+4],4),we+=4,
+r.data.positive_reactive_power=n(256*e[we+1]*256*256+256*e[we+2]*256+256*e[we+3]+e[we+4],4),we+=4,
+r.data.negative_reactive_power=n(256*e[we+1]*256*256+256*e[we+2]*256+256*e[we+3]+e[we+4],4),
+_(y,h,g,e,r,we+5,Se,1,"multistate",!0)}if(32784===h&&0===g){var xe=e[z-1]
+;r.data.active_energy_a=n(256*e[z+1]*256*256+256*e[z+2]*256+256*e[z+3]+e[z+4]),
+r.data.reactive_energy_a=n(256*e[z+5]*256*256+256*e[z+6]*256+256*e[z+7]+e[z+8]),
+r.data.active_energy_b=n(256*e[z+9]*256*256+256*e[z+10]*256+256*e[z+11]+e[z+12]),
+r.data.reactive_energy_b=n(256*e[z+13]*256*256+256*e[z+14]*256+256*e[z+15]+e[z+16]),
+r.data.active_energy_c=n(256*e[z+17]*256*256+256*e[z+18]*256+256*e[z+19]+e[z+20]),
+r.data.reactive_energy_c=n(256*e[z+21]*256*256+256*e[z+22]*256+256*e[z+23]+e[z+24]),
+r.data.active_energy_abc=n(256*e[z+25]*256*256+256*e[z+26]*256+256*e[z+27]+e[z+28]),
+r.data.reactive_energy_abc=n(256*e[z+29]*256*256+256*e[z+30]*256+256*e[z+31]+e[z+32]),
+_(y,h,g,e,r,z+33,xe,1,"multistate",!0)}else if(32784===h&&1===g){var Ne=e[z-1]
+;r.data.active_power_a=n(256*e[z+1]*256*256+256*e[z+2]*256+256*e[z+3]+e[z+4]),
+r.data.reactive_power_a=n(256*e[z+5]*256*256+256*e[z+6]*256+256*e[z+7]+e[z+8]),
+r.data.active_power_b=n(256*e[z+9]*256*256+256*e[z+10]*256+256*e[z+11]+e[z+12]),
+r.data.reactive_power_b=n(256*e[z+13]*256*256+256*e[z+14]*256+256*e[z+15]+e[z+16]),
+r.data.active_power_c=n(256*e[z+17]*256*256+256*e[z+18]*256+256*e[z+19]+e[z+20]),
+r.data.reactive_power_c=n(256*e[z+21]*256*256+256*e[z+22]*256+256*e[z+23]+e[z+24]),
+r.data.active_power_abc=n(256*e[z+25]*256*256+256*e[z+26]*256+256*e[z+27]+e[z+28]),
+r.data.reactive_power_abc=n(256*e[z+29]*256*256+256*e[z+30]*256+256*e[z+31]+e[z+32]),
+_(y,h,g,e,r,z+33,Ne,1,"multistate",!0)}if(32779===h&&0===g){var Oe=z;var Ie=e[Oe-1]
+;r.data.Vrms=n(256*e[Oe+1]+e[Oe+2],2)/10,Oe+=2,r.data.Irms=n(256*e[Oe+1]+e[Oe+2],2)/10,Oe+=2,
+r.data.angle=n(256*e[Oe+1]+e[Oe+2],2),_(y,h,g,e,r,Oe+3,Ie,1,"multistate",!0)}if(32781===h&&0===g){var Ue=e[z-1]
+;r.data.Vrms_a=n(256*e[z+1]+e[z+2],2)/10,r.data.Irms_a=n(256*e[z+3]+e[z+4],2)/10,r.data.angle_a=n(256*e[z+5]+e[z+6],2),
+r.data.Vrms_b=n(256*e[z+7]+e[z+8],2)/10,r.data.Irms_b=n(256*e[z+9]+e[z+10],2)/10,
+r.data.angle_b=n(256*e[z+11]+e[z+12],2),r.data.Vrms_c=n(256*e[z+13]+e[z+14],2)/10,
+r.data.Irms_c=n(256*e[z+15]+e[z+16],2)/10,r.data.angle_c=n(256*e[z+17]+e[z+18],2),_(y,h,g,e,r,z+19,Ue,1,"multistate",!0)
+}if(32780===h&&0===g){var Pe=e[z-1];r.data.concentration=256*e[z]+e[z+1],_(y,h,g,e,r,z+2,Pe,1,"none")}
+if(32780===h&&1===g&&(r.data.analog=e[z]),32780===h&&2===g&&(r.data.analog=e[z]),1024===h&&0===g){var Te=e[z-1]
+;r.data.illuminance=256*e[z]+e[z+1],_(y,h,g,e,r,z+2,Te,1,"none")}if(1027===h&&0===g){var Me=e[z-1]
+;r.data.pressure=n(256*e[z]+e[z+1],2),_(y,h,g,e,r,z+2,Me,1,"int")}if(1030===h&&0===g){var Ce=e[z-1]
+;r.data.occupancy=!!e[z],_(y,h,g,e,r,z+1,Ce,1,"none")}if(32850===h&&0===g){var De=z
+;r.data.frequency=(n(256*e[De+1]+e[De+2],2)+22232)/1e3,De+=2,r.data.frequency_min=(n(256*e[De+1]+e[De+2],2)+22232)/1e3,
+De+=2,r.data.frequency_max=(n(256*e[De+1]+e[De+2],2)+22232)/1e3,De+=2,r.data.Vrms=n(256*e[De+1]+e[De+2],2)/10,De+=2,
+r.data.Vrms_min=n(256*e[De+1]+e[De+2],2)/10,De+=2,r.data.Vrms_max=n(256*e[De+1]+e[De+2],2)/10,De+=2,
+r.data.Vpeak=n(256*e[De+1]+e[De+2],2)/10,De+=2,r.data.Vpeak_min=n(256*e[De+1]+e[De+2],2)/10,De+=2,
+r.data.Vpeak_max=n(256*e[De+1]+e[De+2],2)/10,De+=2,r.data.over_voltage=n(256*e[De+1]+e[De+2],2),De+=2,
+r.data.sag_voltage=n(256*e[De+1]+e[De+2],2),De+=2,r.data.brownout_number=n(256*e[De+1]+e[De+2],2)}if(32783===h){
+var Ae=z+1;if(0===g){var Ee=r.data.last={};Ee.NbTriggedAcq=o(e,Ae,"U32"),Ae+=4,Ee.Mean_X_G=o(e,Ae,"U16")/100,Ae+=2,
+Ee.Max_X_G=o(e,Ae,"U16")/100,Ae+=2,Ee.Dt_X_ms=o(e,Ae,"U16"),Ae+=2,Ee.Mean_Y_G=o(e,Ae,"U16")/100,Ae+=2,
+Ee.Max_Y_G=o(e,Ae,"U16")/100,Ae+=2,Ee.Dt_Y_ms=o(e,Ae,"U16"),Ae+=2,Ee.Mean_Z_G=o(e,Ae,"U16")/100,Ae+=2,
+Ee.Max_Z_G=o(e,Ae,"U16")/100,Ae+=2,Ee.Dt_Z_ms=o(e,Ae,"U16")}else if(1===g||2===g||3===g){
+var je=1===g?"Stats_X":2===g?"Stats_Y":"Stats_Z",ke=r.data[je]={};ke.NbAcq=o(e,Ae,"U16"),Ae+=2,
+ke.MinMean_G=o(e,Ae,"U16")/100,Ae+=2,ke.MinMax_G=o(e,Ae,"U16")/100,Ae+=2,ke.MinDt=o(e,Ae,"U16"),Ae+=2,
+ke.MeanMean_G=o(e,Ae,"U16")/100,Ae+=2,ke.MeanMax_G=o(e,Ae,"U16")/100,Ae+=2,ke.MeanDt=o(e,Ae,"U16"),Ae+=2,
+ke.MaxMean_G=o(e,Ae,"U16")/100,Ae+=2,ke.MaxMax_G=o(e,Ae,"U16")/100,Ae+=2,ke.MaxDt=o(e,Ae,"U16"),Ae+=2
+}else if(32768===g){var Fe=r.data.params={};Fe.WaitFreq_Hz=o(e,Ae,"U16")/10,Ae+=2,Fe.AcqFreq_Hz=o(e,Ae,"U16")/10,Ae+=2
+;var qe=o(e,Ae,"U16");Ae+=2,32768&qe&&(qe=60*(-32769&qe)),Fe.NewWaitDelay_s=32768&qe?qe=60*(-32769&qe):qe,
+Fe.MaxAcqDuration_ms=o(e,Ae,"U16"),Ae+=2,Fe.Threshold_X_G=o(e,Ae,"U16")/100,Ae+=2,Fe.Threshold_Y_G=o(e,Ae,"U16")/100,
+Ae+=2,Fe.Threshold_Z_G=o(e,Ae,"U16")/100,Ae+=2,Fe.OverThrsh_Dt_ms=o(e,Ae,"U16"),Ae+=2,Fe.UnderThrsh_Dt_ms=o(e,Ae,"U16"),
+Ae+=2,Fe.Range_G=o(e,Ae,"U16")/100,Ae+=2,Fe.FilterSmoothCoef=o(e,Ae,"U8"),Ae+=1,Fe.FilterGainCoef=o(e,Ae,"U8"),Ae+=1,
+Fe=r.data.Params.working_modes={},Fe.SignalEachAcq=128&e[Ae]?"true":"false",Fe.RstAftStdRpt_X=1&e[Ae]?"true":"false",
+Fe.RstAftStdRpt_Y=2&e[Ae]?"true":"false",Fe.RstAftStdRpt_7=4&e[Ae]?"true":"false"}}var He=Object.keys(r.data)[0]
+;if(void 0===r.data[He]){throw new c("bad payload1")}if(e.length<=7){throw new c("bad payload2")}}if(7===y){d=1,
+g=256*e[6]+e[7],r.zclheader.attID=s(g,4),r.zclheader.status=e[4],r.zclheader.report_parameters={};var Ve=p(e[5])
+;r.zclheader.report_parameters.new_mode_configuration=Ve[0],
+"0"===Ve[2]&&"0"===Ve[3]&&(r.zclheader.report_parameters.cause_request="none"),
+"0"===Ve[2]&&"1"===Ve[3]&&(r.zclheader.report_parameters.cause_request="short"),
+"1"===Ve[2]&&"0"===Ve[3]&&(r.zclheader.report_parameters.cause_request="long"),
+"1"===Ve[2]&&"1"===Ve[3]&&(r.zclheader.report_parameters.cause_request="reserved"),
+r.zclheader.report_parameters.secured_if_alarm=Ve[4],r.zclheader.report_parameters.secured=Ve[5],
+r.zclheader.report_parameters.no_hearde_port=Ve[6],r.zclheader.report_parameters.batch=Ve[7]}if(9===y){d=1,
+g=256*e[6]+e[7],r.zclheader.attID=s(g,4),r.zclheader.status=e[4],r.zclheader.report_parameters={};var Re=p(e[5])
+;if(r.zclheader.report_parameters.new_mode_configuration=Re[0],
+"0"===Re[2]&&"0"===Re[3]&&(r.zclheader.report_parameters.cause_request="none"),
+"0"===Re[2]&&"1"===Re[3]&&(r.zclheader.report_parameters.cause_request="short"),
+"1"===Re[2]&&"0"===Re[3]&&(r.zclheader.report_parameters.cause_request="long"),
+"1"===Re[2]&&"1"===Re[3]&&(r.zclheader.report_parameters.cause_request="reserved"),
+r.zclheader.report_parameters.secured_if_alarm=Re[4],r.zclheader.report_parameters.secured=Re[5],
+r.zclheader.report_parameters.no_hearde_port=Re[6],r.zclheader.report_parameters.batch=Re[7],
+r.zclheader.attribut_type=e[8],r.zclheader.min={},128&~e[9]?(r.zclheader.min.value=256*e[9]+e[10],
+r.zclheader.min.unit="seconds"):(r.zclheader.min.value=256*(e[9]-128)+e[10],r.zclheader.min.unit="minutes"),
+r.zclheader.max={},
+128&~e[11]?(r.zclheader.max.value=256*e[11]+e[12],r.zclheader.max.unit="seconds"):(r.zclheader.max.value=256*(e[11]-128)+e[12],
+r.zclheader.max.unit="minutes"),r.lora.payload="",80===h&&6===g){var Be=e[13]/5,Ge=0;while(Be>0){
+r.zclheader.modepower=e[14+5*Ge],r.zclheader.powersource=e[15+5*Ge],r.zclheader.delta=256*e[16+5*Ge]+e[17+5*Ge],
+r.zclheader.changedpowersource=e[18+5*Ge],Ge++,Be--}}}if(0===d){throw new c("bad payload3")}}else{r.batch={},
+r.batch.report="batch"}}return r}(d,e.fPort,a);if(void 0!==u.zclheader){
+if(void 0!==u.zclheader.alarmmsg&&(r=u.zclheader.alarmmsg),7===d[1]){return{data:u.zclheader,warning:r}}if(9===d[1]){
+return{data:u.zclheader,warning:r}}if(1===d[1]){if(void 0===u.zclheader.data){var f=[],v=!0,m=0;while(v){
+var g=Object.keys(u.data)[m];if(void 0===g){v=!1;break}f.push({variable:g,value:u.data[g],date:e.recvTime}),m++}return{
+data:f,type:"standard",warning:r}}return{data:{variable:"read reporting configuration response status",
+value:u.zclheader.data,date:e.recvTime},warning:r}}}if(void 0!==u.zclheader){if(void 0!==t){
+var y=u.zclheader.endpoint,h=!0,b=0,z=[],w="";while(h){var S=Object.keys(u.data)[b];if(void 0===S){h=!1;break}
+void 0===t[S]?z.push({variable:S,value:u.data[S],date:e.recvTime}):(w=t[S][y],"NA"===w?z.push({variable:w,value:"NA",
+date:e.recvTime}):z.push({variable:w,value:u.data[S],date:e.recvTime})),b++}return{data:z,type:"standard",warning:r}}
+throw new c("bad decoding")}return{type:u.batch.report,payload:u.lora.payload}}}}},t={},a=function a(r){var n=t[r]
+;if(void 0!==n){return n.exports}var i=t[r]={exports:{}};return e[r].call(i.exports,i,i.exports,a),i.exports}(758)
+;driver=a}();"undefined"!=typeof exports&&"undefined"!=typeof module&&module.exports&&(exports.driver=driver);
 
 function HexStrToBytes(InHexStr) {
     if (typeof InHexStr === 'string') {

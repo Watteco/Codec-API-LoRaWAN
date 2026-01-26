@@ -119,21 +119,21 @@ function c(e,t,a,r,n){var i=e.getNextSample(6,n);return 0===a?function(e,t,a,r){
 return e>=Math.pow(2,r-1)?e*t+a:(e+1-Math.pow(2,r))*t+a
 }(i,r,t,n):1===a?(i+Math.pow(2,n)-1)*r+t:t-(i+(Math.pow(2,n)-1))*r}Math.trunc=Math.trunc||function(e){
 return isNaN(e)?NaN:e>0?Math.floor(e):Math.ceil(e)},e.exports={normalisation_batch:function(e){
-var s=e.date,_=function(e,s,_,d){var l=function(){var e=[],t=0;for(;t<16;){e.push({codingType:0,codingTable:0,
+var s=e.date,_=function(e,s,_,d){var l=function(){var e=[],t=0;while(t<16){e.push({codingType:0,codingTable:0,
 resolution:null,uncompressSamples:[]}),t+=1}return{batch_counter:0,batch_relative_timestamp:0,series:e}
 }(),v=function(e){function r(e,t,a){var r=t,n=a-1;if(8*e.length<r+a){
-throw new Error("Batch : Verify that dest buf is large enough")}var i=0,o=0;for(;a>0;){e[r>>3]&1<<(7&r)&&(o|=1<<n-i),
+throw new Error("Batch : Verify that dest buf is large enough")}var i=0,o=0;while(a>0){e[r>>3]&1<<(7&r)&&(o|=1<<n-i),
 a--,i++,r++}return o}return{i1:0,byteArray:e,getNextSample:function(e,a){var r=a||t[e],n=this.i1;if(this.i1+=r,
-12===e&&32!==r){throw new Error("Batch : Mauvais sampletype")}var i=0,o=Math.trunc((r-1)/8)+1,s=r%8
-;for(0===s&&o>0&&(s=8);o>0;){var c=0;for(;s>0;){var _=n>>3;this.byteArray[_]&1<<(7&n)&&(i|=1<<8*(o-1)+c),s--,c++,n+=1}
-o--,s=8}if((3==e||5==e||7==e||9==e)&&i&1<<r-1){var d=r}for(;d<32;d++){i|=1<<d,r++}return i},getNextBifromHi:function(e){
-var t=2;for(;t<12;t++){var n=r(this.byteArray,this.i1,t);var i=0;for(;i<a[e].length;i++){
-if(a[e][i].sz==t&&n==a[e][i].lbl){return this.i1+=t,i}}}throw new Error("Bi not found in HUFF table")}}}(function(e){
-var t=[];for(;e.length>=2;){t.push(parseInt(e.substring(0,2),16)),e=e.substring(2,e.length)}return t}(_)),p=function(e){
-var t=e.toString(2);for(;t.length<8;){t="0"+t}return{isCommonTimestamp:parseInt(t[t.length-2],2),
-hasSample:!parseInt(t[t.length-3],2),batch_req:parseInt(t[t.length-4],2),nb_of_type_measure:parseInt(t.substring(0,4),2)
-}}(v.getNextSample(4));l.batch_counter=v.getNextSample(4,3),v.getNextSample(4,1);var u=function(e,t,a,o,s){var c=0,_=0
-;var d=0;for(;d<o.nb_of_type_measure;d++){var l={size:s,lbl:t.getNextSample(4,s)},v=n(a,l);0===d&&(_=v),c=i(t,c),
+12===e&&32!==r){throw new Error("Batch : Mauvais sampletype")}var i=Math.trunc((r-1)/8)+1,o=r%8;0===o&&i>0&&(o=8)
+;var s=0;while(i>0){var c=0;while(o>0){var _=n>>3;this.byteArray[_]&1<<(7&n)&&(s|=1<<8*(i-1)+c),o--,c++,n+=1}i--,o=8}
+if((3==e||5==e||7==e||9==e)&&s&1<<r-1){var d=r}for(;d<32;d++){s|=1<<d,r++}return s},getNextBifromHi:function(e){var t=2
+;for(;t<12;t++){var n=r(this.byteArray,this.i1,t);var i=0;for(;i<a[e].length;i++){if(a[e][i].sz==t&&n==a[e][i].lbl){
+return this.i1+=t,i}}}throw new Error("Bi not found in HUFF table")}}}(function(e){var t=[];while(e.length>=2){
+t.push(parseInt(e.substring(0,2),16)),e=e.substring(2,e.length)}return t}(_)),p=function(e){var t=e.toString(2)
+;while(t.length<8){t="0"+t}return{isCommonTimestamp:parseInt(t[t.length-2],2),hasSample:!parseInt(t[t.length-3],2),
+batch_req:parseInt(t[t.length-4],2),nb_of_type_measure:parseInt(t.substring(0,4),2)}}(v.getNextSample(4))
+;l.batch_counter=v.getNextSample(4,3),v.getNextSample(4,1);var u=function(e,t,a,o,s){var c=0,_=0;var d=0
+;for(;d<o.nb_of_type_measure;d++){var l={size:s,lbl:t.getNextSample(4,s)},v=n(a,l);0===d&&(_=v),c=i(t,c),
 e.series[v]=r(t,a[v].sampletype,l.lbl,c),o.hasSample&&(e.series[v].codingType=t.getNextSample(4,2),
 e.series[v].codingTable=t.getNextSample(4,2))}return{last_timestamp:c,i1_of_the_first_sample:_}
 }(l,v,s,p,e),f=u.last_timestamp,m=u.i1_of_the_first_sample;return p.hasSample&&(f=function(e,t,a,r,i,s,_){
@@ -171,8 +171,8 @@ return t*(r?Number.NaN:Number.POSITIVE_INFINITY)}if(-127===a){if(0===r){return 0
 r=(r|1<<23)/(1<<23)}return t*r*Math.pow(2,a)},BytesToInt64:function(e,t,a,r){void 0===r&&(r=!1)
 ;var n="U"!=a.substr(0,1),i=parseInt(a.substr(1,2),10)/8;var o,s,c=i;r?(o=-1,s=t+i-1):(o=1,s=t);var _=0;var d=s
 ;for(;c>0;c--){d+=o,_=(_<<8)+e[d]}return n&&i<8&&128&e[s]&&(_-=1<<8*i),_},decimalToHex:function(e,t){
-var a=e.toString(16).toUpperCase();for(t=null!=t?t:2;a.length<t;){a="0"+a}return"0x"+a},zeroPad:function(e,t){
-var a=String(e);for(;a.length<t;){a="0"+a}return a},BytesToHexStr:function(e){var t="";var a=0;for(;a<e.length;a++){
+var a=e.toString(16).toUpperCase();t=null!=t?t:2;while(a.length<t){a="0"+a}return"0x"+a},zeroPad:function(e,t){
+var a=String(e);while(a.length<t){a="0"+a}return a},BytesToHexStr:function(e){var t="";var a=0;for(;a<e.length;a++){
 var r=e[a].toString(16).toUpperCase();1===r.length&&(r="0"+r),t+=r}return t}}},871:function(e){e.exports={
 watteco_encodeDownlink:function(e,t){var a={fPort:125,bytes:[],warnings:[]}
 ;if(!t||!t.data||0===Object.keys(t.data).length){return a.errors=["Invalid or empty data object"],a}try{
@@ -189,17 +189,17 @@ if(!/^[0-9A-Fa-f]+$/.test(o)){return a.errors=["sendHexFrame must be a valid hex
 if("string"!=typeof o||!/^[0-9A-Fa-f]+$/.test(o)){return a.errors=["sendHexFrame must be a valid hexadecimal string"],a}
 o.length%2!=0&&a.warnings.push("Odd number of hex characters in sendHexFrame");var _=0
 ;for(;_<o.length&&!(_+1>=o.length);_+=2){var d=parseInt(o.substr(_,2),16);a.bytes.push(d)}return a}var l=r[n]
-;var v=/<([^:>]+)?:?([^>]+)>/g;var p,u=[];for(;null!==(p=v.exec(l));){var f=p[1]||null,m=p[2];u.push({type:f,name:m})}
+;var v=/<([^:>]+)?:?([^>]+)>/g;var p,u=[];while(null!==(p=v.exec(l))){var f=p[1]||null,m=p[2];u.push({type:f,name:m})}
 var g=0,y=u;for(;g<y.length;g++){var b=y[g];var h=b.name,w=b.type;var z=void 0,S=void 0;if(h===n){z=t.data[n]}else{
 if(void 0===t.data[h]){return a.errors=["Missing required parameter: ".concat(h)],a}z=t.data[h]}if("boolean"==typeof z){
 S=z?"01":"00"}else{if("number"!=typeof z){
 return a.errors=["Unsupported type for parameter ".concat(h,": ").concat(_typeof(z))],a}if(w){if("U8"===w){
-for((z<0||z>255)&&a.warnings.push("Value ".concat(z," out of range for U8, truncating")),
-S=(255&z).toString(16);S.length<2;){S="0"+S}}else if("U16"===w){
-for((z<0||z>65535)&&a.warnings.push("Value ".concat(z," out of range for U16, truncating")),
-S=(65535&z).toString(16);S.length<4;){S="0"+S}}else if("U32"===w){
-for(z<0&&(a.warnings.push("Negative value ".concat(z," for unsigned type U32, converting to 0")),z=0),
-S=Math.min(z,4294967295).toString(16);S.length<8;){S="0"+S}}else{
+(z<0||z>255)&&a.warnings.push("Value ".concat(z," out of range for U8, truncating")),
+S=(255&z).toString(16);while(S.length<2){S="0"+S}}else if("U16"===w){
+(z<0||z>65535)&&a.warnings.push("Value ".concat(z," out of range for U16, truncating")),
+S=(65535&z).toString(16);while(S.length<4){S="0"+S}}else if("U32"===w){
+z<0&&(a.warnings.push("Negative value ".concat(z," for unsigned type U32, converting to 0")),z=0),
+S=Math.min(z,4294967295).toString(16);while(S.length<8){S="0"+S}}else{
 a.warnings.push("Unknown type ".concat(w,", using default encoding")),S=z.toString(16),S.length%2!=0&&(S="0"+S)}}else{
 S=z.toString(16),S.length%2!=0&&(S="0"+S)}}l=l.replace(w?"<".concat(w,":").concat(h,">"):"<".concat(h,">"),S)}var x=0
 ;for(;x<l.length;x+=2){if(x+1>=l.length){a.warnings.push("Odd number of hex characters in template");break}
@@ -260,7 +260,7 @@ if(p++,p>=r.length){return v.causesMessages.push("cause:{}"),v}function m(e,t,a)
 throw new Error("Alarm decoding: Unexpected end of data during reading of the value.")}var o=0;var s=0;for(;s<t;s++){
 o=o<<8|r[p++]}if("int"===e){o=n(o,t)}else{if("float"!==e){throw new Error("Alarm decoding: Unknown type kind: "+e)}
 if(4!==t){throw new Error("Alarm decoding: Invalid float size. Only 4 bytes are supported.")}o=i(o)}return o/a}
-for(;p<r.length;){var g={};if(p>=r.length){throw new Error("Alarm decoding: Unexpected end of data before reading CSD.")
+while(p<r.length){var g={};if(p>=r.length){throw new Error("Alarm decoding: Unexpected end of data before reading CSD.")
 }var y=r[p++];g.criterionIndex=7&y;var b=y>>3&3;g.mode=1===b?"delta":2===b?"threshold":"unused",g.hasFallen=!!(32&y),
 g.hasExceeded=!!(64&y),g.isAlarm=!!(128&y)
 ;var h=void 0,w=void 0,z=void 0,S=void 0,x=void 0,N=void 0,O=void 0,I=g.hasExceeded&&g.hasFallen?"exceed&fall":g.hasExceeded?"exceed":g.hasFallen?"fall":"",A=null
@@ -444,16 +444,16 @@ r.zclheader.attribut_type=e[8],r.zclheader.min={},128&~e[9]?(r.zclheader.min.val
 r.zclheader.min.unit="seconds"):(r.zclheader.min.value=256*(e[9]-128)+e[10],r.zclheader.min.unit="minutes"),
 r.zclheader.max={},
 128&~e[11]?(r.zclheader.max.value=256*e[11]+e[12],r.zclheader.max.unit="seconds"):(r.zclheader.max.value=256*(e[11]-128)+e[12],
-r.zclheader.max.unit="minutes"),r.lora.payload="",80===b&&6===g){var Re=e[13]/5,Be=0;for(;Re>0;){
+r.zclheader.max.unit="minutes"),r.lora.payload="",80===b&&6===g){var Re=e[13]/5,Be=0;while(Re>0){
 r.zclheader.modepower=e[14+5*Be],r.zclheader.powersource=e[15+5*Be],r.zclheader.delta=256*e[16+5*Be]+e[17+5*Be],
 r.zclheader.changedpowersource=e[18+5*Be],Be++,Re--}}}if(0===c){throw new _("bad payload3")}}else{r.batch={},
 r.batch.report="batch"}}return r}(c,e.fPort,a);if(void 0!==l.zclheader){
 if(void 0!==l.zclheader.alarmmsg&&(r=l.zclheader.alarmmsg),7===c[1]){return{data:l.zclheader,warning:r}}if(9===c[1]){
-return{data:l.zclheader,warning:r}}if(1===c[1]){if(void 0===l.zclheader.data){var u=[],f=!0,m=0;for(;f;){
+return{data:l.zclheader,warning:r}}if(1===c[1]){if(void 0===l.zclheader.data){var u=[],f=!0,m=0;while(f){
 var g=Object.keys(l.data)[m];if(void 0===g){f=!1;break}u.push({variable:g,value:l.data[g],date:e.recvTime}),m++}return{
 data:u,type:"standard",warning:r}}return{data:{variable:"read reporting configuration response status",
 value:l.zclheader.data,date:e.recvTime},warning:r}}}if(void 0!==l.zclheader){if(void 0!==t){
-var y=l.zclheader.endpoint,b=!0,h=0,w=[],z="";for(;b;){var S=Object.keys(l.data)[h];if(void 0===S){b=!1;break}
+var y=l.zclheader.endpoint,b=!0,h=0,w=[],z="";while(b){var S=Object.keys(l.data)[h];if(void 0===S){b=!1;break}
 void 0===t[S]?w.push({variable:S,value:l.data[S],date:e.recvTime}):(z=t[S][y],"NA"===z?w.push({variable:z,value:"NA",
 date:e.recvTime}):w.push({variable:z,value:l.data[S],date:e.recvTime})),h++}return{data:w,type:"standard",warning:r}}
 throw new _("bad decoding")}return{type:l.batch.report,payload:l.lora.payload}}}}},t={},a=function a(r){var n=t[r]
