@@ -5,7 +5,7 @@
     "input": {
       "bytes": "110100130055002001",
       "fPort": 125,
-      "recvTime": "2023-07-19T07:51:25.508306410Z"
+      "recvTime": "2023-07-19T07:51:25.508Z"
     },
     "output": {
       "data": {
@@ -13,7 +13,7 @@
           {
             "variable": "output_value",
             "value": 1,
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508Z"
           }
         ],
         "output_value": 1
@@ -27,7 +27,7 @@
     "input": {
       "bytes": "110a001300552002",
       "fPort": 125,
-      "recvTime": "2023-07-19T07:51:25.508306410Z"
+      "recvTime": "2023-07-19T07:51:25.508Z"
     },
     "output": {
       "data": {
@@ -35,7 +35,7 @@
           {
             "variable": "output_value",
             "value": 2,
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508Z"
           }
         ],
         "output_value": 2
@@ -49,7 +49,7 @@
     "input": {
       "bytes": "110100000002000d0305020015e2",
       "fPort": 125,
-      "recvTime": "2023-07-19T07:51:25.508306410Z"
+      "recvTime": "2023-07-19T07:51:25.508Z"
     },
     "output": {
       "data": {
@@ -57,7 +57,7 @@
           {
             "variable": "firmware",
             "value": "3.5.2.5602",
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508Z"
           }
         ],
         "firmware": "3.5.2.5602"
@@ -71,7 +71,7 @@
     "input": {
       "bytes": "110180040000000800",
       "fPort": 125,
-      "recvTime": "2023-07-19T07:51:25.508306410Z"
+      "recvTime": "2023-07-19T07:51:25.508Z"
     },
     "output": {
       "data": {
@@ -79,7 +79,7 @@
           {
             "variable": "message_type",
             "value": "unconfirmed",
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508Z"
           }
         ],
         "message_type": "unconfirmed"

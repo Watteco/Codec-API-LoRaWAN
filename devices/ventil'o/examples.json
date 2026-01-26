@@ -5,7 +5,7 @@
     "input": {
       "bytes": "110a04020000290b89",
       "fPort": 125,
-      "recvTime": "2023-07-19T07:51:31.598957793Z"
+      "recvTime": "2023-07-19T07:51:31.598Z"
     },
     "output": {
       "data": {
@@ -13,7 +13,7 @@
           {
             "variable": "temperature",
             "value": 29.53,
-            "date": "2023-07-19T07:51:31.598957793Z",
+            "date": "2023-07-19T07:51:31.598Z",
             "unit": "Cel"
           }
         ],
@@ -29,7 +29,7 @@
     "input": {
       "bytes": "110a000f00551001",
       "fPort": 125,
-      "recvTime": "2023-07-19T07:51:25.508306410Z"
+      "recvTime": "2023-07-19T07:51:25.508Z"
     },
     "output": {
       "data": {
@@ -37,7 +37,7 @@
           {
             "variable": "pin_state",
             "value": true,
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508Z"
           }
         ],
         "pin_state": true
@@ -51,7 +51,7 @@
     "input": {
       "bytes": "110a000f04022300000000",
       "fPort": 125,
-      "recvTime": "2023-07-19T07:51:25.508306410Z"
+      "recvTime": "2023-07-19T07:51:25.508Z"
     },
     "output": {
       "data": {
@@ -59,7 +59,7 @@
           {
             "variable": "index",
             "value": 0,
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508Z"
           }
         ],
         "index": 0
@@ -73,7 +73,7 @@
     "input": {
       "bytes": "110a80080000290018",
       "fPort": 125,
-      "recvTime": "2023-07-19T07:51:25.508306410Z"
+      "recvTime": "2023-07-19T07:51:25.508Z"
     },
     "output": {
       "data": {
@@ -81,7 +81,7 @@
           {
             "variable": "differential_pressure",
             "value": 24,
-            "date": "2023-07-19T07:51:25.508306410Z",
+            "date": "2023-07-19T07:51:25.508Z",
             "unit": "Pa"
           }
         ],
@@ -97,7 +97,7 @@
     "input": {
       "bytes": "110100000002000d0305020015e2",
       "fPort": 125,
-      "recvTime": "2023-07-19T07:51:25.508306410Z"
+      "recvTime": "2023-07-19T07:51:25.508Z"
     },
     "output": {
       "data": {
@@ -105,7 +105,7 @@
           {
             "variable": "firmware",
             "value": "3.5.2.5602",
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508Z"
           }
         ],
         "firmware": "3.5.2.5602"
@@ -119,7 +119,7 @@
     "input": {
       "bytes": "110a00500006410503040e6804",
       "fPort": 125,
-      "recvTime": "2023-07-19T07:51:25.508306410Z"
+      "recvTime": "2023-07-19T07:51:25.508Z"
     },
     "output": {
       "data": {
@@ -127,7 +127,7 @@
           {
             "variable": "disposable_battery_voltage",
             "value": 3.688,
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508Z"
           }
         ],
         "disposable_battery_voltage": 3.688
@@ -141,7 +141,7 @@
     "input": {
       "bytes": "110180040000000800",
       "fPort": 125,
-      "recvTime": "2023-07-19T07:51:25.508306410Z"
+      "recvTime": "2023-07-19T07:51:25.508Z"
     },
     "output": {
       "data": {
@@ -149,7 +149,7 @@
           {
             "variable": "message_type",
             "value": "unconfirmed",
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508Z"
           }
         ],
         "message_type": "unconfirmed"
@@ -163,7 +163,7 @@
     "input": {
       "bytes": "36600000800600000000d61b2cba0730d803",
       "fPort": 125,
-      "recvTime": "2023-07-19T07:51:25.508306410Z"
+      "recvTime": "2023-07-19T07:51:25.508Z"
     },
     "output": {
       "data": {
