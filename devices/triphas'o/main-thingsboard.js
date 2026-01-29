@@ -165,12 +165,12 @@ c=r.data_relative_timestamp,new Date(new Date(o).getTime()-1e3*(s-c)).toISOStrin
 variable:v.data.label_name,value:v.data.value,date:v.data_absolute_timestamp};d.push(p)}return{
 batch_counter:_.batch_counter,samples:d}}}},839:function(e){e.exports={UintToInt:function(e,t){if(t<1||t>4){
 throw new Error("Unsupported Size")}
-return 1===t&&(128&e)>0?e-=256:2===t&&(32768&e)>0?e-=65536:3===t&&(8388608&e)>0?e-=16777216:4===t&&(2147483648&e)>0&&(e-=4294967296),
-e},Bytes2Float32:function(e){var t=e>>>0>>24&128?-1:1;var a=(e>>23&255)-127,r=8388607&e;if(128===a){
+return 1===t&&128&e?e-=256:2===t&&32768&e?e-=65536:3===t&&8388608&e?e-=16777216:4===t&&2147483648&e&&(e-=4294967296),e},
+Bytes2Float32:function(e){var t=e>>>0>>24&128?-1:1;var a=(e>>23&255)-127,r=8388607&e;if(128===a){
 return t*(r?Number.NaN:Number.POSITIVE_INFINITY)}if(-127===a){if(0===r){return 0}a=-126,r/=1<<23}else{
 r=(r|1<<23)/(1<<23)}return t*r*Math.pow(2,a)},BytesToInt64:function(e,t,a,r){void 0===r&&(r=!1)
-;var n="U"!=a.substr(0,1),i=parseInt(a.substr(1,2),10)/8;var o,s,c=i;r?(o=-1,s=t+i-1):(o=1,s=t);var _=0;var d=s
-;for(;c>0;c--){d+=o,_=(_<<8)+e[d]}return n&&i<8&&128&e[s]&&(_-=1<<8*i),_},decimalToHex:function(e,t){
+;var n="U"!=a.substr(0,1),i=parseInt(a.substr(1,2),10)/8;var o,s;r?(o=-1,s=t+i-1):(o=1,s=t);var c=0,_=s;var d=0
+;for(;d<i;d++){c=(c<<8)+e[_],_+=o}return n&&i<8&&128&e[s]&&(c-=1<<8*i),c},decimalToHex:function(e,t){
 var a=e.toString(16).toUpperCase();t=null!=t?t:2;while(a.length<t){a="0"+a}return"0x"+a},zeroPad:function(e,t){
 var a=String(e);while(a.length<t){a="0"+a}return a},BytesToHexStr:function(e){var t="";var a=0;for(;a<e.length;a++){
 var r=e[a].toString(16).toUpperCase();1===r.length&&(r="0"+r),t+=r}return t}}},871:function(e){e.exports={
@@ -373,23 +373,23 @@ r.data.negative_active_power=n(256*e[ze+1]*256*256+256*e[ze+2]*256+256*e[ze+3]+e
 r.data.positive_reactive_power=n(256*e[ze+1]*256*256+256*e[ze+2]*256+256*e[ze+3]+e[ze+4],4),ze+=4,
 r.data.negative_reactive_power=n(256*e[ze+1]*256*256+256*e[ze+2]*256+256*e[ze+3]+e[ze+4],4),
 p(y,b,g,e,r,ze+5,Se,1,"multistate",!0)}if(32784===b&&0===g){var xe=e[w-1]
-;r.data.active_energy_a=n(256*e[w+1]*256*256+256*e[w+2]*256+256*e[w+3]+e[w+4]),
-r.data.reactive_energy_a=n(256*e[w+5]*256*256+256*e[w+6]*256+256*e[w+7]+e[w+8]),
-r.data.active_energy_b=n(256*e[w+9]*256*256+256*e[w+10]*256+256*e[w+11]+e[w+12]),
-r.data.reactive_energy_b=n(256*e[w+13]*256*256+256*e[w+14]*256+256*e[w+15]+e[w+16]),
-r.data.active_energy_c=n(256*e[w+17]*256*256+256*e[w+18]*256+256*e[w+19]+e[w+20]),
-r.data.reactive_energy_c=n(256*e[w+21]*256*256+256*e[w+22]*256+256*e[w+23]+e[w+24]),
-r.data.active_energy_abc=n(256*e[w+25]*256*256+256*e[w+26]*256+256*e[w+27]+e[w+28]),
-r.data.reactive_energy_abc=n(256*e[w+29]*256*256+256*e[w+30]*256+256*e[w+31]+e[w+32]),
+;r.data.active_energy_a=n(256*e[w+1]*256*256+256*e[w+2]*256+256*e[w+3]+e[w+4],4),
+r.data.reactive_energy_a=n(256*e[w+5]*256*256+256*e[w+6]*256+256*e[w+7]+e[w+8],4),
+r.data.active_energy_b=n(256*e[w+9]*256*256+256*e[w+10]*256+256*e[w+11]+e[w+12],4),
+r.data.reactive_energy_b=n(256*e[w+13]*256*256+256*e[w+14]*256+256*e[w+15]+e[w+16],4),
+r.data.active_energy_c=n(256*e[w+17]*256*256+256*e[w+18]*256+256*e[w+19]+e[w+20],4),
+r.data.reactive_energy_c=n(256*e[w+21]*256*256+256*e[w+22]*256+256*e[w+23]+e[w+24],4),
+r.data.active_energy_abc=n(256*e[w+25]*256*256+256*e[w+26]*256+256*e[w+27]+e[w+28],4),
+r.data.reactive_energy_abc=n(256*e[w+29]*256*256+256*e[w+30]*256+256*e[w+31]+e[w+32],4),
 p(y,b,g,e,r,w+33,xe,1,"multistate",!0)}else if(32784===b&&1===g){var Ne=e[w-1]
-;r.data.active_power_a=n(256*e[w+1]*256*256+256*e[w+2]*256+256*e[w+3]+e[w+4]),
-r.data.reactive_power_a=n(256*e[w+5]*256*256+256*e[w+6]*256+256*e[w+7]+e[w+8]),
-r.data.active_power_b=n(256*e[w+9]*256*256+256*e[w+10]*256+256*e[w+11]+e[w+12]),
-r.data.reactive_power_b=n(256*e[w+13]*256*256+256*e[w+14]*256+256*e[w+15]+e[w+16]),
-r.data.active_power_c=n(256*e[w+17]*256*256+256*e[w+18]*256+256*e[w+19]+e[w+20]),
-r.data.reactive_power_c=n(256*e[w+21]*256*256+256*e[w+22]*256+256*e[w+23]+e[w+24]),
-r.data.active_power_abc=n(256*e[w+25]*256*256+256*e[w+26]*256+256*e[w+27]+e[w+28]),
-r.data.reactive_power_abc=n(256*e[w+29]*256*256+256*e[w+30]*256+256*e[w+31]+e[w+32]),
+;r.data.active_power_a=n(256*e[w+1]*256*256+256*e[w+2]*256+256*e[w+3]+e[w+4],4),
+r.data.reactive_power_a=n(256*e[w+5]*256*256+256*e[w+6]*256+256*e[w+7]+e[w+8],4),
+r.data.active_power_b=n(256*e[w+9]*256*256+256*e[w+10]*256+256*e[w+11]+e[w+12],4),
+r.data.reactive_power_b=n(256*e[w+13]*256*256+256*e[w+14]*256+256*e[w+15]+e[w+16],4),
+r.data.active_power_c=n(256*e[w+17]*256*256+256*e[w+18]*256+256*e[w+19]+e[w+20],4),
+r.data.reactive_power_c=n(256*e[w+21]*256*256+256*e[w+22]*256+256*e[w+23]+e[w+24],4),
+r.data.active_power_abc=n(256*e[w+25]*256*256+256*e[w+26]*256+256*e[w+27]+e[w+28],4),
+r.data.reactive_power_abc=n(256*e[w+29]*256*256+256*e[w+30]*256+256*e[w+31]+e[w+32],4),
 p(y,b,g,e,r,w+33,Ne,1,"multistate",!0)}if(32779===b&&0===g){var Oe=w;var Ie=e[Oe-1]
 ;r.data.Vrms=n(256*e[Oe+1]+e[Oe+2],2)/10,Oe+=2,r.data.Irms=n(256*e[Oe+1]+e[Oe+2],2)/10,Oe+=2,
 r.data.angle=n(256*e[Oe+1]+e[Oe+2],2),p(y,b,g,e,r,Oe+3,Ie,1,"multistate",!0)}if(32781===b&&0===g){var Ae=e[w-1]

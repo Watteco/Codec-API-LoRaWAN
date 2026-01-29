@@ -4,13 +4,13 @@ function UintToInt(Uint, Size) {
         throw new Error("Unsupported Size");
     }
 
-    if ((Size === 1) && ((Uint & 0x80) > 0)) {
+    if ((Size === 1) && ((Uint & 0x80) !== 0)) {
         Uint -= 0x100;
-    } else if ((Size === 2) && ((Uint & 0x8000) > 0)) {
+    } else if ((Size === 2) && ((Uint & 0x8000) !== 0)) {
         Uint -= 0x10000;
-    } else if ((Size === 3) && ((Uint & 0x800000) > 0)) {
+    } else if ((Size === 3) && ((Uint & 0x800000) !== 0)) {
         Uint -= 0x1000000;
-    } else if ((Size === 4) && ((Uint & 0x80000000) > 0)) {
+    } else if ((Size === 4) && ((Uint & 0x80000000) !== 0)) {
         Uint -= 0x100000000;
     }
 
@@ -45,14 +45,14 @@ function BytesToInt64(InBytes, Starti1, Type, LiEnd) {
         inc = -1;
         start = Starti1 + BytesNb - 1;
     } else {
-        inc =  1; 
+        inc =  1;
         start = Starti1 ;
     }
     let tmpInt64 = 0;
-    for (let j=start; nb > 0;nb--)
-    {
-        j+=inc
-        tmpInt64 = (tmpInt64 << 8) + InBytes[j];
+    let pos = start;
+    for (let k = 0; k < BytesNb; k++) {
+        tmpInt64 = (tmpInt64 << 8) + InBytes[pos];
+        pos += inc;
     }
     if ((Signed) && (BytesNb < 8) && (InBytes[start] & 0x80))
         tmpInt64 = tmpInt64 - (0x01 << (BytesNb * 8));

@@ -345,6 +345,9 @@ for (let i in devices) {
 
     // Optionally generate an additional ThingsBoard-safe bundle.
     if (alsoThingsboardFlag) {
+      // hoist bundlePath/backupPath so they are available in the catch for restoration
+      let bundlePath;
+      let backupPath;
       try {
         const webpackConfigPath = path.join(devicePath, 'webpack.config.js');
         let outPath = devicePath;
@@ -358,8 +361,8 @@ for (let i in devices) {
           if (!path.isAbsolute(outPath)) outPath = path.resolve(devicePath, outPath);
         }
 
-        const bundlePath = path.join(outPath, outFilename);
-        const backupPath = bundlePath + `.backup-for-thingsboard-${Date.now()}`;
+        bundlePath = path.join(outPath, outFilename);
+        backupPath = bundlePath + `.backup-for-thingsboard-${Date.now()}`;
 
         if (fs.existsSync(bundlePath)) {
           fs.copyFileSync(bundlePath, backupPath);
@@ -398,6 +401,16 @@ for (let i in devices) {
         }
       } catch (err) {
         console.error(`Failed to generate ThingsBoard bundle for ${sensorName}: ${err && err.message ? err.message : err}`);
+        // Attempt to restore original bundle if we created a backup
+        try {
+          if (backupPath && fs.existsSync(backupPath) && bundlePath) {
+            fs.copyFileSync(backupPath, bundlePath);
+            fs.unlinkSync(backupPath);
+            console.log(`Restored original bundle for ${sensorName} after ThingsBoard failure`);
+          }
+        } catch (restoreErr) {
+          console.error(`Failed to restore original bundle after ThingsBoard failure for ${sensorName}: ${restoreErr && restoreErr.message ? restoreErr.message : restoreErr}`);
+        }
       }
     }
 }
