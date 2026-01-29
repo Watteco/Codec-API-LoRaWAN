@@ -1,4 +1,4 @@
-/*triphas'o v1.1.7*/function _readOnlyError(e){throw new TypeError('"'+e+'" is read-only')}function _defineProperties(e,t){
+/*triphas'o v1.1.8*/function _readOnlyError(e){throw new TypeError('"'+e+'" is read-only')}function _defineProperties(e,t){
 var a=0;for(;a<t.length;a++){var r=t[a];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),
 Object.defineProperty(e,_toPropertyKey(r.key),r)}}function _createClass(e,t,a){
 return t&&_defineProperties(e.prototype,t),a&&_defineProperties(e,a),Object.defineProperty(e,"prototype",{writable:!1}),
