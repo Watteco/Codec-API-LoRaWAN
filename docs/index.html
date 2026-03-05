@@ -1,1 +1,716 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Watteco – LoRaWAN Codec Runner</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin: 24px; }
+    label { display:block; font-size:12px; opacity:.8; margin-bottom:6px; }
+    select, input, textarea, button { font: inherit; padding: 10px; }
+    select, input, button { height: 42px; }
+    textarea { width:100%; min-height:190px; }
 
+    .card { border:1px solid #ddd; border-radius:12px; padding:16px; margin-top:16px; }
+    .row { display:flex; gap:16px; flex-wrap:wrap; align-items:flex-end; }
+    .toolbar { display:flex; gap:12px; flex-wrap:wrap; align-items:flex-end; }
+    .toolbar .wide { flex:1; min-width:340px; }
+    .actions { margin-left:auto; display:flex; gap:10px; }
+
+    .muted { opacity:.8; font-size:13px; }
+    .small { font-size:12px; opacity:.85; }
+    code { background:#f3f3f3; padding:2px 6px; border-radius:6px; }
+
+    .ok { color:#0a7a2f; font-weight:700; }
+    .err { color:#b00020; font-weight:800; }
+
+    /* Results */
+    #results { display:flex; flex-direction:column; gap:12px; margin-top:12px; }
+    .r { border:1px solid #e2e2e2; border-radius:12px; overflow:hidden; }
+    .rhead { padding:10px 12px; display:flex; gap:10px; align-items:center; justify-content:space-between; background:#fafafa; }
+    .rhead .left { display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+    .badge { font-size:12px; padding:2px 8px; border-radius:999px; background:#f0f0f0; }
+    .badge.ok { background:#e8f6ee; }
+    .badge.err { background:#fde8ea; }
+    .meta { font-size:12px; opacity:.85; }
+
+    .payloadLine {
+      padding: 10px 12px;
+      border-top: 1px solid #ededed;
+      background: #fcfcfc;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 12px;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .rbody { padding:12px; }
+    pre { margin:0; background:#0b1020; color:#e8eefc; padding:12px; overflow:auto; border-radius:10px; }
+  </style>
+</head>
+
+<body>
+  <h1>Watteco – LoRaWAN Codec Runner (Codec-API-LoRaWAN/distrib)</h1>
+
+  <div class="card">
+    <div class="row">
+      <div>
+        <label>Device / Codec (folder under <code>distrib/</code>)</label>
+        <select id="sensorSelect" style="min-width:420px">
+          <option value="">Loading…</option>
+        </select>
+        <div id="codecStatus" class="small muted" style="margin-top:8px"></div>
+      </div>
+
+      <div>
+        <label>Branch</label>
+        <input id="branch" value="main" style="width:120px" />
+      </div>
+
+      <div>
+        <label>Default fPort (uplink)</label>
+        <input id="fport" type="number" value="125" style="width:160px" />
+      </div>
+
+      <div>
+        <label>Default recvTime (uplink)</label>
+        <input id="recvTime" style="width:300px" />
+      </div>
+
+      <div style="margin-left:auto">
+        <button id="reloadListBtn">↻ Reload</button>
+      </div>
+    </div>
+
+    <div class="small muted" style="margin-top:10px">
+      Multi-frames: 1 line = 1 job. Empty lines ignored. Comments start with <code>#</code> 
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="toolbar">
+      <div>
+        <label>Uplink format</label>
+        <select id="format" style="width:220px">
+          <option value="auto" selected>Auto (JSON / hex / base64)</option>
+          <option value="hex">Hex</option>
+          <option value="b64">Base64</option>
+          <option value="json">JSON bytes</option>
+        </select>
+      </div>
+
+      <div class="wide">
+        <label>Examples (examples.json)</label>
+        <select id="exampleSelect" style="width:100%">
+          <option value="">(no example loaded)</option>
+        </select>
+        <div id="exampleStatus" class="small muted" style="margin-top:8px">—</div>
+      </div>
+
+      <div class="actions">
+        <button id="runBtn">Run (Decode / Encode)</button>
+        <button id="clearBtn" type="button">Clear</button>
+      </div>
+    </div>
+
+    <div style="margin-top:14px">
+      <label>Input (one line per job)</label>
+      <textarea id="payload" placeholder="# Uplink hex
+118a0402000029075590b0b1
+
+# Uplink JSON object (bytes as hex string + fPort/recvTime)
+{&quot;bytes&quot;:&quot;118a0402000029075590b0b1&quot;,&quot;fPort&quot;:125,&quot;recvTime&quot;:&quot;2026-03-05T12:00:00Z&quot;}
+
+# Downlink encode
+{&quot;data&quot;:{&quot;sendReboot&quot;:true}}
+"></textarea>
+
+      <div class="small muted" style="margin-top:10px">
+        Uplink per line: hex / base64 / <code>[...]</code> / JSON object <code>{"bytes":"hex",...}</code> (bytes may also be an array).<br/>
+        Downlink encode per line: JSON object <code>{"data":{...}}</code> → calls <code>encodeDownlink()</code> if available.
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="row" style="align-items:center; justify-content:space-between;">
+      <div>
+        <div class="muted">Results (one card per line)</div>
+        <div id="resultStatus" class="small"></div>
+      </div>
+      <div class="small muted" id="loadedCodecInfo"></div>
+    </div>
+
+    <div id="results"></div>
+  </div>
+
+<script>
+(() => {
+  const OWNER = "Watteco";
+  const REPO  = "Codec-API-LoRaWAN";
+
+  const els = {
+    sensorSelect: document.getElementById("sensorSelect"),
+    branch: document.getElementById("branch"),
+    fport: document.getElementById("fport"),
+    recvTime: document.getElementById("recvTime"),
+    payload: document.getElementById("payload"),
+    format: document.getElementById("format"),
+    exampleSelect: document.getElementById("exampleSelect"),
+    exampleStatus: document.getElementById("exampleStatus"),
+    reloadListBtn: document.getElementById("reloadListBtn"),
+    runBtn: document.getElementById("runBtn"),
+    clearBtn: document.getElementById("clearBtn"),
+    codecStatus: document.getElementById("codecStatus"),
+    resultStatus: document.getElementById("resultStatus"),
+    loadedCodecInfo: document.getElementById("loadedCodecInfo"),
+    results: document.getElementById("results"),
+  };
+
+  let currentDriver = null;
+  let currentSensor = null;
+  let currentExamples = []; // {kind,label,inputObj,expected}
+
+  function nowIso() { return new Date().toISOString(); }
+  els.recvTime.value = nowIso();
+
+  function strip(s) { return (s ?? "").trim(); }
+  function setCodecStatus(msg, ok = true) {
+    els.codecStatus.innerHTML = ok ? `<span class="ok">●</span> ${msg}` : `<span class="err">●</span> ${msg}`;
+  }
+  function setResultStatus(msg, ok = true) {
+    els.resultStatus.innerHTML = ok ? `<span class="ok">●</span> ${msg}` : `<span class="err">●</span> ${msg}`;
+  }
+  function setExampleStatus(msg, ok = true) {
+    els.exampleStatus.innerHTML = ok ? `<span class="ok">●</span> ${msg}` : `<span class="err">●</span> ${msg}`;
+  }
+
+  // --- Parsing helpers ---
+  // EN/FR comment: detect hex payload (avoid base64 false positives)
+  function looksLikeHexPayload(s) {
+    const clean = s.replace(/0x/gi, "").replace(/\s+/g, "");
+    return clean.length >= 2 && clean.length % 2 === 0 && /^[0-9a-fA-F]+$/.test(clean);
+  }
+
+  // EN/FR comment: base64 heuristic (used only if NOT hex)
+  function isProbablyBase64(s) {
+    if (!s) return false;
+    const t = s.replace(/\s+/g, "");
+    if (t.length < 8) return false;
+    if (t.length % 4 !== 0) return false;
+    return /^[A-Za-z0-9+/=]+$/.test(t);
+  }
+
+  function parseHexToBytes(hex) {
+    const clean = hex.replace(/0x/gi, "").replace(/[^0-9a-fA-F]/g, "");
+    if (clean.length === 0) return [];
+    if (clean.length % 2 !== 0) throw new Error("Invalid hex (odd number of nibbles).");
+    const bytes = [];
+    for (let i = 0; i < clean.length; i += 2) bytes.push(parseInt(clean.slice(i, i + 2), 16));
+    return bytes;
+  }
+
+  function bytesToHex(bytes) {
+    return bytes.map(b => (b & 0xFF).toString(16).padStart(2, "0")).join("").toUpperCase();
+  }
+
+  function normalizeHexString(hexLike) {
+    return hexLike.replace(/0x/gi, "").replace(/[^0-9a-fA-F]/g, "").toUpperCase();
+  }
+
+  function parseBase64ToBytes(b64) {
+    const clean = b64.replace(/\s+/g, "");
+    const bin = atob(clean);
+    const bytes = [];
+    for (let i = 0; i < bin.length; i++) bytes.push(bin.charCodeAt(i));
+    return bytes;
+  }
+
+  // Parse ONE uplink payload string into bytes[]
+  function parseInputToBytes(text, forcedFormat) {
+    const s = strip(text);
+    if (!s) return [];
+    const fmt = forcedFormat || "auto";
+
+    if (fmt === "json") {
+      const arr = JSON.parse(s);
+      if (!Array.isArray(arr)) throw new Error("JSON bytes expected: an array of integers.");
+      return arr.map(x => {
+        const v = Number(x);
+        if (!Number.isFinite(v) || v < 0 || v > 255) throw new Error("Byte out of range 0..255.");
+        return v;
+      });
+    }
+    if (fmt === "hex") return parseHexToBytes(s);
+    if (fmt === "b64") return parseBase64ToBytes(s);
+
+    // auto: JSON first
+    if (s.startsWith("[") || s.startsWith("{")) {
+      const j = JSON.parse(s);
+      if (Array.isArray(j)) return j;
+      if (j && Array.isArray(j.bytes)) return j.bytes;
+      if (j && typeof j.bytes === "string") return parseHexToBytes(j.bytes);
+      throw new Error("Auto: JSON detected but not an array (nor {bytes:[...]} / {bytes:\"hex\"}).");
+    }
+
+    // IMPORTANT: hex wins over base64
+    if (looksLikeHexPayload(s)) return parseHexToBytes(s);
+
+    if (isProbablyBase64(s)) return parseBase64ToBytes(s);
+
+    throw new Error("Auto: format not recognized. Force Hex/Base64/JSON.");
+  }
+
+  // --- GitHub fetch helpers ---
+  async function fetchJson(url) {
+    const r = await fetch(url, { headers: { "Accept": "application/vnd.github+json" } });
+    if (!r.ok) throw new Error(`HTTP ${r.status} on ${url}`);
+    return r.json();
+  }
+  async function fetchText(url) {
+    const r = await fetch(url);
+    if (!r.ok) throw new Error(`HTTP ${r.status} on ${url}`);
+    return r.text();
+  }
+
+  async function loadDistribDirectories() {
+    const branch = strip(els.branch.value) || "main";
+    const apiUrl = `https://api.github.com/repos/${OWNER}/${REPO}/contents/distrib?ref=${encodeURIComponent(branch)}`;
+    els.sensorSelect.innerHTML = `<option value="">Loading…</option>`;
+    setCodecStatus("Fetching codec list…");
+
+    const items = await fetchJson(apiUrl);
+    const dirs = items.filter(it => it.type === "dir").map(it => it.name).sort((a, b) => a.localeCompare(b));
+
+    if (!dirs.length) {
+      els.sensorSelect.innerHTML = `<option value="">(No folder found)</option>`;
+      setCodecStatus("No codec found under distrib/.", false);
+      return;
+    }
+
+    els.sensorSelect.innerHTML =
+      [`<option value="">— Select a codec —</option>`, ...dirs.map(d => `<option value="${d}">${d}</option>`)].join("");
+
+    setCodecStatus(`${dirs.length} codec(s) found (distrib/${branch}).`);
+  }
+
+  function buildRawUrl(path) {
+    const branch = strip(els.branch.value) || "main";
+    return `https://raw.githubusercontent.com/${OWNER}/${REPO}/${encodeURIComponent(branch)}/${path}`;
+  }
+
+  // Evaluate main.js and extract driver from exports/module (CommonJS-like)
+  function evalCodecAndGetDriver(jsCode) {
+    const exports = {};
+    const module = { exports };
+    const fn = new Function("exports", "module", "window", `
+      "use strict";
+      ${jsCode}
+      return (exports && exports.driver) || (module && module.exports && module.exports.driver) || window.driver || null;
+    `);
+    return fn(exports, module, window);
+  }
+
+  // Parse examples.json format (as provided in your file) :contentReference[oaicite:1]{index=1}
+  function normalizeExamples(json) {
+    if (!Array.isArray(json)) return [];
+    const out = [];
+
+    json.forEach((item, idx) => {
+      if (!item || typeof item !== "object") return;
+      const type = String(item.type || "");
+      const desc = item.description ? String(item.description) : `Example ${idx + 1}`;
+
+      if (type === "uplink") {
+        const input = item.input || {};
+        const bytesHex = (typeof input.bytes === "string") ? input.bytes : null;
+        if (!bytesHex) return;
+
+        out.push({
+          kind: "uplink",
+          label: desc,
+          inputObj: {
+            bytes: bytesHex,
+            ...(input.fPort !== undefined ? { fPort: Number(input.fPort) } : {}),
+            ...(input.recvTime ? { recvTime: String(input.recvTime) } : {})
+          },
+          expected: item.output ?? null
+        });
+        return;
+      }
+
+      if (type === "downlink-encode") {
+        const input = item.input || {};
+        const data = (input.data && typeof input.data === "object") ? input.data : null;
+        if (!data) return;
+
+        out.push({
+          kind: "downlink-encode",
+          label: desc,
+          inputObj: { data },
+          expected: item.output ?? null
+        });
+      }
+    });
+
+    return out;
+  }
+
+  function shortLabel(ex, max = 78) {
+    const prefix = ex.kind === "uplink" ? "↑ " : "↓ ";
+    const s = prefix + (ex.label || "");
+    return s.length <= max ? s : (s.slice(0, max - 1) + "…");
+  }
+
+  async function tryFetchJsonRaw(path) {
+    const url = buildRawUrl(path);
+    const r = await fetch(url);
+    if (!r.ok) return { ok: false, status: r.status, url };
+    const j = await r.json();
+    return { ok: true, json: j, url };
+  }
+
+  async function loadExamples(sensorDir) {
+    currentExamples = [];
+    els.exampleSelect.innerHTML = `<option value="">(no example loaded)</option>`;
+    setExampleStatus("Loading examples…");
+
+    const candidates = [
+      `distrib/${encodeURIComponent(sensorDir)}/examples.json`,
+      `distrib/${encodeURIComponent(sensorDir)}/example.json`,
+      `distrib/${encodeURIComponent(sensorDir)}/Examples.json`,
+      `distrib/${encodeURIComponent(sensorDir)}/Example.json`,
+    ];
+
+    let got = null;
+    for (const p of candidates) {
+      const res = await tryFetchJsonRaw(p);
+      if (res.ok) { got = res; break; }
+    }
+
+    if (!got) {
+      setExampleStatus("No example(s).json found.", false);
+      els.exampleSelect.innerHTML = `<option value="">(no examples found)</option>`;
+      return;
+    }
+
+    const examples = normalizeExamples(got.json);
+    currentExamples = examples;
+
+    if (!examples.length) {
+      setExampleStatus(`File found but unexpected format: ${got.url}`, false);
+      els.exampleSelect.innerHTML = `<option value="">(unexpected format)</option>`;
+      return;
+    }
+
+    const opts = [];
+    opts.push(`<option value="">— Insert an example —</option>`);
+    opts.push(`<option value="__ALL__">All examples (${examples.length})</option>`);
+    examples.forEach((ex, i) => {
+      const shown = shortLabel(ex);
+      const title = (ex.label || "").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;");
+      opts.push(`<option value="${i}" title="${title}">${shown}</option>`);
+    });
+
+    els.exampleSelect.innerHTML = opts.join("");
+    setExampleStatus(`Loaded ${examples.length} example(s) (${got.url})`);
+  }
+
+  async function loadCodec(sensorDir) {
+    currentDriver = null;
+    currentSensor = null;
+    els.loadedCodecInfo.textContent = "";
+    clearResults();
+    setExampleStatus("—");
+
+    if (!sensorDir) {
+      setCodecStatus("Select a codec.");
+      return;
+    }
+
+    const url = buildRawUrl(`distrib/${encodeURIComponent(sensorDir)}/main.js`);
+    setCodecStatus(`Loading main.js… (${sensorDir})`);
+    const code = await fetchText(url);
+
+    let driver;
+    try { driver = evalCodecAndGetDriver(code); }
+    catch (e) {
+      setCodecStatus(`main.js eval failed: ${e.message}`, false);
+      throw e;
+    }
+
+    if (!driver || typeof driver.decodeUplink !== "function") {
+      setCodecStatus("main.js loaded but driver.decodeUplink not found.", false);
+      throw new Error("driver.decodeUplink not found after loading codec.");
+    }
+
+    currentDriver = driver;
+    currentSensor = sensorDir;
+    els.loadedCodecInfo.textContent = `Loaded: distrib/${sensorDir}/main.js`;
+    setCodecStatus(`Codec ready: ${sensorDir}`);
+
+    await loadExamples(sensorDir);
+  }
+
+  // One input line -> one job + a normalized "payload display" string
+  function parseLineToJob(line) {
+    const s = strip(line);
+    if (!s || s.startsWith("#")) return null;
+
+    // JSON object line
+    if (s.startsWith("{")) {
+      const obj = JSON.parse(s);
+
+      // Downlink encode: {data:{...}}
+      if (obj && obj.data && typeof obj.data === "object") {
+        const payloadDisplay = `DOWNLINK ENCODE (data):\n${JSON.stringify(obj.data, null, 2)}`;
+        return { kind: "downlink-encode", input: { data: obj.data }, payloadDisplay };
+      }
+
+      // Uplink: {bytes: "..."} or {bytes:[...]}
+      if (obj && obj.bytes !== undefined) {
+        let bytesArr;
+        let hexStr;
+
+        if (Array.isArray(obj.bytes)) {
+          bytesArr = obj.bytes;
+          hexStr = bytesToHex(bytesArr);
+        } else if (typeof obj.bytes === "string") {
+          hexStr = normalizeHexString(obj.bytes);
+          bytesArr = parseHexToBytes(obj.bytes);
+        } else {
+          throw new Error("JSON uplink: 'bytes' must be an array or a hex string.");
+        }
+
+        const fPort = (obj.fPort !== undefined) ? Number(obj.fPort) : Number(els.fport.value || 125);
+        const recvTime = obj.recvTime ? String(obj.recvTime) : (strip(els.recvTime.value) || nowIso());
+
+        const payloadDisplay = `UPLINK HEX: ${hexStr}\n(fPort=${fPort}, recvTime=${recvTime})`;
+        return { kind: "uplink", input: { bytes: bytesArr, fPort, recvTime }, payloadDisplay };
+      }
+
+      // Optional: {hex:".."} / {base64:".."}
+      if (typeof obj.hex === "string") {
+        const bytesArr = parseHexToBytes(obj.hex);
+        const hexStr = bytesToHex(bytesArr);
+        const fPort = (obj.fPort !== undefined) ? Number(obj.fPort) : Number(els.fport.value || 125);
+        const recvTime = obj.recvTime ? String(obj.recvTime) : (strip(els.recvTime.value) || nowIso());
+        const payloadDisplay = `UPLINK HEX: ${hexStr}\n(fPort=${fPort}, recvTime=${recvTime})`;
+        return { kind: "uplink", input: { bytes: bytesArr, fPort, recvTime }, payloadDisplay };
+      }
+      if (typeof obj.base64 === "string") {
+        const bytesArr = parseBase64ToBytes(obj.base64);
+        const hexStr = bytesToHex(bytesArr);
+        const fPort = (obj.fPort !== undefined) ? Number(obj.fPort) : Number(els.fport.value || 125);
+        const recvTime = obj.recvTime ? String(obj.recvTime) : (strip(els.recvTime.value) || nowIso());
+        const payloadDisplay = `UPLINK HEX (from base64): ${hexStr}\n(fPort=${fPort}, recvTime=${recvTime})`;
+        return { kind: "uplink", input: { bytes: bytesArr, fPort, recvTime }, payloadDisplay };
+      }
+
+      throw new Error("JSON line: expected {bytes:...} (uplink) or {data:{...}} (downlink-encode).");
+    }
+
+    // Raw uplink payload string
+    const forced = (els.format.value === "auto") ? null : els.format.value;
+    const bytesArr = parseInputToBytes(s, forced);
+    const hexStr = bytesToHex(bytesArr);
+
+    const fPort = Number(els.fport.value || 125);
+    const recvTime = strip(els.recvTime.value) || nowIso();
+
+    const payloadDisplay = `UPLINK HEX: ${hexStr}\n(fPort=${fPort}, recvTime=${recvTime})`;
+    return { kind: "uplink", input: { bytes: bytesArr, fPort, recvTime }, payloadDisplay };
+  }
+
+  function clearResults() {
+    els.results.innerHTML = "";
+  }
+
+  // Render one card:
+  // - Shows the normalized payload on top (payloadDisplay)
+  // - Shows codec output JSON EXACTLY (not wrapped), pretty-printed for display
+  function appendResultCard({ line, kind, ok, payloadDisplay, outputJson, errorMsg }) {
+    const div = document.createElement("div");
+    div.className = "r";
+
+    const head = document.createElement("div");
+    head.className = "rhead";
+
+    const left = document.createElement("div");
+    left.className = "left";
+
+    const badge = document.createElement("span");
+    badge.className = `badge ${ok ? "ok" : "err"}`;
+    badge.textContent = ok ? "OK" : "ERROR";
+
+    const meta = document.createElement("span");
+    meta.className = "meta";
+    meta.textContent = `Line ${line} — ${kind}`;
+
+    left.appendChild(badge);
+    left.appendChild(meta);
+
+    head.appendChild(left);
+    div.appendChild(head);
+
+    const payloadDiv = document.createElement("div");
+    payloadDiv.className = "payloadLine";
+    payloadDiv.textContent = payloadDisplay || "(no payload)";
+    div.appendChild(payloadDiv);
+
+    const body = document.createElement("div");
+    body.className = "rbody";
+
+    const pre = document.createElement("pre");
+    if (ok) {
+      pre.textContent = JSON.stringify(outputJson, null, 2);
+    } else {
+      pre.textContent = errorMsg || "Unknown error";
+    }
+
+    body.appendChild(pre);
+    div.appendChild(body);
+
+    els.results.appendChild(div);
+  }
+
+  function runAllLinesAndRender() {
+    if (!currentDriver) throw new Error("No codec loaded.");
+
+    clearResults();
+
+    const lines = (els.payload.value || "").split(/\r?\n/);
+    let okCount = 0;
+    let errCount = 0;
+    let rendered = 0;
+
+    lines.forEach((line, idx) => {
+      const lineNo = idx + 1;
+      const s = strip(line);
+      if (!s || s.startsWith("#")) return;
+
+      try {
+        const job = parseLineToJob(line);
+        if (!job) return;
+
+        if (job.kind === "uplink") {
+          const out = currentDriver.decodeUplink(job.input);
+          appendResultCard({
+            line: lineNo,
+            kind: "uplink",
+            ok: true,
+            payloadDisplay: job.payloadDisplay,
+            outputJson: out
+          });
+          okCount++; rendered++;
+          return;
+        }
+
+        if (job.kind === "downlink-encode") {
+          if (typeof currentDriver.encodeDownlink !== "function") {
+            throw new Error("encodeDownlink is not available for this codec.");
+          }
+          const out = currentDriver.encodeDownlink(job.input);
+          appendResultCard({
+            line: lineNo,
+            kind: "downlink-encode",
+            ok: true,
+            payloadDisplay: job.payloadDisplay,
+            outputJson: out
+          });
+          okCount++; rendered++;
+          return;
+        }
+
+        throw new Error(`Unsupported kind: ${job.kind}`);
+      } catch (e) {
+        appendResultCard({
+          line: lineNo,
+          kind: "unknown",
+          ok: false,
+          payloadDisplay: `RAW LINE:\n${line}`,
+          errorMsg: (e && e.message) ? e.message : String(e)
+        });
+        errCount++; rendered++;
+      }
+    });
+
+    setResultStatus(`Rendered: ${rendered} — OK: ${okCount} — Errors: ${errCount}`, errCount === 0);
+  }
+
+  // --- UI events ---
+  els.reloadListBtn.addEventListener("click", async () => {
+    try {
+      await loadDistribDirectories();
+      setResultStatus("List reloaded.");
+    } catch (e) {
+      setResultStatus(`List error: ${e.message}`, false);
+    }
+  });
+
+  els.sensorSelect.addEventListener("change", async () => {
+    try {
+      await loadCodec(els.sensorSelect.value);
+      setResultStatus("Codec loaded.");
+    } catch (e) {
+      setResultStatus(`Codec error: ${e.message}`, false);
+      clearResults();
+      appendResultCard({
+        line: 0, kind: "codec", ok: false,
+        payloadDisplay: "(codec load)",
+        errorMsg: String(e)
+      });
+    }
+  });
+
+  els.exampleSelect.addEventListener("change", () => {
+    const v = els.exampleSelect.value;
+    if (!v) return;
+
+    if (v === "__ALL__") {
+      // Insert each example input as a JSON line (uplink bytes are hex strings in your examples) :contentReference[oaicite:2]{index=2}
+      els.payload.value = currentExamples.map(ex => JSON.stringify(ex.inputObj)).join("\n");
+      setResultStatus(`Inserted: ${currentExamples.length} example(s).`);
+      return;
+    }
+
+    const i = Number(v);
+    if (!Number.isFinite(i) || !currentExamples[i]) return;
+    els.payload.value = JSON.stringify(currentExamples[i].inputObj);
+    setResultStatus(`Inserted: ${currentExamples[i].label}`);
+  });
+
+  els.runBtn.addEventListener("click", () => {
+    try {
+      runAllLinesAndRender();
+    } catch (e) {
+      setResultStatus(`Run error: ${e.message}`, false);
+      clearResults();
+      appendResultCard({
+        line: 0, kind: "runner", ok: false,
+        payloadDisplay: "(run)",
+        errorMsg: String(e)
+      });
+    }
+  });
+
+  els.clearBtn.addEventListener("click", () => {
+    els.payload.value = "";
+    clearResults();
+    setResultStatus("Cleared.");
+  });
+
+  // --- init ---
+  (async () => {
+    try {
+      await loadDistribDirectories();
+      setResultStatus("Ready.");
+    } catch (e) {
+      setCodecStatus(`Init error: ${e.message}`, false);
+      setResultStatus(`Init error: ${e.message}`, false);
+    }
+  })();
+})();
+</script>
+</body>
+</html>
