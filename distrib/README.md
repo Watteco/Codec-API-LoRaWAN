@@ -1,6 +1,15 @@
 # English
 [→ Français](#français)
 
+## Online LoRaWAN codec decoder
+
+A web tool allowing you to:
+- decode uplinks using the codecs from `distrib/`
+- encode downlinks
+- run examples from `examples.json`.
+
+➡ Open the tool here: https://watteco.github.io/Codec-API-LoRaWAN/
+
 ## Table of Contents
 - [Usage](#usage)
 - [Customizing Output](#customizing-output)
@@ -294,6 +303,16 @@ Your Chirpstack installation is now able to decode your sensor's frames.
 # Français
 [→ English](#english)
 
+## Décodeur de codecs LoRaWAN en ligne
+
+Un outil web permettant de :
+
+- décoder les trames uplink en utilisant les codecs du répertoire `distrib/`
+- encoder des downlinks
+- tester les exemples fournis dans `examples.json`
+
+➡ Accéder à l’outil : https://watteco.github.io/Codec-API-LoRaWAN/
+
 ## Table des matières
 - [Utilisation](#utilisation)
 - [Personnalisation de la sortie](#personnalisation-de-la-sortie)
@@ -562,3 +581,4 @@ function Decode (fPort, bytes)
 ```
   
 Votre installation Chirpstack est maintenant capable de décoder les trames de votre capteur.
+
