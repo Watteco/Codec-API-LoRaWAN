@@ -3,54 +3,15 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Watteco – LoRaWAN Codec Runner</title>
-  <style>
-    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin: 24px; }
-    label { display:block; font-size:12px; opacity:.8; margin-bottom:6px; }
-    select, input, textarea, button { font: inherit; padding: 10px; }
-    select, input, button { height: 42px; }
-    textarea { width:100%; min-height:190px; }
-
-    .card { border:1px solid #ddd; border-radius:12px; padding:16px; margin-top:16px; }
-    .row { display:flex; gap:16px; flex-wrap:wrap; align-items:flex-end; }
-    .toolbar { display:flex; gap:12px; flex-wrap:wrap; align-items:flex-end; }
-    .toolbar .wide { flex:1; min-width:340px; }
-    .actions { margin-left:auto; display:flex; gap:10px; }
-
-    .muted { opacity:.8; font-size:13px; }
-    .small { font-size:12px; opacity:.85; }
-    code { background:#f3f3f3; padding:2px 6px; border-radius:6px; }
-
-    .ok { color:#0a7a2f; font-weight:700; }
-    .err { color:#b00020; font-weight:800; }
-
-    /* Results */
-    #results { display:flex; flex-direction:column; gap:12px; margin-top:12px; }
-    .r { border:1px solid #e2e2e2; border-radius:12px; overflow:hidden; }
-    .rhead { padding:10px 12px; display:flex; gap:10px; align-items:center; justify-content:space-between; background:#fafafa; }
-    .rhead .left { display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
-    .badge { font-size:12px; padding:2px 8px; border-radius:999px; background:#f0f0f0; }
-    .badge.ok { background:#e8f6ee; }
-    .badge.err { background:#fde8ea; }
-    .meta { font-size:12px; opacity:.85; }
-
-    .payloadLine {
-      padding: 10px 12px;
-      border-top: 1px solid #ededed;
-      background: #fcfcfc;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-      font-size: 12px;
-      white-space: pre-wrap;
-      word-break: break-word;
-    }
-
-    .rbody { padding:12px; }
-    pre { margin:0; background:#0b1020; color:#e8eefc; padding:12px; overflow:auto; border-radius:10px; }
-  </style>
+  <title>Watteco - LoRaWAN Codec Runner</title>
+  <link rel="stylesheet" href="./style.css" />
 </head>
 
 <body>
-  <h1>Watteco – LoRaWAN Codec Runner (Codec-API-LoRaWAN/distrib)</h1>
+  <h1>
+    <img class="brand-logo" src="https://lora.watteco.fr/EasyCodec/img/LOGO-WATTECO_v2021_wbg_ctr.png" alt="Watteco" />
+    <span>LoRaWAN Codec Runner (Codec-API-LoRaWAN/distrib)</span>
+  </h1>
 
   <div class="card">
     <div class="row">
