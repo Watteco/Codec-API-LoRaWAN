@@ -1,0 +1,91 @@
+{
+  "description": "Watteco fissur'o v1.0.0",
+  "properties": {
+    "sendHexFrame": {
+      "type": "string",
+      "downlink": true
+    },
+    "sendConfirmedMode": {
+      "type": "uint8",
+      "downlink": true
+    },
+    "sendReboot": {
+      "type": "bool",
+      "downlink": true
+    },
+    "sendFactoryReset": {
+      "type": "bool",
+      "downlink": true
+    },
+    "sendLoraRetries": {
+      "type": "uint8",
+      "downlink": true
+    },
+    "sendLoraRejoin": {
+      "type": "uint16",
+      "downlink": true,
+      "units": "min"
+    },
+    "kernel": {
+      "type": "string"
+    },
+    "manufacturer": {
+      "type": "string"
+    },
+    "model": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string"
+    },
+    "position": {
+      "type": "string"
+    },
+    "application_name": {
+      "type": "string"
+    },
+    "disposable_battery_voltage": {
+      "type": "float",
+      "units": "V"
+    },
+    "message_type": {
+      "type": "string"
+    },
+    "nb_retry": {
+      "type": "uint8"
+    },
+    "automatic_association": {
+      "type": "float"
+    },
+    "data_rate": {
+      "type": "uint8"
+    },
+    "ABP_dev_address": {
+      "type": "string"
+    },
+    "OTA_app_EUI": {
+      "type": "string"
+    },
+    "Tilt": {
+      "type": "int16",
+      "units": "deg"
+    },
+    "distance": {
+      "type": "float",
+      "units": "m"
+    },
+    "acc_temperature": {
+      "type": "float",
+      "units": "Cel"
+    },
+    "temperature": {
+      "type": "float",
+      "units": "Cel"
+    },
+    "battery_voltage": {
+      "type": "float",
+      "units": "V"
+    }
+  },
+  "decoder": "fissuro-decoder.js"
+}
