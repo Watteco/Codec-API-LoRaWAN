@@ -1,0 +1,7 @@
+node_modules/
+test/
+coverage/
+specification/
+pt1000.js
+driver-examples.spec.js
+webpack.config.js

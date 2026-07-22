@@ -169,6 +169,24 @@
       ]
     },
     {
+      "name": "pt1000",
+      "clusters": [
+        { "cid": "0x0000", "variables": ["kernel", "manufacturer", "model", "date", "position", "application_name"] },
+        { "cid": "0x0050", "variables": ["disposable_battery_voltage"] },
+        { "cid": "0x8004", "variables": ["message_type", "nb_retry", "automatic_association", "data_rate", "ABP_dev_address", "OTA_app_EUI"] },
+        { "cid": "0x0402", "variables": ["temperature"] }
+      ]
+    },
+    {
+      "name": "pt1000_400c",
+      "clusters": [
+        { "cid": "0x0000", "variables": ["kernel", "manufacturer", "model", "date", "position", "application_name"] },
+        { "cid": "0x0050", "variables": ["disposable_battery_voltage"] },
+        { "cid": "0x8004", "variables": ["message_type", "nb_retry", "automatic_association", "data_rate", "ABP_dev_address", "OTA_app_EUI"] },
+        { "cid": "0x0402", "variables": ["temperature"] }
+      ]
+    },
+    {
       "name": "remote_temperature_2",
       "clusters": [
         { "cid": "0x0000", "variables": ["kernel", "manufacturer", "model", "date", "position", "application_name"] },
