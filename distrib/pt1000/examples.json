@@ -105,42 +105,42 @@
         "samples": [
           {
             "variable": "temperature",
-            "value": 403,
+            "value": 40.3,
             "date": "2023-07-19T07:01:00.508Z",
             "unit": "Cel"
           },
           {
             "variable": "temperature",
-            "value": 403.5,
+            "value": 40.8,
             "date": "2023-07-19T07:11:00.508Z",
             "unit": "Cel"
           },
           {
             "variable": "temperature",
-            "value": 403.3,
+            "value": 40.6,
             "date": "2023-07-19T07:21:00.508Z",
             "unit": "Cel"
           },
           {
             "variable": "temperature",
-            "value": 402.6,
+            "value": 39.9,
             "date": "2023-07-19T07:31:00.508Z",
             "unit": "Cel"
           },
           {
             "variable": "temperature",
-            "value": 400.2,
+            "value": 37.5,
             "date": "2023-07-19T07:41:00.508Z",
             "unit": "Cel"
           },
           {
             "variable": "temperature",
-            "value": 399.4,
+            "value": 36.7,
             "date": "2023-07-19T07:51:00.508Z",
             "unit": "Cel"
           }
         ],
-        "temperature": 399.4,
+        "temperature": 36.7,
         "temperature_unit": "Cel"
       },
       "warnings": []

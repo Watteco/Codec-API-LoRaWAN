@@ -197,6 +197,28 @@
 </details>
 
 <details>
+<summary>PT1000 [1.1.0]</summary>
+
+  [NPM: watteco-pt1000](https://www.npmjs.com/package/watteco-pt1000)
+- **basic (CID: 0x0000)** : kernel, manufacturer, model, date, position, application_name
+- **configuration (CID: 0x0050)** : disposable_battery_voltage (V)
+- **lorawan (CID: 0x8004)** : message_type, nb_retry, automatic_association, data_rate, ABP_dev_address, OTA_app_EUI
+- **temperature (CID: 0x0402)** : temperature (Cel)
+
+</details>
+
+<details>
+<summary>PT1000_400C [1.1.0]</summary>
+
+  [NPM: watteco-pt1000_400c](https://www.npmjs.com/package/watteco-pt1000_400c)
+- **basic (CID: 0x0000)** : kernel, manufacturer, model, date, position, application_name
+- **configuration (CID: 0x0050)** : disposable_battery_voltage (V)
+- **lorawan (CID: 0x8004)** : message_type, nb_retry, automatic_association, data_rate, ABP_dev_address, OTA_app_EUI
+- **temperature (CID: 0x0402)** : temperature (Cel)
+
+</details>
+
+<details>
 <summary>PULSE_SENS'O [1.1.7]</summary>
 
   [NPM: watteco-pulse_sens_o](https://www.npmjs.com/package/watteco-pulse_sens_o)
