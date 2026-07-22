@@ -842,7 +842,7 @@ const getDevices = (pattern = null) => {
  * @param {string} baseDirectory - Path to the directory containing all device subdirectories.
  * @param {string} outputFile - Path to the resulting Markdown file.
  */
-function generateDeviceDriverInfoMarkdown(baseDirectory, outputFile) {
+function generateDeviceDriverInfoMarkdown(baseDirectory, distribDirectory, outputFile) {
     try {
         // Define the path for the shared Clusters.json file
         const clustersFile = path.join(baseDirectory, "..", "Clusters.json");
@@ -863,6 +863,13 @@ function generateDeviceDriverInfoMarkdown(baseDirectory, outputFile) {
         for (const deviceDir of deviceDirectories) {
             const devicePath = path.join(baseDirectory, deviceDir);
             try {
+                // Check if device exists in distrib (only include distributed devices)
+                const distribDevicePath = path.join(distribDirectory, deviceDir);
+                if (!fs.existsSync(distribDevicePath)) {
+                    console.log(`Skipping device directory '${deviceDir}' (not in distrib).`);
+                    continue;
+                }
+
                 // Define paths for device-specific files
                 const variablesFile = path.join(devicePath, "ClustersVariables.json");
                 const packageFile = path.join(devicePath, "package.json");

@@ -112,8 +112,8 @@ async function main() {
     // Start the copy and deployment process
     copyAndDeployFiles(watteco_path, distrib_path, devices);
 
-    // Generate the DRIVERS.md file in distrib directory
-    tools.generateDeviceDriverInfoMarkdown(path.join("..","devices"),path.join("..","distrib", "DRIVERS.md") );
+    // Generate the DRIVERS.md file in distrib directory (read metadata from devices, but only include drivers that exist in distrib)
+    tools.generateDeviceDriverInfoMarkdown(path.join("..","devices"), path.join("..","distrib"), path.join("..","distrib", "DRIVERS.md") );
   } catch (err) {
     console.error('Error in script execution:', err.message);
     process.exit(1); // Exit the script immediately on error
