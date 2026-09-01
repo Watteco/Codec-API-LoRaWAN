@@ -287,6 +287,23 @@ function buildAndTranspile(projectDir, options = {}) {
         throw new Error("Error: Terser returned empty minified code.");
     }
 
+    const readableDecodeUplinkAppend = options.readableDecodeUplink === false ? "" : `
+
+driver.decodeUplinkInter = driver.decodeUplink;
+function decodeUplink(input) {
+    var output = driver.decodeUplinkInter(input);
+
+    if (output.errors) {
+        return output;
+    }
+
+    return output;
+}
+
+driver.decodeUplink = decodeUplink;
+(typeof globalThis !== "undefined" ? globalThis : this).decodeUplink = decodeUplink;
+`;
+
     if (options && options.terserSafeTB) {
         // Post-terser rewrite as a safety net
         const rewritten = rewriteForVarInitsTB(minifiedResult.code);
@@ -356,9 +373,12 @@ try {
 }
 `;
 
-        minifiedResult.code += _safeTBAppend;
+        minifiedResult.code += readableDecodeUplinkAppend + _safeTBAppend;
 
         // Validate output parses as JS (after modifications)
+        new Function(minifiedResult.code);
+    } else {
+        minifiedResult.code += readableDecodeUplinkAppend;
         new Function(minifiedResult.code);
     }
 

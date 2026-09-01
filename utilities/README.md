@@ -237,9 +237,10 @@ Il utilise un script `rebuild.js` dans le dossier `scripts`.
 La liste des devices traités dépend des sous-répertoire de `devices` et du `<devices_filter>` utilisé. 
 On rajoute l'utilisation du script dans le `package.json` de chaque device, sous le nom *rebuild*.  
 Son execution doit être faite dans le dossier `utilities`, car le chemin écrit dans le `execSync()` est relatif à notre positon : 
+Par défaut, le `main.js` généré expose une fonction `decodeUplink` lisible qui appelle le décodeur compacté `driver.decodeUplinkInter`. Pour les codecs où chaque octet compte, l'option `--no-readable-decode-uplink` (ou `--no-extra-decode-uplink`) conserve le bundle compact sans ajouter ce wrapper.
 L'option facultative -v (--version) permet de faire évoluer la version du package et metadata.
 ```bash
-    node rebuild_mains.js [<devices_filter>] [-v|--version [patch|minor|major|x.y.z)]]
+  node rebuild_mains.js [<devices_filter>] [--no-readable-decode-uplink] [-v|--version [patch|minor|major|x.y.z)]]
 ```
 
 ### run_tests

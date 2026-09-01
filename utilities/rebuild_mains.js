@@ -125,6 +125,7 @@ let multilineFlag = false;
 let noterserFlag = false;
 let terserSafeTBFlag = false;
 let noMinifyFlag = false;
+let readableDecodeUplinkFlag = true;
 let bacnetOnlyFlag = false;
 let alsoThingsboardFlag = false;
 
@@ -153,6 +154,8 @@ for (let i = 0; i < args.length; i++) {
     } else if (args[i] === '--no-minify' || args[i] === '--no-minimise') {
       // disable all minification (webpack + terser)
       noMinifyFlag = true;
+    } else if (args[i] === '--no-readable-decode-uplink' || args[i] === '--no-extra-decode-uplink') {
+      readableDecodeUplinkFlag = false;
     } else {
       filter = args[i]; // The filter regex pattern (if given)
     }
@@ -276,7 +279,7 @@ for (let i in devices) {
             console.log(`Temporarily replaced codec/standard.js with ${outLite} for ${sensorName} (direct copy)`);
           }
           // Build while override is in place
-          tools.buildAndTranspile(devicePath, { multiline: multilineFlag, noterser: (noterserFlag || noMinifyFlag), noWebpackMinify: noMinifyFlag, terserSafeTB: terserSafeTBFlag });
+          tools.buildAndTranspile(devicePath, { multiline: multilineFlag, noterser: (noterserFlag || noMinifyFlag), noWebpackMinify: noMinifyFlag, terserSafeTB: terserSafeTBFlag, readableDecodeUplink: readableDecodeUplinkFlag });
         } catch (err) {
           console.error(`Build failed for ${sensorName} with lite override: ${err && err.message ? err.message : err}`);
         } finally {
@@ -297,10 +300,10 @@ for (let i in devices) {
         }
       } else {
   // No lite file: just build normally
-  tools.buildAndTranspile(devicePath, { multiline: multilineFlag, noterser: (noterserFlag || noMinifyFlag), noWebpackMinify: noMinifyFlag, terserSafeTB: terserSafeTBFlag });
+  tools.buildAndTranspile(devicePath, { multiline: multilineFlag, noterser: (noterserFlag || noMinifyFlag), noWebpackMinify: noMinifyFlag, terserSafeTB: terserSafeTBFlag, readableDecodeUplink: readableDecodeUplinkFlag });
       }
     } else {
-  tools.buildAndTranspile(devicePath, { multiline: multilineFlag, noterser: (noterserFlag || noMinifyFlag), noWebpackMinify: noMinifyFlag, terserSafeTB: terserSafeTBFlag });
+  tools.buildAndTranspile(devicePath, { multiline: multilineFlag, noterser: (noterserFlag || noMinifyFlag), noWebpackMinify: noMinifyFlag, terserSafeTB: terserSafeTBFlag, readableDecodeUplink: readableDecodeUplinkFlag });
     }
 
   // Prepend sensor name as a comment to the generated main bundle so
@@ -370,7 +373,7 @@ for (let i in devices) {
 
         console.log(`Generating ThingsBoard variant for ${sensorName}...`);
         // Rebuild with ThingsBoard-safe terser option enabled
-        tools.buildAndTranspile(devicePath, { multiline: multilineFlag, noterser: (noterserFlag || noMinifyFlag), noWebpackMinify: noMinifyFlag, terserSafeTB: true });
+        tools.buildAndTranspile(devicePath, { multiline: multilineFlag, noterser: (noterserFlag || noMinifyFlag), noWebpackMinify: noMinifyFlag, terserSafeTB: true, readableDecodeUplink: readableDecodeUplinkFlag });
 
         if (fs.existsSync(bundlePath)) {
           const targetName = `main-thingsboard.js`;
