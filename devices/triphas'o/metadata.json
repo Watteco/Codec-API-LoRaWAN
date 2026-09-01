@@ -1,6 +1,6 @@
 {
   "name": "triphas'o atex",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "main": "main.js",
   "description": "Driver for triphas'o sensor",
   "codecId": "0024",

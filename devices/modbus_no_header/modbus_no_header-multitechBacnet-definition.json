@@ -1,5 +1,5 @@
 {
-  "description": "Watteco modbus_no_header v1.1.0",
+  "description": "Watteco modbus_no_header v1.1.1",
   "properties": {
     "sendHexFrame": {
       "type": "string",

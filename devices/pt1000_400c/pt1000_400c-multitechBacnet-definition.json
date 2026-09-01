@@ -1,5 +1,5 @@
 {
-  "description": "Watteco pt1000_400c v1.1.0",
+  "description": "Watteco pt1000_400c v1.1.1",
   "properties": {
     "sendHexFrame": {
       "type": "string",
