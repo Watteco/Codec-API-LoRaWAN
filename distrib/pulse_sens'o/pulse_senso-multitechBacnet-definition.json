@@ -1,5 +1,5 @@
 {
-  "description": "Watteco pulse sens'o v1.1.7",
+  "description": "Watteco pulse sens'o v1.1.8",
   "properties": {
     "sendHexFrame": {
       "type": "string",

@@ -1,0 +1,20 @@
+[
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing a Modbus payload without endpoint headers",
+    "input": {
+      "bytes": "110A800900004121000007000000F5000000000000000000F9000000000000000000FA000000000000",
+      "fPort": 125,
+      "recvTime": "2026-09-01T15:17:02.565Z"
+    },
+    "output": {
+      "data": {
+        "samples": [
+          { "variable": "modbus_payload", "value": "000000F5000000000000000000F9000000000000000000FA000000000000", "date": "2026-09-01T15:17:02.565Z" }
+        ],
+        "modbus_payload": "000000F5000000000000000000F9000000000000000000FA000000000000"
+      },
+      "warnings": []
+    }
+  }
+]

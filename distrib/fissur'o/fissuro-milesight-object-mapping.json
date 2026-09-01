@@ -1,0 +1,322 @@
+{
+    "object": [
+        {
+            "id": "data.Tilt",
+            "name": "Tilt",
+            "value": "",
+            "unit": "deg",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "INT16",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 90,
+            "bacnet_unit_type": "UNITS_DEGREES_ANGULAR"
+        },
+        {
+            "id": "data.distance",
+            "name": "Distance",
+            "value": "",
+            "unit": "m",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "FLOAT",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 31,
+            "bacnet_unit_type": "UNITS_METERS"
+        },
+        {
+            "id": "data.temperature",
+            "name": "Temperature",
+            "value": "",
+            "unit": "Cel",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "FLOAT",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 62,
+            "bacnet_unit_type": "UNITS_DEGREES_CELSIUS"
+        },
+        {
+            "id": "data.battery_voltage",
+            "name": "Battery voltage",
+            "value": "",
+            "unit": "V",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "FLOAT",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 5,
+            "bacnet_unit_type": "UNITS_VOLTS"
+        },
+        {
+            "id": "data.acc_temperature",
+            "name": "Accelerometer temperature",
+            "value": "",
+            "unit": "Cel",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "FLOAT",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 62,
+            "bacnet_unit_type": "UNITS_DEGREES_CELSIUS"
+        },
+        {
+            "id": "data.kernel",
+            "name": "Kernel version",
+            "value": "",
+            "unit": "",
+            "access_mode": "R",
+            "data_type": "TEXT",
+            "value_type": "STRING",
+            "bacnet_type": "character_string_value_object",
+            "bacnet_unit_type_id": 95,
+            "bacnet_unit_type": "UNITS_NO_UNITS",
+            "max_length": 16
+        },
+        {
+            "id": "data.manufacturer",
+            "name": "Manufacturer name",
+            "value": "",
+            "unit": "",
+            "access_mode": "R",
+            "data_type": "TEXT",
+            "value_type": "STRING",
+            "bacnet_type": "character_string_value_object",
+            "bacnet_unit_type_id": 95,
+            "bacnet_unit_type": "UNITS_NO_UNITS",
+            "max_length": 16
+        },
+        {
+            "id": "data.model",
+            "name": "Device model",
+            "value": "",
+            "unit": "",
+            "access_mode": "R",
+            "data_type": "TEXT",
+            "value_type": "STRING",
+            "bacnet_type": "character_string_value_object",
+            "bacnet_unit_type_id": 95,
+            "bacnet_unit_type": "UNITS_NO_UNITS",
+            "max_length": 16
+        },
+        {
+            "id": "data.date",
+            "name": "Manufacturing date",
+            "value": "",
+            "unit": "",
+            "access_mode": "R",
+            "data_type": "TEXT",
+            "value_type": "STRING",
+            "bacnet_type": "character_string_value_object",
+            "bacnet_unit_type_id": 95,
+            "bacnet_unit_type": "UNITS_NO_UNITS",
+            "max_length": 16
+        },
+        {
+            "id": "data.position",
+            "name": "Device position",
+            "value": "",
+            "unit": "",
+            "access_mode": "R",
+            "data_type": "TEXT",
+            "value_type": "STRING",
+            "bacnet_type": "character_string_value_object",
+            "bacnet_unit_type_id": 95,
+            "bacnet_unit_type": "UNITS_NO_UNITS",
+            "max_length": 8
+        },
+        {
+            "id": "data.application_name",
+            "name": "Application name",
+            "value": "",
+            "unit": "",
+            "access_mode": "R",
+            "data_type": "TEXT",
+            "value_type": "STRING",
+            "bacnet_type": "character_string_value_object",
+            "bacnet_unit_type_id": 95,
+            "bacnet_unit_type": "UNITS_NO_UNITS",
+            "max_length": 16
+        },
+        {
+            "id": "data.disposable_battery_voltage",
+            "name": "Disposable battery voltage",
+            "value": "",
+            "unit": "V",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "FLOAT",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 5,
+            "bacnet_unit_type": "UNITS_VOLTS"
+        },
+        {
+            "id": "data.message_type",
+            "name": "Message type",
+            "value": "",
+            "unit": "",
+            "access_mode": "R",
+            "data_type": "TEXT",
+            "value_type": "STRING",
+            "bacnet_type": "character_string_value_object",
+            "bacnet_unit_type_id": 95,
+            "bacnet_unit_type": "UNITS_NO_UNITS",
+            "max_length": 16
+        },
+        {
+            "id": "data.nb_retry",
+            "name": "Number of retries",
+            "value": "",
+            "unit": "",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "UINT8",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 95,
+            "bacnet_unit_type": "UNITS_NO_UNITS"
+        },
+        {
+            "id": "data.automatic_association",
+            "name": "automatic_association",
+            "value": "",
+            "unit": "",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "FLOAT",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 95,
+            "bacnet_unit_type": "UNITS_NO_UNITS"
+        },
+        {
+            "id": "data.data_rate",
+            "name": "LoRaWAN data rate",
+            "value": "",
+            "unit": "",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "UINT8",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 95,
+            "bacnet_unit_type": "UNITS_NO_UNITS"
+        },
+        {
+            "id": "data.ABP_dev_address",
+            "name": "ABP device address",
+            "value": "",
+            "unit": "",
+            "access_mode": "R",
+            "data_type": "TEXT",
+            "value_type": "STRING",
+            "bacnet_type": "character_string_value_object",
+            "bacnet_unit_type_id": 95,
+            "bacnet_unit_type": "UNITS_NO_UNITS",
+            "max_length": 8
+        },
+        {
+            "id": "data.OTA_app_EUI",
+            "name": "OTA application EUI",
+            "value": "",
+            "unit": "",
+            "access_mode": "R",
+            "data_type": "TEXT",
+            "value_type": "STRING",
+            "bacnet_type": "character_string_value_object",
+            "bacnet_unit_type_id": 95,
+            "bacnet_unit_type": "UNITS_NO_UNITS",
+            "max_length": 16
+        },
+        {
+            "id": "data.sendHexFrame",
+            "name": "Send custom Hex Frame",
+            "value": "",
+            "unit": "",
+            "access_mode": "W",
+            "data_type": "TEXT",
+            "value_type": "STRING",
+            "bacnet_type": "character_string_value_object",
+            "bacnet_unit_type_id": 95,
+            "bacnet_unit_type": "UNITS_NO_UNITS",
+            "max_length": 128
+        },
+        {
+            "id": "data.sendConfirmedMode",
+            "name": "Send Confirmed Mode",
+            "value": "",
+            "unit": "",
+            "access_mode": "W",
+            "data_type": "NUMBER",
+            "value_type": "UINT8",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 95,
+            "bacnet_unit_type": "UNITS_NO_UNITS"
+        },
+        {
+            "id": "data.sendReboot",
+            "name": "Send Reboot command",
+            "value": "",
+            "unit": "",
+            "access_mode": "W",
+            "data_type": "BOOL",
+            "value_type": "BOOLEAN",
+            "bacnet_type": "binary_value_object",
+            "bacnet_unit_type_id": 95,
+            "bacnet_unit_type": "UNITS_NO_UNITS",
+            "values": [
+                {
+                    "value": 0,
+                    "name": "false"
+                },
+                {
+                    "value": 1,
+                    "name": "true"
+                }
+            ]
+        },
+        {
+            "id": "data.sendFactoryReset",
+            "name": "Send Factory Reset command",
+            "value": "",
+            "unit": "",
+            "access_mode": "W",
+            "data_type": "BOOL",
+            "value_type": "BOOLEAN",
+            "bacnet_type": "binary_value_object",
+            "bacnet_unit_type_id": 95,
+            "bacnet_unit_type": "UNITS_NO_UNITS",
+            "values": [
+                {
+                    "value": 0,
+                    "name": "false"
+                },
+                {
+                    "value": 1,
+                    "name": "true"
+                }
+            ]
+        },
+        {
+            "id": "data.sendLoraRetries",
+            "name": "Send LoRa Retries",
+            "value": "",
+            "unit": "",
+            "access_mode": "W",
+            "data_type": "NUMBER",
+            "value_type": "UINT8",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 95,
+            "bacnet_unit_type": "UNITS_NO_UNITS"
+        },
+        {
+            "id": "data.sendLoraRejoin",
+            "name": "Send LoRa Rejoin command",
+            "value": "",
+            "unit": "min",
+            "access_mode": "W",
+            "data_type": "NUMBER",
+            "value_type": "UINT16",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 72,
+            "bacnet_unit_type": "UNITS_MINUTES"
+        }
+    ]
+}

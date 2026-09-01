@@ -5,7 +5,7 @@
     "input": {
       "bytes": "110a80050000190371",
       "fPort": 125,
-      "recvTime": "2023-07-19T07:51:25.508306410Z"
+      "recvTime": "2023-07-19T07:51:25.508Z"
     },
     "output": {
       "data": {
@@ -13,52 +13,52 @@
           {
             "variable": "pin_state_1",
             "value": true,
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508Z"
           },
           {
             "variable": "pin_state_2",
             "value": false,
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508Z"
           },
           {
             "variable": "pin_state_3",
             "value": false,
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508Z"
           },
           {
             "variable": "pin_state_4",
             "value": false,
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508Z"
           },
           {
             "variable": "pin_state_5",
             "value": true,
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508Z"
           },
           {
             "variable": "pin_state_6",
             "value": true,
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508Z"
           },
           {
             "variable": "pin_state_7",
             "value": true,
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508Z"
           },
           {
             "variable": "pin_state_8",
             "value": false,
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508Z"
           },
           {
             "variable": "pin_state_9",
             "value": true,
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508Z"
           },
           {
             "variable": "pin_state_10",
             "value": true,
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508Z"
           }
         ],
         "pin_state_1": true,
@@ -81,7 +81,7 @@
     "input": {
       "bytes": "110a000f00551001",
       "fPort": 125,
-      "recvTime": "2023-07-19T07:51:25.508306410Z"
+      "recvTime": "2023-07-19T07:51:25.508Z"
     },
     "output": {
       "data": {
@@ -89,7 +89,7 @@
           {
             "variable": "pin_state_1",
             "value": true,
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508Z"
           }
         ],
         "pin_state_1": true
@@ -103,7 +103,7 @@
     "input": {
       "bytes": "110a000f04022300000000",
       "fPort": 125,
-      "recvTime": "2023-07-19T07:51:25.508306410Z"
+      "recvTime": "2023-07-19T07:51:25.508Z"
     },
     "output": {
       "data": {
@@ -111,7 +111,7 @@
           {
             "variable": "index_1",
             "value": 0,
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508Z"
           }
         ],
         "index_1": 0
@@ -125,7 +125,7 @@
     "input": {
       "bytes": "110a000600001001",
       "fPort": 125,
-      "recvTime": "2023-07-19T07:51:25.508306410Z"
+      "recvTime": "2023-07-19T07:51:25.508Z"
     },
     "output": {
       "data": {
@@ -133,7 +133,7 @@
           {
             "variable": "output_1",
             "value": "ON",
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508Z"
           }
         ],
         "output_1": "ON"
@@ -147,7 +147,7 @@
     "input": {
       "bytes": "110a000600001000",
       "fPort": 125,
-      "recvTime": "2023-07-19T07:51:25.508306410Z"
+      "recvTime": "2023-07-19T07:51:25.508Z"
     },
     "output": {
       "data": {
@@ -155,7 +155,7 @@
           {
             "variable": "output_1",
             "value": "OFF",
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508Z"
           }
         ],
         "output_1": "OFF"
@@ -169,7 +169,7 @@
     "input": {
       "bytes": "110100000002000d0305020015e2",
       "fPort": 125,
-      "recvTime": "2023-07-19T07:51:25.508306410Z"
+      "recvTime": "2023-07-19T07:51:25.508Z"
     },
     "output": {
       "data": {
@@ -177,7 +177,7 @@
           {
             "variable": "firmware",
             "value": "3.5.2.5602",
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508Z"
           }
         ],
         "firmware": "3.5.2.5602"
@@ -191,7 +191,7 @@
     "input": {
       "bytes": "110a00500006410503040e6804",
       "fPort": 125,
-      "recvTime": "2023-07-19T07:51:25.508306410Z"
+      "recvTime": "2023-07-19T07:51:25.508Z"
     },
     "output": {
       "data": {
@@ -199,7 +199,7 @@
           {
             "variable": "disposable_battery_voltage",
             "value": 3.688,
-            "date": "2023-07-19T07:51:25.508306410Z",
+            "date": "2023-07-19T07:51:25.508Z",
             "unit": "V"
           }
         ],
@@ -215,7 +215,7 @@
     "input": {
       "bytes": "110180040000000800",
       "fPort": 125,
-      "recvTime": "2023-07-19T07:51:25.508306410Z"
+      "recvTime": "2023-07-19T07:51:25.508Z"
     },
     "output": {
       "data": {
@@ -223,7 +223,7 @@
           {
             "variable": "message_type",
             "value": "unconfirmed",
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508Z"
           }
         ],
         "message_type": "unconfirmed"

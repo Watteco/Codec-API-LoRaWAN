@@ -1,0 +1,34 @@
+{
+  "description": "Watteco modbus_no_header v1.1.1",
+  "properties": {
+    "sendHexFrame": {
+      "type": "string",
+      "downlink": true
+    },
+    "sendConfirmedMode": {
+      "type": "uint8",
+      "downlink": true
+    },
+    "sendReboot": {
+      "type": "bool",
+      "downlink": true
+    },
+    "sendFactoryReset": {
+      "type": "bool",
+      "downlink": true
+    },
+    "sendLoraRetries": {
+      "type": "uint8",
+      "downlink": true
+    },
+    "sendLoraRejoin": {
+      "type": "uint16",
+      "downlink": true,
+      "units": "min"
+    },
+    "modbus_payload": {
+      "type": "string"
+    }
+  },
+  "decoder": "modbus_no_header-decoder.js"
+}

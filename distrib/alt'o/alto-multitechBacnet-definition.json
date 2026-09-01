@@ -1,5 +1,5 @@
 {
-  "description": "Watteco alt'o v1.1.1",
+  "description": "Watteco alt'o v1.1.2",
   "properties": {
     "sendHexFrame": {
       "type": "string",
