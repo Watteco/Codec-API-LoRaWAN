@@ -1,0 +1,8 @@
+node_modules/
+test/
+coverage/
+specification/
+modbus_no_header.js
+decode_uplink_wrapper.js
+driver-examples.spec.js
+webpack.config.js

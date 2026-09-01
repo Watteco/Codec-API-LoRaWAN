@@ -287,7 +287,9 @@ function buildAndTranspile(projectDir, options = {}) {
         throw new Error("Error: Terser returned empty minified code.");
     }
 
-    const readableDecodeUplinkAppend = options.readableDecodeUplink === false ? "" : `
+    const readableWrapperPath = path.join(projectDir, "decode_uplink_wrapper.js");
+    const readableDecodeUplinkAppend = options.readableDecodeUplink === false ? "" :
+        fs.existsSync(readableWrapperPath) ? fs.readFileSync(readableWrapperPath, "utf8") : `
 
 driver.decodeUplinkInter = driver.decodeUplink;
 function decodeUplink(input) {
