@@ -322,6 +322,72 @@
     }
   },
   {
+    "type": "uplink",
+    "description": "uplink standard report containing three Modbus endpoint payloads with headers",
+    "input": {
+      "bytes": "110A80090000412A00000701030A000000F400000000000002030A000000F800000000000003030A000000F8000000000000",
+      "fPort": 125,
+      "recvTime": "2026-09-02T00:00:00.000Z"
+    },
+    "output": {
+      "data": {
+        "samples": [
+          { "variable": "modbus_frame_series_sent", "value": 0, "date": "2026-09-02T00:00:00.000Z" },
+          { "variable": "modbus_frame_number_in_serie", "value": 0, "date": "2026-09-02T00:00:00.000Z" },
+          { "variable": "modbus_last_frame_of_serie", "value": 0, "date": "2026-09-02T00:00:00.000Z" },
+          { "variable": "modbus_EP0", "value": true, "date": "2026-09-02T00:00:00.000Z" },
+          { "variable": "modbus_EP1", "value": true, "date": "2026-09-02T00:00:00.000Z" },
+          { "variable": "modbus_EP2", "value": true, "date": "2026-09-02T00:00:00.000Z" },
+          { "variable": "modbus_EP3", "value": false, "date": "2026-09-02T00:00:00.000Z" },
+          { "variable": "modbus_EP4", "value": false, "date": "2026-09-02T00:00:00.000Z" },
+          { "variable": "modbus_EP5", "value": false, "date": "2026-09-02T00:00:00.000Z" },
+          { "variable": "modbus_EP6", "value": false, "date": "2026-09-02T00:00:00.000Z" },
+          { "variable": "modbus_EP7", "value": false, "date": "2026-09-02T00:00:00.000Z" },
+          { "variable": "modbus_EP8", "value": false, "date": "2026-09-02T00:00:00.000Z" },
+          { "variable": "modbus_EP9", "value": false, "date": "2026-09-02T00:00:00.000Z" },
+          { "variable": "modbus_slaveID_EP0", "value": 1, "date": "2026-09-02T00:00:00.000Z" },
+          { "variable": "modbus_fnctID_EP0", "value": 3, "date": "2026-09-02T00:00:00.000Z" },
+          { "variable": "modbus_datasize_EP0", "value": 10, "date": "2026-09-02T00:00:00.000Z" },
+          { "variable": "modbus_payload_EP0", "value": "000000F4000000000000", "date": "2026-09-02T00:00:00.000Z" },
+          { "variable": "modbus_slaveID_EP1", "value": 2, "date": "2026-09-02T00:00:00.000Z" },
+          { "variable": "modbus_fnctID_EP1", "value": 3, "date": "2026-09-02T00:00:00.000Z" },
+          { "variable": "modbus_datasize_EP1", "value": 10, "date": "2026-09-02T00:00:00.000Z" },
+          { "variable": "modbus_payload_EP1", "value": "000000F8000000000000", "date": "2026-09-02T00:00:00.000Z" },
+          { "variable": "modbus_slaveID_EP2", "value": 3, "date": "2026-09-02T00:00:00.000Z" },
+          { "variable": "modbus_fnctID_EP2", "value": 3, "date": "2026-09-02T00:00:00.000Z" },
+          { "variable": "modbus_datasize_EP2", "value": 10, "date": "2026-09-02T00:00:00.000Z" },
+          { "variable": "modbus_payload_EP2", "value": "000000F8000000000000", "date": "2026-09-02T00:00:00.000Z" }
+        ],
+        "modbus_frame_series_sent": 0,
+        "modbus_frame_number_in_serie": 0,
+        "modbus_last_frame_of_serie": 0,
+        "modbus_EP0": true,
+        "modbus_EP1": true,
+        "modbus_EP2": true,
+        "modbus_EP3": false,
+        "modbus_EP4": false,
+        "modbus_EP5": false,
+        "modbus_EP6": false,
+        "modbus_EP7": false,
+        "modbus_EP8": false,
+        "modbus_EP9": false,
+        "modbus_slaveID_EP0": 1,
+        "modbus_fnctID_EP0": 3,
+        "modbus_datasize_EP0": 10,
+        "modbus_payload_EP0": "000000F4000000000000",
+        "modbus_slaveID_EP1": 2,
+        "modbus_fnctID_EP1": 3,
+        "modbus_datasize_EP1": 10,
+        "modbus_payload_EP1": "000000F8000000000000",
+        "modbus_slaveID_EP2": 3,
+        "modbus_fnctID_EP2": 3,
+        "modbus_datasize_EP2": 10,
+        "modbus_payload_EP2": "000000F8000000000000"
+      },
+      "warnings": []
+    }
+  },
+  {
     "type": "downlink-encode",
     "description": "Send a custom hex frame (here: read firmware version)",
     "input": {
