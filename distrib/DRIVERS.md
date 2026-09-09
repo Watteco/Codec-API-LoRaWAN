@@ -389,6 +389,22 @@
 </details>
 
 <details>
+<summary>TRIPHAS'O_KWH [1.1.9]</summary>
+
+  [NPM: watteco-triphas_o_kWh](https://www.npmjs.com/package/watteco-triphas_o_kWh)
+- **basic (CID: 0x0000)** : kernel, manufacturer, model, date, position, application_name
+- **configuration (CID: 0x0050)** : main_or_external_voltage (V)
+- **lorawan (CID: 0x8004)** : message_type, nb_retry, automatic_association, data_rate, ABP_dev_address, OTA_app_EUI
+- **binary input (CID: 0x000F)** : index
+- **energy and power metering (CID: 0x800A)** : positive_active_energy_a (kWh), positive_active_energy_b (kWh), positive_active_energy_c (kWh), positive_active_energy_abc (kWh), negative_active_energy_a (kWh), negative_active_energy_b (kWh), negative_active_energy_c (kWh), negative_active_energy_abc (kWh), positive_reactive_energy_a (kVArh), positive_reactive_energy_b (kVArh), positive_reactive_energy_c (kVArh), positive_reactive_energy_abc (kVArh), negative_reactive_energy_a (kVArh), negative_reactive_energy_b (kVArh), negative_reactive_energy_c (kVArh), negative_reactive_energy_abc (kVArh), positive_active_power_a (W), positive_active_power_b (W), positive_active_power_c (W), positive_active_power_abc (W), negative_active_power_a (W), negative_active_power_b (W), negative_active_power_c (W), negative_active_power_abc (W), positive_reactive_power_a (VAr), positive_reactive_power_b (VAr), positive_reactive_power_c (VAr), positive_reactive_power_abc (VAr), negative_reactive_power_a (VAr), negative_reactive_power_b (VAr), negative_reactive_power_c (VAr), negative_reactive_power_abc (VAr)
+- **energy and power multi metering (CID: 0x8010)** : active_energy_a (kWh), reactive_energy_a (kVArh), active_energy_b (kWh), reactive_energy_b (kVArh), active_energy_c (kWh), reactive_energy_c (kVArh), active_energy_abc (kWh), reactive_energy_abc (kVArh), active_power_a (W), reactive_power_a (VAr), active_power_b (W), reactive_power_b (VAr), active_power_c (W), reactive_power_c (VAr), active_power_abc (W), reactive_power_abc (VAr)
+- **ON/OFF (CID: 0x0006)** : output
+- **voltage and current metering (CID: 0x800B)** : Vrms_a (V), Vrms_b (V), Vrms_c (V), Irms_a (A), Irms_b (A), Irms_c (A), angle_a (deg), angle_b (deg), angle_c (deg)
+- **voltage and current multi metering (CID: 0x800D)** : Vrms_a (V), Vrms_b (V), Vrms_c (V), Irms_a (A), Irms_b (A), Irms_c (A), angle_a (deg), angle_b (deg), angle_c (deg)
+
+</details>
+
+<details>
 <summary>VAQA'O_LITE [1.1.8]</summary>
 
   [NPM: watteco-vaqa_o_lite](https://www.npmjs.com/package/watteco-vaqa_o_lite)

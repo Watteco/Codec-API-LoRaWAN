@@ -102,25 +102,25 @@
             "variable": "positive_active_energy_abc",
             "value": 239978,
             "date": "2023-07-19T07:51:25.508Z",
-            "unit": "Wh"
+            "unit": "kWh"
           },
           {
             "variable": "negative_active_energy_abc",
             "value": 0,
             "date": "2023-07-19T07:51:25.508Z",
-            "unit": "Wh"
+            "unit": "kWh"
           },
           {
             "variable": "positive_reactive_energy_abc",
             "value": 37529,
             "date": "2023-07-19T07:51:25.508Z",
-            "unit": "VArh"
+            "unit": "kVArh"
           },
           {
             "variable": "negative_reactive_energy_abc",
             "value": 28752,
             "date": "2023-07-19T07:51:25.508Z",
-            "unit": "VArh"
+            "unit": "kVArh"
           },
           {
             "variable": "positive_active_power_abc",
@@ -155,10 +155,10 @@
         "negative_active_power_abc": 0,
         "positive_reactive_power_abc": 192,
         "negative_reactive_power_abc": 3951,
-        "positive_active_energy_abc_unit": "Wh",
-        "negative_active_energy_abc_unit": "Wh",
-        "positive_reactive_energy_abc_unit": "VArh",
-        "negative_reactive_energy_abc_unit": "VArh",
+        "positive_active_energy_abc_unit": "kWh",
+        "negative_active_energy_abc_unit": "kWh",
+        "positive_reactive_energy_abc_unit": "kVArh",
+        "negative_reactive_energy_abc_unit": "kVArh",
         "positive_active_power_abc_unit": "W",
         "negative_active_power_abc_unit": "W",
         "positive_reactive_power_abc_unit": "VAr",
@@ -182,25 +182,25 @@
             "variable": "positive_active_energy_a",
             "value": 1078794,
             "date": "2023-07-19T07:51:25.508Z",
-            "unit": "Wh"
+            "unit": "kWh"
           },
           {
             "variable": "negative_active_energy_a",
             "value": 516,
             "date": "2023-07-19T07:51:25.508Z",
-            "unit": "Wh"
+            "unit": "kWh"
           },
           {
             "variable": "positive_reactive_energy_a",
             "value": 23150,
             "date": "2023-07-19T07:51:25.508Z",
-            "unit": "VArh"
+            "unit": "kVArh"
           },
           {
             "variable": "negative_reactive_energy_a",
             "value": 663821,
             "date": "2023-07-19T07:51:25.508Z",
-            "unit": "VArh"
+            "unit": "kVArh"
           },
           {
             "variable": "positive_active_power_a",
@@ -235,10 +235,10 @@
         "negative_active_power_a": 0,
         "positive_reactive_power_a": 0,
         "negative_reactive_power_a": 934,
-        "positive_active_energy_a_unit": "Wh",
-        "negative_active_energy_a_unit": "Wh",
-        "positive_reactive_energy_a_unit": "VArh",
-        "negative_reactive_energy_a_unit": "VArh",
+        "positive_active_energy_a_unit": "kWh",
+        "negative_active_energy_a_unit": "kWh",
+        "positive_reactive_energy_a_unit": "kVArh",
+        "negative_reactive_energy_a_unit": "kVArh",
         "positive_active_power_a_unit": "W",
         "negative_active_power_a_unit": "W",
         "positive_reactive_power_a_unit": "VAr",
@@ -391,49 +391,49 @@
             "variable": "active_energy_a",
             "value": 256,
             "date": "2023-07-19T07:51:25.508Z",
-            "unit": "Wh"
+            "unit": "kWh"
           },
           {
             "variable": "reactive_energy_a",
             "value": 512,
             "date": "2023-07-19T07:51:25.508Z",
-            "unit": "VArh"
+            "unit": "kVArh"
           },
           {
             "variable": "active_energy_b",
             "value": 768,
             "date": "2023-07-19T07:51:25.508Z",
-            "unit": "Wh"
+            "unit": "kWh"
           },
           {
             "variable": "reactive_energy_b",
             "value": 1024,
             "date": "2023-07-19T07:51:25.508Z",
-            "unit": "VArh"
+            "unit": "kVArh"
           },
           {
             "variable": "active_energy_c",
             "value": 1280,
             "date": "2023-07-19T07:51:25.508Z",
-            "unit": "Wh"
+            "unit": "kWh"
           },
           {
             "variable": "reactive_energy_c",
             "value": 1536,
             "date": "2023-07-19T07:51:25.508Z",
-            "unit": "VArh"
+            "unit": "kVArh"
           },
           {
             "variable": "active_energy_abc",
             "value": 1792,
             "date": "2023-07-19T07:51:25.508Z",
-            "unit": "Wh"
+            "unit": "kWh"
           },
           {
             "variable": "reactive_energy_abc",
             "value": 2048,
             "date": "2023-07-19T07:51:25.508Z",
-            "unit": "VArh"
+            "unit": "kVArh"
           }
         ],
         "active_energy_a": 256,
@@ -444,14 +444,14 @@
         "reactive_energy_c": 1536,
         "active_energy_abc": 1792,
         "reactive_energy_abc": 2048,
-        "active_energy_a_unit": "Wh",
-        "reactive_energy_a_unit": "VArh",
-        "active_energy_b_unit": "Wh",
-        "reactive_energy_b_unit": "VArh",
-        "active_energy_c_unit": "Wh",
-        "reactive_energy_c_unit": "VArh",
-        "active_energy_abc_unit": "Wh",
-        "reactive_energy_abc_unit": "VArh"
+        "active_energy_a_unit": "kWh",
+        "reactive_energy_a_unit": "kVArh",
+        "active_energy_b_unit": "kWh",
+        "reactive_energy_b_unit": "kVArh",
+        "active_energy_c_unit": "kWh",
+        "reactive_energy_c_unit": "kVArh",
+        "active_energy_abc_unit": "kWh",
+        "reactive_energy_abc_unit": "kVArh"
       },
       "warnings": []
     }

@@ -475,7 +475,7 @@
           },
           {
             "variable": "reactive_power_a",
-            "value": 4294966304,
+            "value": -992,
             "date": "2023-07-19T07:51:25.508Z",
             "unit": "VAr"
           },
@@ -487,7 +487,7 @@
           },
           {
             "variable": "reactive_power_b",
-            "value": 4294964495,
+            "value": -2801,
             "date": "2023-07-19T07:51:25.508Z",
             "unit": "VAr"
           },
@@ -499,7 +499,7 @@
           },
           {
             "variable": "reactive_power_c",
-            "value": 4294964266,
+            "value": -3030,
             "date": "2023-07-19T07:51:25.508Z",
             "unit": "VAr"
           },
@@ -511,19 +511,19 @@
           },
           {
             "variable": "reactive_power_abc",
-            "value": 4294960473,
+            "value": -6823,
             "date": "2023-07-19T07:51:25.508Z",
             "unit": "VAr"
           }
         ],
         "active_power_a": 6211,
-        "reactive_power_a": 4294966304,
+        "reactive_power_a": -992,
         "active_power_b": 9418,
-        "reactive_power_b": 4294964495,
+        "reactive_power_b": -2801,
         "active_power_c": 7989,
-        "reactive_power_c": 4294964266,
+        "reactive_power_c": -3030,
         "active_power_abc": 23618,
-        "reactive_power_abc": 4294960473,
+        "reactive_power_abc": -6823,
         "active_power_a_unit": "W",
         "reactive_power_a_unit": "VAr",
         "active_power_b_unit": "W",

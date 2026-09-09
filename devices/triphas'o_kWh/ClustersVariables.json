@@ -1,0 +1,11 @@
+[
+	{ "cid": "0x0000", "variables": ["kernel", "manufacturer", "model", "date", "position", "application_name"] },
+	{ "cid": "0x0050", "variables": ["main_or_external_voltage"] },
+	{ "cid": "0x8004", "variables": ["message_type", "nb_retry", "automatic_association", "data_rate", "ABP_dev_address", "OTA_app_EUI"] },
+	{ "cid": "0x0006", "variables": ["output"] },
+	{ "cid": "0x000F", "variables": ["index"] },
+	{ "cid": "0x800A", "variables": ["positive_active_energy_a", "positive_active_energy_b", "positive_active_energy_c", "positive_active_energy_abc", "negative_active_energy_a", "negative_active_energy_b", "negative_active_energy_c", "negative_active_energy_abc", "positive_reactive_energy_a", "positive_reactive_energy_b", "positive_reactive_energy_c", "positive_reactive_energy_abc", "negative_reactive_energy_a", "negative_reactive_energy_b", "negative_reactive_energy_c", "negative_reactive_energy_abc", "positive_active_power_a", "positive_active_power_b", "positive_active_power_c", "positive_active_power_abc", "negative_active_power_a", "negative_active_power_b", "negative_active_power_c", "negative_active_power_abc", "positive_reactive_power_a", "positive_reactive_power_b", "positive_reactive_power_c", "positive_reactive_power_abc", "negative_reactive_power_a", "negative_reactive_power_b", "negative_reactive_power_c", "negative_reactive_power_abc"] },
+	{ "cid": "0x800B", "variables": ["Vrms_a", "Vrms_b", "Vrms_c", "Irms_a", "Irms_b", "Irms_c", "angle_a", "angle_b", "angle_c"] },
+	{ "cid": "0x800D", "variables": ["Vrms_a", "Vrms_b", "Vrms_c", "Irms_a", "Irms_b", "Irms_c", "angle_a", "angle_b", "angle_c"] },
+	{ "cid": "0x8010", "variables": ["active_energy_a", "reactive_energy_a", "active_energy_b", "reactive_energy_b", "active_energy_c", "reactive_energy_c", "active_energy_abc", "reactive_energy_abc", "active_power_a", "reactive_power_a", "active_power_b", "reactive_power_b", "active_power_c", "reactive_power_c", "active_power_abc", "reactive_power_abc"] }
+]

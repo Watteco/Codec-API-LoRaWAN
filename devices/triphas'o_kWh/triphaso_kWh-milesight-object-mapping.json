@@ -1,0 +1,1051 @@
+{
+    "object": [
+        {
+            "id": "data.positive_active_energy_a",
+            "name": "Positive active energy phase A",
+            "value": "",
+            "unit": "kWh",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "UINT32",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 19,
+            "bacnet_unit_type": "UNITS_KILOWATT_HOURS"
+        },
+        {
+            "id": "data.positive_active_energy_b",
+            "name": "Positive active energy phase B",
+            "value": "",
+            "unit": "kWh",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "UINT32",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 19,
+            "bacnet_unit_type": "UNITS_KILOWATT_HOURS"
+        },
+        {
+            "id": "data.positive_active_energy_c",
+            "name": "Positive active energy phase C",
+            "value": "",
+            "unit": "kWh",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "UINT32",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 19,
+            "bacnet_unit_type": "UNITS_KILOWATT_HOURS"
+        },
+        {
+            "id": "data.positive_active_energy_abc",
+            "name": "Total positive active energy",
+            "value": "",
+            "unit": "kWh",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "UINT32",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 19,
+            "bacnet_unit_type": "UNITS_KILOWATT_HOURS"
+        },
+        {
+            "id": "data.negative_active_energy_a",
+            "name": "Negative active energy phase A",
+            "value": "",
+            "unit": "kWh",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "UINT32",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 19,
+            "bacnet_unit_type": "UNITS_KILOWATT_HOURS"
+        },
+        {
+            "id": "data.negative_active_energy_b",
+            "name": "Negative active energy phase B",
+            "value": "",
+            "unit": "kWh",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "UINT32",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 19,
+            "bacnet_unit_type": "UNITS_KILOWATT_HOURS"
+        },
+        {
+            "id": "data.negative_active_energy_c",
+            "name": "Negative active energy phase C",
+            "value": "",
+            "unit": "kWh",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "UINT32",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 19,
+            "bacnet_unit_type": "UNITS_KILOWATT_HOURS"
+        },
+        {
+            "id": "data.negative_active_energy_abc",
+            "name": "Total negative active energy",
+            "value": "",
+            "unit": "kWh",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "UINT32",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 19,
+            "bacnet_unit_type": "UNITS_KILOWATT_HOURS"
+        },
+        {
+            "id": "data.positive_reactive_energy_a",
+            "name": "Positive reactive energy phase A",
+            "value": "",
+            "unit": "kVArh",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "UINT32",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 243,
+            "bacnet_unit_type": "UNITS_KILOVOLT_AMPERE_HOURS_REACTIVE"
+        },
+        {
+            "id": "data.positive_reactive_energy_b",
+            "name": "Positive reactive energy phase B",
+            "value": "",
+            "unit": "kVArh",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "UINT32",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 243,
+            "bacnet_unit_type": "UNITS_KILOVOLT_AMPERE_HOURS_REACTIVE"
+        },
+        {
+            "id": "data.positive_reactive_energy_c",
+            "name": "Positive reactive energy phase C",
+            "value": "",
+            "unit": "kVArh",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "UINT32",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 243,
+            "bacnet_unit_type": "UNITS_KILOVOLT_AMPERE_HOURS_REACTIVE"
+        },
+        {
+            "id": "data.positive_reactive_energy_abc",
+            "name": "Total positive reactive energy",
+            "value": "",
+            "unit": "kVArh",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "UINT32",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 243,
+            "bacnet_unit_type": "UNITS_KILOVOLT_AMPERE_HOURS_REACTIVE"
+        },
+        {
+            "id": "data.negative_reactive_energy_a",
+            "name": "Negative reactive energy phase A",
+            "value": "",
+            "unit": "kVArh",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "UINT32",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 243,
+            "bacnet_unit_type": "UNITS_KILOVOLT_AMPERE_HOURS_REACTIVE"
+        },
+        {
+            "id": "data.negative_reactive_energy_b",
+            "name": "Negative reactive energy phase B",
+            "value": "",
+            "unit": "kVArh",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "UINT32",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 243,
+            "bacnet_unit_type": "UNITS_KILOVOLT_AMPERE_HOURS_REACTIVE"
+        },
+        {
+            "id": "data.negative_reactive_energy_c",
+            "name": "Negative reactive energy phase C",
+            "value": "",
+            "unit": "kVArh",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "UINT32",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 243,
+            "bacnet_unit_type": "UNITS_KILOVOLT_AMPERE_HOURS_REACTIVE"
+        },
+        {
+            "id": "data.negative_reactive_energy_abc",
+            "name": "Total negative reactive energy",
+            "value": "",
+            "unit": "kVArh",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "UINT32",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 243,
+            "bacnet_unit_type": "UNITS_KILOVOLT_AMPERE_HOURS_REACTIVE"
+        },
+        {
+            "id": "data.positive_active_power_a",
+            "name": "Positive active power phase A",
+            "value": "",
+            "unit": "W",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "UINT32",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 47,
+            "bacnet_unit_type": "UNITS_WATTS"
+        },
+        {
+            "id": "data.positive_active_power_b",
+            "name": "Positive active power phase B",
+            "value": "",
+            "unit": "W",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "UINT32",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 47,
+            "bacnet_unit_type": "UNITS_WATTS"
+        },
+        {
+            "id": "data.positive_active_power_c",
+            "name": "Positive active power phase C",
+            "value": "",
+            "unit": "W",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "UINT32",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 47,
+            "bacnet_unit_type": "UNITS_WATTS"
+        },
+        {
+            "id": "data.positive_active_power_abc",
+            "name": "Total positive active power",
+            "value": "",
+            "unit": "W",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "UINT32",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 47,
+            "bacnet_unit_type": "UNITS_WATTS"
+        },
+        {
+            "id": "data.negative_active_power_a",
+            "name": "Negative active power phase A",
+            "value": "",
+            "unit": "W",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "UINT32",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 47,
+            "bacnet_unit_type": "UNITS_WATTS"
+        },
+        {
+            "id": "data.negative_active_power_b",
+            "name": "Negative active power phase B",
+            "value": "",
+            "unit": "W",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "UINT32",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 47,
+            "bacnet_unit_type": "UNITS_WATTS"
+        },
+        {
+            "id": "data.negative_active_power_c",
+            "name": "Negative active power phase C",
+            "value": "",
+            "unit": "W",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "UINT32",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 47,
+            "bacnet_unit_type": "UNITS_WATTS"
+        },
+        {
+            "id": "data.negative_active_power_abc",
+            "name": "Total negative active power",
+            "value": "",
+            "unit": "W",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "UINT32",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 47,
+            "bacnet_unit_type": "UNITS_WATTS"
+        },
+        {
+            "id": "data.positive_reactive_power_a",
+            "name": "Positive reactive power phase A",
+            "value": "",
+            "unit": "VAr",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "UINT32",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 11,
+            "bacnet_unit_type": "UNITS_VOLT_AMPERES_REACTIVE"
+        },
+        {
+            "id": "data.positive_reactive_power_b",
+            "name": "Positive reactive power phase B",
+            "value": "",
+            "unit": "VAr",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "UINT32",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 11,
+            "bacnet_unit_type": "UNITS_VOLT_AMPERES_REACTIVE"
+        },
+        {
+            "id": "data.positive_reactive_power_c",
+            "name": "Positive reactive power phase C",
+            "value": "",
+            "unit": "VAr",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "UINT32",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 11,
+            "bacnet_unit_type": "UNITS_VOLT_AMPERES_REACTIVE"
+        },
+        {
+            "id": "data.positive_reactive_power_abc",
+            "name": "Total positive reactive power",
+            "value": "",
+            "unit": "VAr",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "UINT32",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 11,
+            "bacnet_unit_type": "UNITS_VOLT_AMPERES_REACTIVE"
+        },
+        {
+            "id": "data.negative_reactive_power_a",
+            "name": "Negative reactive power phase A",
+            "value": "",
+            "unit": "VAr",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "UINT32",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 11,
+            "bacnet_unit_type": "UNITS_VOLT_AMPERES_REACTIVE"
+        },
+        {
+            "id": "data.negative_reactive_power_b",
+            "name": "Negative reactive power phase B",
+            "value": "",
+            "unit": "VAr",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "UINT32",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 11,
+            "bacnet_unit_type": "UNITS_VOLT_AMPERES_REACTIVE"
+        },
+        {
+            "id": "data.negative_reactive_power_c",
+            "name": "Negative reactive power phase C",
+            "value": "",
+            "unit": "VAr",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "UINT32",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 11,
+            "bacnet_unit_type": "UNITS_VOLT_AMPERES_REACTIVE"
+        },
+        {
+            "id": "data.negative_reactive_power_abc",
+            "name": "Total negative reactive power",
+            "value": "",
+            "unit": "VAr",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "UINT32",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 11,
+            "bacnet_unit_type": "UNITS_VOLT_AMPERES_REACTIVE"
+        },
+        {
+            "id": "data.Vrms_a",
+            "name": "RMS voltage phase A",
+            "value": "",
+            "unit": "V",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "FLOAT",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 5,
+            "bacnet_unit_type": "UNITS_VOLTS"
+        },
+        {
+            "id": "data.Vrms_b",
+            "name": "RMS voltage phase B",
+            "value": "",
+            "unit": "V",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "FLOAT",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 5,
+            "bacnet_unit_type": "UNITS_VOLTS"
+        },
+        {
+            "id": "data.Vrms_c",
+            "name": "RMS voltage phase C",
+            "value": "",
+            "unit": "V",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "FLOAT",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 5,
+            "bacnet_unit_type": "UNITS_VOLTS"
+        },
+        {
+            "id": "data.Irms_a",
+            "name": "RMS current phase A",
+            "value": "",
+            "unit": "A",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "FLOAT",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 3,
+            "bacnet_unit_type": "UNITS_AMPERES"
+        },
+        {
+            "id": "data.Irms_b",
+            "name": "RMS current phase B",
+            "value": "",
+            "unit": "A",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "FLOAT",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 3,
+            "bacnet_unit_type": "UNITS_AMPERES"
+        },
+        {
+            "id": "data.Irms_c",
+            "name": "RMS current phase C",
+            "value": "",
+            "unit": "A",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "FLOAT",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 3,
+            "bacnet_unit_type": "UNITS_AMPERES"
+        },
+        {
+            "id": "data.angle_a",
+            "name": "Phase angle A",
+            "value": "",
+            "unit": "deg",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "INT16",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 90,
+            "bacnet_unit_type": "UNITS_DEGREES_ANGULAR"
+        },
+        {
+            "id": "data.angle_b",
+            "name": "Phase angle B",
+            "value": "",
+            "unit": "deg",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "INT16",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 90,
+            "bacnet_unit_type": "UNITS_DEGREES_ANGULAR"
+        },
+        {
+            "id": "data.angle_c",
+            "name": "Phase angle C",
+            "value": "",
+            "unit": "deg",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "INT16",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 90,
+            "bacnet_unit_type": "UNITS_DEGREES_ANGULAR"
+        },
+        {
+            "id": "data.kernel",
+            "name": "Kernel version",
+            "value": "",
+            "unit": "",
+            "access_mode": "R",
+            "data_type": "TEXT",
+            "value_type": "STRING",
+            "bacnet_type": "character_string_value_object",
+            "bacnet_unit_type_id": 95,
+            "bacnet_unit_type": "UNITS_NO_UNITS",
+            "max_length": 16
+        },
+        {
+            "id": "data.manufacturer",
+            "name": "Manufacturer name",
+            "value": "",
+            "unit": "",
+            "access_mode": "R",
+            "data_type": "TEXT",
+            "value_type": "STRING",
+            "bacnet_type": "character_string_value_object",
+            "bacnet_unit_type_id": 95,
+            "bacnet_unit_type": "UNITS_NO_UNITS",
+            "max_length": 16
+        },
+        {
+            "id": "data.model",
+            "name": "Device model",
+            "value": "",
+            "unit": "",
+            "access_mode": "R",
+            "data_type": "TEXT",
+            "value_type": "STRING",
+            "bacnet_type": "character_string_value_object",
+            "bacnet_unit_type_id": 95,
+            "bacnet_unit_type": "UNITS_NO_UNITS",
+            "max_length": 16
+        },
+        {
+            "id": "data.date",
+            "name": "Manufacturing date",
+            "value": "",
+            "unit": "",
+            "access_mode": "R",
+            "data_type": "TEXT",
+            "value_type": "STRING",
+            "bacnet_type": "character_string_value_object",
+            "bacnet_unit_type_id": 95,
+            "bacnet_unit_type": "UNITS_NO_UNITS",
+            "max_length": 16
+        },
+        {
+            "id": "data.position",
+            "name": "Device position",
+            "value": "",
+            "unit": "",
+            "access_mode": "R",
+            "data_type": "TEXT",
+            "value_type": "STRING",
+            "bacnet_type": "character_string_value_object",
+            "bacnet_unit_type_id": 95,
+            "bacnet_unit_type": "UNITS_NO_UNITS",
+            "max_length": 8
+        },
+        {
+            "id": "data.application_name",
+            "name": "Application name",
+            "value": "",
+            "unit": "",
+            "access_mode": "R",
+            "data_type": "TEXT",
+            "value_type": "STRING",
+            "bacnet_type": "character_string_value_object",
+            "bacnet_unit_type_id": 95,
+            "bacnet_unit_type": "UNITS_NO_UNITS",
+            "max_length": 16
+        },
+        {
+            "id": "data.main_or_external_voltage",
+            "name": "Main or external voltage",
+            "value": "",
+            "unit": "V",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "FLOAT",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 5,
+            "bacnet_unit_type": "UNITS_VOLTS"
+        },
+        {
+            "id": "data.message_type",
+            "name": "Message type",
+            "value": "",
+            "unit": "",
+            "access_mode": "R",
+            "data_type": "TEXT",
+            "value_type": "STRING",
+            "bacnet_type": "character_string_value_object",
+            "bacnet_unit_type_id": 95,
+            "bacnet_unit_type": "UNITS_NO_UNITS",
+            "max_length": 16
+        },
+        {
+            "id": "data.nb_retry",
+            "name": "Number of retries",
+            "value": "",
+            "unit": "",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "UINT8",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 95,
+            "bacnet_unit_type": "UNITS_NO_UNITS"
+        },
+        {
+            "id": "data.automatic_association",
+            "name": "automatic_association",
+            "value": "",
+            "unit": "",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "FLOAT",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 95,
+            "bacnet_unit_type": "UNITS_NO_UNITS"
+        },
+        {
+            "id": "data.data_rate",
+            "name": "LoRaWAN data rate",
+            "value": "",
+            "unit": "",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "UINT8",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 95,
+            "bacnet_unit_type": "UNITS_NO_UNITS"
+        },
+        {
+            "id": "data.ABP_dev_address",
+            "name": "ABP device address",
+            "value": "",
+            "unit": "",
+            "access_mode": "R",
+            "data_type": "TEXT",
+            "value_type": "STRING",
+            "bacnet_type": "character_string_value_object",
+            "bacnet_unit_type_id": 95,
+            "bacnet_unit_type": "UNITS_NO_UNITS",
+            "max_length": 8
+        },
+        {
+            "id": "data.OTA_app_EUI",
+            "name": "OTA application EUI",
+            "value": "",
+            "unit": "",
+            "access_mode": "R",
+            "data_type": "TEXT",
+            "value_type": "STRING",
+            "bacnet_type": "character_string_value_object",
+            "bacnet_unit_type_id": 95,
+            "bacnet_unit_type": "UNITS_NO_UNITS",
+            "max_length": 16
+        },
+        {
+            "id": "data.output",
+            "name": "Output state",
+            "value": "",
+            "unit": "",
+            "access_mode": "R",
+            "data_type": "TEXT",
+            "value_type": "STRING",
+            "bacnet_type": "character_string_value_object",
+            "bacnet_unit_type_id": 95,
+            "bacnet_unit_type": "UNITS_NO_UNITS",
+            "max_length": 4
+        },
+        {
+            "id": "data.index",
+            "name": "Pulse counter index",
+            "value": "",
+            "unit": "",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "UINT32",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 95,
+            "bacnet_unit_type": "UNITS_NO_UNITS"
+        },
+        {
+            "id": "data.active_energy_a",
+            "name": "Active energy phase A",
+            "value": "",
+            "unit": "kWh",
+            "access_mode": "R",
+            "data_type": "BOOL",
+            "value_type": "BOOLEAN",
+            "bacnet_type": "binary_value_object",
+            "bacnet_unit_type_id": 19,
+            "bacnet_unit_type": "UNITS_KILOWATT_HOURS",
+            "values": [
+                {
+                    "value": 0,
+                    "name": "false"
+                },
+                {
+                    "value": 1,
+                    "name": "true"
+                }
+            ]
+        },
+        {
+            "id": "data.reactive_energy_a",
+            "name": "Reactive energy phase A",
+            "value": "",
+            "unit": "kVArh",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "INT32",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 243,
+            "bacnet_unit_type": "UNITS_KILOVOLT_AMPERE_HOURS_REACTIVE"
+        },
+        {
+            "id": "data.active_energy_b",
+            "name": "Active energy phase B",
+            "value": "",
+            "unit": "kWh",
+            "access_mode": "R",
+            "data_type": "BOOL",
+            "value_type": "BOOLEAN",
+            "bacnet_type": "binary_value_object",
+            "bacnet_unit_type_id": 19,
+            "bacnet_unit_type": "UNITS_KILOWATT_HOURS",
+            "values": [
+                {
+                    "value": 0,
+                    "name": "false"
+                },
+                {
+                    "value": 1,
+                    "name": "true"
+                }
+            ]
+        },
+        {
+            "id": "data.reactive_energy_b",
+            "name": "Reactive energy phase B",
+            "value": "",
+            "unit": "kVArh",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "INT32",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 243,
+            "bacnet_unit_type": "UNITS_KILOVOLT_AMPERE_HOURS_REACTIVE"
+        },
+        {
+            "id": "data.active_energy_c",
+            "name": "Active energy phase C",
+            "value": "",
+            "unit": "kWh",
+            "access_mode": "R",
+            "data_type": "BOOL",
+            "value_type": "BOOLEAN",
+            "bacnet_type": "binary_value_object",
+            "bacnet_unit_type_id": 19,
+            "bacnet_unit_type": "UNITS_KILOWATT_HOURS",
+            "values": [
+                {
+                    "value": 0,
+                    "name": "false"
+                },
+                {
+                    "value": 1,
+                    "name": "true"
+                }
+            ]
+        },
+        {
+            "id": "data.reactive_energy_c",
+            "name": "Reactive energy phase C",
+            "value": "",
+            "unit": "kVArh",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "INT32",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 243,
+            "bacnet_unit_type": "UNITS_KILOVOLT_AMPERE_HOURS_REACTIVE"
+        },
+        {
+            "id": "data.active_energy_abc",
+            "name": "Total active energy",
+            "value": "",
+            "unit": "kWh",
+            "access_mode": "R",
+            "data_type": "BOOL",
+            "value_type": "BOOLEAN",
+            "bacnet_type": "binary_value_object",
+            "bacnet_unit_type_id": 19,
+            "bacnet_unit_type": "UNITS_KILOWATT_HOURS",
+            "values": [
+                {
+                    "value": 0,
+                    "name": "false"
+                },
+                {
+                    "value": 1,
+                    "name": "true"
+                }
+            ]
+        },
+        {
+            "id": "data.reactive_energy_abc",
+            "name": "Total reactive energy",
+            "value": "",
+            "unit": "kVArh",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "INT32",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 243,
+            "bacnet_unit_type": "UNITS_KILOVOLT_AMPERE_HOURS_REACTIVE"
+        },
+        {
+            "id": "data.active_power_a",
+            "name": "Active power phase A",
+            "value": "",
+            "unit": "W",
+            "access_mode": "R",
+            "data_type": "BOOL",
+            "value_type": "BOOLEAN",
+            "bacnet_type": "binary_value_object",
+            "bacnet_unit_type_id": 47,
+            "bacnet_unit_type": "UNITS_WATTS",
+            "values": [
+                {
+                    "value": 0,
+                    "name": "false"
+                },
+                {
+                    "value": 1,
+                    "name": "true"
+                }
+            ]
+        },
+        {
+            "id": "data.reactive_power_a",
+            "name": "Reactive power phase A",
+            "value": "",
+            "unit": "VAr",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "INT32",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 11,
+            "bacnet_unit_type": "UNITS_VOLT_AMPERES_REACTIVE"
+        },
+        {
+            "id": "data.active_power_b",
+            "name": "Active power phase B",
+            "value": "",
+            "unit": "W",
+            "access_mode": "R",
+            "data_type": "BOOL",
+            "value_type": "BOOLEAN",
+            "bacnet_type": "binary_value_object",
+            "bacnet_unit_type_id": 47,
+            "bacnet_unit_type": "UNITS_WATTS",
+            "values": [
+                {
+                    "value": 0,
+                    "name": "false"
+                },
+                {
+                    "value": 1,
+                    "name": "true"
+                }
+            ]
+        },
+        {
+            "id": "data.reactive_power_b",
+            "name": "Reactive power phase B",
+            "value": "",
+            "unit": "VAr",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "INT32",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 11,
+            "bacnet_unit_type": "UNITS_VOLT_AMPERES_REACTIVE"
+        },
+        {
+            "id": "data.active_power_c",
+            "name": "Active power phase C",
+            "value": "",
+            "unit": "W",
+            "access_mode": "R",
+            "data_type": "BOOL",
+            "value_type": "BOOLEAN",
+            "bacnet_type": "binary_value_object",
+            "bacnet_unit_type_id": 47,
+            "bacnet_unit_type": "UNITS_WATTS",
+            "values": [
+                {
+                    "value": 0,
+                    "name": "false"
+                },
+                {
+                    "value": 1,
+                    "name": "true"
+                }
+            ]
+        },
+        {
+            "id": "data.reactive_power_c",
+            "name": "Reactive power phase C",
+            "value": "",
+            "unit": "VAr",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "INT32",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 11,
+            "bacnet_unit_type": "UNITS_VOLT_AMPERES_REACTIVE"
+        },
+        {
+            "id": "data.active_power_abc",
+            "name": "Total active power",
+            "value": "",
+            "unit": "W",
+            "access_mode": "R",
+            "data_type": "BOOL",
+            "value_type": "BOOLEAN",
+            "bacnet_type": "binary_value_object",
+            "bacnet_unit_type_id": 47,
+            "bacnet_unit_type": "UNITS_WATTS",
+            "values": [
+                {
+                    "value": 0,
+                    "name": "false"
+                },
+                {
+                    "value": 1,
+                    "name": "true"
+                }
+            ]
+        },
+        {
+            "id": "data.reactive_power_abc",
+            "name": "Total reactive power",
+            "value": "",
+            "unit": "VAr",
+            "access_mode": "R",
+            "data_type": "NUMBER",
+            "value_type": "INT32",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 11,
+            "bacnet_unit_type": "UNITS_VOLT_AMPERES_REACTIVE"
+        },
+        {
+            "id": "data.sendHexFrame",
+            "name": "Send custom Hex Frame",
+            "value": "",
+            "unit": "",
+            "access_mode": "W",
+            "data_type": "TEXT",
+            "value_type": "STRING",
+            "bacnet_type": "character_string_value_object",
+            "bacnet_unit_type_id": 95,
+            "bacnet_unit_type": "UNITS_NO_UNITS",
+            "max_length": 128
+        },
+        {
+            "id": "data.sendConfirmedMode",
+            "name": "Send Confirmed Mode",
+            "value": "",
+            "unit": "",
+            "access_mode": "W",
+            "data_type": "NUMBER",
+            "value_type": "UINT8",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 95,
+            "bacnet_unit_type": "UNITS_NO_UNITS"
+        },
+        {
+            "id": "data.sendReboot",
+            "name": "Send Reboot command",
+            "value": "",
+            "unit": "",
+            "access_mode": "W",
+            "data_type": "BOOL",
+            "value_type": "BOOLEAN",
+            "bacnet_type": "binary_value_object",
+            "bacnet_unit_type_id": 95,
+            "bacnet_unit_type": "UNITS_NO_UNITS",
+            "values": [
+                {
+                    "value": 0,
+                    "name": "false"
+                },
+                {
+                    "value": 1,
+                    "name": "true"
+                }
+            ]
+        },
+        {
+            "id": "data.sendFactoryReset",
+            "name": "Send Factory Reset command",
+            "value": "",
+            "unit": "",
+            "access_mode": "W",
+            "data_type": "BOOL",
+            "value_type": "BOOLEAN",
+            "bacnet_type": "binary_value_object",
+            "bacnet_unit_type_id": 95,
+            "bacnet_unit_type": "UNITS_NO_UNITS",
+            "values": [
+                {
+                    "value": 0,
+                    "name": "false"
+                },
+                {
+                    "value": 1,
+                    "name": "true"
+                }
+            ]
+        },
+        {
+            "id": "data.sendLoraRetries",
+            "name": "Send LoRa Retries",
+            "value": "",
+            "unit": "",
+            "access_mode": "W",
+            "data_type": "NUMBER",
+            "value_type": "UINT8",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 95,
+            "bacnet_unit_type": "UNITS_NO_UNITS"
+        },
+        {
+            "id": "data.sendLoraRejoin",
+            "name": "Send LoRa Rejoin command",
+            "value": "",
+            "unit": "min",
+            "access_mode": "W",
+            "data_type": "NUMBER",
+            "value_type": "UINT16",
+            "bacnet_type": "analog_value_object",
+            "bacnet_unit_type_id": 72,
+            "bacnet_unit_type": "UNITS_MINUTES"
+        }
+    ]
+}

@@ -1,0 +1,305 @@
+{
+  "description": "Watteco triphas'o kWh v1.1.9",
+  "properties": {
+    "sendHexFrame": {
+      "type": "string",
+      "downlink": true
+    },
+    "sendConfirmedMode": {
+      "type": "uint8",
+      "downlink": true
+    },
+    "sendReboot": {
+      "type": "bool",
+      "downlink": true
+    },
+    "sendFactoryReset": {
+      "type": "bool",
+      "downlink": true
+    },
+    "sendLoraRetries": {
+      "type": "uint8",
+      "downlink": true
+    },
+    "sendLoraRejoin": {
+      "type": "uint16",
+      "downlink": true,
+      "units": "min"
+    },
+    "kernel": {
+      "type": "string"
+    },
+    "manufacturer": {
+      "type": "string"
+    },
+    "model": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string"
+    },
+    "position": {
+      "type": "string"
+    },
+    "application_name": {
+      "type": "string"
+    },
+    "main_or_external_voltage": {
+      "type": "float",
+      "units": "V"
+    },
+    "message_type": {
+      "type": "string"
+    },
+    "nb_retry": {
+      "type": "uint8"
+    },
+    "automatic_association": {
+      "type": "float"
+    },
+    "data_rate": {
+      "type": "uint8"
+    },
+    "ABP_dev_address": {
+      "type": "string"
+    },
+    "OTA_app_EUI": {
+      "type": "string"
+    },
+    "output": {
+      "type": "string"
+    },
+    "index": {
+      "type": "uint32"
+    },
+    "positive_active_energy_a": {
+      "type": "uint32",
+      "units": "kWh"
+    },
+    "positive_active_energy_b": {
+      "type": "uint32",
+      "units": "kWh"
+    },
+    "positive_active_energy_c": {
+      "type": "uint32",
+      "units": "kWh"
+    },
+    "positive_active_energy_abc": {
+      "type": "uint32",
+      "units": "kWh"
+    },
+    "negative_active_energy_a": {
+      "type": "uint32",
+      "units": "kWh"
+    },
+    "negative_active_energy_b": {
+      "type": "uint32",
+      "units": "kWh"
+    },
+    "negative_active_energy_c": {
+      "type": "uint32",
+      "units": "kWh"
+    },
+    "negative_active_energy_abc": {
+      "type": "uint32",
+      "units": "kWh"
+    },
+    "positive_reactive_energy_a": {
+      "type": "uint32",
+      "units": "kVArh"
+    },
+    "positive_reactive_energy_b": {
+      "type": "uint32",
+      "units": "kVArh"
+    },
+    "positive_reactive_energy_c": {
+      "type": "uint32",
+      "units": "kVArh"
+    },
+    "positive_reactive_energy_abc": {
+      "type": "uint32",
+      "units": "kVArh"
+    },
+    "negative_reactive_energy_a": {
+      "type": "uint32",
+      "units": "kVArh"
+    },
+    "negative_reactive_energy_b": {
+      "type": "uint32",
+      "units": "kVArh"
+    },
+    "negative_reactive_energy_c": {
+      "type": "uint32",
+      "units": "kVArh"
+    },
+    "negative_reactive_energy_abc": {
+      "type": "uint32",
+      "units": "kVArh"
+    },
+    "positive_active_power_a": {
+      "type": "uint32",
+      "units": "W"
+    },
+    "positive_active_power_b": {
+      "type": "uint32",
+      "units": "W"
+    },
+    "positive_active_power_c": {
+      "type": "uint32",
+      "units": "W"
+    },
+    "positive_active_power_abc": {
+      "type": "uint32",
+      "units": "W"
+    },
+    "negative_active_power_a": {
+      "type": "uint32",
+      "units": "W"
+    },
+    "negative_active_power_b": {
+      "type": "uint32",
+      "units": "W"
+    },
+    "negative_active_power_c": {
+      "type": "uint32",
+      "units": "W"
+    },
+    "negative_active_power_abc": {
+      "type": "uint32",
+      "units": "W"
+    },
+    "positive_reactive_power_a": {
+      "type": "uint32",
+      "units": "VAr"
+    },
+    "positive_reactive_power_b": {
+      "type": "uint32",
+      "units": "VAr"
+    },
+    "positive_reactive_power_c": {
+      "type": "uint32",
+      "units": "VAr"
+    },
+    "positive_reactive_power_abc": {
+      "type": "uint32",
+      "units": "VAr"
+    },
+    "negative_reactive_power_a": {
+      "type": "uint32",
+      "units": "VAr"
+    },
+    "negative_reactive_power_b": {
+      "type": "uint32",
+      "units": "VAr"
+    },
+    "negative_reactive_power_c": {
+      "type": "uint32",
+      "units": "VAr"
+    },
+    "negative_reactive_power_abc": {
+      "type": "uint32",
+      "units": "VAr"
+    },
+    "Vrms_a": {
+      "type": "float",
+      "units": "V"
+    },
+    "Vrms_b": {
+      "type": "float",
+      "units": "V"
+    },
+    "Vrms_c": {
+      "type": "float",
+      "units": "V"
+    },
+    "Irms_a": {
+      "type": "float",
+      "units": "A"
+    },
+    "Irms_b": {
+      "type": "float",
+      "units": "A"
+    },
+    "Irms_c": {
+      "type": "float",
+      "units": "A"
+    },
+    "angle_a": {
+      "type": "int16",
+      "units": "deg"
+    },
+    "angle_b": {
+      "type": "int16",
+      "units": "deg"
+    },
+    "angle_c": {
+      "type": "int16",
+      "units": "deg"
+    },
+    "active_energy_a": {
+      "type": "int32",
+      "units": "kWh"
+    },
+    "reactive_energy_a": {
+      "type": "int32",
+      "units": "kVArh"
+    },
+    "active_energy_b": {
+      "type": "int32",
+      "units": "kWh"
+    },
+    "reactive_energy_b": {
+      "type": "int32",
+      "units": "kVArh"
+    },
+    "active_energy_c": {
+      "type": "int32",
+      "units": "kWh"
+    },
+    "reactive_energy_c": {
+      "type": "int32",
+      "units": "kVArh"
+    },
+    "active_energy_abc": {
+      "type": "int32",
+      "units": "kWh"
+    },
+    "reactive_energy_abc": {
+      "type": "int32",
+      "units": "kVArh"
+    },
+    "active_power_a": {
+      "type": "int32",
+      "units": "W"
+    },
+    "reactive_power_a": {
+      "type": "int32",
+      "units": "VAr"
+    },
+    "active_power_b": {
+      "type": "int32",
+      "units": "W"
+    },
+    "reactive_power_b": {
+      "type": "int32",
+      "units": "VAr"
+    },
+    "active_power_c": {
+      "type": "int32",
+      "units": "W"
+    },
+    "reactive_power_c": {
+      "type": "int32",
+      "units": "VAr"
+    },
+    "active_power_abc": {
+      "type": "int32",
+      "units": "W"
+    },
+    "reactive_power_abc": {
+      "type": "int32",
+      "units": "VAr"
+    }
+  },
+  "decoder": "triphaso_kWh-decoder.js"
+}
