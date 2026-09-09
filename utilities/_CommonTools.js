@@ -973,6 +973,84 @@ function generateDeviceDriverInfoMarkdown(baseDirectory, distribDirectory, outpu
 }
 
 /**
+ * Returns the BACnet object rows applicable to a device.
+ *
+ * The CSV can define several rows with the same object id for different model
+ * groups (for example, a measurement expressed in different units). Model
+ * selection is only applied to duplicated ids; unique rows retain the legacy
+ * behaviour because a few existing codecs use variables outside the models
+ * declared by the CSV. If no selector matches a duplicated id, its legacy
+ * unfiltered rows are preserved as well.
+ */
+function getDeviceBacnetObjectRows(bacnetMappingContent, deviceName) {
+    let section = null;
+    const modelSelectors = {};
+    const objectRows = [];
+
+    bacnetMappingContent.split('\n').forEach(line => {
+        const trimmedLine = line.trim();
+        if (!trimmedLine || trimmedLine.startsWith('//')) return;
+
+        if (trimmedLine.startsWith('##')) {
+            section = trimmedLine.slice(2).split(';')[0].trim().toLowerCase();
+            return;
+        }
+
+        const columns = line.split(';');
+        if (section === 'models' && columns[0].trim() !== 'name') {
+            const groupName = columns[0].trim();
+            const selectors = columns.slice(1).join(';');
+            const modelIds = [];
+            const selectorRegex = /\{mId:\s*([^}]+)\}/g;
+            let match;
+            while ((match = selectorRegex.exec(selectors)) !== null) {
+                modelIds.push(match[1].trim().toLowerCase());
+            }
+            modelSelectors[groupName] = modelIds;
+        } else if (section === 'objects' && columns[0].trim() !== 'id' && columns.length >= 8) {
+            objectRows.push(columns);
+        }
+    });
+
+    const modelId = deviceName.replace(/_/g, '-').replace(/['"]/g, '').toLowerCase();
+    const applicableGroups = new Set(
+        Object.entries(modelSelectors)
+            .filter(([, modelIds]) => modelIds.includes(modelId))
+            .map(([groupName]) => groupName)
+    );
+
+    if (applicableGroups.size === 0) return objectRows;
+
+    const rowsById = new Map();
+    objectRows.forEach(columns => {
+        const id = columns[0].trim();
+        if (!rowsById.has(id)) rowsById.set(id, []);
+        rowsById.get(id).push(columns);
+    });
+
+    const selectedRows = new Set();
+    rowsById.forEach(rows => {
+        if (rows.length === 1) {
+            selectedRows.add(rows[0]);
+            return;
+        }
+
+        const applicableRows = rows.filter(columns => {
+            if (columns.length <= 11 || columns[11].trim() === '') return true;
+            return columns[11]
+                .split(',')
+                .map(model => model.trim())
+                .some(model => applicableGroups.has(model));
+        });
+
+        (applicableRows.length > 0 ? applicableRows : rows)
+            .forEach(columns => selectedRows.add(columns));
+    });
+
+    return objectRows.filter(columns => selectedRows.has(columns));
+}
+
+/**
  * Generates a units.auto.js file for a specific device by matching variable names 
  * with units from the BACnet mapping CSV file.
  * 
@@ -1016,10 +1094,8 @@ function generateDeviceUnitsAutoFile(devicePath, bacnetMappingPath = null) {
         
         // 1. Parse the BACnet mapping CSV to extract variable units
         const bacnetMappingContent = fs.readFileSync(bacnetMappingPath, 'utf8');
-        const bacnetRows = bacnetMappingContent.split('\n')
-            .filter(line => !line.startsWith('//') && !line.startsWith('##') && line.trim() !== '')
-            .map(line => {
-                const columns = line.split(';');
+        const bacnetRows = getDeviceBacnetObjectRows(bacnetMappingContent, deviceName)
+            .map(columns => {
                 if (columns.length >= 8) {
                     return {
                         id: columns[0].trim(),
@@ -1200,10 +1276,8 @@ function generateMultitechBacnetDefinition(devicePath, bacnetMappingPath = null,
         const bacnetMap = {};
         
         // Process BACnet mapping CSV
-        bacnetMappingContent.split('\n')
-            .filter(line => !line.startsWith('//') && !line.startsWith('##') && line.trim() !== '')
-            .forEach(line => {
-                const columns = line.split(';');
+        getDeviceBacnetObjectRows(bacnetMappingContent, deviceName)
+            .forEach(columns => {
                 if (columns.length >= 8) {
                     const id = columns[0].trim();
                     const unit = columns[7].trim();
@@ -1569,10 +1643,8 @@ function generateMilesightBacnetMapping(devicePath, bacnetMappingPath = null, ba
         const bacnetDescriptions = {};
         const bacnetMap = {}; // Define bacnetMap here for use in determineDataType
         
-        bacnetMappingContent.split('\n')
-            .filter(line => !line.startsWith('//') && !line.startsWith('##') && line.trim() !== '')
-            .forEach(line => {
-                const columns = line.split(';');
+        getDeviceBacnetObjectRows(bacnetMappingContent, deviceName)
+            .forEach(columns => {
                 if (columns.length >= 8) {
                     const id = columns[0].trim();
                     const name = columns[1].trim();
@@ -2019,6 +2091,7 @@ module.exports = {
     getDevices,
     updateJSON_name_description,
     generateDeviceDriverInfoMarkdown,
+    getDeviceBacnetObjectRows,
     generateDeviceUnitsAutoFile,
     generateAllDeviceUnitsAutoFiles,
     generateMultitechBacnetDefinition,
