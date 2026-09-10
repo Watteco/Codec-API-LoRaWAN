@@ -65,9 +65,9 @@
   },
   {
     "type": "uplink",
-    "description": "uplink standard report containing several master-slave informations | payload:110A80090000411F06000F010304FFFFFFFE01030400000004010308FFFEFFFF0005000001030C41A5999A3333429A7AE1428F",
+    "description": "uplink standard report containing several master-slave informations | payload:110A80090000412B06000F010304FFFFFFFE01030400000004010308FFFEFFFF0005000001030C41A5999A3333429A7AE1428F",
     "input": {
-      "bytes": "110a80090000411f06000f010304fffffffe01030400000004010308fffeffff0005000001030c41a5999a3333429a7ae1428f",
+      "bytes": "110a80090000412B06000f010304fffffffe01030400000004010308fffeffff0005000001030c41a5999a3333429a7ae1428f",
       "fPort": 125,
       "recvTime": "2023-07-19T07:51:25.508Z"
     },

@@ -49,9 +49,9 @@
   },
   {
     "type": "uplink",
-    "description": "uplink standard report containing temperature value (Temperature EP1) | payload:310A040200002109C4",
+    "description": "uplink standard report containing temperature value (Temperature EP1) | payload:310A040200002909C4",
     "input": {
-      "bytes": "310a040200002109c4",
+      "bytes": "310a040200002909c4",
       "fPort": 125,
       "recvTime": "2024-01-15T10:00:00.000Z"
     },
