@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "name": "TH",
+  "version": "1.1.9",
+  "description": "Driver for TH sensor",
+  "source": {
+    "repository": "https://github.com/Watteco/Codec-API-LoRaWAN",
+    "commit": "c0e243b31da21279beda0746e31dfd15bb8517fe",
+    "path": "devices/th"
+  },
+  "artifacts": {
+    "examples.json": {
+      "sha256": "2f22146e6ee7e1de6fa5d15eaddb0b605433b709ec324da7dd524e673a85f251",
+      "size": 9575
+    },
+    "main.js": {
+      "sha256": "3207dac7fb455374d6e8f97f8db16881de514b4c9ad9766ab8fa13db5827e3cb",
+      "size": 44964
+    },
+    "metadata.json": {
+      "sha256": "1019ca17545dceb57d02512eb658af20e4f11f7f6a111ae0a550b2faa999dae1",
+      "size": 379
+    },
+    "th-milesight-object-mapping.json": {
+      "sha256": "9c4d35e5ded4b38b5114469dfb13004d910c546e85481da75d12de49d1991f94",
+      "size": 10570
+    },
+    "th-multitechBacnet-definition.json": {
+      "sha256": "abe6de51541b2ba23f4637c62fdc9f176c443efb4e305977883d371b8f4ae7af",
+      "size": 1525
+    },
+    "uplink.schema.json": {
+      "sha256": "23151bb9c08ec563ada03d196f2e446c791596d8bbbe50e7056ae8ec9a5d08a5",
+      "size": 780
+    }
+  }
+}

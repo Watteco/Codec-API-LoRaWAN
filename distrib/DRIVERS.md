@@ -331,7 +331,7 @@
 </details>
 
 <details>
-<summary>TH [1.1.8]</summary>
+<summary>TH [1.1.9]</summary>
 
   [NPM: watteco-th](https://www.npmjs.com/package/watteco-th)
 - **basic (CID: 0x0000)** : kernel, manufacturer, model, date, position, application_name
