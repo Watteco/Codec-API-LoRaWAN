@@ -257,14 +257,18 @@ Son execution doit être faite dans le dossier `utilities`, car le chemin écrit
 
 ### watteco_deployment
 
-Le fichier `watteco_deployment.js` permet de copier différents fichiers de devices à distrib pour un ou plusieurs device(s) (sans option c'est tous)  
+Le fichier `watteco_deployment.js` permet de copier différents fichiers de devices à distrib pour un ou plusieurs device(s) (sans option c'est tous)
 Cet utilitaire va aussi ajouter le fichier de synthèse de tous les codec disponibles: DRIVERS.md. Ce fichier est construit à partir du fichier Clusters.json et de tous les fichiers <devices>/*/ClustersVariables.json
 
+Avant le déploiement, les sources et les fichiers `main.js` reconstruits doivent être committés et le dépôt doit être propre. Le commit courant est enregistré comme commit source dans un fichier `manifest.json` généré pour chaque codec distribué. Ce manifeste contient également le nom, la version, la description et les empreintes SHA-256 des artefacts finaux.
+
 ```bash
-    node watteco_deployment.js [<devices_filter>]
+    node watteco_deployment.js <watteco_path> [<devices_filter>] [--yes]
     where
     <devices_to_process>: Regular expression like "vaqao*" or "flash'o|intens'o|vaqa'o" or "Vaqao*|flash'o"
 ```
+
+L'option `--yes` (ou `-y`) supprime la demande de confirmation interactive, notamment pour une exécution automatisée. Après génération et vérification des manifestes, les modifications de `distrib` doivent être contrôlées puis enregistrées dans un commit de distribution distinct.
 
 ### actility_deployment
 
