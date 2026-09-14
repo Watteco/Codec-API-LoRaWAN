@@ -262,6 +262,8 @@ Cet utilitaire va aussi ajouter le fichier de synthèse de tous les codec dispon
 
 Avant le déploiement, les sources et les fichiers `main.js` reconstruits doivent être committés et le dépôt doit être propre. Le commit courant est enregistré comme commit source dans un fichier `manifest.json` généré pour chaque codec distribué. Ce manifeste contient également le nom, la version, la description et les empreintes SHA-256 des artefacts finaux.
 
+Le fichier optionnel `main-thingsboard.js` reste disponible dans `distrib`, mais il n'est ajouté au manifeste que s'il a été explicitement reconstruit pour la version distribuée. Une ancienne variante ThingsBoard peut ainsi être conservée sans être présentée comme un artefact de la release courante.
+
 ```bash
     node watteco_deployment.js <watteco_path> [<devices_filter>] [--yes]
     where

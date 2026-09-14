@@ -184,8 +184,24 @@ function generateManifest(wattecoPath, distribPath, device, identity, source) {
   const distribDevicePath = path.join(distribPath, device);
   const artifacts = {};
 
+  const thingsboardFilename = "main-thingsboard.js";
+  const thingsboardPath = path.join(distribDevicePath, thingsboardFilename);
+  const expectedThingsboardHeader = `/*${device} v${identity.version}*/`;
+  const includeThingsboard = !fs.existsSync(thingsboardPath) ||
+    fs.readFileSync(thingsboardPath, "utf8").startsWith(expectedThingsboardHeader);
+
+  if (fs.existsSync(thingsboardPath) && !includeThingsboard) {
+    console.log(
+      `  - Excluded ${thingsboardFilename} from ${MANIFEST_FILE}: it was not rebuilt for version ${identity.version}`
+    );
+  }
+
   const artifactFiles = fs.readdirSync(distribDevicePath, { withFileTypes: true })
-    .filter((entry) => entry.isFile() && entry.name !== MANIFEST_FILE)
+    .filter((entry) =>
+      entry.isFile() &&
+      entry.name !== MANIFEST_FILE &&
+      (entry.name !== thingsboardFilename || includeThingsboard)
+    )
     .map((entry) => entry.name)
     .sort((left, right) => left.localeCompare(right));
 
