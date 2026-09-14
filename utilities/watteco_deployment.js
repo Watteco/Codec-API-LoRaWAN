@@ -2,7 +2,7 @@
  * Publish rebuilt device artifacts from devices/ to distrib/.
  *
  * Usage:
- *   node watteco_deployment.js <watteco_path> [devices_filter] [--yes]
+ *   node watteco_deployment.js <watteco_path> [devices_filter] [--force-version] [--yes]
  *
  * The current Git HEAD is the source commit recorded in each generated
  * distrib/<device>/manifest.json. To keep that reference meaningful, the
@@ -64,7 +64,27 @@ function getSourceInformation(repositoryPath) {
   return { commit, repository };
 }
 
-function readDeviceIdentity(wattecoPath, distribPath, device) {
+function compareSemanticVersions(candidateVersion, publishedVersion) {
+  const versionPattern = /^(\d+)\.(\d+)\.(\d+)$/;
+  const candidateMatch = String(candidateVersion).match(versionPattern);
+  const publishedMatch = String(publishedVersion).match(versionPattern);
+
+  if (!candidateMatch) {
+    throw new Error(`Invalid candidate version '${candidateVersion}'. Expected major.minor.patch.`);
+  }
+  if (!publishedMatch) {
+    throw new Error(`Invalid published version '${publishedVersion}'. Expected major.minor.patch.`);
+  }
+
+  for (let index = 1; index <= 3; index++) {
+    const difference = Number(candidateMatch[index]) - Number(publishedMatch[index]);
+    if (difference !== 0) return Math.sign(difference);
+  }
+
+  return 0;
+}
+
+function readDeviceIdentity(wattecoPath, distribPath, device, forceVersion = false) {
   const packagePath = path.join(wattecoPath, "devices", device, "package.json");
   if (!fs.existsSync(packagePath)) {
     throw new Error(`Missing package.json for ${device}: ${packagePath}`);
@@ -96,11 +116,27 @@ function readDeviceIdentity(wattecoPath, distribPath, device) {
     }
   }
 
+  if (previousVersion !== null) {
+    const versionComparison = compareSemanticVersions(packageData.version, previousVersion);
+    if (versionComparison === 0 && !forceVersion) {
+      throw new Error(
+        `${device} version ${packageData.version} is already published. Published versions are immutable; rebuild with a newer version or use --force-version as an exceptional override.`
+      );
+    }
+    if (versionComparison < 0 && !forceVersion) {
+      throw new Error(
+        `${device} version ${packageData.version} is older than published version ${previousVersion}. Rebuild with a newer version or use --force-version as an exceptional override.`
+      );
+    }
+  }
+
   return {
     name: packageData.displayName || metadata.name || device,
     version: packageData.version,
     description: metadata.description || packageData.description || `Driver for ${device} sensor`,
     previousVersion,
+    versionOverride: previousVersion !== null &&
+      compareSemanticVersions(packageData.version, previousVersion) <= 0,
   };
 }
 
@@ -248,29 +284,39 @@ function generateManifest(wattecoPath, distribPath, device, identity, source) {
 
 function parseArguments(argv) {
   const assumeYes = argv.includes("--yes") || argv.includes("-y");
-  const positional = argv.filter((argument) => argument !== "--yes" && argument !== "-y");
+  const forceVersion = argv.includes("--force-version");
+  const positional = argv.filter((argument) =>
+    argument !== "--yes" && argument !== "-y" && argument !== "--force-version"
+  );
 
   if (!positional[0]) {
-    throw new Error("Usage: node watteco_deployment.js <watteco_path> [devices_filter] [--yes]");
+    throw new Error(
+      "Usage: node watteco_deployment.js <watteco_path> [devices_filter] [--force-version] [--yes]"
+    );
   }
 
   return {
     wattecoPath: path.resolve(positional[0]),
     sensorFilter: positional[1],
     assumeYes,
+    forceVersion,
   };
 }
 
 async function main() {
-  const { wattecoPath, sensorFilter, assumeYes } = parseArguments(process.argv.slice(2));
+  const { wattecoPath, sensorFilter, assumeYes, forceVersion } = parseArguments(process.argv.slice(2));
   const distribPath = path.join(wattecoPath, "distrib");
   const { devices } = tools.getDevices(sensorFilter);
   if (devices.length === 0) return;
 
   const source = getSourceInformation(wattecoPath);
   const identities = new Map(
-    devices.map((device) => [device, readDeviceIdentity(wattecoPath, distribPath, device)])
+    devices.map((device) => [
+      device,
+      readDeviceIdentity(wattecoPath, distribPath, device, forceVersion),
+    ])
   );
+  const overriddenDevices = devices.filter((device) => identities.get(device).versionOverride);
 
   console.log(`Watteco path: ${wattecoPath}`);
   console.log(`Distrib path: ${distribPath}`);
@@ -281,13 +327,25 @@ async function main() {
     const transition = identity.previousVersion
       ? `${identity.previousVersion} -> ${identity.version}`
       : identity.version;
-    console.log(`  - ${device}: ${transition}`);
+    console.log(`  - ${device}: ${transition}${identity.versionOverride ? " [FORCED]" : ""}`);
+  }
+
+  if (overriddenDevices.length > 0) {
+    console.warn("WARNING: --force-version is overriding immutable published versions for:");
+    for (const device of overriddenDevices) {
+      const identity = identities.get(device);
+      console.warn(`  - ${device}: ${identity.previousVersion} -> ${identity.version}`);
+    }
+    console.warn(
+      "This is strongly discouraged for an already public release. Use it only for an unpublished correction or manifest migration."
+    );
   }
 
   if (!assumeYes) {
-    const confirmed = await confirmPublication(
-      "Confirm that rebuild_mains.js was run with the intended version and that the sources and generated main.js files were committed. Publish to distrib?"
-    );
+    const confirmationMessage = overriddenDevices.length > 0
+      ? "Force this version override and publish to distrib anyway?"
+      : "Confirm that rebuild_mains.js was run with the intended version and that the sources and generated main.js files were committed. Publish to distrib?";
+    const confirmed = await confirmPublication(confirmationMessage);
     if (!confirmed) {
       console.log("Publication cancelled.");
       return;
@@ -318,6 +376,7 @@ if (require.main === module) {
 }
 
 module.exports = {
+  compareSemanticVersions,
   generateManifest,
   getSourceInformation,
   normalizeRepositoryUrl,

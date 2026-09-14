@@ -262,15 +262,19 @@ Cet utilitaire va aussi ajouter le fichier de synthèse de tous les codec dispon
 
 Avant le déploiement, les sources et les fichiers `main.js` reconstruits doivent être committés et le dépôt doit être propre. Le commit courant est enregistré comme commit source dans un fichier `manifest.json` généré pour chaque codec distribué. Ce manifeste contient également le nom, la version, la description et les empreintes SHA-256 des artefacts finaux.
 
+Une version distribuée est immuable. Pour chaque codec sélectionné, la version de `devices/<device>/package.json` doit être strictement supérieure à celle déjà publiée dans `distrib/<device>/manifest.json`. Tant qu'un codec ne possède pas encore de manifeste, la version de son ancien `metadata.json` sert de référence. Une version identique ou inférieure bloque le déploiement avant toute copie.
+
 Le fichier optionnel `main-thingsboard.js` reste disponible dans `distrib`, mais il n'est ajouté au manifeste que s'il a été explicitement reconstruit pour la version distribuée. Une ancienne variante ThingsBoard peut ainsi être conservée sans être présentée comme un artefact de la release courante.
 
 ```bash
-    node watteco_deployment.js <watteco_path> [<devices_filter>] [--yes]
+    node watteco_deployment.js <watteco_path> [<devices_filter>] [--force-version] [--yes]
     where
     <devices_to_process>: Regular expression like "vaqao*" or "flash'o|intens'o|vaqa'o" or "Vaqao*|flash'o"
 ```
 
 L'option `--yes` (ou `-y`) supprime la demande de confirmation interactive, notamment pour une exécution automatisée. Après génération et vérification des manifestes, les modifications de `distrib` doivent être contrôlées puis enregistrées dans un commit de distribution distinct.
+
+L'option `--force-version` permet exceptionnellement de contourner le blocage d'une version identique ou inférieure. **Son utilisation est fortement déconseillée pour une version déjà publique**, car elle rompt le principe d'immutabilité d'une version distribuée. Elle est réservée à la correction d'une distribution qui n'a pas encore été publiée ou à une migration technique des manifestes. Cette option ne désactive aucun autre contrôle : le dépôt doit rester propre et la correspondance du `main.js` ainsi que les empreintes SHA-256 sont toujours vérifiées. Pour une exécution non interactive, `--force-version` et `--yes` doivent être fournis explicitement.
 
 ### actility_deployment
 
