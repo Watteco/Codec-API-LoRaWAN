@@ -75,9 +75,9 @@ S'il faut modifier un codec (création, correctif, amélioration,...), la marche
 
 **ATTENTION:** 
 - Avant d'exploiter les commandes de déploiements décrites ci-avant, il faut créer ou maintenir "manuellement" différents fichiers "descriptifs" des modèles de capteur ou Driver en conformité avec les modèles ou driver dèjà existants dans les référentiels cible TTN et actility.
-  - *Actility* :  
+  - *Actility* :
     - `vendors/watteco/models/[device]/model.yaml`
-    - `vendors/watteco/drivers/[device]/(.gitignore, .npmignore, driver-examples.spec.js, driver.yaml, package.json, package-lock.json)`
+    - `vendors/watteco/drivers/[device]_v1.1/(driver.yaml, examples.json, index.js, main.js)`
   - *TTN* :  
     - `vendor/watteco/index.yaml`
     - `vendor/watteco/[device]-codec.yaml`
@@ -260,7 +260,7 @@ Son execution doit être faite dans le dossier `utilities`, car le chemin écrit
 Le fichier `watteco_deployment.js` permet de copier différents fichiers de devices à distrib pour un ou plusieurs device(s) (sans option c'est tous)
 Cet utilitaire va aussi ajouter le fichier de synthèse de tous les codec disponibles: DRIVERS.md. Ce fichier est construit à partir du fichier Clusters.json et de tous les fichiers <devices>/*/ClustersVariables.json
 
-Avant le déploiement, les sources et les fichiers `main.js` reconstruits doivent être committés et le dépôt doit être propre. Le commit courant est enregistré comme commit source dans un fichier `manifest.json` généré pour chaque codec distribué. Ce manifeste contient également le nom, la version, la description et les empreintes SHA-256 des artefacts finaux.
+Avant le déploiement, les sources et les fichiers `main.js` reconstruits doivent être committés et le dépôt doit être propre. Le commit courant est enregistré comme commit source dans un fichier `manifest.json` généré pour chaque codec distribué. Ce manifeste contient également le nom, la version, la description, le point d'entrée `main.js`, la version de l'API codec TS013 et les empreintes SHA-256 des artefacts finaux. Le point d'entrée doit toujours être présent dans la liste des artefacts.
 
 Une version distribuée est immuable. Pour chaque codec sélectionné, la version de `devices/<device>/package.json` doit être strictement supérieure à celle déjà publiée dans `distrib/<device>/manifest.json`. Tant qu'un codec ne possède pas encore de manifeste, la version de son ancien `metadata.json` sert de référence. Une version identique ou inférieure bloque le déploiement avant toute copie.
 
@@ -288,7 +288,11 @@ Un ou plusieurs device(s) peuvent être déployés (sans option c'est tous).
 ```
 
 **NOTES: **
-- Une liste d'équivalences `actility_devices` est définie par la fonction `getDevices()` du fichier `_CommonTools.js`. Elle est imposée par le changement de nom qu'a fait actility sur certains dossiers (ex: `outdoor-temperature`). 
+- Une liste d'équivalences `actility_devices` est définie par la fonction `getDevices()` du fichier `_CommonTools.js`. Elle est imposée par le changement de nom qu'a fait actility sur certains dossiers (ex: `outdoor-temperature`).
+- Pour le format Actility `_v1.1`, le source `devices/<device>/<device>.js` devient `main.js` et le bundle `devices/<device>/main.js` devient le point d'entrée `index.js`.
+- Le script synchronise `examples.json` avec nos sources. Il préserve les sections Actility `points`, `BACnet` et `Modbus` lorsque l'entrée et la sortie sont sémantiquement inchangées. Pour un exemple ajouté ou dont la sortie a changé, il reprend notre version sans conserver les enrichissements devenus obsolètes et signale qu'ils doivent être régénérés côté Actility.
+- Le script reporte la version de `devices/<device>/package.json` dans le champ `manufacturerImplVersion` du `driver.yaml` Actility. Il préserve les champs gérés par Actility, notamment `packageName` et `packageVersion`.
+- Les anciens fichiers `metadata.json`, `uplink.schema.json`, les fichiers npm, le codec commun et le mapping BACnet ne sont plus copiés dans le catalogue Actility.
 
 
 ### ttn_deployment

@@ -17,6 +17,11 @@ const { execFileSync } = require("child_process");
 const tools = require("./_CommonTools.js");
 
 const MANIFEST_FILE = "manifest.json";
+const MANIFEST_ENTRYPOINT = "main.js";
+const CODEC_API = {
+  specification: "TS013",
+  version: "1.0.0",
+};
 
 function runGit(repositoryPath, args) {
   return execFileSync("git", ["-C", repositoryPath, ...args], {
@@ -249,9 +254,15 @@ function generateManifest(wattecoPath, distribPath, device, identity, source) {
     };
   }
 
-  const sourceMainPath = path.join(wattecoPath, "devices", device, "main.js");
-  if (!artifacts["main.js"] || sha256(sourceMainPath) !== artifacts["main.js"].sha256) {
-    throw new Error(`Published main.js for ${device} differs from the main.js in source commit ${source.commit}.`);
+  if (!artifacts[MANIFEST_ENTRYPOINT]) {
+    throw new Error(`Manifest entrypoint '${MANIFEST_ENTRYPOINT}' is missing from artifacts for ${device}.`);
+  }
+
+  const sourceMainPath = path.join(wattecoPath, "devices", device, MANIFEST_ENTRYPOINT);
+  if (sha256(sourceMainPath) !== artifacts[MANIFEST_ENTRYPOINT].sha256) {
+    throw new Error(
+      `Published ${MANIFEST_ENTRYPOINT} for ${device} differs from the file in source commit ${source.commit}.`
+    );
   }
 
   const manifest = {
@@ -259,6 +270,8 @@ function generateManifest(wattecoPath, distribPath, device, identity, source) {
     name: identity.name,
     version: identity.version,
     description: identity.description,
+    entrypoint: MANIFEST_ENTRYPOINT,
+    codecApi: CODEC_API,
     source: {
       repository: source.repository,
       commit: source.commit,

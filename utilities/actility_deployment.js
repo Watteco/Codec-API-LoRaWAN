@@ -23,10 +23,153 @@
  * 
  */
 
-const fs1 = require('fs'); // Use promises API for fs
 const fs = require('fs').promises; // Use promises API for fs
-const path = require('path'); 
+const path = require('path');
 const tools = require("./_CommonTools.js");
+
+const MANUFACTURER_IMPL_VERSION_COMMENT = "# Version of the manufacturer's own codec/decoder implementation, when provided by the manufacturer";
+
+async function updateManufacturerImplVersion(driverYamlPath, manufacturerImplVersion) {
+  if (typeof manufacturerImplVersion !== 'string' || manufacturerImplVersion.trim() === '') {
+    throw new Error('manufacturerImplVersion must be a non-empty string');
+  }
+
+  const version = manufacturerImplVersion.trim();
+  const data = await fs.readFile(driverYamlPath, 'utf8');
+  const newline = data.includes('\r\n') ? '\r\n' : '\n';
+  const lines = data.split(/\r?\n/);
+  const fieldPattern = /^manufacturerImplVersion\s*:/;
+  const existingFieldIndex = lines.findIndex(line => fieldPattern.test(line));
+
+  if (existingFieldIndex !== -1) {
+    const inlineComment = lines[existingFieldIndex].match(/\s+#.*$/)?.[0] || '';
+    lines[existingFieldIndex] = `manufacturerImplVersion: ${version}${inlineComment}`;
+  } else {
+    const existingCommentIndex = lines.findIndex(line => line.trim() === MANUFACTURER_IMPL_VERSION_COMMENT);
+    if (existingCommentIndex !== -1) {
+      lines.splice(existingCommentIndex + 1, 0, `manufacturerImplVersion: ${version}`);
+    } else {
+      const preferredAnchorPatterns = [
+        /^manufacturerSpecVersion\s*:/,
+        /^packageVersion\s*:/,
+      ];
+      let anchorIndex = -1;
+
+      for (const anchorPattern of preferredAnchorPatterns) {
+        anchorIndex = lines.findIndex(line => anchorPattern.test(line));
+        if (anchorIndex !== -1) break;
+      }
+
+      const newLines = [MANUFACTURER_IMPL_VERSION_COMMENT, `manufacturerImplVersion: ${version}`];
+      if (anchorIndex !== -1) {
+        lines.splice(anchorIndex + 1, 0, ...newLines);
+      } else {
+        if (lines.at(-1) === '') lines.pop();
+        lines.push(...newLines, '');
+      }
+    }
+  }
+
+  await fs.writeFile(driverYamlPath, lines.join(newline), 'utf8');
+}
+
+function normalizeExampleValue(value) {
+  if (Array.isArray(value)) return value.map(normalizeExampleValue);
+
+  if (value && typeof value === 'object') {
+    return Object.fromEntries(
+      Object.keys(value)
+        .sort()
+        .map(key => [key, normalizeExampleValue(value[key])])
+    );
+  }
+
+  if (typeof value === 'string' && /^\d{4}-\d{2}-\d{2}T/.test(value)) {
+    const timestamp = new Date(value);
+    if (!Number.isNaN(timestamp.getTime())) return timestamp.toISOString();
+  }
+
+  return value;
+}
+
+function comparableExample(example, includeOutput) {
+  const comparable = {
+    type: example.type,
+    input: example.input,
+  };
+  if (includeOutput) comparable.output = example.output;
+  return JSON.stringify(normalizeExampleValue(comparable));
+}
+
+async function synchronizeExamples(sourcePath, destinationPath) {
+  const sourceExamples = JSON.parse(await fs.readFile(sourcePath, 'utf8'));
+  if (!Array.isArray(sourceExamples)) {
+    throw new Error(`Expected an array of examples in ${sourcePath}`);
+  }
+
+  let destinationExamples;
+  try {
+    destinationExamples = JSON.parse(await fs.readFile(destinationPath, 'utf8'));
+  } catch (error) {
+    if (error.code !== 'ENOENT') throw error;
+    await fs.copyFile(sourcePath, destinationPath);
+    return { added: sourceExamples.length, updated: 0, preserved: 0, removed: 0 };
+  }
+
+  if (!Array.isArray(destinationExamples)) {
+    throw new Error(`Expected an array of examples in ${destinationPath}`);
+  }
+
+  const destinationByInput = new Map();
+  for (const example of destinationExamples) {
+    const key = comparableExample(example, false);
+    if (destinationByInput.has(key)) {
+      throw new Error(`Duplicate Actility example identity in ${destinationPath}`);
+    }
+    destinationByInput.set(key, example);
+  }
+
+  const sourceKeys = new Set();
+  const synchronizedExamples = [];
+  let added = 0;
+  let updated = 0;
+  let preserved = 0;
+
+  for (const sourceExample of sourceExamples) {
+    const key = comparableExample(sourceExample, false);
+    if (sourceKeys.has(key)) {
+      throw new Error(`Duplicate source example identity in ${sourcePath}`);
+    }
+    sourceKeys.add(key);
+
+    const destinationExample = destinationByInput.get(key);
+    if (!destinationExample) {
+      synchronizedExamples.push(sourceExample);
+      added++;
+    } else if (
+      comparableExample(sourceExample, true) === comparableExample(destinationExample, true)
+    ) {
+      // Preserve Actility-owned points, BACnet and Modbus fields when the
+      // input/output behavior is unchanged. Timestamp precision is ignored.
+      synchronizedExamples.push(destinationExample);
+      preserved++;
+    } else {
+      // Actility enrichments describe the previous output and must not survive
+      // a behavior change. They can be regenerated during review of the MR.
+      synchronizedExamples.push(sourceExample);
+      updated++;
+    }
+  }
+
+  const removed = destinationExamples.length - [...destinationByInput.keys()]
+    .filter(key => sourceKeys.has(key)).length;
+
+  if (added > 0 || updated > 0 || removed > 0) {
+    await fs.writeFile(destinationPath, `${JSON.stringify(synchronizedExamples, null, 2)}\n`, 'utf8');
+  }
+
+  return { added, updated, preserved, removed };
+}
 
 async function updateRequireDecodeUplinkFile(filePath, currentVersionMajorMinor) {
   // Ensure the file exists before attempting to read it
@@ -50,58 +193,53 @@ async function updateRequireDecodeUplinkFile(filePath, currentVersionMajorMinor)
 }
 
 async function copyAndDeployFiles(watteco_path, actility_path, devices, actility_devices) {
-  // TODO: Update variables below according current sources version and actility version
-  let currentVersionMajorMinor = "v1.1"
-  let actilityVersion = "v5"
+  const currentVersionMajorMinor = "v1.1";
 
   try {
-    // Copy common codec files ["standard.js", batch.js,convert_tools.js, tic.js, decode_uplink.js]
-    const filesToCopy = ["standard.js", "batch.js", "convert_tools.js", "tic.js", "decode_uplink.js", "encode_downlink.js"];
-    const sourceDir = `${watteco_path}/codec`;
-    const destDir = `${actility_path}/vendors/watteco/codec_${currentVersionMajorMinor}`;
-    console.log(`Coping files from '${sourceDir}' to '${destDir}'`);
-    filesToCopy.forEach(file => {
-      const sourceFilePath = path.join(sourceDir, file);
-      const destFilePath = path.join(destDir, file);
-      fs.copyFile(sourceFilePath, destFilePath);
-        //console.log(`Copied: ${file}`);
-    });
-
-    // --- Ajout : copie du fichier watteco-bacnet-mapping.csv ---
-    const mappingSource = path.join(watteco_path, 'watteco-bacnet-mapping.csv');
-    const mappingDest = path.join(actility_path, 'vendors', 'watteco', 'watteco-bacnet-mapping.csv');
-    await fs.copyFile(mappingSource, mappingDest);
-    // --- Fin ajout ---
-
     // Copy and process device-specific files sequentially
     for (let i in devices) {
       const device = devices[i];
-      const actilityDevicePath = `${actility_path}/vendors/watteco/drivers/${actility_devices[i]}_${currentVersionMajorMinor}`;
-    
+      const devicePath = path.join(watteco_path, 'devices', device);
+      const actilityDevicePath = path.join(
+        actility_path,
+        'vendors',
+        'watteco',
+        'drivers',
+        `${actility_devices[i]}_${currentVersionMajorMinor}`
+      );
+
       try {
-        // Copy device-specific files sequentially without creating intermediate variables
-        
         console.log(`Processing ${device} ...`);
 
-        await fs.copyFile(`${watteco_path}/devices/${device}/${device}.js`, `${actilityDevicePath}/${device}.js`);
-        await updateRequireDecodeUplinkFile(`${actilityDevicePath}/${device}.js`,`_${currentVersionMajorMinor}`);
-    
-        await fs.copyFile(`${watteco_path}/devices/${device}/main.js`, `${actilityDevicePath}/main.js`);
-    
-        await fs.copyFile(`${watteco_path}/devices/${device}/examples.json`, `${actilityDevicePath}/examples.json`);
-    
-        await fs.copyFile(`${watteco_path}/devices/${device}/metadata.json`, `${actilityDevicePath}/metadata.json`);
-        let actilityDriverName = device.replace(/_/g, '-').replace(/'/g, '') + `_${actilityVersion}`; /* ie: "pulse_sens'o_atex" becomes "pulse-senso-atex_v5" */
-        tools.updateJSON_name_description(`${actilityDevicePath}/metadata.json`, `${actilityDriverName}`, `Driver for ${device} sensor`);
-    
-        await fs.copyFile(`${watteco_path}/devices/${device}/uplink.schema.json`, `${actilityDevicePath}/uplink.schema.json`);
-    
-        // Not ready to deliver actility, to many differences with package.json and driver-example-spec.js from actility
-        // await fs.copyFile(`${watteco_path}/devices/${device}/package.json`, `${actilityDevicePath}/package.json`);
-        // await fs.copyFile(`${watteco_path}/devices/${device}/driver-example-spec.js`, `${actilityDevicePath}/driver-example-spec.js`);
-        // await fs.copyFile(`${watteco_path}/devices/${device}/package-lock.json`, `${actilityDevicePath}/package-lock.json`);
-      
-        //await fs.copyFile(`${watteco_path}/devices/${device}/webpack.config.js`, `${actilityDevicePath}/webpack.config.js`);
+        // Actility keeps the readable device implementation in main.js and
+        // uses the self-contained bundle in index.js as the executable entrypoint.
+        const actilityMainPath = path.join(actilityDevicePath, 'main.js');
+        await fs.copyFile(path.join(devicePath, `${device}.js`), actilityMainPath);
+        await updateRequireDecodeUplinkFile(actilityMainPath, `_${currentVersionMajorMinor}`);
+
+        await fs.copyFile(path.join(devicePath, 'main.js'), path.join(actilityDevicePath, 'index.js'));
+
+        const actilityExamplesPath = path.join(actilityDevicePath, 'examples.json');
+        const exampleChanges = await synchronizeExamples(
+          path.join(devicePath, 'examples.json'),
+          actilityExamplesPath
+        );
+        console.log(
+          `Synchronized examples in '${actilityExamplesPath}' ` +
+          `(added: ${exampleChanges.added}, updated: ${exampleChanges.updated}, ` +
+          `preserved: ${exampleChanges.preserved}, removed: ${exampleChanges.removed})`
+        );
+        if (exampleChanges.added > 0 || exampleChanges.updated > 0) {
+          console.warn(
+            `  - ${exampleChanges.added + exampleChanges.updated} example(s) need Actility points/BACnet/Modbus enrichment.`
+          );
+        }
+
+        const packageJsonPath = path.join(devicePath, 'package.json');
+        const packageJson = JSON.parse(await fs.readFile(packageJsonPath, 'utf8'));
+        const driverYamlPath = path.join(actilityDevicePath, 'driver.yaml');
+        await updateManufacturerImplVersion(driverYamlPath, packageJson.version);
+        console.log(`Updated manufacturerImplVersion to ${packageJson.version} in '${driverYamlPath}'`);
 
       } catch (err) {
         console.error(`Error processing device ${device}: ${err.message}`);
@@ -139,5 +277,11 @@ async function main() {
   }
 }
 
-// Run the main function
-main();
+module.exports = {
+  copyAndDeployFiles,
+  synchronizeExamples,
+  updateManufacturerImplVersion,
+};
+
+// Run the main function when this file is executed directly
+if (require.main === module) main();
