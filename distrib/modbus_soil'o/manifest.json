@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "name": "modbus_soil'o",
+  "version": "1.1.9",
+  "description": "Driver for Modbus Soil'O sensor",
+  "source": {
+    "repository": "https://github.com/Watteco/Codec-API-LoRaWAN",
+    "commit": "460c6b1b572721d55ea63f5eb6780ba314c55542",
+    "path": "devices/modbus_soil'o"
+  },
+  "artifacts": {
+    "examples.json": {
+      "sha256": "3c7938b016d243db53ef46c35f5fa98598e9cfacf69d7199ecbcd9bb4656d264",
+      "size": 4504
+    },
+    "main.js": {
+      "sha256": "36dfc0b84956ed48cccc32327c4db699fceebac5cb1642fddc371d6eafd1c3f8",
+      "size": 50461
+    },
+    "metadata.json": {
+      "sha256": "a3a01a387e22365774688dbb2289b9fc22ae2045a2807de4294a708aaecbcc4c",
+      "size": 401
+    },
+    "modbus_soilo-milesight-object-mapping.json": {
+      "sha256": "7096714013ce65e7247bcab84aa54a857c0f9dfcca70765b31738ce2edc910c0",
+      "size": 34579
+    },
+    "modbus_soilo-multitechBacnet-definition.json": {
+      "sha256": "d67e524b7392bfbdd0c100559c331667b9fdc0c898583fdb3dc549fac32326ae",
+      "size": 4540
+    },
+    "uplink.schema.json": {
+      "sha256": "f92cdf8f8a175e592cccfd0e7404ad1d853a6931247af4962b1311b348a8513c",
+      "size": 793
+    }
+  }
+}

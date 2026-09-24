@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "name": "modbus_leaf'o",
+  "version": "1.1.9",
+  "description": "Driver for Modbus Leaf'O sensor",
+  "source": {
+    "repository": "https://github.com/Watteco/Codec-API-LoRaWAN",
+    "commit": "460c6b1b572721d55ea63f5eb6780ba314c55542",
+    "path": "devices/modbus_leaf'o"
+  },
+  "artifacts": {
+    "examples.json": {
+      "sha256": "41aa2f1eda349e6124c8e8288a849047c9fc0db4d298f657444b19beac7c634e",
+      "size": 4504
+    },
+    "main.js": {
+      "sha256": "dfa0b9854c3791f6cbaac9c744a1705bb3c3f81a38880dfe24a49e53d4987293",
+      "size": 50463
+    },
+    "metadata.json": {
+      "sha256": "2bcb47062cb7076f28bd2e8c820e0a9b4d0a44123b0b4ae8fe88cdf7623d0a44",
+      "size": 401
+    },
+    "modbus_leafo-milesight-object-mapping.json": {
+      "sha256": "7096714013ce65e7247bcab84aa54a857c0f9dfcca70765b31738ce2edc910c0",
+      "size": 34579
+    },
+    "modbus_leafo-multitechBacnet-definition.json": {
+      "sha256": "b2f067c4b8479c1d98096d1b33909ab2729f52216367a9276e87bea8f1e27596",
+      "size": 4540
+    },
+    "uplink.schema.json": {
+      "sha256": "f92cdf8f8a175e592cccfd0e7404ad1d853a6931247af4962b1311b348a8513c",
+      "size": 793
+    }
+  }
+}

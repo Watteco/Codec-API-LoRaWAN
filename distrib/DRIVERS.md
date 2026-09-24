@@ -171,10 +171,36 @@
 </details>
 
 <details>
+<summary>MODBUS_LEAF'O [1.1.9]</summary>
+
+  [NPM: watteco-modbus_leaf_o](https://www.npmjs.com/package/watteco-modbus_leaf_o)
+- **basic (CID: 0x0000)** : kernel, manufacturer, model, date, position, application_name
+- **configuration (CID: 0x0050)** : main_or_external_voltage (V), disposable_battery_voltage (V)
+- **lorawan (CID: 0x8004)** : message_type, nb_retry, automatic_association, data_rate, ABP_dev_address, OTA_app_EUI
+- **multi master/slave answers (CID: 0x8009)** : modbus_frame_series_sent, modbus_frame_number_in_serie, modbus_last_frame_of_serie, modbus_EP0, modbus_EP1, modbus_EP2, modbus_EP3, modbus_EP4, modbus_EP5, modbus_EP6, modbus_EP7, modbus_EP8, modbus_EP9
+- **serial interface (CID: 0x8006)** : speed (bps), data_bit, parity, stop_bit
+- **serial master/slave protocol (CID: 0x8007)** : modbus_payload_EP0, modbus_payload_EP1, modbus_payload_EP2, modbus_payload_EP3, modbus_payload_EP4, modbus_payload_EP5, modbus_payload_EP6, modbus_payload_EP7, modbus_payload_EP8, modbus_payload_EP9, modbus_slaveID_EP0, modbus_slaveID_EP1, modbus_slaveID_EP2, modbus_slaveID_EP3, modbus_slaveID_EP4, modbus_slaveID_EP5, modbus_slaveID_EP6, modbus_slaveID_EP7, modbus_slaveID_EP8, modbus_slaveID_EP9, modbus_fnctID_EP0, modbus_fnctID_EP1, modbus_fnctID_EP2, modbus_fnctID_EP3, modbus_fnctID_EP4, modbus_fnctID_EP5, modbus_fnctID_EP6, modbus_fnctID_EP7, modbus_fnctID_EP8, modbus_fnctID_EP9, modbus_datasize_EP0, modbus_datasize_EP1, modbus_datasize_EP2, modbus_datasize_EP3, modbus_datasize_EP4, modbus_datasize_EP5, modbus_datasize_EP6, modbus_datasize_EP7, modbus_datasize_EP8, modbus_datasize_EP9
+
+</details>
+
+<details>
 <summary>MODBUS_NO_HEADER [1.1.1]</summary>
 
   [NPM: watteco-modbus_no_header](https://www.npmjs.com/package/watteco-modbus_no_header)
 - **multi master/slave answers (CID: 0x8009)** : modbus_payload
+
+</details>
+
+<details>
+<summary>MODBUS_SOIL'O [1.1.9]</summary>
+
+  [NPM: watteco-modbus_soil_o](https://www.npmjs.com/package/watteco-modbus_soil_o)
+- **basic (CID: 0x0000)** : kernel, manufacturer, model, date, position, application_name
+- **configuration (CID: 0x0050)** : main_or_external_voltage (V), disposable_battery_voltage (V)
+- **lorawan (CID: 0x8004)** : message_type, nb_retry, automatic_association, data_rate, ABP_dev_address, OTA_app_EUI
+- **multi master/slave answers (CID: 0x8009)** : modbus_frame_series_sent, modbus_frame_number_in_serie, modbus_last_frame_of_serie, modbus_EP0, modbus_EP1, modbus_EP2, modbus_EP3, modbus_EP4, modbus_EP5, modbus_EP6, modbus_EP7, modbus_EP8, modbus_EP9
+- **serial interface (CID: 0x8006)** : speed (bps), data_bit, parity, stop_bit
+- **serial master/slave protocol (CID: 0x8007)** : modbus_payload_EP0, modbus_payload_EP1, modbus_payload_EP2, modbus_payload_EP3, modbus_payload_EP4, modbus_payload_EP5, modbus_payload_EP6, modbus_payload_EP7, modbus_payload_EP8, modbus_payload_EP9, modbus_slaveID_EP0, modbus_slaveID_EP1, modbus_slaveID_EP2, modbus_slaveID_EP3, modbus_slaveID_EP4, modbus_slaveID_EP5, modbus_slaveID_EP6, modbus_slaveID_EP7, modbus_slaveID_EP8, modbus_slaveID_EP9, modbus_fnctID_EP0, modbus_fnctID_EP1, modbus_fnctID_EP2, modbus_fnctID_EP3, modbus_fnctID_EP4, modbus_fnctID_EP5, modbus_fnctID_EP6, modbus_fnctID_EP7, modbus_fnctID_EP8, modbus_fnctID_EP9, modbus_datasize_EP0, modbus_datasize_EP1, modbus_datasize_EP2, modbus_datasize_EP3, modbus_datasize_EP4, modbus_datasize_EP5, modbus_datasize_EP6, modbus_datasize_EP7, modbus_datasize_EP8, modbus_datasize_EP9
 
 </details>
 
