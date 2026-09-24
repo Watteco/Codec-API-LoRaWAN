@@ -1,0 +1,113 @@
+[
+  {
+    "type": "uplink",
+    "description": "Modbus Soil'O report containing three implicit 10-byte layers without endpoint headers",
+    "input": {
+      "bytes": "110A800900004121000007000000F5000000000000000000F9000000000000000000FA000000000000",
+      "fPort": 125,
+      "recvTime": "2026-09-02T00:00:00.000Z"
+    },
+    "output": {
+      "data": {
+        "samples": [
+          { "variable": "temperature_1", "value": 24.5, "date": "2026-09-02T00:00:00.000Z", "unit": "Cel" },
+          { "variable": "vwc_1", "value": 0, "date": "2026-09-02T00:00:00.000Z", "unit": "%" },
+          { "variable": "ec_1", "value": 0, "date": "2026-09-02T00:00:00.000Z", "unit": "uS/cm" },
+          { "variable": "salinity_1", "value": 0, "date": "2026-09-02T00:00:00.000Z", "unit": "mg/L" },
+          { "variable": "tds_1", "value": 0, "date": "2026-09-02T00:00:00.000Z", "unit": "mg/L" },
+          { "variable": "temperature_2", "value": 24.9, "date": "2026-09-02T00:00:00.000Z", "unit": "Cel" },
+          { "variable": "vwc_2", "value": 0, "date": "2026-09-02T00:00:00.000Z", "unit": "%" },
+          { "variable": "ec_2", "value": 0, "date": "2026-09-02T00:00:00.000Z", "unit": "uS/cm" },
+          { "variable": "salinity_2", "value": 0, "date": "2026-09-02T00:00:00.000Z", "unit": "mg/L" },
+          { "variable": "tds_2", "value": 0, "date": "2026-09-02T00:00:00.000Z", "unit": "mg/L" },
+          { "variable": "temperature_3", "value": 25, "date": "2026-09-02T00:00:00.000Z", "unit": "Cel" },
+          { "variable": "vwc_3", "value": 0, "date": "2026-09-02T00:00:00.000Z", "unit": "%" },
+          { "variable": "ec_3", "value": 0, "date": "2026-09-02T00:00:00.000Z", "unit": "uS/cm" },
+          { "variable": "salinity_3", "value": 0, "date": "2026-09-02T00:00:00.000Z", "unit": "mg/L" },
+          { "variable": "tds_3", "value": 0, "date": "2026-09-02T00:00:00.000Z", "unit": "mg/L" }
+        ],
+        "temperature_1": 24.5,
+        "temperature_1_unit": "Cel",
+        "vwc_1": 0,
+        "vwc_1_unit": "%",
+        "ec_1": 0,
+        "ec_1_unit": "uS/cm",
+        "salinity_1": 0,
+        "salinity_1_unit": "mg/L",
+        "tds_1": 0,
+        "tds_1_unit": "mg/L",
+        "temperature_2": 24.9,
+        "temperature_2_unit": "Cel",
+        "vwc_2": 0,
+        "vwc_2_unit": "%",
+        "ec_2": 0,
+        "ec_2_unit": "uS/cm",
+        "salinity_2": 0,
+        "salinity_2_unit": "mg/L",
+        "tds_2": 0,
+        "tds_2_unit": "mg/L",
+        "temperature_3": 25,
+        "temperature_3_unit": "Cel",
+        "vwc_3": 0,
+        "vwc_3_unit": "%",
+        "ec_3": 0,
+        "ec_3_unit": "uS/cm",
+        "salinity_3": 0,
+        "salinity_3_unit": "mg/L",
+        "tds_3": 0,
+        "tds_3_unit": "mg/L"
+      },
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Modbus Soil'O standard report containing one layer with an endpoint header",
+    "input": {
+      "bytes": "110A80070001410D01030A012CFF9C006400320019",
+      "fPort": 125,
+      "recvTime": "2026-09-02T00:00:00.000Z"
+    },
+    "output": {
+      "data": {
+        "samples": [
+          { "variable": "temperature_1", "value": -10, "date": "2026-09-02T00:00:00.000Z", "unit": "Cel" },
+          { "variable": "vwc_1", "value": 30, "date": "2026-09-02T00:00:00.000Z", "unit": "%" },
+          { "variable": "ec_1", "value": 100, "date": "2026-09-02T00:00:00.000Z", "unit": "uS/cm" },
+          { "variable": "salinity_1", "value": 50, "date": "2026-09-02T00:00:00.000Z", "unit": "mg/L" },
+          { "variable": "tds_1", "value": 25, "date": "2026-09-02T00:00:00.000Z", "unit": "mg/L" }
+        ],
+        "temperature_1": -10,
+        "temperature_1_unit": "Cel",
+        "vwc_1": 30,
+        "vwc_1_unit": "%",
+        "ec_1": 100,
+        "ec_1_unit": "uS/cm",
+        "salinity_1": 50,
+        "salinity_1_unit": "mg/L",
+        "tds_1": 25,
+        "tds_1_unit": "mg/L"
+      },
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Modbus Soil'O keeps standard Modbus telemetry when no soil layer is present",
+    "input": {
+      "bytes": "110A00500006410503040E6804",
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508Z"
+    },
+    "output": {
+      "data": {
+        "samples": [
+          { "variable": "disposable_battery_voltage", "value": 3.688, "date": "2023-07-19T07:51:25.508Z", "unit": "V" }
+        ],
+        "disposable_battery_voltage": 3.688,
+        "disposable_battery_voltage_unit": "V"
+      },
+      "warnings": []
+    }
+  }
+]
