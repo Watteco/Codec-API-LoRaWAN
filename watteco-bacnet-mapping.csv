@@ -4,29 +4,6 @@ version;max_downlink_commands;;;;;;;;;;;;
 ##models;;;;;;;;;;;;;
 name;selectors;;;;;;;;;;;;
 all;{mId: atmo}, {mId: alto}, {mId: closo}, {mId: flasho}, {mId: ino}, {mId: inclino}, {mId: indoor-temp}, {mId: intenso}, {mId: levo}, {mId: modbus}, {mId: monito}, {mId: moveo}, {mId: moveo-lite}, {mId: tempo-outdoor}, {mId: smartpilot-wire}, {mId: presso}, {mId: pulse-senso}, {mId: pulse-senso-atex}, {mId: temp-remte-1-prb}, {mId: temp-remte-2-prb}, {mId: pt1000}, {mId: pt1000-400c}, {mId: smartplug}, {mId: th}, {mId: tempo}, {mId: hygrotempo}, {mId: hygrotemp-remote}, {mId: climo}, {mId: ticso}, {mId: torano-atex}, {mId: triphaso}, {mId: triphaso-kwh}, {mId: vaqao-lite}, {mId: vaqao-lt}, {mId: vaqao-multi-lite}, {mId: vaqao-plus-lite}, {mId: vaqao-plus}, {mId: vaqao}, {mId: ventilo};;;;;;;;;;;;
-analog-input;{mId: inclino}, {mId: intenso}, {mId: levo}, {mId: monito}, {mId: presso}, {mId: torano-atex};;;;;;;;;;;;
-basic;{mId: atmo}, {mId: alto}, {mId: closo}, {mId: flasho}, {mId: ino}, {mId: inclino}, {mId: indoor-temp}, {mId: intenso}, {mId: levo}, {mId: modbus}, {mId: monito}, {mId: moveo}, {mId: tempo-outdoor}, {mId: smartpilot-wire}, {mId: presso}, {mId: pulse-senso}, {mId: pulse-senso-atex}, {mId: temp-remte-1-prb}, {mId: temp-remte-2-prb}, {mId: pt1000}, {mId: pt1000-400c}, {mId: smartplug}, {mId: th}, {mId: tempo}, {mId: hygrotempo}, {mId: hygrotemp-remote}, {mId: climo}, {mId: ticso}, {mId: torano-atex}, {mId: triphaso}, {mId: triphaso-kwh}, {mId: vaqao-lite}, {mId: vaqao-lt}, {mId: vaqao-multi-lite}, {mId: vaqao-plus-lite}, {mId: vaqao-plus}, {mId: vaqao};;;;;;;;;;;;
-binary-input;{mId: atmo}, {mId: closo}, {mId: flasho}, {mId: ino}, {mId: presso}, {mId: pulse-senso}, {mId: pulse-senso-atex}, {mId: th}, {mId: tempo}, {mId: hygrotempo}, {mId: hygrotemp-remote}, {mId: torano-atex}, {mId: triphaso}, {mId: triphaso-kwh}, {mId: vaqao-lite}, {mId: vaqao-lt}, {mId: vaqao-multi-lite}, {mId: vaqao-plus-lite}, {mId: vaqao-plus}, {mId: vaqao}, {mId: moveo-lite};;;;;;;;;;;;
-concentration;{mId: vaqao-lite}, {mId: vaqao-lt}, {mId: vaqao-multi-lite}, {mId: vaqao-plus-lite}, {mId: vaqao-plus}, {mId: vaqao};;;;;;;;;;;;
-configuration;{mId: atmo}, {mId: alto}, {mId: closo}, {mId: flasho}, {mId: ino}, {mId: inclino}, {mId: indoor-temp}, {mId: intenso}, {mId: levo}, {mId: modbus}, {mId: monito}, {mId: moveo}, {mId: moveo-lite}, {mId: tempo-outdoor}, {mId: smartpilot-wire}, {mId: presso}, {mId: pulse-senso}, {mId: pulse-senso-atex}, {mId: temp-remte-1-prb}, {mId: temp-remte-2-prb}, {mId: pt1000}, {mId: pt1000-400c}, {mId: smartplug}, {mId: th}, {mId: tempo}, {mId: hygrotempo}, {mId: hygrotemp-remote}, {mId: climo}, {mId: ticso}, {mId: torano-atex}, {mId: triphaso}, {mId: triphaso-kwh}, {mId: vaqao-lite}, {mId: vaqao-lt}, {mId: vaqao-multi-lite}, {mId: vaqao-plus-lite}, {mId: vaqao-plus}, {mId: vaqao};;;;;;;;;;;;
-differential-pressure;{mId: ventilo};;;;;;;;;;;;
-energy-and-power-metering;{mId: triphaso}, {mId: triphaso-kwh};;;;;;;;;;;;
-energy-and-power-multi-metering;{mId: triphaso}, {mId: triphaso-kwh};;;;;;;;;;;;
-illuminance;{mId: moveo}, {mId: moveo-lite}, {mId: vaqao-plus-lite}, {mId: vaqao-plus}, {mId: vaqao};;;;;;;;;;;;
-lorawan;{mId: atmo}, {mId: alto}, {mId: closo}, {mId: flasho}, {mId: ino}, {mId: inclino}, {mId: indoor-temp}, {mId: intenso}, {mId: levo}, {mId: modbus}, {mId: monito}, {mId: moveo}, {mId: moveo-lite}, {mId: tempo-outdoor}, {mId: smartpilot-wire}, {mId: presso}, {mId: pulse-senso}, {mId: pulse-senso-atex}, {mId: temp-remte-1-prb}, {mId: temp-remte-2-prb}, {mId: pt1000}, {mId: pt1000-400c}, {mId: smartplug}, {mId: th}, {mId: tempo}, {mId: hygrotempo}, {mId: hygrotemp-remote}, {mId: climo}, {mId: ticso}, {mId: torano-atex}, {mId: triphaso}, {mId: triphaso-kwh}, {mId: vaqao-lite}, {mId: vaqao-lt}, {mId: vaqao-multi-lite}, {mId: vaqao-plus-lite}, {mId: vaqao-plus}, {mId: vaqao}, {mId: ventilo};;;;;;;;;;;;
-multi-master/slave-answers;{mId: modbus};;;;;;;;;;;;
-multi-state-output;{mId: smartpilot-wire};;;;;;;;;;;;
-occupancy;{mId: inclino}, {mId: moveo}, {mId: moveo-lite}, {mId: vaqao-plus-lite}, {mId: vaqao-plus}, {mId: vaqao};;;;;;;;;;;;
-ON/OFF;{mId: ino}, {mId: smartplug}, {mId: triphaso}, {mId: triphaso-kwh};;;;;;;;;;;;
-power-quality;{mId: smartplug};;;;;;;;;;;;
-pressure;{mId: atmo}, {mId: moveo}, {mId: vaqao-multi-lite}, {mId: vaqao-plus-lite}, {mId: vaqao-plus}, {mId: vaqao};;;;;;;;;;;;
-relative-humidity;{mId: atmo}, {mId: moveo}, {mId: moveo-lite}, {mId: th}, {mId: hygrotempo}, {mId: hygrotemp-remote}, {mId: climo}, {mId: vaqao-lite}, {mId: vaqao-lt}, {mId: vaqao-multi-lite}, {mId: vaqao-plus-lite}, {mId: vaqao-plus}, {mId: vaqao};;;;;;;;;;;;
-serial-interface;{mId: modbus};;;;;;;;;;;;
-serial-master/slave-protocol;{mId: modbus};;;;;;;;;;;;
-simple-metering-like;{mId: smartplug}, {mId: ticso};;;;;;;;;;;;
-temperature;{mId: atmo}, {mId: indoor-temp}, {mId: moveo}, {mId: moveo-lite}, {mId: temp-remte-1-prb}, {mId: temp-remte-2-prb}, {mId: pt1000}, {mId: pt1000-400c}, {mId: th}, {mId: tempo}, {mId: hygrotempo}, {mId: hygrotemp-remote}, {mId: climo}, {mId: ventilo}, {mId: vaqao-lite}, {mId: vaqao-lt}, {mId: vaqao-multi-lite}, {mId: vaqao-plus-lite}, {mId: vaqao-plus}, {mId: vaqao};;;;;;;;;;;;
-temperature-others;{mId: indoor-temp}, {mId: moveo}, {mId: moveo-lite}, {mId: tempo-outdoor}, {mId: th}, {mId: tempo}, {mId: hygrotempo}, {mId: climo}, {mId: ventilo}, {mId: vaqao-lite}, {mId: vaqao-lt}, {mId: vaqao-multi-lite}, {mId: vaqao-plus-lite}, {mId: vaqao-plus}, {mId: vaqao};;;;;;;;;;;;
-voltage-and-current-metering;{mId: triphaso}, {mId: triphaso-kwh};;;;;;;;;;;;
 atmo;{mId: atmo};;;;;;;;;;;;
 alto;{mId: alto};;;;;;;;;;;;
 closo;{mId: closo};;;;;;;;;;;;
@@ -46,7 +23,6 @@ moveo-lite;{mId: moveo-lite};;;;;;;;;;;;
 presso;{mId: presso};;;;;;;;;;;;
 pulse-senso;{mId: pulse-senso};;;;;;;;;;;;
 pulse-senso-atex;{mId: pulse-senso-atex};;;;;;;;;;;;
-remote-temp;{mId: temp-remte-1-prb}, {mId: temp-remte-2-prb};;;;;;;;;;;;
 smart-plug;{mId: smartplug};;;;;;;;;;;;
 smartpilot-wire;{mId: smartpilot-wire};;;;;;;;;;;;
 temp-remte-1-prb;{mId: temp-remte-1-prb};;;;;;;;;;;;
@@ -58,7 +34,7 @@ tempo-outdoor;{mId: tempo-outdoor};;;;;;;;;;;;
 th;{mId: th};;;;;;;;;;;;
 ticso;{mId: ticso};;;;;;;;;;;;
 torano-atex;{mId: torano-atex};;;;;;;;;;;;
-triphaso;{mId: triphaso}, {mId: triphaso-kwh};;;;;;;;;;;;
+triphaso;{mId: triphaso};;;;;;;;;;;;
 triphaso-kwh;{mId: triphaso-kwh};;;;;;;;;;;;
 vaqao-lite;{mId: vaqao-lite};;;;;;;;;;;;
 vaqao-lt;{mId: vaqao-lt};;;;;;;;;;;;
@@ -68,283 +44,264 @@ vaqao-plus;{mId: vaqao-plus};;;;;;;;;;;;
 vaqao;{mId: vaqao};;;;;;;;;;;;
 ventilo;{mId: ventilo};;;;;;;;;;;;
 ##objects;;;;;;;;;;;;;
-id;name;value;type;access_mode;value_type;precision;units;cov_increment;min_value;max_value;models;description;max_string_length
-0-10_V;0-10V sensor value;0;number;R;FLOAT;2;V;0,01;0;10;levo, presso;0-10V voltage sensor value;
-0-100_mV;0-100mV sensor value;0;number;R;FLOAT;2;mV;0,01;0;100;monito;0-100mV voltage sensor value;
-0-5_V_1;0-5V sensor 1 value;0;number;R;FLOAT;2;V;0,01;0;5;torano-atex;0-5V voltage sensor 1 value;
-0-5_V_2;0-5V sensor 2 value;0;number;R;FLOAT;2;V;0,01;0;5;torano-atex;0-5V voltage sensor 2 value;
-0-70_V;0-70V sensor value;0;number;R;FLOAT;2;mV;0,01;0;70;monito;0-70V voltage sensor value;
-4-20_mA;4-20mA sensor value;0;number;R;FLOAT;2;mA;0,01;4;20;levo, presso, torano-atex;4-20mA current loop sensor value;
-ABP_dev_address;ABP device address;"""""";string;R;STRING;;;;;;lorawan;ABP device address;8
-acc_temperature;Accelerometer temperature;0;number;R;FLOAT;2;Cel;0,01;-40;85;alto;Accelerometer temperature in Celsius;
-ACCmg;Acceleration in mg;0;number;R;UINT16;0;mg;1;0;65535;alto;Acceleration value in milli-g;
-active_energy;Active energy;0;number;R;INT32;0;Wh;1;-8388608;8388607;simple-metering-like;Active energy in watt-hours;
-active_energy_a;Active energy phase A;0;number;R;INT32;0;Wh;1;-2147483648;2147483647;energy-and-power-multi-metering;Active energy on phase A;
-active_energy_a;Active energy phase A;0;number;R;INT32;0;kWh;1;-2147483648;2147483647;triphaso-kwh;Active energy on phase A in kilowatt-hours;
-active_energy_abc;Total active energy;0;number;R;INT32;0;Wh;1;-2147483648;2147483647;energy-and-power-multi-metering;Total active energy across all phases;
-active_energy_abc;Total active energy;0;number;R;INT32;0;kWh;1;-2147483648;2147483647;triphaso-kwh;Total active energy across all phases in kilowatt-hours;
-active_energy_b;Active energy phase B;0;number;R;INT32;0;Wh;1;-2147483648;2147483647;energy-and-power-multi-metering;Active energy on phase B;
-active_energy_b;Active energy phase B;0;number;R;INT32;0;kWh;1;-2147483648;2147483647;triphaso-kwh;Active energy on phase B in kilowatt-hours;
-active_energy_c;Active energy phase C;0;number;R;INT32;0;Wh;1;-2147483648;2147483647;energy-and-power-multi-metering;Active energy on phase C;
-active_energy_c;Active energy phase C;0;number;R;INT32;0;kWh;1;-2147483648;2147483647;triphaso-kwh;Active energy on phase C in kilowatt-hours;
-active_power;Active power;0;number;R;INT16;0;W;1;-8388608;8388607;simple-metering-like;Active power in watts;
-active_power_a;Active power phase A;0;number;R;INT32;0;W;1;-2147483648;2147483647;energy-and-power-multi-metering;Active power on phase A;
-active_power_abc;Total active power;0;number;R;INT32;0;W;1;-2147483648;2147483647;energy-and-power-multi-metering;Total active power across all phases;
-active_power_b;Active power phase B;0;number;R;INT32;0;W;1;-2147483648;2147483647;energy-and-power-multi-metering;Active power on phase B;
-active_power_c;Active power phase C;0;number;R;INT32;0;W;1;-2147483648;2147483647;energy-and-power-multi-metering;Active power on phase C;
-ActiveEnergy;Active energy;0;number;R;INT32;0;Wh;1;-8388608;8388607;simple-metering-like;Active energy in watt-hours;
-analog;Analog value;0;number;R;FLOAT;2;;0,01;;;analog-input;Generic analog value, used if no endpoint corresponder is defined;
-angle;Phase angle;0;number;R;INT16;0;deg;1;0;359;inclino;Phase angle in degrees;
-angle_a;Phase angle A;0;number;R;INT16;0;deg;1;0;359;voltage-and-current-metering;Phase angle on phase A;
-angle_b;Phase angle B;0;number;R;INT16;0;deg;1;0;359;voltage-and-current-metering;Phase angle on phase B;
-angle_c;Phase angle C;0;number;R;INT16;0;deg;1;0;359;voltage-and-current-metering;Phase angle on phase C;
-application_name;Application name;"""""";string;R;STRING;;;;;;basic;Name of the application running on the device;16
-battery_voltage;Battery voltage;0;number;R;FLOAT;3;V;0,001;0;6;configuration;Device battery voltage;
-BatteryVoltage;BatteryVoltage;0;number;R;FLOAT;3;V;0,001;0;6;configuration;Device battery voltage;
-CO2;CO2 concentration;0;number;R;UINT16;0;ppm;1;0;5000;concentration;CO2 concentration in ppm;
-concentration;Gas concentration;0;number;R;UINT16;0;ppm;1;0;65535;concentration;Gas concentration in parts per million;
-data_bit;Modbus data bits;0;number;R;UINT8;0;;1;7;8;serial-interface;Number of data bits in Modbus frame;
-data_rate;LoRaWAN data rate;0;number;R;UINT8;0;;1;0;7;lorawan;LoRaWAN data rate (DR0-DR7);
-date;Manufacturing date;"""""";string;R;STRING;;;;;;basic;Device manufacturing date;16
-debounce_period;Debounce period;0;number;R;UINT8;0;ms;1;0;65535;binary-input;Debounce period in milliseconds;
-differential_pressure;Differential pressure;0;number;R;INT16;0;Pa;1;-2500;2500;differential-pressure;Differential pressure in Pascal;
-disposable_battery_voltage;Disposable battery voltage;0;number;R;FLOAT;3;V;0,001;0;6;configuration;Disposable battery voltage;
-distance;Distance;0;number;R;FLOAT;2;m;0,01;0;30;alto;Distance measurement in meters;
-edge_selection;Edge detection configuration;"""""";string;R;STRING;;;;;;binary-input;Edge detection configuration;24
-external_level;External Level;0;number;R;FLOAT;3;V;0,001;;;monito;External Level measurement value;
-external_power_voltage;External Power Voltage;0;number;R;FLOAT;3;V;0,001;0;24;levo, presso;External Power Voltage measurement value;
-firmware;Firmware version;"""""";string;R;STRING;;;;;;basic;Device firmware version;16
-force_notify;Force notification flag;false;boolean;R;BOOL;;;;;;binary-input;Force notification parameter;
-frequency;Frequency;0;number;R;FLOAT;3;Hz;0,001;0;100;power-quality;Frequency in hertz;
-frequency_max;Maximum frequency;0;number;R;FLOAT;3;Hz;0,001;0;100;power-quality;Maximum frequency in hertz;
-frequency_min;Minimum frequency;0;number;R;FLOAT;3;Hz;0,001;0;100;power-quality;Minimum frequency in hertz;
-humidity;Relative humidity;0;number;R;FLOAT;2;%RH;0,01;0;100;relative-humidity;Relative humidity percentage;
-humidity_1;Humidity sensor 1;0;number;R;FLOAT;2;%RH;0,01;0;100;relative-humidity;Humidity from sensor 1;
-humidity_2;Humidity sensor 2;0;number;R;FLOAT;2;%RH;0,01;0;100;relative-humidity;Humidity from sensor 2;
-IAQ;Indoor air quality;0;number;R;UINT16;0;;1;0;500;concentration;Indoor air quality index;
-illuminance;Illuminance level;0;number;R;UINT16;0;lx;1;0;65535;illuminance;Illuminance level in lux;
-index;Pulse counter index;0;number;R;UINT32;0;;1;0;4294967295;binary-input;Pulse counter index value;
-index_1;Pulse counter index 1;0;number;R;UINT32;0;;1;0;4294967295;binary-input;Pulse counter index 1 value;
-index_10;Pulse counter index 10;0;number;R;UINT32;0;;1;0;4294967295;binary-input;Pulse counter index 10 value;
-index_2;Pulse counter index 2;0;number;R;UINT32;0;;1;0;4294967295;binary-input;Pulse counter index 2 value;
-index_3;Pulse counter index 3;0;number;R;UINT32;0;;1;0;4294967295;binary-input;Pulse counter index 3 value;
-index_4;Pulse counter index 4;0;number;R;UINT32;0;;1;0;4294967295;binary-input;Pulse counter index 4 value;
-index_5;Pulse counter index 5;0;number;R;UINT32;0;;1;0;4294967295;binary-input;Pulse counter index 5 value;
-index_6;Pulse counter index 6;0;number;R;UINT32;0;;1;0;4294967295;binary-input;Pulse counter index 6 value;
-index_7;Pulse counter index 7;0;number;R;UINT32;0;;1;0;4294967295;binary-input;Pulse counter index 7 value;
-index_8;Pulse counter index 8;0;number;R;UINT32;0;;1;0;4294967295;binary-input;Pulse counter index 8 value;
-index_9;Pulse counter index 9;0;number;R;UINT32;0;;1;0;4294967295;binary-input;Pulse counter index 9 value;
-Irms;RMS current;0;number;R;FLOAT;1;A;0,1;0;40;intenso, triphaso;RMS current;
-Irms_a;RMS current phase A;0;number;R;FLOAT;1;A;0,1;0;4000;voltage-and-current-metering;RMS current on phase A;
-Irms_b;RMS current phase B;0;number;R;FLOAT;1;A;0,1;0;4000;voltage-and-current-metering;RMS current on phase B;
-Irms_c;RMS current phase C;0;number;R;FLOAT;1;A;0,1;0;4000;voltage-and-current-metering;RMS current on phase C;
-kernel;Kernel version;"""""";string;R;STRING;;;;;;basic;Device kernel version;16
-luminosity;Luminosity;0;number;R;UINT16;0;lx;1;0;65535;illuminance;Luminosity measurement value;
-main_or_external_voltage;Main or external voltage;0;number;R;FLOAT;3;V;0,001;0;24;configuration;Main or external power supply voltage;
-manufacturer;Manufacturer name;"""""";string;R;STRING;;;;;;basic;Device manufacturer;16
-maximal_differential_pressure_since_last_report;Maximal Differential Pressure Since Last Report;0;number;R;INT16;0;Pa;1;-2500;2500;ventilo;Maximal Differential Pressure Since Last Report measurement value;
-mean_differential_pressure_since_last_report;Mean Differential Pressure Since Last Report;0;number;R;INT16;0;Pa;1;-2500;2500;ventilo;Mean Differential Pressure Since Last Report measurement value;
-message_type;Message type;"""""";string;R;STRING;;;;;;lorawan;LoRaWAN message type (confirmed/unconfirmed);16
-minimal_differential_pressure_since_last_report;Minimal Differential Pressure Since Last Report;0;number;R;INT16;0;Pa;1;-2500;2500;ventilo;Minimal Differential Pressure Since Last Report measurement value;
-modbus_datasize;Modbus data size;0;number;R;UINT8;0;;1;0;255;serial-master/slave-protocol;Size of Modbus data;
-modbus_datasize_EP0;Modbus data size endpoint 0;0;number;R;UINT8;0;;1;0;255;serial-master/slave-protocol;Modbus data size for endpoint 0;
-modbus_datasize_EP1;Modbus data size endpoint 1;0;number;R;UINT8;0;;1;0;255;serial-master/slave-protocol;Modbus data size for endpoint 1;
-modbus_datasize_EP2;Modbus data size endpoint 2;0;number;R;UINT8;0;;1;0;255;serial-master/slave-protocol;Modbus data size for endpoint 2;
-modbus_datasize_EP3;Modbus data size endpoint 3;0;number;R;UINT8;0;;1;0;255;serial-master/slave-protocol;Modbus data size for endpoint 3;
-modbus_datasize_EP4;Modbus data size endpoint 4;0;number;R;UINT8;0;;1;0;255;serial-master/slave-protocol;Modbus data size for endpoint 4;
-modbus_datasize_EP5;Modbus data size endpoint 5;0;number;R;UINT8;0;;1;0;255;serial-master/slave-protocol;Modbus data size for endpoint 5;
-modbus_datasize_EP6;Modbus data size endpoint 6;0;number;R;UINT8;0;;1;0;255;serial-master/slave-protocol;Modbus data size for endpoint 6;
-modbus_datasize_EP7;Modbus data size endpoint 7;0;number;R;UINT8;0;;1;0;255;serial-master/slave-protocol;Modbus data size for endpoint 7;
-modbus_datasize_EP8;Modbus data size endpoint 8;0;number;R;UINT8;0;;1;0;255;serial-master/slave-protocol;Modbus data size for endpoint 8;
-modbus_datasize_EP9;Modbus data size endpoint 9;0;number;R;UINT8;0;;1;0;255;serial-master/slave-protocol;Modbus data size for endpoint 9;
-modbus_EP0;Modbus endpoint 0 active;false;boolean;R;BOOL;;;;;;multi-master/slave-answers;Modbus endpoint 0 active status;
-modbus_EP1;Modbus endpoint 1 active;false;boolean;R;BOOL;;;;;;multi-master/slave-answers;Modbus endpoint 1 active status;
-modbus_EP2;Modbus endpoint 2 active;false;boolean;R;BOOL;;;;;;multi-master/slave-answers;Modbus endpoint 2 active status;
-modbus_EP3;Modbus endpoint 3 active;false;boolean;R;BOOL;;;;;;multi-master/slave-answers;Modbus endpoint 3 active status;
-modbus_EP4;Modbus endpoint 4 active;false;boolean;R;BOOL;;;;;;multi-master/slave-answers;Modbus endpoint 4 active status;
-modbus_EP5;Modbus endpoint 5 active;false;boolean;R;BOOL;;;;;;multi-master/slave-answers;Modbus endpoint 5 active status;
-modbus_EP6;Modbus endpoint 6 active;false;boolean;R;BOOL;;;;;;multi-master/slave-answers;Modbus endpoint 6 active status;
-modbus_EP7;Modbus endpoint 7 active;false;boolean;R;BOOL;;;;;;multi-master/slave-answers;Modbus endpoint 7 active status;
-modbus_EP8;Modbus endpoint 8 active;false;boolean;R;BOOL;;;;;;multi-master/slave-answers;Modbus endpoint 8 active status;
-modbus_EP9;Modbus endpoint 9 active;false;boolean;R;BOOL;;;;;;multi-master/slave-answers;Modbus endpoint 9 active status;
-modbus_fnctID;Modbus function ID;0;number;R;UINT8;0;;1;0;255;serial-master/slave-protocol;Modbus function code;
-modbus_fnctID_EP0;Modbus function ID endpoint 0;0;number;R;UINT8;0;;1;0;255;serial-master/slave-protocol;Modbus function code for endpoint 0;
-modbus_fnctID_EP1;Modbus function ID endpoint 1;0;number;R;UINT8;0;;1;0;255;serial-master/slave-protocol;Modbus function code for endpoint 1;
-modbus_fnctID_EP2;Modbus function ID endpoint 2;0;number;R;UINT8;0;;1;0;255;serial-master/slave-protocol;Modbus function code for endpoint 2;
-modbus_fnctID_EP3;Modbus function ID endpoint 3;0;number;R;UINT8;0;;1;0;255;serial-master/slave-protocol;Modbus function code for endpoint 3;
-modbus_fnctID_EP4;Modbus function ID endpoint 4;0;number;R;UINT8;0;;1;0;255;serial-master/slave-protocol;Modbus function code for endpoint 4;
-modbus_fnctID_EP5;Modbus function ID endpoint 5;0;number;R;UINT8;0;;1;0;255;serial-master/slave-protocol;Modbus function code for endpoint 5;
-modbus_fnctID_EP6;Modbus function ID endpoint 6;0;number;R;UINT8;0;;1;0;255;serial-master/slave-protocol;Modbus function code for endpoint 6;
-modbus_fnctID_EP7;Modbus function ID endpoint 7;0;number;R;UINT8;0;;1;0;255;serial-master/slave-protocol;Modbus function code for endpoint 7;
-modbus_fnctID_EP8;Modbus function ID endpoint 8;0;number;R;UINT8;0;;1;0;255;serial-master/slave-protocol;Modbus function code for endpoint 8;
-modbus_fnctID_EP9;Modbus function ID endpoint 9;0;number;R;UINT8;0;;1;0;255;serial-master/slave-protocol;Modbus function code for endpoint 9;
-modbus_frame_number_in_serie;Modbus frame number in series;0;number;R;UINT8;0;;1;0;7;multi-master/slave-answers;Current frame number in Modbus series;
-modbus_frame_series_sent;Modbus frame series sent;0;number;R;UINT8;0;;1;0;255;multi-master/slave-answers;Number of Modbus frame series sent;
-modbus_last_frame_of_serie;Modbus last frame of series;0;number;R;UINT8;0;;1;0;7;multi-master/slave-answers;Last frame of Modbus series;
-modbus_payload;Modbus raw payload data;"""""";string;R;STRING;;;;;;serial-master/slave-protocol;Modbus raw payload data;512
-modbus_payload_EP0;Modbus payload endpoint 0;"""""";string;R;STRING;;;;;;serial-master/slave-protocol;Modbus payload data for endpoint 0;512
-modbus_payload_EP1;Modbus payload endpoint 1;"""""";string;R;STRING;;;;;;serial-master/slave-protocol;Modbus payload data for endpoint 1;512
-modbus_payload_EP2;Modbus payload endpoint 2;"""""";string;R;STRING;;;;;;serial-master/slave-protocol;Modbus payload data for endpoint 2;512
-modbus_payload_EP3;Modbus payload endpoint 3;"""""";string;R;STRING;;;;;;serial-master/slave-protocol;Modbus payload data for endpoint 3;512
-modbus_payload_EP4;Modbus payload endpoint 4;"""""";string;R;STRING;;;;;;serial-master/slave-protocol;Modbus payload data for endpoint 4;512
-modbus_payload_EP5;Modbus payload endpoint 5;"""""";string;R;STRING;;;;;;serial-master/slave-protocol;Modbus payload data for endpoint 5;512
-modbus_payload_EP6;Modbus payload endpoint 6;"""""";string;R;STRING;;;;;;serial-master/slave-protocol;Modbus payload data for endpoint 6;512
-modbus_payload_EP7;Modbus payload endpoint 7;"""""";string;R;STRING;;;;;;serial-master/slave-protocol;Modbus payload data for endpoint 7;512
-modbus_payload_EP8;Modbus payload endpoint 8;"""""";string;R;STRING;;;;;;serial-master/slave-protocol;Modbus payload data for endpoint 8;512
-modbus_payload_EP9;Modbus payload endpoint 9;"""""";string;R;STRING;;;;;;serial-master/slave-protocol;Modbus payload data for endpoint 9;512
-modbus_slaveID;Modbus slave ID;0;number;R;UINT8;0;;1;0;255;serial-master/slave-protocol;Modbus slave device ID;
-modbus_slaveID_EP0;Modbus slave ID endpoint 0;0;number;R;UINT8;0;;1;0;255;serial-master/slave-protocol;Modbus slave ID for endpoint 0;
-modbus_slaveID_EP1;Modbus slave ID endpoint 1;0;number;R;UINT8;0;;1;0;255;serial-master/slave-protocol;Modbus slave ID for endpoint 1;
-modbus_slaveID_EP2;Modbus slave ID endpoint 2;0;number;R;UINT8;0;;1;0;255;serial-master/slave-protocol;Modbus slave ID for endpoint 2;
-modbus_slaveID_EP3;Modbus slave ID endpoint 3;0;number;R;UINT8;0;;1;0;255;serial-master/slave-protocol;Modbus slave ID for endpoint 3;
-modbus_slaveID_EP4;Modbus slave ID endpoint 4;0;number;R;UINT8;0;;1;0;255;serial-master/slave-protocol;Modbus slave ID for endpoint 4;
-modbus_slaveID_EP5;Modbus slave ID endpoint 5;0;number;R;UINT8;0;;1;0;255;serial-master/slave-protocol;Modbus slave ID for endpoint 5;
-modbus_slaveID_EP6;Modbus slave ID endpoint 6;0;number;R;UINT8;0;;1;0;255;serial-master/slave-protocol;Modbus slave ID for endpoint 6;
-modbus_slaveID_EP7;Modbus slave ID endpoint 7;0;number;R;UINT8;0;;1;0;255;serial-master/slave-protocol;Modbus slave ID for endpoint 7;
-modbus_slaveID_EP8;Modbus slave ID endpoint 8;0;number;R;UINT8;0;;1;0;255;serial-master/slave-protocol;Modbus slave ID for endpoint 8;
-modbus_slaveID_EP9;Modbus slave ID endpoint 9;0;number;R;UINT8;0;;1;0;255;serial-master/slave-protocol;Modbus slave ID for endpoint 9;
-model;Device model;"""""";string;R;STRING;;;;;;basic;Device model name;16
-multi_state;Multi State;0;number;R;UINT16;0;;1;0;65535;pulse-senso, pulse-senso-atex;Multi State measurement value;
-nb_retry;Number of retries;0;number;R;UINT8;0;;1;1;7;lorawan;Number of transmission retries;
-nb_samples;Number of samples;0;number;R;UINT16;0;;1;0;65535;simple-metering-like;Number of samples measured;
-negative_active_energy_a;Negative active energy phase A;0;number;R;UINT32;0;Wh;1;0;4294967295;energy-and-power-metering;Negative active energy on phase A;
-negative_active_energy_a;Negative active energy phase A;0;number;R;UINT32;0;kWh;1;0;4294967295;triphaso-kwh;Negative active energy on phase A in kilowatt-hours;
-negative_active_energy_abc;Total negative active energy;0;number;R;UINT32;0;Wh;1;0;4294967295;energy-and-power-metering;Total negative active energy across all phases;
-negative_active_energy_abc;Total negative active energy;0;number;R;UINT32;0;kWh;1;0;4294967295;triphaso-kwh;Total negative active energy across all phases in kilowatt-hours;
-negative_active_energy_b;Negative active energy phase B;0;number;R;UINT32;0;Wh;1;0;4294967295;energy-and-power-metering;Negative active energy on phase B;
-negative_active_energy_b;Negative active energy phase B;0;number;R;UINT32;0;kWh;1;0;4294967295;triphaso-kwh;Negative active energy on phase B in kilowatt-hours;
-negative_active_energy_c;Negative active energy phase C;0;number;R;UINT32;0;Wh;1;0;4294967295;energy-and-power-metering;Negative active energy on phase C;
-negative_active_energy_c;Negative active energy phase C;0;number;R;UINT32;0;kWh;1;0;4294967295;triphaso-kwh;Negative active energy on phase C in kilowatt-hours;
-negative_active_power_a;Negative active power phase A;0;number;R;UINT32;0;W;1;0;920000;energy-and-power-metering;Negative active power on phase A;
-negative_active_power_abc;Total negative active power;0;number;R;UINT32;0;W;1;0;4294967295;energy-and-power-metering;Total negative active power across all phases;
-negative_active_power_b;Negative active power phase B;0;number;R;UINT32;0;W;1;0;920000;energy-and-power-metering;Negative active power on phase B;
-negative_active_power_c;Negative active power phase C;0;number;R;UINT32;0;W;1;0;920000;energy-and-power-metering;Negative active power on phase C;
-negative_reactive_energy_a;Negative reactive energy phase A;0;number;R;UINT32;0;VArh;1;0;4294967295;energy-and-power-metering;Negative reactive energy on phase A;
-negative_reactive_energy_a;Negative reactive energy phase A;0;number;R;UINT32;0;kVArh;1;0;4294967295;triphaso-kwh;Negative reactive energy on phase A in kilovolt-ampere reactive hours;
-negative_reactive_energy_abc;Total negative reactive energy;0;number;R;UINT32;0;VArh;1;0;4294967295;energy-and-power-metering;Total negative reactive energy across all phases;
-negative_reactive_energy_abc;Total negative reactive energy;0;number;R;UINT32;0;kVArh;1;0;4294967295;triphaso-kwh;Total negative reactive energy across all phases in kilovolt-ampere reactive hours;
-negative_reactive_energy_b;Negative reactive energy phase B;0;number;R;UINT32;0;VArh;1;0;4294967295;energy-and-power-metering;Negative reactive energy on phase B;
-negative_reactive_energy_b;Negative reactive energy phase B;0;number;R;UINT32;0;kVArh;1;0;4294967295;triphaso-kwh;Negative reactive energy on phase B in kilovolt-ampere reactive hours;
-negative_reactive_energy_c;Negative reactive energy phase C;0;number;R;UINT32;0;VArh;1;0;4294967295;energy-and-power-metering;Negative reactive energy on phase C;
-negative_reactive_energy_c;Negative reactive energy phase C;0;number;R;UINT32;0;kVArh;1;0;4294967295;triphaso-kwh;Negative reactive energy on phase C in kilovolt-ampere reactive hours;
-negative_reactive_power_a;Negative reactive power phase A;0;number;R;UINT32;0;VAr;1;0;920000;energy-and-power-metering;Negative reactive power on phase A;
-negative_reactive_power_abc;Total negative reactive power;0;number;R;UINT32;0;VAr;1;0;4294967295;energy-and-power-metering;Total negative reactive power across all phases;
-negative_reactive_power_b;Negative reactive power phase B;0;number;R;UINT32;0;VAr;1;0;920000;energy-and-power-metering;Negative reactive power on phase B;
-negative_reactive_power_c;Negative reactive power phase C;0;number;R;UINT32;0;VAr;1;0;920000;energy-and-power-metering;Negative reactive power on phase C;
-OCC;OCC;false;boolean;R;BOOL;;;;;;occupancy;OCC measurement value;
-occupancy;Occupancy detection;false;boolean;R;BOOL;;;;;;occupancy;Occupancy detection state;
-open;Open state;false;boolean;R;BOOL;;;;;;binary-input;Open state of contact sensor;
-OTA_app_EUI;OTA application EUI;"""""";string;R;STRING;;;;;;lorawan;OTA application EUI;16
-output;Output state;"""""";string;R;STRING;;;;;;ON/OFF;Output state (ON/OFF);4
-output_1;Output 1 state;"""""";string;R;STRING;;;;;;ON/OFF;Output 1 state (ON/OFF);4
-output_2;Output 2 state;"""""";string;R;STRING;;;;;;ON/OFF;Output 2 state (ON/OFF);4
-output_3;Output 3 state;"""""";string;R;STRING;;;;;;ON/OFF;Output 3 state (ON/OFF);4
-output_4;Output 4 state;"""""";string;R;STRING;;;;;;ON/OFF;Output 4 state (ON/OFF);4
-output_value;Output value;0;number;R;UINT8;0;;1;0;5;multi-state-output;Output numeric value;
-over_voltage;Over voltage count;0;number;R;UINT16;0;;1;0;65535;power-quality;Number of over voltage events;
-parity;Modbus parity;0;number;R;UINT8;0;;1;0;2;serial-interface;Parity setting for Modbus (0=none, 1=odd, 2=even);
-pin_state;Digital input state;false;boolean;R;BOOL;;;;;;binary-input;State of digital input pin;
-pin_state_1;Digital input state 1;false;boolean;R;BOOL;;;;;;binary-input;State of digital input pin 1;
-pin_state_10;Digital input state 10;false;boolean;R;BOOL;;;;;;binary-input;State of digital input pin 10;
-pin_state_2;Digital input state 2;false;boolean;R;BOOL;;;;;;binary-input;State of digital input pin 2;
-pin_state_3;Digital input state 3;false;boolean;R;BOOL;;;;;;binary-input;State of digital input pin 3;
-pin_state_4;Digital input state 4;false;boolean;R;BOOL;;;;;;binary-input;State of digital input pin 4;
-pin_state_5;Digital input state 5;false;boolean;R;BOOL;;;;;;binary-input;State of digital input pin 5;
-pin_state_6;Digital input state 6;false;boolean;R;BOOL;;;;;;binary-input;State of digital input pin 6;
-pin_state_7;Digital input state 7;false;boolean;R;BOOL;;;;;;binary-input;State of digital input pin 7;
-pin_state_8;Digital input state 8;false;boolean;R;BOOL;;;;;;binary-input;State of digital input pin 8;
-pin_state_9;Digital input state 9;false;boolean;R;BOOL;;;;;;binary-input;State of digital input pin 9;
-polarity;Input polarity;"""""";string;R;STRING;;;;;;binary-input;Polarity of the input (normal or reverse);8
-poll_period;Polling period;0;number;R;UINT16;0;ms;1;0;65535;binary-input;Polling period;
-position;Device position;"""""";string;R;STRING;;;;;;basic;Physical location of the device;8
-positive_active_energy_a;Positive active energy phase A;0;number;R;UINT32;0;Wh;1;0;4294967295;energy-and-power-metering;Positive active energy on phase A;
-positive_active_energy_a;Positive active energy phase A;0;number;R;UINT32;0;kWh;1;0;4294967295;triphaso-kwh;Positive active energy on phase A in kilowatt-hours;
-positive_active_energy_abc;Total positive active energy;0;number;R;UINT32;0;Wh;1;0;4294967295;energy-and-power-metering;Total positive active energy across all phases;
-positive_active_energy_abc;Total positive active energy;0;number;R;UINT32;0;kWh;1;0;4294967295;triphaso-kwh;Total positive active energy across all phases in kilowatt-hours;
-positive_active_energy_b;Positive active energy phase B;0;number;R;UINT32;0;Wh;1;0;4294967295;energy-and-power-metering;Positive active energy on phase B;
-positive_active_energy_b;Positive active energy phase B;0;number;R;UINT32;0;kWh;1;0;4294967295;triphaso-kwh;Positive active energy on phase B in kilowatt-hours;
-positive_active_energy_c;Positive active energy phase C;0;number;R;UINT32;0;Wh;1;0;4294967295;energy-and-power-metering;Positive active energy on phase C;
-positive_active_energy_c;Positive active energy phase C;0;number;R;UINT32;0;kWh;1;0;4294967295;triphaso-kwh;Positive active energy on phase C in kilowatt-hours;
-positive_active_power_a;Positive active power phase A;0;number;R;UINT32;0;W;1;0;4294967295;energy-and-power-metering;Positive active power on phase A;
-positive_active_power_abc;Total positive active power;0;number;R;UINT32;0;W;1;0;4294967295;energy-and-power-metering;Total positive active power across all phases;
-positive_active_power_b;Positive active power phase B;0;number;R;UINT32;0;W;1;0;4294967295;energy-and-power-metering;Positive active power on phase B;
-positive_active_power_c;Positive active power phase C;0;number;R;UINT32;0;W;1;0;4294967295;energy-and-power-metering;Positive active power on phase C;
-positive_reactive_energy_a;Positive reactive energy phase A;0;number;R;UINT32;0;VArh;1;0;4294967295;energy-and-power-metering;Positive reactive energy on phase A;
-positive_reactive_energy_a;Positive reactive energy phase A;0;number;R;UINT32;0;kVArh;1;0;4294967295;triphaso-kwh;Positive reactive energy on phase A in kilovolt-ampere reactive hours;
-positive_reactive_energy_abc;Total positive reactive energy;0;number;R;UINT32;0;VArh;1;0;4294967295;energy-and-power-metering;Total positive reactive energy across all phases;
-positive_reactive_energy_abc;Total positive reactive energy;0;number;R;UINT32;0;kVArh;1;0;4294967295;triphaso-kwh;Total positive reactive energy across all phases in kilovolt-ampere reactive hours;
-positive_reactive_energy_b;Positive reactive energy phase B;0;number;R;UINT32;0;VArh;1;0;4294967295;energy-and-power-metering;Positive reactive energy on phase B;
-positive_reactive_energy_b;Positive reactive energy phase B;0;number;R;UINT32;0;kVArh;1;0;4294967295;triphaso-kwh;Positive reactive energy on phase B in kilovolt-ampere reactive hours;
-positive_reactive_energy_c;Positive reactive energy phase C;0;number;R;UINT32;0;VArh;1;0;4294967295;energy-and-power-metering;Positive reactive energy on phase C;
-positive_reactive_energy_c;Positive reactive energy phase C;0;number;R;UINT32;0;kVArh;1;0;4294967295;triphaso-kwh;Positive reactive energy on phase C in kilovolt-ampere reactive hours;
-positive_reactive_power_a;Positive reactive power phase A;0;number;R;UINT32;0;VAr;1;0;4294967295;energy-and-power-metering;Positive reactive power on phase A;
-positive_reactive_power_abc;Total positive reactive power;0;number;R;UINT32;0;VAr;1;0;4294967295;energy-and-power-metering;Total positive reactive power across all phases;
-positive_reactive_power_b;Positive reactive power phase B;0;number;R;UINT32;0;VAr;1;0;4294967295;energy-and-power-metering;Positive reactive power on phase B;
-positive_reactive_power_c;Positive reactive power phase C;0;number;R;UINT32;0;VAr;1;0;4294967295;energy-and-power-metering;Positive reactive power on phase C;
-power_duration;Power duration;0;number;R;UINT16;0;ms;1;0;65535;presso;Power duration in milliseconds;
-pressure;Atmospheric pressure;0;number;R;INT;0;hPa;1;300;1100;pressure;Atmospheric pressure in hectopascals;
-ratiometric_0-5_V_1;Ratiometric 0-5V sensor 1 value;0;number;R;FLOAT;2;V;0,01;0;5;torano-atex;Ratiometric 0-5V voltage sensor 1 value;
-ratiometric_0-5_V_2;Ratiometric 0-5V sensor 2 value;0;number;R;FLOAT;2;V;0,01;0;5;torano-atex;Ratiometric 0-5V voltage sensor 2 value;
-reactive_energy;Reactive energy;0;number;R;INT32;0;VArh;1;-8388608;8388607;simple-metering-like;Reactive energy in volt-ampere reactive hours;
-reactive_energy_a;Reactive energy phase A;0;number;R;INT32;0;VArh;1;-2147483648;2147483647;energy-and-power-multi-metering;Reactive energy on phase A;
-reactive_energy_a;Reactive energy phase A;0;number;R;INT32;0;kVArh;1;-2147483648;2147483647;triphaso-kwh;Reactive energy on phase A in kilovolt-ampere reactive hours;
-reactive_energy_abc;Total reactive energy;0;number;R;INT32;0;VArh;1;-2147483648;2147483647;energy-and-power-multi-metering;Total reactive energy across all phases;
-reactive_energy_abc;Total reactive energy;0;number;R;INT32;0;kVArh;1;-2147483648;2147483647;triphaso-kwh;Total reactive energy across all phases in kilovolt-ampere reactive hours;
-reactive_energy_b;Reactive energy phase B;0;number;R;INT32;0;VArh;1;-2147483648;2147483647;energy-and-power-multi-metering;Reactive energy on phase B;
-reactive_energy_b;Reactive energy phase B;0;number;R;INT32;0;kVArh;1;-2147483648;2147483647;triphaso-kwh;Reactive energy on phase B in kilovolt-ampere reactive hours;
-reactive_energy_c;Reactive energy phase C;0;number;R;INT32;0;VArh;1;-2147483648;2147483647;energy-and-power-multi-metering;Reactive energy on phase C;
-reactive_energy_c;Reactive energy phase C;0;number;R;INT32;0;kVArh;1;-2147483648;2147483647;triphaso-kwh;Reactive energy on phase C in kilovolt-ampere reactive hours;
-reactive_power;Reactive power;0;number;R;INT16;0;VAr;1;-8388608;8388607;simple-metering-like;Reactive power in volt-ampere reactive;
-reactive_power_a;Reactive power phase A;0;number;R;INT32;0;VAr;1;-2147483648;2147483647;energy-and-power-multi-metering;Reactive power on phase A;
-reactive_power_abc;Total reactive power;0;number;R;INT32;0;VAr;1;-2147483648;2147483647;energy-and-power-multi-metering;Total reactive power across all phases;
-reactive_power_b;Reactive power phase B;0;number;R;INT32;0;VAr;1;-2147483648;2147483647;energy-and-power-multi-metering;Reactive power on phase B;
-reactive_power_c;Reactive power phase C;0;number;R;INT32;0;VAr;1;-2147483648;2147483647;energy-and-power-multi-metering;Reactive power on phase C;
-rechargeable_battery_voltage;Rechargeable battery voltage;0;number;R;FLOAT;3;V;0,001;0;6;configuration;Rechargeable battery voltage;
-sag_voltage;Voltage sag count;0;number;R;UINT16;0;;1;0;65535;power-quality;Number of voltage sag events;
-sendConfirmedMode;Send Confirmed Mode;0;number;W;UINT8;0;;1;0;1;lorawan;Set confirmed transmission mode;
-sendFactoryReset;Send Factory Reset command;false;boolean;W;BOOL;;;;;;configuration;Send Factory Reset command to the device;
-sendHexFrame;Send custom Hex Frame;"""""";string;W;STRING;;;;;;all;Send a custom hex frame (with optional specific port);128
-sendLoraRejoin;Send LoRa Rejoin command;0;number;W;UINT16;0;min;1;0;65535;lorawan;Send LoRa Rejoin command with set interval;
-sendLoraRetries;Send LoRa Retries;0;number;W;UINT8;0;;1;1;7;lorawan;Set the amount of LoRa retries;
-sendMSOMode;Send MSO Mode;0;number;W;UINT8;0;;1;0;5;smartpilot-wire;Set Multi State Output mode;
-sendMSORelay;Send MSO Relay State;0;number;W;UINT8;0;;1;0;1;smartpilot-wire;Set Multi State Relay state;
-sendOnOffState;Set on/off state;0;number;W;UINT8;0;;1;0;2;smartplug;0 = On, 1 = Off, 2 = Toggle;
-sendOnOffStateEP1;Set on/off state for endpoint 1;0;number;W;UINT8;0;;1;0;2;ino;0 = On, 1 = Off, 2 = Toggle;
-sendOnOffStateEP2;Set on/off state for endpoint 2;0;number;W;UINT8;0;;1;0;2;ino;0 = On, 1 = Off, 2 = Toggle;
-sendOnOffStateEP3;Set on/off state for endpoint 3;0;number;W;UINT8;0;;1;0;2;ino;0 = On, 1 = Off, 2 = Toggle;
-sendOnOffStateEP4;Set on/off state for endpoint 4;0;number;W;UINT8;0;;1;0;2;ino;0 = On, 1 = Off, 2 = Toggle;
-sendReboot;Send Reboot command;false;boolean;W;BOOL;;;;;;configuration;Send reboot command to the device;
-solar_harvesting_voltage;Solar harvesting voltage;0;number;R;FLOAT;3;V;0,001;0;24;configuration;Solar harvesting voltage;
-speed;Modbus speed;0;number;R;UINT24;0;bps;1;0;16777215;serial-interface;Modbus communication speed in bps;
-state;State;false;boolean;R;BOOL;;;;;;ventilo;State measurement value;
-stop_bit;Modbus stop bits;0;number;R;UINT8;0;;1;1;2;serial-interface;Number of stop bits in Modbus frame;
-temperature;Temperature;0;number;R;FLOAT;2;Cel;0,01;0;55;temperature;Temperature in degrees Celsius;
-Temperature;Temperature;0;number;R;FLOAT;2;Cel;0,01;0;55;temperature-others;Temperature in degrees Celsius;
-Temperature;Temperature;0;number;R;FLOAT;2;Cel;0,01;-20;80;hygrotempo-remote;Temperature in degrees Celsius;
-Temperature;Temperature;0;number;R;FLOAT;2;Cel;0,01;-25;55;tempo-outdoor;Temperature in degrees Celsius;
-Temperature;Temperature;0;number;R;FLOAT;2;Cel;0,01;-40;110;remote-temp;Temperature in degrees Celsius;
-Temperature;Temperature;0;number;R;FLOAT;2;Cel;0,01;-40;400;pt1000;Temperature in degrees Celsius;
-Temperature;Temperature;0;number;R;FLOAT;2;Cel;0,01;-40;400;pt1000-400c;Temperature in degrees Celsius;
-Temperature;Temperature;0;number;R;FLOAT;2;Cel;0,01;-20;55;atmo;Temperature in degrees Celsius;
-temperature_1;Temperature sensor 1;0;number;R;FLOAT;2;Cel;0,01;0;55;temperature-others;Temperature from sensor 1;
-temperature_1;Temperature sensor 1;0;number;R;FLOAT;2;Cel;0,01;-20;80;hygrotempo-remote;Temperature from sensor 1;
-temperature_1;Temperature sensor 1;0;number;R;FLOAT;2;Cel;0,01;-25;55;tempo-outdoor;Temperature from sensor 1;
-temperature_1;Temperature sensor 1;0;number;R;FLOAT;2;Cel;0,01;-40;110;remote-temp;Temperature from sensor 1;
-temperature_1;Temperature sensor 1;0;number;R;FLOAT;2;Cel;0,01;-20;55;atmo;Temperature from sensor 1;
-temperature_2;Temperature sensor 2;0;number;R;FLOAT;2;Cel;0,01;0;55;temperature-others;Temperature from sensor  2;
-temperature_2;Temperature sensor 2;0;number;R;FLOAT;2;Cel;0,01;-20;80;hygrotempo-remote;Temperature from sensor 2;
-temperature_2;Temperature sensor 2;0;number;R;FLOAT;2;Cel;0,01;-25;55;tempo-outdoor;Temperature from sensor 2;
-temperature_2;Temperature sensor 2;0;number;R;FLOAT;2;Cel;0,01;-40;110;remote-temp;Temperature from sensor 2;
-temperature_2;Temperature sensor 2;0;number;R;FLOAT;2;Cel;0,01;-20;55;atmo;Temperature from sensor 2;
-tic_harvesting_voltage;TIC harvesting voltage;0;number;R;FLOAT;3;V;0,001;0;65,535;configuration;TIC harvesting voltage;
-Tilt;Tilt;0;number;R;INT16;0;deg;1;0;359;alto, inclino;Tilt measurement value;
-violation_detection;Violation detection;false;boolean;R;BOOL;;;;;;binary-input;Violation detection state;
-Vpeak;Peak voltage;0;number;R;FLOAT;1;V;0,1;0;300;power-quality;Peak voltage;
-Vpeak_max;Max peak voltage;0;number;R;FLOAT;1;V;0,1;0;300;power-quality;Max peak voltage;
-Vpeak_min;Min peak voltage;0;number;R;FLOAT;1;V;0,1;0;300;power-quality;Min peak voltage;
-Vrms;RMS voltage;0;number;R;FLOAT;1;V;0,1;0;300;power-quality;RMS voltage;
-Vrms_a;RMS voltage phase A;0;number;R;FLOAT;1;V;0,1;0;600;voltage-and-current-metering;RMS voltage on phase A;
-Vrms_b;RMS voltage phase B;0;number;R;FLOAT;1;V;0,1;0;600;voltage-and-current-metering;RMS voltage on phase B;
-Vrms_c;RMS voltage phase C;0;number;R;FLOAT;1;V;0,1;0;600;voltage-and-current-metering;RMS voltage on phase C;
-Vrms_max;Maximum RMS voltage;0;number;R;FLOAT;1;V;0,1;0;600;power-quality;Maximum RMS voltage;
-Vrms_min;Minimum RMS voltage;0;number;R;FLOAT;1;V;0,1;0;600;power-quality;Minimum RMS voltage;
+id;name;value;type;access_mode;value_type;precision;units;cov_increment;min_value;max_value;models;description;max_string_length;measId
+0-10_V;0-10V sensor value;0;number;R;FLOAT;2;V;0,01;0;10;levo, presso;0-10V voltage sensor value;;1
+0-100_mV;0-100mV sensor value;0;number;R;FLOAT;2;mV;0,01;0;100;monito;0-100mV voltage sensor value;;2
+0-5_V_1;0-5V sensor 1 value;0;number;R;FLOAT;2;V;0,01;0;5;torano-atex;0-5V voltage sensor 1 value;;3
+0-5_V_2;0-5V sensor 2 value;0;number;R;FLOAT;2;V;0,01;0;5;torano-atex;0-5V voltage sensor 2 value;;4
+0-70_V;0-70V sensor value;0;number;R;FLOAT;2;mV;0,01;0;70;monito;0-70V voltage sensor value;;5
+4-20_mA;4-20mA sensor value;0;number;R;FLOAT;2;mA;0,01;4;20;levo, presso, torano-atex;4-20mA current loop sensor value;;6
+ABP_dev_address;ABP device address;"""""";string;R;STRING;;;;;;all;ABP device address;8;7
+acc_temperature;Accelerometer temperature;0;number;R;FLOAT;2;Cel;0,01;-40;85;alto;Accelerometer temperature in Celsius;;8
+ACCmg;Acceleration in mg;0;number;R;UINT16;0;mg;1;0;65535;alto;Acceleration value in milli-g;;9
+active_energy;Active energy;0;number;R;INT32;0;Wh;1;-8388608;8388607;smart-plug, ticso;Active energy in watt-hours;;10
+active_energy_a;Active energy phase A;0;number;R;INT32;0;Wh;1;-2147483648;2147483647;triphaso;Active energy on phase A;;11
+active_energy_a;Active energy phase A;0;number;R;INT32;0;kWh;1;-2147483648;2147483647;triphaso-kwh;Active energy on phase A in kilowatt-hours;;12
+active_energy_abc;Total active energy;0;number;R;INT32;0;Wh;1;-2147483648;2147483647;triphaso;Total active energy across all phases;;13
+active_energy_abc;Total active energy;0;number;R;INT32;0;kWh;1;-2147483648;2147483647;triphaso-kwh;Total active energy across all phases in kilowatt-hours;;14
+active_energy_b;Active energy phase B;0;number;R;INT32;0;Wh;1;-2147483648;2147483647;triphaso;Active energy on phase B;;15
+active_energy_b;Active energy phase B;0;number;R;INT32;0;kWh;1;-2147483648;2147483647;triphaso-kwh;Active energy on phase B in kilowatt-hours;;16
+active_energy_c;Active energy phase C;0;number;R;INT32;0;Wh;1;-2147483648;2147483647;triphaso;Active energy on phase C;;17
+active_energy_c;Active energy phase C;0;number;R;INT32;0;kWh;1;-2147483648;2147483647;triphaso-kwh;Active energy on phase C in kilowatt-hours;;18
+active_power;Active power;0;number;R;INT16;0;W;1;-8388608;8388607;smart-plug, ticso;Active power in watts;;19
+active_power_a;Active power phase A;0;number;R;INT32;0;W;1;-2147483648;2147483647;triphaso, triphaso-kwh;Active power on phase A;;20
+active_power_abc;Total active power;0;number;R;INT32;0;W;1;-2147483648;2147483647;triphaso, triphaso-kwh;Total active power across all phases;;21
+active_power_b;Active power phase B;0;number;R;INT32;0;W;1;-2147483648;2147483647;triphaso, triphaso-kwh;Active power on phase B;;22
+active_power_c;Active power phase C;0;number;R;INT32;0;W;1;-2147483648;2147483647;triphaso, triphaso-kwh;Active power on phase C;;23
+ActiveEnergy;Active energy;0;number;R;INT32;0;Wh;1;-8388608;8388607;smart-plug;Active energy in watt-hours;;24
+angle_a;Phase angle A;0;number;R;INT16;0;deg;1;0;359;triphaso, triphaso-kwh;Phase angle on phase A;;26
+angle_b;Phase angle B;0;number;R;INT16;0;deg;1;0;359;triphaso, triphaso-kwh;Phase angle on phase B;;27
+angle_c;Phase angle C;0;number;R;INT16;0;deg;1;0;359;triphaso, triphaso-kwh;Phase angle on phase C;;28
+application_name;Application name;"""""";string;R;STRING;;;;;;all;Name of the application running on the device;16;29
+battery_voltage;Battery voltage;0;number;R;FLOAT;3;V;0,001;0;6;alto, atmo, climo, flasho, hygrotempo, hygrotempo-remote, intenso, levo, monito, presso, pt1000, pt1000-400c, pulse-senso, pulse-senso-atex, tempo-outdoor, temp-remte-1-prb, temp-remte-2-prb, th, ventilo;Device battery voltage;;30
+BatteryVoltage;BatteryVoltage;0;number;R;FLOAT;3;V;0,001;0;6;indoor-temp;Device battery voltage;;31
+CO2;CO2 concentration;0;number;R;UINT16;0;ppm;1;0;5000;vaqao-lite, vaqao-lt, vaqao-multi-lite, vaqao-plus-lite, vaqao-plus, vaqao;CO2 concentration in ppm;;32
+data_bit;Modbus data bits;0;number;R;UINT8;0;;1;7;8;modbus;Number of data bits in Modbus frame;;34
+data_rate;LoRaWAN data rate;0;number;R;UINT8;0;;1;0;7;all;LoRaWAN data rate (DR0-DR7);;35
+date;Manufacturing date;"""""";string;R;STRING;;;;;;all;Device manufacturing date;16;36
+debounce_period;Debounce period;0;number;R;UINT8;0;ms;1;0;65535;atmo, closo, flasho, ino, presso, pulse-senso, pulse-senso-atex;Debounce period in milliseconds;;37
+differential_pressure;Differential pressure;0;number;R;INT16;0;Pa;1;-2500;2500;ventilo;Differential pressure in Pascal;;38
+disposable_battery_voltage;Disposable battery voltage;0;number;R;FLOAT;3;V;0,001;0;6;alto, atmo, climo, closo, flasho, hygrotempo, hygrotempo-remote, ino, inclino, indoor-temp, intenso, levo, modbus, monito, moveo-lite, presso, pt1000, pt1000-400c, pulse-senso, pulse-senso-atex, tempo, tempo-outdoor, temp-remte-1-prb, temp-remte-2-prb, th, torano-atex, vaqao-lite;Disposable battery voltage;;39
+distance;Distance;0;number;R;FLOAT;2;m;0,01;0;30;alto;Distance measurement in meters;;40
+edge_selection;Edge detection configuration;"""""";string;R;STRING;;;;;;atmo, closo, flasho, ino, presso, pulse-senso, pulse-senso-atex;Edge detection configuration;24;41
+external_level;External Level;0;number;R;FLOAT;3;V;0,001;;;monito;External Level measurement value;;42
+external_power_voltage;External Power Voltage;0;number;R;FLOAT;3;V;0,001;0;24;levo, presso;External Power Voltage measurement value;;43
+firmware;Firmware version;"""""";string;R;STRING;;;;;;all;Device firmware version;16;44
+force_notify;Force notification flag;false;boolean;R;BOOL;;;;;;atmo, closo, flasho, ino, presso, pulse-senso, pulse-senso-atex;Force notification parameter;;45
+frequency;Frequency;0;number;R;FLOAT;3;Hz;0,001;0;100;smart-plug;Frequency in hertz;;46
+frequency_max;Maximum frequency;0;number;R;FLOAT;3;Hz;0,001;0;100;smart-plug;Maximum frequency in hertz;;47
+frequency_min;Minimum frequency;0;number;R;FLOAT;3;Hz;0,001;0;100;smart-plug;Minimum frequency in hertz;;48
+humidity;Relative humidity;0;number;R;FLOAT;2;%RH;0,01;0;100;atmo, moveo-lite, th, hygrotempo, hygrotempo-remote, climo;Relative humidity percentage;;49
+humidity_1;Humidity sensor 1;0;number;R;FLOAT;2;%RH;0,01;0;100;vaqao-lite;Humidity from sensor 1;;50
+humidity_2;Humidity sensor 2;0;number;R;FLOAT;2;%RH;0,01;0;100;vaqao-lite;Humidity from sensor 2;;51
+IAQ;Indoor air quality;0;number;R;UINT16;0;;1;0;500;vaqao-lite, vaqao-lt, vaqao-multi-lite, vaqao-plus-lite, vaqao-plus, vaqao;Indoor air quality index;;52
+illuminance;Illuminance level;0;number;R;UINT16;0;lx;1;0;65535;moveo, moveo-lite, vaqao-lite, vaqao-plus-lite, vaqao-plus, vaqao;Illuminance level in lux;;53
+index;Pulse counter index;0;number;R;UINT32;0;;1;0;4294967295;closo, flasho, presso, th, triphaso, triphaso-kwh, ventilo;Pulse counter index value;;54
+index_1;Pulse counter index 1;0;number;R;UINT32;0;;1;0;4294967295;atmo, ino, pulse-senso, pulse-senso-atex, torano-atex;Pulse counter index 1 value;;55
+index_10;Pulse counter index 10;0;number;R;UINT32;0;;1;0;4294967295;ino;Pulse counter index 10 value;;56
+index_2;Pulse counter index 2;0;number;R;UINT32;0;;1;0;4294967295;atmo, ino, pulse-senso, pulse-senso-atex, torano-atex;Pulse counter index 2 value;;57
+index_3;Pulse counter index 3;0;number;R;UINT32;0;;1;0;4294967295;ino, pulse-senso, pulse-senso-atex, torano-atex;Pulse counter index 3 value;;58
+index_4;Pulse counter index 4;0;number;R;UINT32;0;;1;0;4294967295;ino;Pulse counter index 4 value;;59
+index_5;Pulse counter index 5;0;number;R;UINT32;0;;1;0;4294967295;ino;Pulse counter index 5 value;;60
+index_6;Pulse counter index 6;0;number;R;UINT32;0;;1;0;4294967295;ino;Pulse counter index 6 value;;61
+index_7;Pulse counter index 7;0;number;R;UINT32;0;;1;0;4294967295;ino;Pulse counter index 7 value;;62
+index_8;Pulse counter index 8;0;number;R;UINT32;0;;1;0;4294967295;ino;Pulse counter index 8 value;;63
+index_9;Pulse counter index 9;0;number;R;UINT32;0;;1;0;4294967295;ino;Pulse counter index 9 value;;64
+Irms;RMS current;0;number;R;FLOAT;1;A;0,1;0;40;intenso;RMS current;;65
+Irms_a;RMS current phase A;0;number;R;FLOAT;1;A;0,1;0;4000;triphaso, triphaso-kwh;RMS current on phase A;;66
+Irms_b;RMS current phase B;0;number;R;FLOAT;1;A;0,1;0;4000;triphaso, triphaso-kwh;RMS current on phase B;;67
+Irms_c;RMS current phase C;0;number;R;FLOAT;1;A;0,1;0;4000;triphaso, triphaso-kwh;RMS current on phase C;;68
+kernel;Kernel version;"""""";string;R;STRING;;;;;;all;Device kernel version;16;69
+luminosity;Luminosity;0;number;R;UINT16;0;lx;1;0;65535;moveo-lite;Luminosity measurement value;;70
+main_or_external_voltage;Main or external voltage;0;number;R;FLOAT;3;V;0,001;0;24;ino, modbus, presso, smartpilot-wire, smart-plug, ticso, triphaso, triphaso-kwh, ventilo;Main or external power supply voltage;;71
+manufacturer;Manufacturer name;"""""";string;R;STRING;;;;;;all;Device manufacturer;16;72
+maximal_differential_pressure_since_last_report;Maximal Differential Pressure Since Last Report;0;number;R;INT16;0;Pa;1;-2500;2500;ventilo;Maximal Differential Pressure Since Last Report measurement value;;73
+mean_differential_pressure_since_last_report;Mean Differential Pressure Since Last Report;0;number;R;INT16;0;Pa;1;-2500;2500;ventilo;Mean Differential Pressure Since Last Report measurement value;;74
+message_type;Message type;"""""";string;R;STRING;;;;;;all;LoRaWAN message type (confirmed/unconfirmed);16;75
+minimal_differential_pressure_since_last_report;Minimal Differential Pressure Since Last Report;0;number;R;INT16;0;Pa;1;-2500;2500;ventilo;Minimal Differential Pressure Since Last Report measurement value;;76
+modbus_datasize_EP0;Modbus data size endpoint 0;0;number;R;UINT8;0;;1;0;255;modbus;Modbus data size for endpoint 0;;78
+modbus_datasize_EP1;Modbus data size endpoint 1;0;number;R;UINT8;0;;1;0;255;modbus;Modbus data size for endpoint 1;;79
+modbus_datasize_EP2;Modbus data size endpoint 2;0;number;R;UINT8;0;;1;0;255;modbus;Modbus data size for endpoint 2;;80
+modbus_datasize_EP3;Modbus data size endpoint 3;0;number;R;UINT8;0;;1;0;255;modbus;Modbus data size for endpoint 3;;81
+modbus_datasize_EP4;Modbus data size endpoint 4;0;number;R;UINT8;0;;1;0;255;modbus;Modbus data size for endpoint 4;;82
+modbus_datasize_EP5;Modbus data size endpoint 5;0;number;R;UINT8;0;;1;0;255;modbus;Modbus data size for endpoint 5;;83
+modbus_datasize_EP6;Modbus data size endpoint 6;0;number;R;UINT8;0;;1;0;255;modbus;Modbus data size for endpoint 6;;84
+modbus_datasize_EP7;Modbus data size endpoint 7;0;number;R;UINT8;0;;1;0;255;modbus;Modbus data size for endpoint 7;;85
+modbus_datasize_EP8;Modbus data size endpoint 8;0;number;R;UINT8;0;;1;0;255;modbus;Modbus data size for endpoint 8;;86
+modbus_datasize_EP9;Modbus data size endpoint 9;0;number;R;UINT8;0;;1;0;255;modbus;Modbus data size for endpoint 9;;87
+modbus_EP0;Modbus endpoint 0 active;false;boolean;R;BOOL;;;;;;modbus;Modbus endpoint 0 active status;;88
+modbus_EP1;Modbus endpoint 1 active;false;boolean;R;BOOL;;;;;;modbus;Modbus endpoint 1 active status;;89
+modbus_EP2;Modbus endpoint 2 active;false;boolean;R;BOOL;;;;;;modbus;Modbus endpoint 2 active status;;90
+modbus_EP3;Modbus endpoint 3 active;false;boolean;R;BOOL;;;;;;modbus;Modbus endpoint 3 active status;;91
+modbus_EP4;Modbus endpoint 4 active;false;boolean;R;BOOL;;;;;;modbus;Modbus endpoint 4 active status;;92
+modbus_EP5;Modbus endpoint 5 active;false;boolean;R;BOOL;;;;;;modbus;Modbus endpoint 5 active status;;93
+modbus_EP6;Modbus endpoint 6 active;false;boolean;R;BOOL;;;;;;modbus;Modbus endpoint 6 active status;;94
+modbus_EP7;Modbus endpoint 7 active;false;boolean;R;BOOL;;;;;;modbus;Modbus endpoint 7 active status;;95
+modbus_EP8;Modbus endpoint 8 active;false;boolean;R;BOOL;;;;;;modbus;Modbus endpoint 8 active status;;96
+modbus_EP9;Modbus endpoint 9 active;false;boolean;R;BOOL;;;;;;modbus;Modbus endpoint 9 active status;;97
+modbus_fnctID_EP0;Modbus function ID endpoint 0;0;number;R;UINT8;0;;1;0;255;modbus;Modbus function code for endpoint 0;;99
+modbus_fnctID_EP1;Modbus function ID endpoint 1;0;number;R;UINT8;0;;1;0;255;modbus;Modbus function code for endpoint 1;;100
+modbus_fnctID_EP2;Modbus function ID endpoint 2;0;number;R;UINT8;0;;1;0;255;modbus;Modbus function code for endpoint 2;;101
+modbus_fnctID_EP3;Modbus function ID endpoint 3;0;number;R;UINT8;0;;1;0;255;modbus;Modbus function code for endpoint 3;;102
+modbus_fnctID_EP4;Modbus function ID endpoint 4;0;number;R;UINT8;0;;1;0;255;modbus;Modbus function code for endpoint 4;;103
+modbus_fnctID_EP5;Modbus function ID endpoint 5;0;number;R;UINT8;0;;1;0;255;modbus;Modbus function code for endpoint 5;;104
+modbus_fnctID_EP6;Modbus function ID endpoint 6;0;number;R;UINT8;0;;1;0;255;modbus;Modbus function code for endpoint 6;;105
+modbus_fnctID_EP7;Modbus function ID endpoint 7;0;number;R;UINT8;0;;1;0;255;modbus;Modbus function code for endpoint 7;;106
+modbus_fnctID_EP8;Modbus function ID endpoint 8;0;number;R;UINT8;0;;1;0;255;modbus;Modbus function code for endpoint 8;;107
+modbus_fnctID_EP9;Modbus function ID endpoint 9;0;number;R;UINT8;0;;1;0;255;modbus;Modbus function code for endpoint 9;;108
+modbus_frame_number_in_serie;Modbus frame number in series;0;number;R;UINT8;0;;1;0;7;modbus;Current frame number in Modbus series;;109
+modbus_frame_series_sent;Modbus frame series sent;0;number;R;UINT8;0;;1;0;255;modbus;Number of Modbus frame series sent;;110
+modbus_last_frame_of_serie;Modbus last frame of series;0;number;R;UINT8;0;;1;0;7;modbus;Last frame of Modbus series;;111
+modbus_payload;Modbus raw payload data;"""""";string;R;STRING;;;;;;modbus;Modbus raw payload data;512;112
+modbus_payload_EP0;Modbus payload endpoint 0;"""""";string;R;STRING;;;;;;modbus;Modbus payload data for endpoint 0;512;113
+modbus_payload_EP1;Modbus payload endpoint 1;"""""";string;R;STRING;;;;;;modbus;Modbus payload data for endpoint 1;512;114
+modbus_payload_EP2;Modbus payload endpoint 2;"""""";string;R;STRING;;;;;;modbus;Modbus payload data for endpoint 2;512;115
+modbus_payload_EP3;Modbus payload endpoint 3;"""""";string;R;STRING;;;;;;modbus;Modbus payload data for endpoint 3;512;116
+modbus_payload_EP4;Modbus payload endpoint 4;"""""";string;R;STRING;;;;;;modbus;Modbus payload data for endpoint 4;512;117
+modbus_payload_EP5;Modbus payload endpoint 5;"""""";string;R;STRING;;;;;;modbus;Modbus payload data for endpoint 5;512;118
+modbus_payload_EP6;Modbus payload endpoint 6;"""""";string;R;STRING;;;;;;modbus;Modbus payload data for endpoint 6;512;119
+modbus_payload_EP7;Modbus payload endpoint 7;"""""";string;R;STRING;;;;;;modbus;Modbus payload data for endpoint 7;512;120
+modbus_payload_EP8;Modbus payload endpoint 8;"""""";string;R;STRING;;;;;;modbus;Modbus payload data for endpoint 8;512;121
+modbus_payload_EP9;Modbus payload endpoint 9;"""""";string;R;STRING;;;;;;modbus;Modbus payload data for endpoint 9;512;122
+modbus_slaveID_EP0;Modbus slave ID endpoint 0;0;number;R;UINT8;0;;1;0;255;modbus;Modbus slave ID for endpoint 0;;124
+modbus_slaveID_EP1;Modbus slave ID endpoint 1;0;number;R;UINT8;0;;1;0;255;modbus;Modbus slave ID for endpoint 1;;125
+modbus_slaveID_EP2;Modbus slave ID endpoint 2;0;number;R;UINT8;0;;1;0;255;modbus;Modbus slave ID for endpoint 2;;126
+modbus_slaveID_EP3;Modbus slave ID endpoint 3;0;number;R;UINT8;0;;1;0;255;modbus;Modbus slave ID for endpoint 3;;127
+modbus_slaveID_EP4;Modbus slave ID endpoint 4;0;number;R;UINT8;0;;1;0;255;modbus;Modbus slave ID for endpoint 4;;128
+modbus_slaveID_EP5;Modbus slave ID endpoint 5;0;number;R;UINT8;0;;1;0;255;modbus;Modbus slave ID for endpoint 5;;129
+modbus_slaveID_EP6;Modbus slave ID endpoint 6;0;number;R;UINT8;0;;1;0;255;modbus;Modbus slave ID for endpoint 6;;130
+modbus_slaveID_EP7;Modbus slave ID endpoint 7;0;number;R;UINT8;0;;1;0;255;modbus;Modbus slave ID for endpoint 7;;131
+modbus_slaveID_EP8;Modbus slave ID endpoint 8;0;number;R;UINT8;0;;1;0;255;modbus;Modbus slave ID for endpoint 8;;132
+modbus_slaveID_EP9;Modbus slave ID endpoint 9;0;number;R;UINT8;0;;1;0;255;modbus;Modbus slave ID for endpoint 9;;133
+model;Device model;"""""";string;R;STRING;;;;;;all;Device model name;16;134
+multi_state;Multi State;0;number;R;UINT16;0;;1;0;65535;pulse-senso, pulse-senso-atex;Multi State measurement value;;135
+nb_retry;Number of retries;0;number;R;UINT8;0;;1;1;7;all;Number of transmission retries;;136
+nb_samples;Number of samples;0;number;R;UINT16;0;;1;0;65535;smart-plug, ticso;Number of samples measured;;137
+negative_active_energy_a;Negative active energy phase A;0;number;R;UINT32;0;Wh;1;0;4294967295;triphaso;Negative active energy on phase A;;138
+negative_active_energy_a;Negative active energy phase A;0;number;R;UINT32;0;kWh;1;0;4294967295;triphaso-kwh;Negative active energy on phase A in kilowatt-hours;;139
+negative_active_energy_abc;Total negative active energy;0;number;R;UINT32;0;Wh;1;0;4294967295;triphaso;Total negative active energy across all phases;;140
+negative_active_energy_abc;Total negative active energy;0;number;R;UINT32;0;kWh;1;0;4294967295;triphaso-kwh;Total negative active energy across all phases in kilowatt-hours;;141
+negative_active_energy_b;Negative active energy phase B;0;number;R;UINT32;0;Wh;1;0;4294967295;triphaso;Negative active energy on phase B;;142
+negative_active_energy_b;Negative active energy phase B;0;number;R;UINT32;0;kWh;1;0;4294967295;triphaso-kwh;Negative active energy on phase B in kilowatt-hours;;143
+negative_active_energy_c;Negative active energy phase C;0;number;R;UINT32;0;Wh;1;0;4294967295;triphaso;Negative active energy on phase C;;144
+negative_active_energy_c;Negative active energy phase C;0;number;R;UINT32;0;kWh;1;0;4294967295;triphaso-kwh;Negative active energy on phase C in kilowatt-hours;;145
+negative_active_power_a;Negative active power phase A;0;number;R;UINT32;0;W;1;0;4294967295;triphaso, triphaso-kwh;Negative active power on phase A;;146
+negative_active_power_abc;Total negative active power;0;number;R;UINT32;0;W;1;0;4294967295;triphaso, triphaso-kwh;Total negative active power across all phases;;147
+negative_active_power_b;Negative active power phase B;0;number;R;UINT32;0;W;1;0;4294967295;triphaso, triphaso-kwh;Negative active power on phase B;;148
+negative_active_power_c;Negative active power phase C;0;number;R;UINT32;0;W;1;0;4294967295;triphaso, triphaso-kwh;Negative active power on phase C;;149
+negative_reactive_energy_a;Negative reactive energy phase A;0;number;R;UINT32;0;VArh;1;0;4294967295;triphaso;Negative reactive energy on phase A;;150
+negative_reactive_energy_a;Negative reactive energy phase A;0;number;R;UINT32;0;kVArh;1;0;4294967295;triphaso-kwh;Negative reactive energy on phase A in kilovolt-ampere reactive hours;;151
+negative_reactive_energy_abc;Total negative reactive energy;0;number;R;UINT32;0;VArh;1;0;4294967295;triphaso;Total negative reactive energy across all phases;;152
+negative_reactive_energy_abc;Total negative reactive energy;0;number;R;UINT32;0;kVArh;1;0;4294967295;triphaso-kwh;Total negative reactive energy across all phases in kilovolt-ampere reactive hours;;153
+negative_reactive_energy_b;Negative reactive energy phase B;0;number;R;UINT32;0;VArh;1;0;4294967295;triphaso;Negative reactive energy on phase B;;154
+negative_reactive_energy_b;Negative reactive energy phase B;0;number;R;UINT32;0;kVArh;1;0;4294967295;triphaso-kwh;Negative reactive energy on phase B in kilovolt-ampere reactive hours;;155
+negative_reactive_energy_c;Negative reactive energy phase C;0;number;R;UINT32;0;VArh;1;0;4294967295;triphaso;Negative reactive energy on phase C;;156
+negative_reactive_energy_c;Negative reactive energy phase C;0;number;R;UINT32;0;kVArh;1;0;4294967295;triphaso-kwh;Negative reactive energy on phase C in kilovolt-ampere reactive hours;;157
+negative_reactive_power_a;Negative reactive power phase A;0;number;R;UINT32;0;VAr;1;0;4294967295;triphaso, triphaso-kwh;Negative reactive power on phase A;;158
+negative_reactive_power_abc;Total negative reactive power;0;number;R;UINT32;0;VAr;1;0;4294967295;triphaso, triphaso-kwh;Total negative reactive power across all phases;;159
+negative_reactive_power_b;Negative reactive power phase B;0;number;R;UINT32;0;VAr;1;0;4294967295;triphaso, triphaso-kwh;Negative reactive power on phase B;;160
+negative_reactive_power_c;Negative reactive power phase C;0;number;R;UINT32;0;VAr;1;0;4294967295;triphaso, triphaso-kwh;Negative reactive power on phase C;;161
+OCC;OCC;false;boolean;R;BOOL;;;;;;moveo-lite;OCC measurement value;;162
+occupancy;Occupancy detection;false;boolean;R;BOOL;;;;;;inclino, moveo, moveo-lite, vaqao-lite, vaqao-plus-lite, vaqao-plus, vaqao;Occupancy detection state;;163
+open;Open state;false;boolean;R;BOOL;;;;;;closo;Open state of contact sensor;;164
+OTA_app_EUI;OTA application EUI;"""""";string;R;STRING;;;;;;all;OTA application EUI;16;165
+output;Output state;"""""";string;R;STRING;;;;;;smart-plug, triphaso, triphaso-kwh;Output state (ON/OFF);4;166
+output_1;Output 1 state;"""""";string;R;STRING;;;;;;ino;Output 1 state (ON/OFF);4;167
+output_2;Output 2 state;"""""";string;R;STRING;;;;;;ino;Output 2 state (ON/OFF);4;168
+output_3;Output 3 state;"""""";string;R;STRING;;;;;;ino;Output 3 state (ON/OFF);4;169
+output_4;Output 4 state;"""""";string;R;STRING;;;;;;ino;Output 4 state (ON/OFF);4;170
+output_value;Output value;0;number;R;UINT8;0;;1;0;5;smartpilot-wire;Output numeric value;;171
+over_voltage;Over voltage count;0;number;R;UINT16;0;;1;0;65535;smart-plug;Number of over voltage events;;172
+parity;Modbus parity;0;number;R;UINT8;0;;1;0;2;modbus;Parity setting for Modbus (0=none, 1=odd, 2=even);;173
+pin_state;Digital input state;false;boolean;R;BOOL;;;;;;flasho, presso, ventilo;State of digital input pin;;174
+pin_state_1;Digital input state 1;false;boolean;R;BOOL;;;;;;atmo, ino, pulse-senso, pulse-senso-atex, torano-atex;State of digital input pin 1;;175
+pin_state_10;Digital input state 10;false;boolean;R;BOOL;;;;;;ino;State of digital input pin 10;;176
+pin_state_2;Digital input state 2;false;boolean;R;BOOL;;;;;;atmo, ino, pulse-senso, pulse-senso-atex, torano-atex;State of digital input pin 2;;177
+pin_state_3;Digital input state 3;false;boolean;R;BOOL;;;;;;ino, pulse-senso, pulse-senso-atex, torano-atex;State of digital input pin 3;;178
+pin_state_4;Digital input state 4;false;boolean;R;BOOL;;;;;;ino;State of digital input pin 4;;179
+pin_state_5;Digital input state 5;false;boolean;R;BOOL;;;;;;ino;State of digital input pin 5;;180
+pin_state_6;Digital input state 6;false;boolean;R;BOOL;;;;;;ino;State of digital input pin 6;;181
+pin_state_7;Digital input state 7;false;boolean;R;BOOL;;;;;;ino;State of digital input pin 7;;182
+pin_state_8;Digital input state 8;false;boolean;R;BOOL;;;;;;ino;State of digital input pin 8;;183
+pin_state_9;Digital input state 9;false;boolean;R;BOOL;;;;;;ino;State of digital input pin 9;;184
+polarity;Input polarity;"""""";string;R;STRING;;;;;;atmo, closo, flasho, ino, presso, pulse-senso, pulse-senso-atex;Polarity of the input (normal or reverse);8;185
+poll_period;Polling period;0;number;R;UINT16;0;ms;1;0;65535;atmo, closo, flasho, ino, presso, pulse-senso, pulse-senso-atex;Polling period;;186
+position;Device position;"""""";string;R;STRING;;;;;;all;Physical location of the device;8;187
+positive_active_energy_a;Positive active energy phase A;0;number;R;UINT32;0;Wh;1;0;4294967295;triphaso;Positive active energy on phase A;;188
+positive_active_energy_a;Positive active energy phase A;0;number;R;UINT32;0;kWh;1;0;4294967295;triphaso-kwh;Positive active energy on phase A in kilowatt-hours;;189
+positive_active_energy_abc;Total positive active energy;0;number;R;UINT32;0;Wh;1;0;4294967295;triphaso;Total positive active energy across all phases;;190
+positive_active_energy_abc;Total positive active energy;0;number;R;UINT32;0;kWh;1;0;4294967295;triphaso-kwh;Total positive active energy across all phases in kilowatt-hours;;191
+positive_active_energy_b;Positive active energy phase B;0;number;R;UINT32;0;Wh;1;0;4294967295;triphaso;Positive active energy on phase B;;192
+positive_active_energy_b;Positive active energy phase B;0;number;R;UINT32;0;kWh;1;0;4294967295;triphaso-kwh;Positive active energy on phase B in kilowatt-hours;;193
+positive_active_energy_c;Positive active energy phase C;0;number;R;UINT32;0;Wh;1;0;4294967295;triphaso;Positive active energy on phase C;;194
+positive_active_energy_c;Positive active energy phase C;0;number;R;UINT32;0;kWh;1;0;4294967295;triphaso-kwh;Positive active energy on phase C in kilowatt-hours;;195
+positive_active_power_a;Positive active power phase A;0;number;R;UINT32;0;W;1;0;4294967295;triphaso, triphaso-kwh;Positive active power on phase A;;196
+positive_active_power_abc;Total positive active power;0;number;R;UINT32;0;W;1;0;4294967295;triphaso, triphaso-kwh;Total positive active power across all phases;;197
+positive_active_power_b;Positive active power phase B;0;number;R;UINT32;0;W;1;0;4294967295;triphaso, triphaso-kwh;Positive active power on phase B;;198
+positive_active_power_c;Positive active power phase C;0;number;R;UINT32;0;W;1;0;4294967295;triphaso, triphaso-kwh;Positive active power on phase C;;199
+positive_reactive_energy_a;Positive reactive energy phase A;0;number;R;UINT32;0;VArh;1;0;4294967295;triphaso;Positive reactive energy on phase A;;200
+positive_reactive_energy_a;Positive reactive energy phase A;0;number;R;UINT32;0;kVArh;1;0;4294967295;triphaso-kwh;Positive reactive energy on phase A in kilovolt-ampere reactive hours;;201
+positive_reactive_energy_abc;Total positive reactive energy;0;number;R;UINT32;0;VArh;1;0;4294967295;triphaso;Total positive reactive energy across all phases;;202
+positive_reactive_energy_abc;Total positive reactive energy;0;number;R;UINT32;0;kVArh;1;0;4294967295;triphaso-kwh;Total positive reactive energy across all phases in kilovolt-ampere reactive hours;;203
+positive_reactive_energy_b;Positive reactive energy phase B;0;number;R;UINT32;0;VArh;1;0;4294967295;triphaso;Positive reactive energy on phase B;;204
+positive_reactive_energy_b;Positive reactive energy phase B;0;number;R;UINT32;0;kVArh;1;0;4294967295;triphaso-kwh;Positive reactive energy on phase B in kilovolt-ampere reactive hours;;205
+positive_reactive_energy_c;Positive reactive energy phase C;0;number;R;UINT32;0;VArh;1;0;4294967295;triphaso;Positive reactive energy on phase C;;206
+positive_reactive_energy_c;Positive reactive energy phase C;0;number;R;UINT32;0;kVArh;1;0;4294967295;triphaso-kwh;Positive reactive energy on phase C in kilovolt-ampere reactive hours;;207
+positive_reactive_power_a;Positive reactive power phase A;0;number;R;UINT32;0;VAr;1;0;4294967295;triphaso, triphaso-kwh;Positive reactive power on phase A;;208
+positive_reactive_power_abc;Total positive reactive power;0;number;R;UINT32;0;VAr;1;0;4294967295;triphaso, triphaso-kwh;Total positive reactive power across all phases;;209
+positive_reactive_power_b;Positive reactive power phase B;0;number;R;UINT32;0;VAr;1;0;4294967295;triphaso, triphaso-kwh;Positive reactive power on phase B;;210
+positive_reactive_power_c;Positive reactive power phase C;0;number;R;UINT32;0;VAr;1;0;4294967295;triphaso, triphaso-kwh;Positive reactive power on phase C;;211
+power_duration;Power duration;0;number;R;UINT16;0;ms;1;0;65535;presso;Power duration in milliseconds;;212
+pressure;Atmospheric pressure;0;number;R;INT;0;hPa;1;300;1100;atmo, moveo, moveo-lite, vaqao-lite, vaqao-multi-lite, vaqao-plus-lite, vaqao-plus, vaqao;Atmospheric pressure in hectopascals;;213
+ratiometric_0-5_V_1;Ratiometric 0-5V sensor 1 value;0;number;R;FLOAT;2;V;0,01;0;5;torano-atex;Ratiometric 0-5V voltage sensor 1 value;;214
+ratiometric_0-5_V_2;Ratiometric 0-5V sensor 2 value;0;number;R;FLOAT;2;V;0,01;0;5;torano-atex;Ratiometric 0-5V voltage sensor 2 value;;215
+reactive_energy;Reactive energy;0;number;R;INT32;0;VArh;1;-8388608;8388607;smart-plug, ticso;Reactive energy in volt-ampere reactive hours;;216
+reactive_energy_a;Reactive energy phase A;0;number;R;INT32;0;VArh;1;-2147483648;2147483647;triphaso;Reactive energy on phase A;;217
+reactive_energy_a;Reactive energy phase A;0;number;R;INT32;0;kVArh;1;-2147483648;2147483647;triphaso-kwh;Reactive energy on phase A in kilovolt-ampere reactive hours;;218
+reactive_energy_abc;Total reactive energy;0;number;R;INT32;0;VArh;1;-2147483648;2147483647;triphaso;Total reactive energy across all phases;;219
+reactive_energy_abc;Total reactive energy;0;number;R;INT32;0;kVArh;1;-2147483648;2147483647;triphaso-kwh;Total reactive energy across all phases in kilovolt-ampere reactive hours;;220
+reactive_energy_b;Reactive energy phase B;0;number;R;INT32;0;VArh;1;-2147483648;2147483647;triphaso;Reactive energy on phase B;;221
+reactive_energy_b;Reactive energy phase B;0;number;R;INT32;0;kVArh;1;-2147483648;2147483647;triphaso-kwh;Reactive energy on phase B in kilovolt-ampere reactive hours;;222
+reactive_energy_c;Reactive energy phase C;0;number;R;INT32;0;VArh;1;-2147483648;2147483647;triphaso;Reactive energy on phase C;;223
+reactive_energy_c;Reactive energy phase C;0;number;R;INT32;0;kVArh;1;-2147483648;2147483647;triphaso-kwh;Reactive energy on phase C in kilovolt-ampere reactive hours;;224
+reactive_power;Reactive power;0;number;R;INT16;0;VAr;1;-8388608;8388607;smart-plug, ticso;Reactive power in volt-ampere reactive;;225
+reactive_power_a;Reactive power phase A;0;number;R;INT32;0;VAr;1;-2147483648;2147483647;triphaso, triphaso-kwh;Reactive power on phase A;;226
+reactive_power_abc;Total reactive power;0;number;R;INT32;0;VAr;1;-2147483648;2147483647;triphaso, triphaso-kwh;Total reactive power across all phases;;227
+reactive_power_b;Reactive power phase B;0;number;R;INT32;0;VAr;1;-2147483648;2147483647;triphaso, triphaso-kwh;Reactive power on phase B;;228
+reactive_power_c;Reactive power phase C;0;number;R;INT32;0;VAr;1;-2147483648;2147483647;triphaso, triphaso-kwh;Reactive power on phase C;;229
+sag_voltage;Voltage sag count;0;number;R;UINT16;0;;1;0;65535;smart-plug;Number of voltage sag events;;231
+sendConfirmedMode;Send Confirmed Mode;0;number;W;UINT8;0;;1;0;1;all;Set confirmed transmission mode;;232
+sendFactoryReset;Send Factory Reset command;false;boolean;W;BOOL;;;;;;all;Send Factory Reset command to the device;;233
+sendHexFrame;Send custom Hex Frame;"""""";string;W;STRING;;;;;;all;Send a custom hex frame (with optional specific port);128;234
+sendLoraRejoin;Send LoRa Rejoin command;0;number;W;UINT16;0;min;1;0;65535;all;Send LoRa Rejoin command with set interval;;235
+sendLoraRetries;Send LoRa Retries;0;number;W;UINT8;0;;1;1;7;all;Set the amount of LoRa retries;;236
+sendMSOMode;Send MSO Mode;0;number;W;UINT8;0;;1;0;5;smartpilot-wire;Set Multi State Output mode;;237
+sendMSORelay;Send MSO Relay State;0;number;W;UINT8;0;;1;0;1;smartpilot-wire;Set Multi State Relay state;;238
+sendOnOffState;Set on/off state;0;number;W;UINT8;0;;1;0;2;smart-plug;0 = On, 1 = Off, 2 = Toggle;;239
+sendOnOffStateEP1;Set on/off state for endpoint 1;0;number;W;UINT8;0;;1;0;2;ino;0 = On, 1 = Off, 2 = Toggle;;240
+sendOnOffStateEP2;Set on/off state for endpoint 2;0;number;W;UINT8;0;;1;0;2;ino;0 = On, 1 = Off, 2 = Toggle;;241
+sendOnOffStateEP3;Set on/off state for endpoint 3;0;number;W;UINT8;0;;1;0;2;ino;0 = On, 1 = Off, 2 = Toggle;;242
+sendOnOffStateEP4;Set on/off state for endpoint 4;0;number;W;UINT8;0;;1;0;2;ino;0 = On, 1 = Off, 2 = Toggle;;243
+sendReboot;Send Reboot command;false;boolean;W;BOOL;;;;;;all;Send reboot command to the device;;244
+solar_harvesting_voltage;Solar harvesting voltage;0;number;R;FLOAT;3;V;0,001;0;24;ventilo;Solar harvesting voltage;;245
+speed;Modbus speed;0;number;R;UINT24;0;bps;1;0;16777215;modbus;Modbus communication speed in bps;;246
+state;State;false;boolean;R;BOOL;;;;;;ventilo;State measurement value;;247
+stop_bit;Modbus stop bits;0;number;R;UINT8;0;;1;1;2;modbus;Number of stop bits in Modbus frame;;248
+temperature;Temperature;0;number;R;FLOAT;2;Cel;0,01;0;55;atmo, indoor-temp, moveo, moveo-lite, temp-remte-1-prb, pt1000, pt1000-400c, th, tempo, hygrotempo, hygrotempo-remote, climo, ventilo;Temperature in degrees Celsius;;249
+Temperature;Temperature;0;number;R;FLOAT;2;Cel;0,01;0;55;indoor-temp;Temperature in degrees Celsius;;250
+temperature_1;Temperature sensor 1;0;number;R;FLOAT;2;Cel;0,01;0;55;vaqao-lite;Temperature from sensor 1;;257
+temperature_1;Temperature sensor 1;0;number;R;FLOAT;2;Cel;0,01;-40;110;temp-remte-2-prb;Temperature from sensor 1;;260
+temperature_2;Temperature sensor 2;0;number;R;FLOAT;2;Cel;0,01;0;55;vaqao-lite;Temperature from sensor  2;;262
+temperature_2;Temperature sensor 2;0;number;R;FLOAT;2;Cel;0,01;-40;110;temp-remte-2-prb;Temperature from sensor 2;;265
+tic_harvesting_voltage;TIC harvesting voltage;0;number;R;FLOAT;3;V;0,001;0;65,535;ticso;TIC harvesting voltage;;267
+Tilt;Tilt;0;number;R;INT16;0;deg;1;0;359;alto, inclino;Tilt measurement value;;268
+violation_detection;Violation detection;false;boolean;R;BOOL;;;;;;closo, hygrotempo, hygrotempo-remote, vaqao-lite;Violation detection state;;269
+Vpeak;Peak voltage;0;number;R;FLOAT;1;V;0,1;0;300;smart-plug;Peak voltage;;270
+Vpeak_max;Max peak voltage;0;number;R;FLOAT;1;V;0,1;0;300;smart-plug;Max peak voltage;;271
+Vpeak_min;Min peak voltage;0;number;R;FLOAT;1;V;0,1;0;300;smart-plug;Min peak voltage;;272
+Vrms;RMS voltage;0;number;R;FLOAT;1;V;0,1;0;300;smart-plug;RMS voltage;;273
+Vrms_a;RMS voltage phase A;0;number;R;FLOAT;1;V;0,1;0;600;triphaso, triphaso-kwh;RMS voltage on phase A;;274
+Vrms_b;RMS voltage phase B;0;number;R;FLOAT;1;V;0,1;0;600;triphaso, triphaso-kwh;RMS voltage on phase B;;275
+Vrms_c;RMS voltage phase C;0;number;R;FLOAT;1;V;0,1;0;600;triphaso, triphaso-kwh;RMS voltage on phase C;;276
+Vrms_max;Maximum RMS voltage;0;number;R;FLOAT;1;V;0,1;0;600;smart-plug;Maximum RMS voltage;;277
+Vrms_min;Minimum RMS voltage;0;number;R;FLOAT;1;V;0,1;0;600;smart-plug;Minimum RMS voltage;;278
