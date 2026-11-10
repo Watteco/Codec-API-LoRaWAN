@@ -1,6 +1,6 @@
 {
   "name": "watteco-smartpilot_wire",
-  "version": "1.1.9",
+  "version": "1.1.10",
   "description": "Driver for smartpilot_wire sensor",
   "main": "main.js",
   "scripts": {
