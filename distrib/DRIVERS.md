@@ -289,7 +289,7 @@
 </details>
 
 <details>
-<summary>SMARTPILOT_WIRE [1.1.9]</summary>
+<summary>SMARTPILOT_WIRE [1.1.10]</summary>
 
   [NPM: watteco-smartpilot_wire](https://www.npmjs.com/package/watteco-smartpilot_wire)
 - **basic (CID: 0x0000)** : kernel, manufacturer, model, date, position, application_name

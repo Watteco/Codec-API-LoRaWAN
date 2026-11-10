@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "name": "smartpilot wire",
+  "version": "1.1.10",
+  "description": "Driver for Smartpilot wire sensor",
+  "entrypoint": "main.js",
+  "codecApi": {
+    "specification": "TS013",
+    "version": "1.0.0"
+  },
+  "source": {
+    "repository": "https://github.com/Watteco/Codec-API-LoRaWAN",
+    "commit": "82c9690556aafa4e1643f6da56d02b441bea14c4",
+    "path": "devices/smartpilot_wire"
+  },
+  "artifacts": {
+    "examples.json": {
+      "sha256": "99e167f3ee1c7db580a9ebc5888c135e4bfd61c3c25fdb29ca8d0de35e050689",
+      "size": 4825
+    },
+    "main.js": {
+      "sha256": "bf70665859442a04c54e757f13f639cb16b267bf95b1555f22901787d48ae3ed",
+      "size": 44799
+    },
+    "metadata.json": {
+      "sha256": "2093f7bb398ee3123167e65a639db3c672fc5f5ae4654b61774f00587b05adf4",
+      "size": 402
+    },
+    "smartpilot_wire-milesight-object-mapping.json": {
+      "sha256": "5ed2ca5b0470b87a8894e6a47cf516f4940bda23ea014af6e0baf4f8495d6d02",
+      "size": 9510
+    },
+    "smartpilot_wire-multitechBacnet-definition.json": {
+      "sha256": "41c8e390c38efbc8754b85f291074d78c407aaa181493d9f096b2bc14e423110",
+      "size": 1490
+    },
+    "uplink.schema.json": {
+      "sha256": "e8ddbc01e1ee75a26fa96b7b5808aa6c5692f5ce37f418f2115051fc5a54d170",
+      "size": 866
+    }
+  }
+}

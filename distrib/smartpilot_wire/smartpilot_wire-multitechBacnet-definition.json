@@ -1,5 +1,5 @@
 {
-  "description": "Watteco smartpilot wire v1.1.9",
+  "description": "Watteco smartpilot wire v1.1.10",
   "properties": {
     "sendHexFrame": {
       "type": "string",
