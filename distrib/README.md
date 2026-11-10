@@ -275,6 +275,14 @@ Download this [NodeRED example (exported in JSON)](/sources_readme/VaqaoDecoding
 ## Using the Watteco codec API with Chirpstack
 [→ Français](#utilisation-de-lapi-codec-watteco-avec-chirpstack)
 
+### ChirpStack v4 and later
+
+ChirpStack v4 supports the TS013 payload codec API used by the Watteco codecs. Select the JavaScript codec in the device profile and paste the complete content of the `main.js` file matching your sensor. No additional `Decode(fPort, bytes)` wrapper is required.
+
+### ChirpStack before v4
+
+The instructions below apply only to ChirpStack versions earlier than v4.
+
 The first step is to import manually the codec into your Chirpstack interface. 
 You'll find all the codecs, by sensor, [here](https://github.com/Watteco/Codec-API-LoRaWAN/tree/main/distrib).  
 Choose your sensor, then copy the content of the corresponding `main.js` file then simply paste into the "Codec" section of the Chirpstack interface.  
@@ -557,6 +565,14 @@ Une fois téléchargé, vous pouvez l'importer directement dans NodeRED via le b
 
 ## Utilisation de l'API codec Watteco avec Chirpstack
 [→ English](#using-the-watteco-codec-api-with-chirpstack)
+
+### ChirpStack v4 et versions ultérieures
+
+ChirpStack v4 prend en charge l'API de codec TS013 utilisée par les codecs Watteco. Sélectionnez le codec JavaScript dans le profil de l'appareil puis collez l'intégralité du fichier `main.js` correspondant à votre capteur. Il n'est pas nécessaire d'ajouter une fonction `Decode(fPort, bytes)`.
+
+### ChirpStack antérieur à v4
+
+Les instructions ci-dessous concernent uniquement les versions de ChirpStack antérieures à v4.
 
 La première étape consiste à importer manuellement le codec dans votre interface Chirpstack.  
 Vous trouverez tous les codecs, classés par capteur, [ici](https://github.com/Watteco/Codec-API-LoRaWAN/tree/main/distrib).  

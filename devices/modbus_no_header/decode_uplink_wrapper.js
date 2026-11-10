@@ -1,6 +1,6 @@
 driver.decodeUplinkInter = driver.decodeUplink;
 
-function decodeUplink(input) {
+driver.decodeUplink = function (input) {
     var output = driver.decodeUplinkInter(input);
 
     if (output.errors) {
@@ -8,7 +8,6 @@ function decodeUplink(input) {
     }
 
     return driver.decodeModbusWithoutHeader(input, output);
-}
+};
 
-driver.decodeUplink = decodeUplink;
-(typeof globalThis !== "undefined" ? globalThis : this).decodeUplink = decodeUplink;
+(typeof globalThis !== "undefined" ? globalThis : this).decodeUplink = driver.decodeUplink;

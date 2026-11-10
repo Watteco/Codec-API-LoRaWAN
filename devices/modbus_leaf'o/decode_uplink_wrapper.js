@@ -126,7 +126,7 @@ function decodeMultiLayerLeaf(input, decoded) {
     return { data: data, warnings: warnings };
 }
 
-function decodeUplink(input) {
+driver.decodeUplink = function (input) {
     var output = driver.decodeUplinkInter(input);
 
     if (output.errors) return output;
@@ -136,7 +136,6 @@ function decodeUplink(input) {
 
     var remapped = decodeMultiLayerLeaf(input, output.data);
     return remapped || output;
-}
+};
 
-driver.decodeUplink = decodeUplink;
-(typeof globalThis !== "undefined" ? globalThis : this).decodeUplink = decodeUplink;
+(typeof globalThis !== "undefined" ? globalThis : this).decodeUplink = driver.decodeUplink;

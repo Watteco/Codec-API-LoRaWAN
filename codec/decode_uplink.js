@@ -148,6 +148,13 @@ function addUnitsToData(data, units = {}) {
  * @returns {Object} - The decoded data with potential warnings or errors.
  */
 function watteco_decodeUplink(input, batch_parameters, endpoint_parameters, units, TIC_Decode=null) {
+    if (!input) {
+        return {
+            data: {},
+            warnings: [],
+        };
+    }
+
     if (typeof input.bytes === 'string') {
         const hexString = input.bytes.replace(/[^0-9A-Fa-f]/g, '');
         const bytes = [];
@@ -155,6 +162,16 @@ function watteco_decodeUplink(input, batch_parameters, endpoint_parameters, unit
             bytes.push(parseInt(hexString.substr(i, 2), 16));
         }
         input.bytes = bytes;
+    }
+
+    // LoRaWAN port 0 carries MAC commands, not application payloads.
+    // Some network servers still invoke the application codec for these
+    // network-only uplinks, including when the payload is empty.
+    if (input.fPort === 0 || !input.bytes || input.bytes.length === 0) {
+        return {
+            data: {},
+            warnings: [],
+        };
     }
 
     // Normalize recvTime coming from different integrations (string, protobuf, nested objects...) into ISO string

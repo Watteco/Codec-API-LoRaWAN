@@ -5,6 +5,22 @@ const babel = require("@babel/core");
 const terser = require("terser"); // Import Terser for final minification
 const deasync = require("deasync"); // To force sync execution of Webpack
 
+const DEFAULT_DECODE_UPLINK_WRAPPER = `
+
+driver.decodeUplinkInter = driver.decodeUplink;
+driver.decodeUplink = function (input) {
+    var output = driver.decodeUplinkInter(input);
+
+    if (output.errors) {
+        return output;
+    }
+
+    return output;
+};
+
+(typeof globalThis !== "undefined" ? globalThis : this).decodeUplink = driver.decodeUplink;
+`;
+
 /**
  * Build and transpile a JavaScript project using Webpack and Babel synchronously.
  *
@@ -289,22 +305,9 @@ function buildAndTranspile(projectDir, options = {}) {
 
     const readableWrapperPath = path.join(projectDir, "decode_uplink_wrapper.js");
     const readableDecodeUplinkAppend = options.readableDecodeUplink === false ? "" :
-        fs.existsSync(readableWrapperPath) ? fs.readFileSync(readableWrapperPath, "utf8") : `
-
-driver.decodeUplinkInter = driver.decodeUplink;
-function decodeUplink(input) {
-    var output = driver.decodeUplinkInter(input);
-
-    if (output.errors) {
-        return output;
-    }
-
-    return output;
-}
-
-driver.decodeUplink = decodeUplink;
-(typeof globalThis !== "undefined" ? globalThis : this).decodeUplink = decodeUplink;
-`;
+        fs.existsSync(readableWrapperPath)
+            ? fs.readFileSync(readableWrapperPath, "utf8")
+            : DEFAULT_DECODE_UPLINK_WRAPPER;
 
     if (options && options.terserSafeTB) {
         // Post-terser rewrite as a safety net
@@ -2088,6 +2091,7 @@ function generateAllMilesightBacnetMappings(pattern = null, bacnetMappingPath = 
 // Export the function as a module
 module.exports = { 
     buildAndTranspile,
+    DEFAULT_DECODE_UPLINK_WRAPPER,
     getDevices,
     updateJSON_name_description,
     generateDeviceDriverInfoMarkdown,

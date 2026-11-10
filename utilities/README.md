@@ -58,7 +58,7 @@ S'il faut modifier un codec (création, correctif, amélioration,...), la marche
 
 - Déployer pour ACTILITY *(sur un fork du référentiel actility, et suivi d'un pull request pour Actility)*:
   
-  *Note: En cas de création du codec pour un nouveau capteur on créé/copie sa structure (watteco/models/[device]/ et watteco/drivers[device]/) à parir d'un modèle équivalent*
+  *Note: En cas de création du codec pour un nouveau capteur on créé/copie sa structure (watteco/models/[device]/ et watteco/drivers/[device]_v1.1/) à parir d'un modèle équivalent*
 ```bash
   node actility_deployment.js .. <actility-fork-path> "vaqa.*"
 ```
