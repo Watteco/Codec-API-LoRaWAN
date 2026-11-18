@@ -1,0 +1,7 @@
+node_modules/
+test/
+coverage/
+specification/
+pulse_sens'o_neo.js
+driver-examples.spec.js
+webpack.config.js

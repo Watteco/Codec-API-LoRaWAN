@@ -1,0 +1,98 @@
+{
+  "description": "Watteco pulse sens'o lite neo v1.1.0",
+  "properties": {
+    "sendHexFrame": {
+      "type": "string",
+      "downlink": true
+    },
+    "sendConfirmedMode": {
+      "type": "uint8",
+      "downlink": true
+    },
+    "sendReboot": {
+      "type": "bool",
+      "downlink": true
+    },
+    "sendFactoryReset": {
+      "type": "bool",
+      "downlink": true
+    },
+    "sendLoraRetries": {
+      "type": "uint8",
+      "downlink": true
+    },
+    "sendLoraRejoin": {
+      "type": "uint16",
+      "downlink": true,
+      "units": "min"
+    },
+    "kernel": {
+      "type": "string"
+    },
+    "manufacturer": {
+      "type": "string"
+    },
+    "model": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string"
+    },
+    "position": {
+      "type": "string"
+    },
+    "application_name": {
+      "type": "string"
+    },
+    "disposable_battery_voltage": {
+      "type": "float",
+      "units": "V"
+    },
+    "message_type": {
+      "type": "string"
+    },
+    "nb_retry": {
+      "type": "uint8"
+    },
+    "automatic_association": {
+      "type": "float"
+    },
+    "data_rate": {
+      "type": "uint8"
+    },
+    "ABP_dev_address": {
+      "type": "string"
+    },
+    "OTA_app_EUI": {
+      "type": "string"
+    },
+    "index_1": {
+      "type": "uint32"
+    },
+    "pin_state_1": {
+      "type": "bool"
+    },
+    "polarity": {
+      "type": "string"
+    },
+    "edge_selection": {
+      "type": "string"
+    },
+    "debounce_period": {
+      "type": "uint8",
+      "units": "ms"
+    },
+    "poll_period": {
+      "type": "uint16",
+      "units": "ms"
+    },
+    "force_notify": {
+      "type": "bool"
+    },
+    "battery_voltage": {
+      "type": "float",
+      "units": "V"
+    }
+  },
+  "decoder": "pulse_senso_lite_neo-decoder.js"
+}

@@ -3,7 +3,7 @@ version;max_downlink_commands;;;;;;;;;;;;
 1.0;5;;;;;;;;;;;;
 ##models;;;;;;;;;;;;;
 name;selectors;;;;;;;;;;;;
-all;{mId: atmo}, {mId: alto}, {mId: closo}, {mId: flasho}, {mId: ino}, {mId: inclino}, {mId: indoor-temp}, {mId: intenso}, {mId: levo}, {mId: modbus}, {mId: monito}, {mId: moveo}, {mId: moveo-lite}, {mId: tempo-outdoor}, {mId: smartpilot-wire}, {mId: presso}, {mId: pulse-senso}, {mId: pulse-senso-atex}, {mId: temp-remte-1-prb}, {mId: temp-remte-2-prb}, {mId: pt1000}, {mId: pt1000-400c}, {mId: smartplug}, {mId: th}, {mId: tempo}, {mId: hygrotempo}, {mId: hygrotemp-remote}, {mId: climo}, {mId: ticso}, {mId: torano-atex}, {mId: triphaso}, {mId: triphaso-kwh}, {mId: vaqao-lite}, {mId: vaqao-lt}, {mId: vaqao-multi-lite}, {mId: vaqao-plus-lite}, {mId: vaqao-plus}, {mId: vaqao}, {mId: ventilo};;;;;;;;;;;;
+all;{mId: atmo}, {mId: alto}, {mId: closo}, {mId: flasho}, {mId: ino}, {mId: inclino}, {mId: indoor-temp}, {mId: intenso}, {mId: levo}, {mId: modbus}, {mId: monito}, {mId: moveo}, {mId: moveo-lite}, {mId: tempo-outdoor}, {mId: smartpilot-wire}, {mId: presso}, {mId: pulse-senso}, {mId: pulse-senso-neo}, {mId: pulse-senso-lite-neo}, {mId: pulse-senso-atex}, {mId: temp-remte-1-prb}, {mId: temp-remte-2-prb}, {mId: pt1000}, {mId: pt1000-400c}, {mId: smartplug}, {mId: th}, {mId: tempo}, {mId: hygrotempo}, {mId: hygrotemp-remote}, {mId: climo}, {mId: ticso}, {mId: torano-atex}, {mId: triphaso}, {mId: triphaso-kwh}, {mId: vaqao-lite}, {mId: vaqao-lt}, {mId: vaqao-multi-lite}, {mId: vaqao-plus-lite}, {mId: vaqao-plus}, {mId: vaqao}, {mId: ventilo};;;;;;;;;;;;
 atmo;{mId: atmo};;;;;;;;;;;;
 alto;{mId: alto};;;;;;;;;;;;
 closo;{mId: closo};;;;;;;;;;;;
@@ -22,6 +22,8 @@ moveo;{mId: moveo};;;;;;;;;;;;
 moveo-lite;{mId: moveo-lite};;;;;;;;;;;;
 presso;{mId: presso};;;;;;;;;;;;
 pulse-senso;{mId: pulse-senso};;;;;;;;;;;;
+pulse-senso-lite-neo;{mId: pulse-senso-lite-neo};;;;;;;;;;;;
+pulse-senso-neo;{mId: pulse-senso-neo};;;;;;;;;;;;
 pulse-senso-atex;{mId: pulse-senso-atex};;;;;;;;;;;;
 smart-plug;{mId: smartplug};;;;;;;;;;;;
 smartpilot-wire;{mId: smartpilot-wire};;;;;;;;;;;;
@@ -73,21 +75,21 @@ angle_a;Phase angle A;0;number;R;INT16;0;deg;1;0;359;triphaso, triphaso-kwh;Phas
 angle_b;Phase angle B;0;number;R;INT16;0;deg;1;0;359;triphaso, triphaso-kwh;Phase angle on phase B;;27
 angle_c;Phase angle C;0;number;R;INT16;0;deg;1;0;359;triphaso, triphaso-kwh;Phase angle on phase C;;28
 application_name;Application name;"""""";string;R;STRING;;;;;;all;Name of the application running on the device;16;29
-battery_voltage;Battery voltage;0;number;R;FLOAT;3;V;0,001;0;6;alto, atmo, climo, flasho, hygrotempo, hygrotempo-remote, intenso, levo, monito, presso, pt1000, pt1000-400c, pulse-senso, pulse-senso-atex, tempo-outdoor, temp-remte-1-prb, temp-remte-2-prb, th, ventilo;Device battery voltage;;30
+battery_voltage;Battery voltage;0;number;R;FLOAT;3;V;0,001;0;6;alto, atmo, climo, flasho, hygrotempo, hygrotempo-remote, intenso, levo, monito, presso, pt1000, pt1000-400c, pulse-senso, pulse-senso-neo, pulse-senso-lite-neo, pulse-senso-atex, tempo-outdoor, temp-remte-1-prb, temp-remte-2-prb, th, ventilo;Device battery voltage;;30
 BatteryVoltage;BatteryVoltage;0;number;R;FLOAT;3;V;0,001;0;6;indoor-temp;Device battery voltage;;31
 CO2;CO2 concentration;0;number;R;UINT16;0;ppm;1;0;5000;vaqao-lite, vaqao-lt, vaqao-multi-lite, vaqao-plus-lite, vaqao-plus, vaqao;CO2 concentration in ppm;;32
 data_bit;Modbus data bits;0;number;R;UINT8;0;;1;7;8;modbus;Number of data bits in Modbus frame;;34
 data_rate;LoRaWAN data rate;0;number;R;UINT8;0;;1;0;7;all;LoRaWAN data rate (DR0-DR7);;35
 date;Manufacturing date;"""""";string;R;STRING;;;;;;all;Device manufacturing date;16;36
-debounce_period;Debounce period;0;number;R;UINT8;0;ms;1;0;65535;atmo, closo, flasho, ino, presso, pulse-senso, pulse-senso-atex;Debounce period in milliseconds;;37
+debounce_period;Debounce period;0;number;R;UINT8;0;ms;1;0;65535;atmo, closo, flasho, ino, presso, pulse-senso, pulse-senso-neo, pulse-senso-lite-neo, pulse-senso-atex;Debounce period in milliseconds;;37
 differential_pressure;Differential pressure;0;number;R;INT16;0;Pa;1;-2500;2500;ventilo;Differential pressure in Pascal;;38
-disposable_battery_voltage;Disposable battery voltage;0;number;R;FLOAT;3;V;0,001;0;6;alto, atmo, climo, closo, flasho, hygrotempo, hygrotempo-remote, ino, inclino, indoor-temp, intenso, levo, modbus, monito, moveo-lite, presso, pt1000, pt1000-400c, pulse-senso, pulse-senso-atex, tempo, tempo-outdoor, temp-remte-1-prb, temp-remte-2-prb, th, torano-atex, vaqao-lite;Disposable battery voltage;;39
+disposable_battery_voltage;Disposable battery voltage;0;number;R;FLOAT;3;V;0,001;0;6;alto, atmo, climo, closo, flasho, hygrotempo, hygrotempo-remote, ino, inclino, indoor-temp, intenso, levo, modbus, monito, moveo-lite, presso, pt1000, pt1000-400c, pulse-senso, pulse-senso-neo, pulse-senso-lite-neo, pulse-senso-atex, tempo, tempo-outdoor, temp-remte-1-prb, temp-remte-2-prb, th, torano-atex, vaqao-lite;Disposable battery voltage;;39
 distance;Distance;0;number;R;FLOAT;2;m;0,01;0;30;alto;Distance measurement in meters;;40
-edge_selection;Edge detection configuration;"""""";string;R;STRING;;;;;;atmo, closo, flasho, ino, presso, pulse-senso, pulse-senso-atex;Edge detection configuration;24;41
+edge_selection;Edge detection configuration;"""""";string;R;STRING;;;;;;atmo, closo, flasho, ino, presso, pulse-senso, pulse-senso-neo, pulse-senso-lite-neo, pulse-senso-atex;Edge detection configuration;24;41
 external_level;External Level;0;number;R;FLOAT;3;V;0,001;;;monito;External Level measurement value;;42
 external_power_voltage;External Power Voltage;0;number;R;FLOAT;3;V;0,001;0;24;levo, presso;External Power Voltage measurement value;;43
 firmware;Firmware version;"""""";string;R;STRING;;;;;;all;Device firmware version;16;44
-force_notify;Force notification flag;false;boolean;R;BOOL;;;;;;atmo, closo, flasho, ino, presso, pulse-senso, pulse-senso-atex;Force notification parameter;;45
+force_notify;Force notification flag;false;boolean;R;BOOL;;;;;;atmo, closo, flasho, ino, presso, pulse-senso, pulse-senso-neo, pulse-senso-lite-neo, pulse-senso-atex;Force notification parameter;;45
 frequency;Frequency;0;number;R;FLOAT;3;Hz;0,001;0;100;smart-plug;Frequency in hertz;;46
 frequency_max;Maximum frequency;0;number;R;FLOAT;3;Hz;0,001;0;100;smart-plug;Maximum frequency in hertz;;47
 frequency_min;Minimum frequency;0;number;R;FLOAT;3;Hz;0,001;0;100;smart-plug;Minimum frequency in hertz;;48
@@ -97,11 +99,11 @@ humidity_2;Humidity sensor 2;0;number;R;FLOAT;2;%RH;0,01;0;100;vaqao-lite;Humidi
 IAQ;Indoor air quality;0;number;R;UINT16;0;;1;0;500;vaqao-lite, vaqao-lt, vaqao-multi-lite, vaqao-plus-lite, vaqao-plus, vaqao;Indoor air quality index;;52
 illuminance;Illuminance level;0;number;R;UINT16;0;lx;1;0;65535;moveo, moveo-lite, vaqao-lite, vaqao-plus-lite, vaqao-plus, vaqao;Illuminance level in lux;;53
 index;Pulse counter index;0;number;R;UINT32;0;;1;0;4294967295;closo, flasho, presso, th, triphaso, triphaso-kwh, ventilo;Pulse counter index value;;54
-index_1;Pulse counter index 1;0;number;R;UINT32;0;;1;0;4294967295;atmo, ino, pulse-senso, pulse-senso-atex, torano-atex;Pulse counter index 1 value;;55
+index_1;Pulse counter index 1;0;number;R;UINT32;0;;1;0;4294967295;atmo, ino, pulse-senso, pulse-senso-neo, pulse-senso-lite-neo, pulse-senso-atex, torano-atex;Pulse counter index 1 value;;55
 index_10;Pulse counter index 10;0;number;R;UINT32;0;;1;0;4294967295;ino;Pulse counter index 10 value;;56
-index_2;Pulse counter index 2;0;number;R;UINT32;0;;1;0;4294967295;atmo, ino, pulse-senso, pulse-senso-atex, torano-atex;Pulse counter index 2 value;;57
-index_3;Pulse counter index 3;0;number;R;UINT32;0;;1;0;4294967295;ino, pulse-senso, pulse-senso-atex, torano-atex;Pulse counter index 3 value;;58
-index_4;Pulse counter index 4;0;number;R;UINT32;0;;1;0;4294967295;ino;Pulse counter index 4 value;;59
+index_2;Pulse counter index 2;0;number;R;UINT32;0;;1;0;4294967295;atmo, ino, pulse-senso, pulse-senso-neo, pulse-senso-atex, torano-atex;Pulse counter index 2 value;;57
+index_3;Pulse counter index 3;0;number;R;UINT32;0;;1;0;4294967295;ino, pulse-senso, pulse-senso-neo, pulse-senso-atex, torano-atex;Pulse counter index 3 value;;58
+index_4;Pulse counter index 4;0;number;R;UINT32;0;;1;0;4294967295;ino, pulse-senso-neo;Pulse counter index 4 value;;59
 index_5;Pulse counter index 5;0;number;R;UINT32;0;;1;0;4294967295;ino;Pulse counter index 5 value;;60
 index_6;Pulse counter index 6;0;number;R;UINT32;0;;1;0;4294967295;ino;Pulse counter index 6 value;;61
 index_7;Pulse counter index 7;0;number;R;UINT32;0;;1;0;4294967295;ino;Pulse counter index 7 value;;62
@@ -174,7 +176,7 @@ modbus_slaveID_EP7;Modbus slave ID endpoint 7;0;number;R;UINT8;0;;1;0;255;modbus
 modbus_slaveID_EP8;Modbus slave ID endpoint 8;0;number;R;UINT8;0;;1;0;255;modbus;Modbus slave ID for endpoint 8;;132
 modbus_slaveID_EP9;Modbus slave ID endpoint 9;0;number;R;UINT8;0;;1;0;255;modbus;Modbus slave ID for endpoint 9;;133
 model;Device model;"""""";string;R;STRING;;;;;;all;Device model name;16;134
-multi_state;Multi State;0;number;R;UINT16;0;;1;0;65535;pulse-senso, pulse-senso-atex;Multi State measurement value;;135
+multi_state;Multi State;0;number;R;UINT16;0;;1;0;65535;pulse-senso, pulse-senso-neo, pulse-senso-lite-neo, pulse-senso-atex;Multi State measurement value;;135
 nb_retry;Number of retries;0;number;R;UINT8;0;;1;1;7;all;Number of transmission retries;;136
 nb_samples;Number of samples;0;number;R;UINT16;0;;1;0;65535;smart-plug, ticso;Number of samples measured;;137
 negative_active_energy_a;Negative active energy phase A;0;number;R;UINT32;0;Wh;1;0;4294967295;triphaso;Negative active energy on phase A;;138
@@ -214,18 +216,18 @@ output_value;Output value;0;number;R;UINT8;0;;1;0;5;smartpilot-wire;Output numer
 over_voltage;Over voltage count;0;number;R;UINT16;0;;1;0;65535;smart-plug;Number of over voltage events;;172
 parity;Modbus parity;0;number;R;UINT8;0;;1;0;2;modbus;Parity setting for Modbus (0=none, 1=odd, 2=even);;173
 pin_state;Digital input state;false;boolean;R;BOOL;;;;;;flasho, presso, ventilo;State of digital input pin;;174
-pin_state_1;Digital input state 1;false;boolean;R;BOOL;;;;;;atmo, ino, pulse-senso, pulse-senso-atex, torano-atex;State of digital input pin 1;;175
+pin_state_1;Digital input state 1;false;boolean;R;BOOL;;;;;;atmo, ino, pulse-senso, pulse-senso-neo, pulse-senso-lite-neo, pulse-senso-atex, torano-atex;State of digital input pin 1;;175
 pin_state_10;Digital input state 10;false;boolean;R;BOOL;;;;;;ino;State of digital input pin 10;;176
-pin_state_2;Digital input state 2;false;boolean;R;BOOL;;;;;;atmo, ino, pulse-senso, pulse-senso-atex, torano-atex;State of digital input pin 2;;177
-pin_state_3;Digital input state 3;false;boolean;R;BOOL;;;;;;ino, pulse-senso, pulse-senso-atex, torano-atex;State of digital input pin 3;;178
-pin_state_4;Digital input state 4;false;boolean;R;BOOL;;;;;;ino;State of digital input pin 4;;179
+pin_state_2;Digital input state 2;false;boolean;R;BOOL;;;;;;atmo, ino, pulse-senso, pulse-senso-neo, pulse-senso-atex, torano-atex;State of digital input pin 2;;177
+pin_state_3;Digital input state 3;false;boolean;R;BOOL;;;;;;ino, pulse-senso, pulse-senso-neo, pulse-senso-atex, torano-atex;State of digital input pin 3;;178
+pin_state_4;Digital input state 4;false;boolean;R;BOOL;;;;;;ino, pulse-senso-neo;State of digital input pin 4;;179
 pin_state_5;Digital input state 5;false;boolean;R;BOOL;;;;;;ino;State of digital input pin 5;;180
 pin_state_6;Digital input state 6;false;boolean;R;BOOL;;;;;;ino;State of digital input pin 6;;181
 pin_state_7;Digital input state 7;false;boolean;R;BOOL;;;;;;ino;State of digital input pin 7;;182
 pin_state_8;Digital input state 8;false;boolean;R;BOOL;;;;;;ino;State of digital input pin 8;;183
 pin_state_9;Digital input state 9;false;boolean;R;BOOL;;;;;;ino;State of digital input pin 9;;184
-polarity;Input polarity;"""""";string;R;STRING;;;;;;atmo, closo, flasho, ino, presso, pulse-senso, pulse-senso-atex;Polarity of the input (normal or reverse);8;185
-poll_period;Polling period;0;number;R;UINT16;0;ms;1;0;65535;atmo, closo, flasho, ino, presso, pulse-senso, pulse-senso-atex;Polling period;;186
+polarity;Input polarity;"""""";string;R;STRING;;;;;;atmo, closo, flasho, ino, presso, pulse-senso, pulse-senso-neo, pulse-senso-lite-neo, pulse-senso-atex;Polarity of the input (normal or reverse);8;185
+poll_period;Polling period;0;number;R;UINT16;0;ms;1;0;65535;atmo, closo, flasho, ino, presso, pulse-senso, pulse-senso-neo, pulse-senso-lite-neo, pulse-senso-atex;Polling period;;186
 position;Device position;"""""";string;R;STRING;;;;;;all;Physical location of the device;8;187
 positive_active_energy_a;Positive active energy phase A;0;number;R;UINT32;0;Wh;1;0;4294967295;triphaso;Positive active energy on phase A;;188
 positive_active_energy_a;Positive active energy phase A;0;number;R;UINT32;0;kWh;1;0;4294967295;triphaso-kwh;Positive active energy on phase A in kilowatt-hours;;189
