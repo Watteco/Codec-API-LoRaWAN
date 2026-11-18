@@ -289,6 +289,30 @@
 </details>
 
 <details>
+<summary>PULSE_SENS'O_LITE_NEO [1.1.0]</summary>
+
+  [NPM: watteco-pulse_sens_o_lite_neo](https://www.npmjs.com/package/watteco-pulse_sens_o_lite_neo)
+- **basic (CID: 0x0000)** : kernel, manufacturer, model, date, position, application_name
+- **configuration (CID: 0x0050)** : disposable_battery_voltage (V)
+- **lorawan (CID: 0x8004)** : message_type, nb_retry, automatic_association, data_rate, ABP_dev_address, OTA_app_EUI
+- **binary input (CID: 0x000F)** : index_1, pin_state_1, polarity, edge_selection, debounce_period (ms), poll_period (ms), force_notify
+- **multi binary inputs (CID: 0x8005)** : pin_state_1
+
+</details>
+
+<details>
+<summary>PULSE_SENS'O_NEO [1.1.0]</summary>
+
+  [NPM: watteco-pulse_sens_o_neo](https://www.npmjs.com/package/watteco-pulse_sens_o_neo)
+- **basic (CID: 0x0000)** : kernel, manufacturer, model, date, position, application_name
+- **configuration (CID: 0x0050)** : disposable_battery_voltage (V)
+- **lorawan (CID: 0x8004)** : message_type, nb_retry, automatic_association, data_rate, ABP_dev_address, OTA_app_EUI
+- **binary input (CID: 0x000F)** : index_1, index_2, index_3, index_4, pin_state_1, pin_state_2, pin_state_3, pin_state_4, polarity, edge_selection, debounce_period (ms), poll_period (ms), force_notify
+- **multi binary inputs (CID: 0x8005)** : pin_state_1, pin_state_2, pin_state_3, pin_state_4
+
+</details>
+
+<details>
 <summary>SMARTPILOT_WIRE [1.1.10]</summary>
 
   [NPM: watteco-smartpilot_wire](https://www.npmjs.com/package/watteco-smartpilot_wire)

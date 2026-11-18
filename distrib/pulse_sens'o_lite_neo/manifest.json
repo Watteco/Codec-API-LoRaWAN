@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "name": "pulse sens'o lite neo",
+  "version": "1.1.0",
+  "description": "Driver for Pulse Sens'O Lite Neo sensor with one pulse input",
+  "entrypoint": "main.js",
+  "codecApi": {
+    "specification": "TS013",
+    "version": "1.0.0"
+  },
+  "source": {
+    "repository": "https://github.com/Watteco/Codec-API-LoRaWAN",
+    "commit": "7eea5a9f1e34eeaf6d2a8eeadda0ba6b3d0ad6e0",
+    "path": "devices/pulse_sens'o_lite_neo"
+  },
+  "artifacts": {
+    "examples.json": {
+      "sha256": "8ed61e75938f36ef6a214dde4f250f4e111996e2873ecb411db97ee5679021bc",
+      "size": 6722
+    },
+    "main.js": {
+      "sha256": "df9b9d47491078684ea9d884812f479bef43cbad46e168c1deee20e192b59ae5",
+      "size": 45256
+    },
+    "metadata.json": {
+      "sha256": "a4f22afca31e26dbec10791d090f774767d6d0cebd8c8ddf090b4654bb5b5229",
+      "size": 396
+    },
+    "pulse_senso_lite_neo-milesight-object-mapping.json": {
+      "sha256": "491ee036ae9ee4eaf8df97784ee69744c8ed24035cdf2b4d5310533550573ad9",
+      "size": 12067
+    },
+    "pulse_senso_lite_neo-multitechBacnet-definition.json": {
+      "sha256": "d04005aa2be7d3bb9ed3b04d51769ae6e30f3ad92cd037c352ef875377d7481a",
+      "size": 1771
+    },
+    "uplink.schema.json": {
+      "sha256": "23151bb9c08ec563ada03d196f2e446c791596d8bbbe50e7056ae8ec9a5d08a5",
+      "size": 780
+    }
+  }
+}
